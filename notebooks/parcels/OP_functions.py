@@ -1,6 +1,7 @@
 import numpy as np
 import os
 from cartopy import crs
+from matplotlib import pyplot as plt, animation, rc
 
 def make_prefix(date, path, res='h'):
     """Construct path prefix for local SalishSeaCast results given date object and paths dict
@@ -46,3 +47,4 @@ def scatter_particles(ax, N ,n,nmin, nmax,yvar,lon,HD=0,colors=colores):
                 scatter.append(ax.scatter(lon[starts[i]:ends[i], nmin:nmax], yvar[starts[i]:ends[i], nmin:nmax],c=colors[i],s=5,transform=crs.PlateCarree(),zorder=2))
         
     return scatter
+
