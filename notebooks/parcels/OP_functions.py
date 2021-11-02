@@ -130,8 +130,11 @@ def visual(outfile,N,n,clon,clat,dmin,dd, nmin=0, nmax=-1,local=1):
     ax2.grid()
     plt.ylabel('Depth [m]')
     plt.xlabel('Longitude')
-    #zsc=np.repeat((dmin)/2,len(clon))
-    dmin=[0-di for di in dmin]
+
+    if dmin == (int(dmin)):
+        dmin=np.repeat((dmin)/2,len(clon))
+    else:
+        dmin=[0-di for di in dmin]
     ax2.scatter(clon,dmin,c='r', marker='*', linewidths=1)
     
 
