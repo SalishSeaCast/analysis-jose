@@ -82,7 +82,6 @@ def mapanimation(outfile,N,n,clon,clat,dmin,dmax,fps=1):
 
 def visual(outfile,N,n,clon,clat,dmin,dmax, nmin=0, nmax=-1):
     coords,mask,ds = output(outfile)
-    paths = path()
     fig, (ax1, ax2) = plt.subplots(1,2,figsize=(19, 8))
     ax1.contour(coords.nav_lon, coords.nav_lat, mask.mbathy[0,:,:],colors='k',linewidths=0.1)
     ax1.contourf(coords.nav_lon, coords.nav_lat, mask.tmask[0, 0, ...], levels=[-0.01, 0.01], colors='lightgray')
@@ -113,8 +112,8 @@ def path(local = 1):
     return path
     
 
-def output(outfile):
-    paths = path()
+def output(outfile,local=1):
+    paths = path(local)
     coords = xr.open_dataset(paths['coords'], decode_times=False)
     mask = xr.open_dataset(paths['mask'])
     ds = xr.open_dataset(outfile)
@@ -141,9 +140,9 @@ def profile(N,n,length,outfile,levels=20):
     plt.legend(fontsize=12)
     
     
-def filename_set(start,duration,varlist=['U','V','W']):
+def filename_set(start,duration,varlist=['U','V','W'],local=1):
     #Build filenames
-    paths = path()
+    paths = path(local)
     Tlist,Ulist, Vlist, Wlist = [], [], [], []
    
     for day in range(duration.days):
