@@ -5,6 +5,22 @@ from matplotlib import pyplot as plt, animation, rc
 import xarray as xr
 from datetime import datetime, timedelta
 
+def path(local = 1):
+    '''Change with your paths'''
+    if local == 1:
+        path = {'NEMO': '/results2/SalishSea/nowcast-green.201905/',
+        'coords': '/Users/jvalenti/MOAD/SSC_masks/coordinates_seagrid_SalishSea201702.nc',
+        'mask': '/Users/jvalenti/MOAD/SSC_masks/mesh_mask201702.nc',
+        'out': '/Users/jvalenti/MOAD/analysis-jose/notebooks/results/'}    
+    else:
+        path = {'NEMO': '/results2/SalishSea/nowcast-green.201905/',
+        'coords': '/ocean/jvalenti/MOAD/grid/coordinates_seagrid_SalishSea201702.nc',
+        'mask': '/ocean/jvalenti/MOAD/grid/mesh_mask201702.nc',
+        'out': '/home/jvalenti/MOAD/analysis-jose/notebooks/results',
+        'anim': '/home/jvalenti/MOAD/animations'}
+    return path
+
+
 def make_prefix(date, path, res='h'):
     """Construct path prefix for local SalishSeaCast results given date object and paths dict
     e.g., /results2/SalishSea/nowcast-green.201905/daymonthyear/SalishSea_1h_yyyymmdd_yyyymmdd
@@ -18,6 +34,12 @@ def make_prefix(date, path, res='h'):
 colores=['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf']
 
 def scatter_particles(ax, N ,n,nmin, nmax,yvar,lon,HD=0,colors=colores):
+    '''scatter_particles(ax, N ,n,nmin, nmax,yvar,lon,HD=0,colors=colores)
+    Use this function to scatter particles with different colours for each deploy location
+    N= number of deploying sites,n=number of particles oper location, nmin,max=time min,max, yvar is the variable to plot on the yaxis, 
+    Keep HD to 0 unless you want to plot with cartopy (only works for maps so yvar= latitude)
+    '''
+    
     scatter=[]
     #N is the number of stations, n the number of particles
     #Color is a list of strings picking the desired colors
@@ -52,8 +74,15 @@ def scatter_particles(ax, N ,n,nmin, nmax,yvar,lon,HD=0,colors=colores):
 
 ss=[]
 
-def mapanimation(outfile,N,n,clon,clat,dmin,dmax,fps=1):
-    coords,mask,ds=output(outfile)
+def mapanimation(outfile,N,n,clon,clat,dmin,dmax,fps=1,local=1):
+    '''mapanimation(outfile,N,n,clon,clat,dmin,dmax,fps=1,local=1)
+    Use this function to return an animated map of the particles,
+    keep local=1 when working local and = 0 when remote. 
+    outfile is the name of the output file from OP
+    N= number of deploying sites,n=number of particles oper location, dmin,dmax=deploying min,max depths,
+    clat,clon location of deploying locations.
+    '''
+    coords,mask,ds = output(outfile,local)
     fig = plt.figure(figsize=(19, 8))
     ax = plt.axes(xlim=(-127,-121),ylim=(46.8,51.2))
     ax.contour(coords.nav_lon, coords.nav_lat, mask.mbathy[0,:,:],colors='k',linewidths=0.1)
@@ -80,8 +109,15 @@ def mapanimation(outfile,N,n,clon,clat,dmin,dmax,fps=1):
     anim= animation.FuncAnimation(fig, update, frames=np.arange(0,len(ds.lon[0,:]),fps))
     return anim
 
-def visual(outfile,N,n,clon,clat,dmin,dmax, nmin=0, nmax=-1):
-    coords,mask,ds = output(outfile)
+def visual(outfile,N,n,clon,clat,dmin,dmax, nmin=0, nmax=-1,local=1):
+    '''visual(outfile,N,n,clon,clat,dmin,dmax, nmin=0, nmax=-1,local=1)
+    Use this function to return an animated map of the particles,
+    keep local=1 when working local and = 0 when remote. 
+    outfile is the name of the output file from OP
+    N= number of deploying sites,n=number of particles oper location, dmin,dmax=deploying min,max depths,
+    clat,clon location of deploying locations.
+    '''
+    coords,mask,ds = output(outfile,local)
     fig, (ax1, ax2) = plt.subplots(1,2,figsize=(19, 8))
     ax1.contour(coords.nav_lon, coords.nav_lat, mask.mbathy[0,:,:],colors='k',linewidths=0.1)
     ax1.contourf(coords.nav_lon, coords.nav_lat, mask.tmask[0, 0, ...], levels=[-0.01, 0.01], colors='lightgray')
@@ -97,30 +133,28 @@ def visual(outfile,N,n,clon,clat,dmin,dmax, nmin=0, nmax=-1):
     zsc=np.repeat((dmin-dmax)/2,len(clon))
     ax2.scatter(clon,zsc,c='r', marker='*', linewidths=1)
     
-def path(local = 1):
-    if local == 1:
-        path = {'NEMO': '/results2/SalishSea/nowcast-green.201905/',
-        'coords': '/Users/jvalenti/MOAD/SSC_masks/coordinates_seagrid_SalishSea201702.nc',
-        'mask': '/Users/jvalenti/MOAD/SSC_masks/mesh_mask201702.nc',
-        'out': '/Users/jvalenti/MOAD/analysis-jose/notebooks/results/'}    
-    else:
-        path = {'NEMO': '/results2/SalishSea/nowcast-green.201905/',
-        'coords': '/ocean/jvalenti/MOAD/grid/coordinates_seagrid_SalishSea201702.nc',
-        'mask': '/ocean/jvalenti/MOAD/grid/mesh_mask201702.nc',
-        'out': '/home/jvalenti/MOAD/analysis-jose/notebooks/results',
-        'anim': '/home/jvalenti/MOAD/animations'}
-    return path
+
     
 
 def output(outfile,local=1):
+    '''coords,mask,ds = output(outfile,local=1) 
+    outfile is the name of the output file'''
     paths = path(local)
     coords = xr.open_dataset(paths['coords'], decode_times=False)
     mask = xr.open_dataset(paths['mask'])
     ds = xr.open_dataset(outfile)
     return  coords,mask,ds
 
-def profile(N,n,length,outfile,levels=20):
-    coords,mask,ds = output(outfile)
+def profile(N,n,length,outfile,levels=20,local=1):
+    '''profile(N,n,length,outfile,levels=20,local=1)
+    Use this function to return a depth profile of the particles,
+    keep local=1 when working local and = 0 when remote. 
+    outfile is the name of the output file from OP
+    N= number of deploying sites,n=number of particles oper location, 
+    length= number days of run,
+    levels= how many layers to count particles
+    '''
+    coords,mask,ds = output(outfile,local)
     Z = np.linspace(0,430,levels)
     starts = np.arange(0,N*n,n)
     ends = np.arange(n-1,N*n,n)
@@ -140,7 +174,13 @@ def profile(N,n,length,outfile,levels=20):
     plt.legend(fontsize=12)
     
     
-def filename_set(start,duration,varlist=['U','V','W'],local=1):
+def filename_set(start,length,varlist=['U','V','W'],local=1):
+    '''filename,variables,dimensions = filename_set(start,duration,varlist=['U','V','W'],local=1)
+    Modify function to include more default variables
+    define start as: e.g, datetime(2018, 1, 17)
+    length= number of days'''
+    
+    duration = timedelta(days=length)
     #Build filenames
     paths = path(local)
     Tlist,Ulist, Vlist, Wlist = [], [], [], []
