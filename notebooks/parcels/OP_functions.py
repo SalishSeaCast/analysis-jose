@@ -74,12 +74,12 @@ def scatter_particles(ax, N ,n,nmin, nmax,yvar,lon,HD=0,colors=colores):
 
 ss=[]
 
-def mapanimation(outfile,N,n,clon,clat,dmin,dmax,fps=1,local=1):
-    '''mapanimation(outfile,N,n,clon,clat,dmin,dmax,fps=1,local=1)
+def mapanimation(outfile,N,n,clon,clat,fps=1,local=1):
+    '''mapanimation(outfile,N,n,clon,clat,fps=1,local=1)
     Use this function to return an animated map of the particles,
     keep local=1 when working local and = 0 when remote. 
     outfile is the name of the output file from OP
-    N= number of deploying sites,n=number of particles oper location, dmin,dmax=deploying min,max depths,
+    N= number of deploying sites,n=number of particles oper location,
     clat,clon location of deploying locations.
     '''
     coords,mask,ds = output(outfile,local)
@@ -109,7 +109,7 @@ def mapanimation(outfile,N,n,clon,clat,dmin,dmax,fps=1,local=1):
     anim= animation.FuncAnimation(fig, update, frames=np.arange(0,len(ds.lon[0,:]),fps))
     return anim
 
-def visual(outfile,N,n,clon,clat,dmin,dmax, nmin=0, nmax=-1,local=1):
+def visual(outfile,N,n,clon,clat,dmin,dd, nmin=0, nmax=-1,local=1):
     '''visual(outfile,N,n,clon,clat,dmin,dmax, nmin=0, nmax=-1,local=1)
     Use this function to return an animated map of the particles,
     keep local=1 when working local and = 0 when remote. 
@@ -130,8 +130,9 @@ def visual(outfile,N,n,clon,clat,dmin,dmax, nmin=0, nmax=-1,local=1):
     ax2.grid()
     plt.ylabel('Depth [m]')
     plt.xlabel('Longitude')
-    zsc=np.repeat((dmin-dmax)/2,len(clon))
-    ax2.scatter(clon,zsc,c='r', marker='*', linewidths=1)
+    #zsc=np.repeat((dmin)/2,len(clon))
+    dmin=[0-di for di in dmin]
+    ax2.scatter(clon,dmin,c='r', marker='*', linewidths=1)
     
 
     
@@ -145,7 +146,7 @@ def output(outfile,local=1):
     ds = xr.open_dataset(outfile)
     return  coords,mask,ds
 
-def profile(N,n,length,outfile,levels=20,local=1):
+def profile(N,n,length,outfile,levels=20,local=1,colors=colores):
     '''profile(N,n,length,outfile,levels=20,local=1)
     Use this function to return a depth profile of the particles,
     keep local=1 when working local and = 0 when remote. 
@@ -158,17 +159,29 @@ def profile(N,n,length,outfile,levels=20,local=1):
     Z = np.linspace(0,430,levels)
     starts = np.arange(0,N*n,n)
     ends = np.arange(n-1,N*n,n)
+    
+    if N < len(colors):
+        colors = colors[0:N]
+    elif N > len(colors):
+        con = 0
+        while N > len(colors):
+            colors.append(colors[con])
+            con+=1
+        
     time = length*24+1
-    zn = np.zeros([len(Z)-1,time])
+    zn = np.zeros([N,len(Z)-1,time])
     for j in range(time):
-        zn[:,j],z_levels = np.histogram(ds.z[:, j], bins=Z)
+        for i in range(N): 
+            zn[i,:,j],z_levels = np.histogram(ds.z[starts[i]:ends[i], j], bins=Z)
     fig = plt.figure(figsize=(8, 8))
     ax = plt.axes(xlim=(-5,np.max(zn[:,0]+5)),ylim=(-500,0))
-    plt.plot(zn[:,0],-z_levels[1:],'--',label='$t_0$')
+    for i in range(N):
+        plt.plot(zn[i,:,0],-z_levels[1:],'--',label='$t_0$',c=colors[i])
     ax.grid()
     plt.ylabel('Depth [m]',fontsize=16)
     plt.xlabel('Particles',fontsize=16)
-    plt.plot(zn[:,-1],-z_levels[1:],'--',label='$t_{end}$')
+    for i in range(N):
+        plt.plot(zn[i,:,-1],-z_levels[1:],'-',label='$t_{end}$',c=colors[i])
     plt.xticks(fontsize=12)
     plt.yticks(fontsize=12)
     plt.legend(fontsize=12)
