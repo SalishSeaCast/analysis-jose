@@ -131,7 +131,7 @@ def visual(outfile,N,n,clon,clat,dmin,dd, nmin=0, nmax=-1,local=1):
     plt.ylabel('Depth [m]')
     plt.xlabel('Longitude')
 
-    if dmin == (int(dmin)):
+    if isinstance(dmin,int) :
         dmin=np.repeat((dmin)/2,len(clon))
     else:
         dmin=[0-di for di in dmin]
