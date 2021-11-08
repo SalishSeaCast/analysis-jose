@@ -136,9 +136,6 @@ def visual(outfile,N,n,clon,clat,dmin,dd, nmin=0, nmax=-1,local=1):
     else:
         dmin=[0-di for di in dmin]
     ax2.scatter(clon,dmin,c='r', marker='*', linewidths=1)
-    
-
-    
 
 def output(outfile,local=1):
     '''coords,mask,ds = output(outfile,local=1) 
