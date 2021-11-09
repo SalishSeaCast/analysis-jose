@@ -146,7 +146,7 @@ def output(outfile,local=1):
     ds = xr.open_dataset(outfile)
     return  coords,mask,ds
 
-def profile(N,n,length,outfile,levels=20,local=1,colors=colores):
+def profile(N,n,length,outfile,labels,levels=20,local=1,colors=colores):
     '''profile(N,n,length,outfile,levels=20,local=1)
     Use this function to return a depth profile of the particles,
     keep local=1 when working local and = 0 when remote. 
@@ -176,12 +176,12 @@ def profile(N,n,length,outfile,levels=20,local=1,colors=colores):
     fig = plt.figure(figsize=(8, 8))
     ax = plt.axes(xlim=(-5,np.max(zn[:,0]+5)),ylim=(-500,0))
     for i in range(N):
-        plt.plot(zn[i,:,0],-z_levels[1:],'--',label='$t_0$',c=colors[i])
+        plt.plot(zn[i,:,0],-z_levels[1:],'--',label='$t_{0}$'+labels[i],c=colors[i])
     ax.grid()
     plt.ylabel('Depth [m]',fontsize=16)
     plt.xlabel('Particles',fontsize=16)
     for i in range(N):
-        plt.plot(zn[i,:,-1],-z_levels[1:],'-',label='$t_{end}$',c=colors[i])
+        plt.plot(zn[i,:,-1],-z_levels[1:],'-',label='$t_{end}$'+labels[i],c=colors[i])
     plt.xticks(fontsize=12)
     plt.yticks(fontsize=12)
     plt.legend(fontsize=12)
