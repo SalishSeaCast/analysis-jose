@@ -8,10 +8,11 @@ from datetime import datetime, timedelta
 def path(local = 1):
     '''Change with your paths'''
     if local == 1:
-        path = {'NEMO': '/results2/SalishSea/nowcast-green.201905/',
+        path = {'NEMO': '/Users/jvalenti/MOAD/data/',
         'coords': '/Users/jvalenti/MOAD/SSC_masks/coordinates_seagrid_SalishSea201702.nc',
         'mask': '/Users/jvalenti/MOAD/SSC_masks/mesh_mask201702.nc',
-        'out': '/Users/jvalenti/MOAD/analysis-jose/notebooks/results/'}    
+        'out': '/Users/jvalenti/MOAD/analysis-jose/notebooks/results/',
+        'anim': '/Users/jvalenti/MOAD/animations'}
     else:
         path = {'NEMO': '/results2/SalishSea/nowcast-green.201905/',
         'coords': '/ocean/jvalenti/MOAD/grid/coordinates_seagrid_SalishSea201702.nc',
@@ -105,9 +106,7 @@ def mapanimation(outfile,N,n,clon,clat,fps=1,local=1):
         ss = scatter_particles(ax, N,n, frame,frame, ds.lat,ds.lon)
         ss.append(ax.scatter(clon,clat,c='r', marker='*', linewidths=2))
         return ss
-
-    anim= animation.FuncAnimation(fig, update, frames=np.arange(0,len(ds.lon[0,:]),fps))
-    return anim
+    return animation.FuncAnimation(fig, update, frames=np.arange(0,len(ds.lon[0,:]),fps))
 
 def visual(outfile,N,n,clon,clat,dmin,dd, nmin=0, nmax=-1,local=1):
     '''visual(outfile,N,n,clon,clat,dmin,dmax, nmin=0, nmax=-1,local=1)
@@ -146,7 +145,8 @@ def output(outfile,local=1):
     ds = xr.open_dataset(outfile)
     return  coords,mask,ds
 
-def profile(N,n,length,outfile,labels,levels=20,local=1,colors=colores):
+labels0=['Nnm','Cmp','Vnc','Stl','Vct','Otf']
+def profile(N,n,length,outfile,labels=labels0,levels=20,local=1,colors=colores):
     '''profile(N,n,length,outfile,levels=20,local=1)
     Use this function to return a depth profile of the particles,
     keep local=1 when working local and = 0 when remote. 
@@ -187,7 +187,7 @@ def profile(N,n,length,outfile,labels,levels=20,local=1,colors=colores):
     plt.legend(fontsize=12)
     
     
-def filename_set(start,length,varlist=['U','V','W'],local=1):
+def filename_set(start,length,varlist=['U','V','W'],local=0):
     '''filename,variables,dimensions = filename_set(start,duration,varlist=['U','V','W'],local=1)
     Modify function to include more default variables
     define start as: e.g, datetime(2018, 1, 17)
@@ -221,3 +221,18 @@ def filename_set(start,length,varlist=['U','V','W'],local=1):
         var2[var]=variables[var]
     return file2,var2,dimensions
 
+def p_deploy(N,n,dmin,dd,r = 1000):
+    #r is radius of particle cloud [m]
+    deg2m = 111000 * np.cos(50 * np.pi / 180)
+    var = (r / (deg2m * 3))**2
+    x_offset, y_offset = np.random.multivariate_normal([0, 0], [[var, 0], [0, var]], [n,N]).T
+    if isinstance(dmin,int):
+        zvals1 = dmin + np.random.random_sample([n,N]).T*(dd)
+    else:
+        zvals = []
+        zvals1 = []
+        for dept in dmin:
+            zvals.append(dept + np.random.random_sample([n]).T*(dd))
+        for i in range(len(zvals)):   
+            zvals1=np.concatenate((zvals1[:],zvals[i]))
+    return x_offset, y_offset, zvals1   
