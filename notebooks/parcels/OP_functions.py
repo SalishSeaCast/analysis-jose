@@ -12,12 +12,14 @@ def path(local = 1):
         'coords': '/Users/jvalenti/MOAD/SSC_masks/coordinates_seagrid_SalishSea201702.nc',
         'mask': '/Users/jvalenti/MOAD/SSC_masks/mesh_mask201702.nc',
         'out': '/Users/jvalenti/MOAD/analysis-jose/notebooks/results/',
+        'home': '/Users/jvalenti/MOAD/analysis-jose/notebooks/parcels',
         'anim': '/Users/jvalenti/MOAD/animations'}
     else:
         path = {'NEMO': '/results2/SalishSea/nowcast-green.201905/',
         'coords': '/ocean/jvalenti/MOAD/grid/coordinates_seagrid_SalishSea201702.nc',
         'mask': '/ocean/jvalenti/MOAD/grid/mesh_mask201702.nc',
         'out': '/home/jvalenti/MOAD/analysis-jose/notebooks/results',
+        'home': '/home/jvalenti/MOAD/analysis-jose/notebooks/parcels',
         'anim': '/home/jvalenti/MOAD/animations'}
     return path
 
@@ -146,7 +148,7 @@ def output(outfile,local=1):
     return  coords,mask,ds
 
 labels0=['Nnm','Cmp','Vnc','Stl','Vct','Otf']
-def profile(N,n,length,outfile,labels=labels0,levels=20,local=1,colors=colores):
+def profile(N,n,length,outfile,local=1,labels=labels0,levels=20,colors=colores):
     '''profile(N,n,length,outfile,levels=20,local=1)
     Use this function to return a depth profile of the particles,
     keep local=1 when working local and = 0 when remote. 
