@@ -161,7 +161,6 @@ def profile(N,n,length,outfile,local=1,labels=labels0,levels=20,colors=colores):
     Z = np.linspace(0,430,levels)
     starts = np.arange(0,N*n,n)
     ends = np.arange(n-1,N*n,n)
-    
     if N < len(colors):
         colors = colors[0:N]
     elif N > len(colors):
@@ -174,6 +173,7 @@ def profile(N,n,length,outfile,local=1,labels=labels0,levels=20,colors=colores):
     zn = np.zeros([N,len(Z)-1,time])
     for j in range(time):
         for i in range(N): 
+            print('hello')
             zn[i,:,j],z_levels = np.histogram(ds.z[starts[i]:ends[i], j], bins=Z)
     fig = plt.figure(figsize=(8, 8))
     ax = plt.axes(xlim=(-5,np.max(zn[:,0]+5)),ylim=(-500,0))
@@ -198,7 +198,7 @@ def filename_set(start,length,varlist=['U','V','W'],local=0):
     duration = timedelta(days=length)
     #Build filenames
     paths = path(local)
-    Tlist,Ulist, Vlist, Wlist = [], [], [], []
+    Rlist,Tlist,Ulist, Vlist, Wlist = [], [], [], [], []
    
     for day in range(duration.days):
         path_NEMO = make_prefix(start + timedelta(days=day), paths['NEMO'])
@@ -206,6 +206,8 @@ def filename_set(start,length,varlist=['U','V','W'],local=0):
         Vlist.append(path_NEMO + '_grid_V.nc')
         Wlist.append(path_NEMO + '_grid_W.nc')
         Tlist.append(path_NEMO + '_grid_T.nc')
+        Rlist.append(path_NEMO + '_carp_T.nc')
+        
 
     # Load NEMO forcing 
     filenames = {
@@ -214,8 +216,9 @@ def filename_set(start,length,varlist=['U','V','W'],local=0):
         'W': {'lon': paths['coords'], 'lat': paths['coords'], 'depth': Wlist[0], 'data': Wlist},
         'T': {'lon': paths['coords'], 'lat': paths['coords'], 'depth': Wlist[0], 'data': Tlist},
         'S': {'lon': paths['coords'], 'lat': paths['coords'], 'depth': Wlist[0], 'data': Tlist},
+        'R': {'lon': paths['coords'], 'lat': paths['coords'], 'depth': Wlist[0], 'data': Rlist}
     }
-    variables = {'U': 'vozocrtx', 'V': 'vomecrty','W': 'vovecrtz','T':'votemper','S':'vosaline'}
+    variables = {'U': 'vozocrtx', 'V': 'vomecrty','W': 'vovecrtz','T':'votemper','S':'vosaline','R':'sigma_theta'}
     dimensions = {'lon': 'glamf', 'lat': 'gphif', 'depth': 'depthw','time': 'time_counter'}
     file2,var2 = {},{}
     for var in varlist:
