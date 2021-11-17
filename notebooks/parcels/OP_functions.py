@@ -110,6 +110,8 @@ def mapanimation(outfile,N,n,clon,clat,fps=1,local=1):
         return ss
     return animation.FuncAnimation(fig, update, frames=np.arange(0,len(ds.lon[0,:]),fps))
 
+    
+
 def visual(outfile,N,n,clon,clat,dmin,dd, nmin=0, nmax=-1,local=1):
     '''visual(outfile,N,n,clon,clat,dmin,dmax, nmin=0, nmax=-1,local=1)
     Use this function to return an animated map of the particles,
@@ -240,3 +242,36 @@ def p_deploy(N,n,dmin,dd,r = 1000):
         for i in range(len(zvals)):   
             zvals1=np.concatenate((zvals1[:],zvals[i]))
     return x_offset, y_offset, zvals1   
+
+def mapanimation_vic(outfile,N,n,clon,clat,fps=1,local=1):
+    '''mapanimation(outfile,N,n,clon,clat,fps=1,local=1)
+    Use this function to return an animated map of the particles,
+    keep local=1 when working local and = 0 when remote. 
+    outfile is the name of the output file from OP
+    N= number of deploying sites,n=number of particles oper location,
+    clat,clon location of deploying locations.
+    '''
+    coords,mask,ds = output(outfile,local)
+    fig = plt.figure(figsize=(19, 8))
+    ax = plt.axes(xlim=(-124,-122),ylim=(48,49.5))
+    ax.contour(coords.nav_lon, coords.nav_lat, mask.mbathy[0,:,:],colors='k',linewidths=0.1)
+    ax.contourf(coords.nav_lon, coords.nav_lat, mask.tmask[0, 0, ...], levels=[-0.01, 0.01], colors='lightgray')
+    ax.contour(coords.nav_lon, coords.nav_lat, mask.tmask[0, 0, ...], levels=[-0.01, 0.01], colors='k')
+    ax.grid()
+    ax.set_aspect(1/1)
+    plt.ylabel('Latitude',fontsize=16)
+    plt.xlabel('Longitude',fontsize=16)
+    t = ax.text(0.02, 0.02, '', transform=ax.transAxes)
+    t.set_text('')
+    ss = scatter_particles(ax, N,n, 0,0, ds.lat,ds.lon)
+
+    def update(frame):
+        tstamp = ds.time[0, frame].values.astype('datetime64[s]').astype(datetime)
+        t.set_text(tstamp.strftime('%Y-%b-%d %H:%M UTC'))
+        global ss
+        for scat in ss:
+            scat.remove()
+        ss = scatter_particles(ax, N,n, frame,frame, ds.lat,ds.lon)
+        ss.append(ax.scatter(clon,clat,c='r', marker='*', linewidths=2))
+        return ss
+    return animation.FuncAnimation(fig, update, frames=np.arange(0,len(ds.lon[0,:]),fps))
