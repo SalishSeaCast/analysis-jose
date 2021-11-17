@@ -173,7 +173,6 @@ def profile(N,n,length,outfile,local=1,labels=labels0,levels=20,colors=colores):
     zn = np.zeros([N,len(Z)-1,time])
     for j in range(time):
         for i in range(N): 
-            print('hello')
             zn[i,:,j],z_levels = np.histogram(ds.z[starts[i]:ends[i], j], bins=Z)
     fig = plt.figure(figsize=(8, 8))
     ax = plt.axes(xlim=(-5,np.max(zn[:,0]+5)),ylim=(-500,0))
