@@ -14,8 +14,11 @@ def Buoyancy(particle, fieldset, time):
         ro = fieldset.R[time, particle.depth, particle.lat, particle.lon]
         #visc = 4.2844e-5 + 1/(0.157*((t + 64.993)**2)-91.296)
         Ws= ((ESD**2)*g*(Rp-ro))/(18*visc)
-        #WWS =(11.68 + 0.1991*ESD*1e6 + 0.0004*(ESD*1e6)**2- 0.0993*(Rp-ro) + 0.0002*(Rp-ro)**2)/86400
-        dz = Ws*particle.dt
+        WWS =(11.68 + 0.1991*ESD*1e6 + 0.0004*(ESD*1e6)**2- 0.0993*(Rp-ro) + 0.0002*(Rp-ro)**2)/86400
+        if Ws > WWS:
+            dz = WWS*particle.dt
+        else:
+            dz = Ws*particle.dt
     if dz+z > 0:
         particle.depth += dz 
     else:

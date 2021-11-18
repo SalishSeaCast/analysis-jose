@@ -200,6 +200,7 @@ def filename_set(start,length,varlist=['U','V','W'],local=0):
     #Build filenames
     paths = path(local)
     Rlist,Tlist,Ulist, Vlist, Wlist = [], [], [], [], []
+    Waveslist = []
    
     for day in range(duration.days):
         path_NEMO = make_prefix(start + timedelta(days=day), paths['NEMO'])
@@ -208,6 +209,7 @@ def filename_set(start,length,varlist=['U','V','W'],local=0):
         Wlist.append(path_NEMO + '_grid_W.nc')
         Tlist.append(path_NEMO + '_grid_T.nc')
         Rlist.append(path_NEMO + '_carp_T.nc')
+        Waveslist.append(get_WW3_path(start + timedelta(days=day)))
         
 
     # Load NEMO forcing 
@@ -217,10 +219,18 @@ def filename_set(start,length,varlist=['U','V','W'],local=0):
         'W': {'lon': paths['coords'], 'lat': paths['coords'], 'depth': Wlist[0], 'data': Wlist},
         'T': {'lon': paths['coords'], 'lat': paths['coords'], 'depth': Wlist[0], 'data': Tlist},
         'S': {'lon': paths['coords'], 'lat': paths['coords'], 'depth': Wlist[0], 'data': Tlist},
-        'R': {'lon': paths['coords'], 'lat': paths['coords'], 'depth': Wlist[0], 'data': Rlist}
+        'R': {'lon': paths['coords'], 'lat': paths['coords'], 'depth': Wlist[0], 'data': Rlist},
+        'US': {'lon': Waveslist[0], 'lat': Waveslist[0], 'time':Waveslist[0],'data': Waveslist},
+        'VS': {'lon': Waveslist[0], 'lat': Waveslist[0], 'time':Waveslist[0],'data': Waveslist},
+        'WL': {'lon': Waveslist[0], 'lat': Waveslist[0], 'time':Waveslist[0],'data': Waveslist}
     }
-    variables = {'U': 'vozocrtx', 'V': 'vomecrty','W': 'vovecrtz','T':'votemper','S':'vosaline','R':'sigma_theta'}
-    dimensions = {'lon': 'glamf', 'lat': 'gphif', 'depth': 'depthw','time': 'time_counter'}
+    variables = {'U': 'vozocrtx', 'V': 'vomecrty','W': 'vovecrtz','T':'votemper','S':'vosaline','R':'sigma_theta','US':'uuss','VS':'vuss','WL':'lm'}
+    for fvar in varlist:
+        if fvar == 'U':
+            dimensions = {'lon': 'glamf', 'lat': 'gphif', 'depth': 'depthw','time': 'time_counter'}
+        elif fvar == 'US':
+            dimensions = {'lon': 'longitude', 'lat': 'latitude','time': 'time'}
+    
     file2,var2 = {},{}
     for var in varlist:
         file2[var]=filenames[var]
@@ -243,28 +253,6 @@ def p_deploy(N,n,dmin,dd,r = 1000):
             zvals1=np.concatenate((zvals1[:],zvals[i]))
     return x_offset, y_offset, zvals1   
 
-def mapanimation_vic(outfile,N,n,clon,clat,fps=1,local=1):
-    '''mapanimation(outfile,N,n,clon,clat,fps=1,local=1)
-    Use this function to return an animated map of the particles,
-    keep local=1 when working local and = 0 when remote. 
-    outfile is the name of the output file from OP
-    N= number of deploying sites,n=number of particles oper location,
-    clat,clon location of deploying locations.
-    '''
-    coords,mask,ds = output(outfile,local)
-    fig = plt.figure(figsize=(19, 8))
-    ax = plt.axes(xlim=(-124,-122),ylim=(48,49.5))
-    ax.contour(coords.nav_lon, coords.nav_lat, mask.mbathy[0,:,:],colors='k',linewidths=0.1)
-    ax.contourf(coords.nav_lon, coords.nav_lat, mask.tmask[0, 0, ...], levels=[-0.01, 0.01], colors='lightgray')
-    ax.contour(coords.nav_lon, coords.nav_lat, mask.tmask[0, 0, ...], levels=[-0.01, 0.01], colors='k')
-    ax.grid()
-    ax.set_aspect(1/1)
-    plt.ylabel('Latitude',fontsize=16)
-    plt.xlabel('Longitude',fontsize=16)
-    t = ax.text(0.02, 0.02, '', transform=ax.transAxes)
-    t.set_text('')
-    ss = scatter_particles(ax, N,n, 0,0, ds.lat,ds.lon)
-
     def update(frame):
         tstamp = ds.time[0, frame].values.astype('datetime64[s]').astype(datetime)
         t.set_text(tstamp.strftime('%Y-%b-%d %H:%M UTC'))
@@ -275,3 +263,21 @@ def mapanimation_vic(outfile,N,n,clon,clat,fps=1,local=1):
         ss.append(ax.scatter(clon,clat,c='r', marker='*', linewidths=2))
         return ss
     return animation.FuncAnimation(fig, update, frames=np.arange(0,len(ds.lon[0,:]),fps))
+
+def get_WW3_path(date):
+    """Construct WW3 results path given the date
+    e.g., /opp/wwatch3/nowcast/SoG_ww3_fields_YYYYMMDD_YYYYMMDD.nc
+    :arg date: date of WW3 record
+    :type date: :py:class:`datetime.datetime`
+    :returns: WW3 path
+    :rtype: str
+    """
+
+    # Make WW3 path
+    path = '/opp/wwatch3/nowcast'
+    datestr = [date.strftime(fmt) for fmt in ('%d%b%y', '%Y%m%d_%Y%m%d')]
+    path = os.path.join(path, datestr[0].lower(), f'SoG_ww3_fields_{datestr[1]}.nc')
+    if not os.path.exists(path):
+        raise ValueError(f"No WW3 record found for the specified date {date.strftime('%Y-%b-%d')}")
+
+    return path
