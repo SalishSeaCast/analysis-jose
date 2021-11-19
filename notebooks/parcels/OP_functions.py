@@ -17,6 +17,7 @@ def path(local = 1):
     else:
         path = {'NEMO': '/results2/SalishSea/nowcast-green.201905/',
         'coords': '/ocean/jvalenti/MOAD/grid/coordinates_seagrid_SalishSea201702.nc',
+        'coordsWW3': '/ocean/jvalenti/MOAD/grid/WW3_grid.nc',
         'mask': '/ocean/jvalenti/MOAD/grid/mesh_mask201702.nc',
         'out': '/home/jvalenti/MOAD/analysis-jose/notebooks/results',
         'home': '/home/jvalenti/MOAD/analysis-jose/notebooks/parcels',
@@ -220,16 +221,16 @@ def filename_set(start,length,varlist=['U','V','W'],local=0):
         'T': {'lon': paths['coords'], 'lat': paths['coords'], 'depth': Wlist[0], 'data': Tlist},
         'S': {'lon': paths['coords'], 'lat': paths['coords'], 'depth': Wlist[0], 'data': Tlist},
         'R': {'lon': paths['coords'], 'lat': paths['coords'], 'depth': Wlist[0], 'data': Rlist},
-        'US': {'lon': Waveslist[0], 'lat': Waveslist[0], 'time':Waveslist[0],'data': Waveslist},
-        'VS': {'lon': Waveslist[0], 'lat': Waveslist[0], 'time':Waveslist[0],'data': Waveslist},
-        'WL': {'lon': Waveslist[0], 'lat': Waveslist[0], 'time':Waveslist[0],'data': Waveslist}
+        'US' : Waveslist,
+        'VS' : Waveslist,
+        'WL' : Waveslist
     }
     variables = {'U': 'vozocrtx', 'V': 'vomecrty','W': 'vovecrtz','T':'votemper','S':'vosaline','R':'sigma_theta','US':'uuss','VS':'vuss','WL':'lm'}
     for fvar in varlist:
         if fvar == 'U':
             dimensions = {'lon': 'glamf', 'lat': 'gphif', 'depth': 'depthw','time': 'time_counter'}
         elif fvar == 'US':
-            dimensions = {'lon': 'longitude', 'lat': 'latitude','time': 'time'}
+            dimensions = {'lon': 'longitude', 'lat': 'latitude', 'time': 'time'}
     
     file2,var2 = {},{}
     for var in varlist:
