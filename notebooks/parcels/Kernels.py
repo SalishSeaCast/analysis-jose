@@ -28,7 +28,7 @@ def DeleteParticle(particle, fieldset, time):
     """Delete particle from OceanParcels simulation to avoid run failure
     """
     
-    print(f'Particle {particle.id} lost !! [{particle.lon}, {particle.lat}, {particle.depth}, {particle.time}]')
+    print(f'Particle {particle.id} lost !! [{particle.time}, {particle.depth}, {particle.lat}, {particle.lon}]')
     particle.delete()
 
 def Stokes_drift(particle, fieldset, time):

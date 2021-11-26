@@ -62,17 +62,17 @@ def scatter_particles(ax, N ,n,nmin, nmax,yvar,lon,HD=0,colors=colores):
     if HD == 0:
         if nmin==nmax:
             for i in range(N):
-                scatter.append(ax.scatter(lon[starts[i]:ends[i], nmin], yvar[starts[i]:ends[i], nmin],c=colors[i],s=5))
+                scatter.append(ax.scatter(lon[starts[i]:ends[i], nmin], yvar[starts[i]:ends[i], nmin],c=colors[i],s=1))
         else:
             for i in range(N):
-                scatter.append(ax.scatter(lon[starts[i]:ends[i], nmin:nmax], yvar[starts[i]:ends[i], nmin:nmax],c=colors[i],s=5))
+                scatter.append(ax.scatter(lon[starts[i]:ends[i], nmin:nmax], yvar[starts[i]:ends[i], nmin:nmax],c=colors[i],s=1))
     else:
         if nmin==nmax:
             for i in range(N):
-                scatter.append(ax.scatter(lon[starts[i]:ends[i], nmin], yvar[starts[i]:ends[i], nmin],c=colors[i],s=5,transform=crs.PlateCarree(),zorder=2))
+                scatter.append(ax.scatter(lon[starts[i]:ends[i], nmin], yvar[starts[i]:ends[i], nmin],c=colors[i],s=1,transform=crs.PlateCarree(),zorder=2))
         else:
             for i in range(N):
-                scatter.append(ax.scatter(lon[starts[i]:ends[i], nmin:nmax], yvar[starts[i]:ends[i], nmin:nmax],c=colors[i],s=5,transform=crs.PlateCarree(),zorder=2))
+                scatter.append(ax.scatter(lon[starts[i]:ends[i], nmin:nmax], yvar[starts[i]:ends[i], nmin:nmax],c=colors[i],s=1,transform=crs.PlateCarree(),zorder=2))
         
     return scatter
 
@@ -221,16 +221,19 @@ def filename_set(start,length,varlist=['U','V','W'],local=0):
         'T': {'lon': paths['coords'], 'lat': paths['coords'], 'depth': Wlist[0], 'data': Tlist},
         'S': {'lon': paths['coords'], 'lat': paths['coords'], 'depth': Wlist[0], 'data': Tlist},
         'R': {'lon': paths['coords'], 'lat': paths['coords'], 'depth': Wlist[0], 'data': Rlist},
+        'Bathy' : {'lon': paths['coords'], 'lat': paths['coords'], 'data': paths['mask']},
         'US' : {'lon': paths['coordsWW3'], 'lat': paths['coordsWW3'], 'data': Waveslist},
         'VS' : {'lon': paths['coordsWW3'], 'lat': paths['coordsWW3'], 'data': Waveslist},
         'WL' : {'lon': paths['coordsWW3'], 'lat': paths['coordsWW3'], 'data': Waveslist},
     }
-    variables = {'U': 'vozocrtx', 'V': 'vomecrty','W': 'vovecrtz','T':'votemper','S':'vosaline','R':'sigma_theta','US':'uuss','VS':'vuss','WL':'lm'}
+    variables = {'U': 'vozocrtx', 'V': 'vomecrty','W': 'vovecrtz','T':'votemper','S':'vosaline','R':'sigma_theta','US':'uuss','VS':'vuss','WL':'lm','Bathy':'mbathy'}
     for fvar in varlist:
         if fvar == 'U':
             dimensions = {'lon': 'glamf', 'lat': 'gphif', 'depth': 'depthw','time': 'time_counter'}
         elif fvar == 'US':
             dimensions = {'lon': 'longitude', 'lat': 'latitude', 'time': 'time'}
+        elif fvar == 'Bathy':
+            dimensions = {'lon': 'glamf', 'lat': 'gphif','time': 'time_counter'}
     
     file2,var2 = {},{}
     for var in varlist:
