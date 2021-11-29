@@ -1,7 +1,7 @@
 def Buoyancy(particle, fieldset, time):
     '''Stokes law settling velocity'''
     if particle.sediment == 0:
-        Rp = particle.ro #Density particle: LDPE (~920 kg/m3 ),PS (~150 kg/m3), PET (~1370 kg/m3).
+        Rp = particle.ro-1000 #Density particle: LDPE (~920 kg/m3 ),PS (~150 kg/m3), PET (~1370 kg/m3).
         d = particle.diameter # particle diameter
         l = particle.length # particle length
         visc=1e-3 #average viscosity sea water
@@ -9,9 +9,7 @@ def Buoyancy(particle, fieldset, time):
         bath = 10*fieldset.mbathy[time, particle.depth, particle.lat, particle.lon]
         if  z > bath:
             particle.sediment = 1
-            print('Particle in the sediment !!')
-            particle.delete()
-            
+            print('Particle on sediment')
         else:
             g = 9.8
             #ParcelsRandom.uniform(0,2)
