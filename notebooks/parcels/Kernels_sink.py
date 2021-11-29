@@ -9,7 +9,7 @@ def Buoyancy(particle, fieldset, time):
         bath = 10*fieldset.mbathy[time, particle.depth, particle.lat, particle.lon]
         if  z > bath:
             particle.sediment = 1
-            print('Particle on sediment')
+            #print('Particle on sediment')
         else:
             g = 9.8
             #ParcelsRandom.uniform(0,2)
@@ -23,6 +23,21 @@ def Buoyancy(particle, fieldset, time):
             particle.depth += dz 
         else:
             particle.depth = 0.5
+
+def Stokes_drift(particle, fieldset, time):
+    '''Stokes drift'''  
+    if particle.sediment == 0:
+        lat = particle.lat
+        if lat > 48 and lat < 51: #Check that particle is inside WW3 data field
+            Re = 6378137
+            PI = math.pi
+            z0 = particle.depth
+            (us0, vs0, wl) = fieldset.stokes[time, particle.depth, particle.lat, particle.lon]
+            k = (2*PI)/wl
+            us = 180*(us0*exp(-abs(2*k*z0)))/(Re*PI*cos((particle.lat*PI)/180))
+            vs = 180*(vs0*exp(-abs(2*k*z0)))/(Re*PI)
+            particle.lon += us * particle.dt
+            particle.lat += vs * particle.dt
         
 def DeleteParticle(particle, fieldset, time):
     """Delete particle from OceanParcels simulation to avoid run failure
@@ -30,21 +45,6 @@ def DeleteParticle(particle, fieldset, time):
     
     print(f'Particle {particle.id} lost !! [{particle.time}, {particle.depth}, {particle.lat}, {particle.lon}]')
     particle.delete()
-
-def Stokes_drift(particle, fieldset, time):
-    '''Stokes drift'''  
-    lat = particle.lat
-    if lat > 48 and lat < 51: #Check that particle is inside WW3 data field
-        R = 6378137
-        PI = math.pi
-        z = particle.depth
-        (us0, vs0, wl) = fieldset.stokes[time, particle.depth, particle.lat, particle.lon]
-
-        k = (2*PI)/wl
-        us = 180*(us0*exp(-abs(2*k*z)))/(R*PI*cos((particle.lat*PI)/180))
-        vs = 180*(vs0*exp(-abs(2*k*z)))/(R*PI)
-        particle.lon += us * particle.dt
-        particle.lat += vs * particle.dt
 
 
 def AdvectionRK4_3D(particle, fieldset, time):
