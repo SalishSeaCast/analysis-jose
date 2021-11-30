@@ -62,17 +62,17 @@ def scatter_particles(ax, N ,n,nmin, nmax,yvar,lon,HD=0,colors=colores):
     if HD == 0:
         if nmin==nmax:
             for i in range(N):
-                scatter.append(ax.scatter(lon[starts[i]:ends[i], nmin], yvar[starts[i]:ends[i], nmin],c=colors[i],s=2))
+                scatter.append(ax.scatter(lon[starts[i]:ends[i], nmin], yvar[starts[i]:ends[i], nmin],c=colors[i],s=4))
         else:
             for i in range(N):
-                scatter.append(ax.scatter(lon[starts[i]:ends[i], nmin:nmax], yvar[starts[i]:ends[i], nmin:nmax],c=colors[i],s=2))
+                scatter.append(ax.scatter(lon[starts[i]:ends[i], nmin:nmax], yvar[starts[i]:ends[i], nmin:nmax],c=colors[i],s=4))
     else:
         if nmin==nmax:
             for i in range(N):
-                scatter.append(ax.scatter(lon[starts[i]:ends[i], nmin], yvar[starts[i]:ends[i], nmin],c=colors[i],s=2,transform=crs.PlateCarree(),zorder=2))
+                scatter.append(ax.scatter(lon[starts[i]:ends[i], nmin], yvar[starts[i]:ends[i], nmin],c=colors[i],s=4,transform=crs.PlateCarree(),zorder=2))
         else:
             for i in range(N):
-                scatter.append(ax.scatter(lon[starts[i]:ends[i], nmin:nmax], yvar[starts[i]:ends[i], nmin:nmax],c=colors[i],s=2,transform=crs.PlateCarree(),zorder=2))
+                scatter.append(ax.scatter(lon[starts[i]:ends[i], nmin:nmax], yvar[starts[i]:ends[i], nmin:nmax],c=colors[i],s=4,transform=crs.PlateCarree(),zorder=2))
         
     return scatter
 
@@ -109,11 +109,11 @@ def mapanimation(outfile,N,n,clon,clat,fps=1,local=1):
         for scat in ss:
             scat.remove()
         
-        csed=[]
-        for i in range(len(ds.sediment[:,frame])):
-            csed.append(sed[int(ds.sediment[i,frame])])
+        #csed=[]
+        #for i in range(len(ds.sediment[:,frame])):
+        #    csed.append(sed[int(ds.sediment[i,frame])])
         ss = scatter_particles(ax, N,n, frame,frame, ds.lat,ds.lon)
-        ss.append(ax.scatter(ds.lon[:,frame], ds.lat[:,frame],c=csed,s=2))
+        ss.append(ax.scatter(ds.lon[:,frame], ds.lat[:,frame],c='k',s=5,alpha=ds.sediment[:,frame]))
         ss.append(ax.scatter(clon,clat,c='r', marker='*', linewidths=2))
         return ss
     return animation.FuncAnimation(fig, update, frames=np.arange(0,len(ds.lon[0,:]),fps))
