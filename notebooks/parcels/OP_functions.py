@@ -285,3 +285,27 @@ def get_WW3_path(date):
         raise ValueError(f"No WW3 record found for the specified date {date.strftime('%Y-%b-%d')}")
 
     return path
+
+
+def p_unidist(lat0,lon0,bat,dy,dx):
+    latbat = np.zeros(bat.shape)
+    lonbat = np.zeros(bat.shape)
+
+    for i in range(bat.shape[0]):
+        for j in range(bat.shape[1]):
+            if bat[i,j]>1e-5:
+                latbat[i,j] = lat0[i,j]
+                lonbat[i,j] = lon0[i,j]
+
+    yi = np.arange(0,latbat.shape[0],dy)
+    xi = np.arange(0,latbat.shape[1],dx)
+    plat0,plon0 = latbat[yi,:],lonbat[yi,:]
+    plat1,plon1 = plat0[:,xi],plon0[:,xi]
+
+    plon,plat = [],[]
+    for i in range(plat1.shape[0]):
+        for j in range(plat1.shape[1]):
+            if plat1[i,j]>1e-5:
+                plat.append(plat1[i,j])
+                plon.append(plon1[i,j])
+    return plat,plon
