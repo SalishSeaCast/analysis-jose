@@ -294,7 +294,7 @@ def p_unidist(lat0,lon0,bat,dy,dx):
 def dist_coord(LAT,LON):
     la1,la2 = LAT[0],LAT[-1]
     lo1,lo2 = LON[0],LON[-1]
-    R = 6371e3
+    R = 6378137
     PI=math.pi
     lat1 = la1 * PI/180 
     lat2 = la2 * PI/180
