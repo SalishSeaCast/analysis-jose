@@ -1,5 +1,6 @@
 import numpy as np
 import os
+import math
 from cartopy import crs, feature
 from matplotlib import pyplot as plt, animation, rc
 import xarray as xr
@@ -97,7 +98,7 @@ def mapanimation(outfile,N,n,clon,clat,fps=1,local=1):
         for scat in ss:
             scat.remove()
         ss = scatter_particles(ax, N,n, frame,frame, ds.lat,ds.lon)
-        ss.append(ax.scatter(ds.lon[:,frame], ds.lat[:,frame],c='k',s=5,alpha=ds.sediment[:,frame].fillna(0)))
+        ss.append(ax.scatter(ds.lon[:,frame], ds.lat[:,frame],c='r',s=5,alpha=ds.sediment[:,frame].fillna(0)))
         #ss.append(ax.scatter(clon,clat,c='r', marker='*', linewidths=2))
         return ss
     return animation.FuncAnimation(fig, update, frames=np.arange(0,len(ds.lon[0,:]),fps))
@@ -289,3 +290,19 @@ def p_unidist(lat0,lon0,bat,dy,dx):
                 plat.append(plat1[i,j])
                 plon.append(plon1[i,j])
     return plat,plon
+
+def dist_coord(LAT,LON):
+    la1,la2 = LAT[0],LAT[-1]
+    lo1,lo2 = LON[0],LON[-1]
+    R = 6371e3
+    PI=math.pi
+    lat1 = la1 * PI/180 
+    lat2 = la2 * PI/180
+    dlat = (lat2-lat1)
+    dlon = (lo1-lo2) * PI/180;
+    a = math.sin(dlat/2) * math.sin(dlat/2) + math.cos(lat1) * math.cos(lat2) * math.sin(dlon/2) * math.sin(dlon/2)
+    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
+    d = R * c
+    return d/1e3
+
+
