@@ -11,7 +11,7 @@ def path(local = 1):
         path = {'NEMO': '/Users/jvalenti/MOAD/data/',
         'coords': '/Users/jvalenti/MOAD/SSC_masks/coordinates_seagrid_SalishSea201702.nc',
         'mask': '/Users/jvalenti/MOAD/SSC_masks/mesh_mask201702.nc',
-        'out': '/Users/jvalenti/MOAD/analysis-jose/notebooks/results/',
+        'out': '/Users/jvalenti/MOAD/results/',
         'home': '/Users/jvalenti/MOAD/analysis-jose/notebooks/parcels',
         'anim': '/Users/jvalenti/MOAD/animations'}
     else:
@@ -19,7 +19,7 @@ def path(local = 1):
         'coords': '/ocean/jvalenti/MOAD/grid/coordinates_seagrid_SalishSea201702.nc',
         'coordsWW3': '/ocean/jvalenti/MOAD/grid/WW3_grid.nc',
         'mask': '/ocean/jvalenti/MOAD/grid/mesh_mask201702.nc',
-        'out': '/home/jvalenti/MOAD/analysis-jose/notebooks/results',
+        'out': '/home/jvalenti/MOAD/results',
         'home': '/home/jvalenti/MOAD/analysis-jose/notebooks/parcels',
         'anim': '/home/jvalenti/MOAD/animations'}
     return path
