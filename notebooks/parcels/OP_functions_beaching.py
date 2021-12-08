@@ -19,7 +19,7 @@ def path(local = 1):
         path = {'NEMO': '/results2/SalishSea/nowcast-green.201905/',
         'coords': '/ocean/jvalenti/MOAD/grid/coordinates_seagrid_SalishSea201702.nc',
         'coordsWW3': '/ocean/jvalenti/MOAD/grid/WW3_grid.nc',
-        'mask': '/ocean/jvalenti/MOAD/grid/mesh_maskd201702.nc',
+        'mask': '/ocean/jvalenti/MOAD/grid/mesh_maskD201702.nc',
         'out': '/home/jvalenti/MOAD/results',
         'home': '/home/jvalenti/MOAD/analysis-jose/notebooks/parcels',
         'anim': '/home/jvalenti/MOAD/animations'}
@@ -98,7 +98,8 @@ def mapanimation(outfile,N,n,clon,clat,fps=1,local=1):
         for scat in ss:
             scat.remove()
         ss = scatter_particles(ax, N,n, frame,frame, ds.lat,ds.lon)
-        ss.append(ax.scatter(ds.lon[:,frame], ds.lat[:,frame],c='r',s=5,alpha=ds.sediment[:,frame].fillna(0)))
+        #ss.append(ax.scatter(ds.lon[:,frame], ds.lat[:,frame],c='r',s=5,alpha=ds.sediment[:,frame].fillna(0)))
+        ss.append(ax.scatter(ds.lon[:,frame], ds.lat[:,frame],c='r',s=15,alpha=ds.beached[:,frame].fillna(0)))
         #ss.append(ax.scatter(clon,clat,c='r', marker='*', linewidths=2))
         return ss
     return animation.FuncAnimation(fig, update, frames=np.arange(0,len(ds.lon[0,:]),fps))
@@ -203,17 +204,18 @@ def filename_set(start,length,varlist=['U','V','W'],local=0):
         'S': {'lon': paths['coords'], 'lat': paths['coords'], 'depth': Wlist[0], 'data': Tlist},
         'R': {'lon': paths['coords'], 'lat': paths['coords'], 'depth': Wlist[0], 'data': Rlist},
         'Bathy' : {'lon': paths['coords'], 'lat': paths['coords'], 'data': paths['mask']},
+        'D' : {'lon': paths['coords'], 'lat': paths['coords'], 'data': paths['mask']},
         'US' : {'lon': paths['coordsWW3'], 'lat': paths['coordsWW3'], 'data': Waveslist},
         'VS' : {'lon': paths['coordsWW3'], 'lat': paths['coordsWW3'], 'data': Waveslist},
         'WL' : {'lon': paths['coordsWW3'], 'lat': paths['coordsWW3'], 'data': Waveslist},
     }
-    variables = {'U': 'vozocrtx', 'V': 'vomecrty','W': 'vovecrtz','T':'votemper','S':'vosaline','R':'sigma_theta','US':'uuss','VS':'vuss','WL':'lm','Bathy':'mbathy'}
+    variables = {'U': 'vozocrtx', 'V': 'vomecrty','W': 'vovecrtz','T':'votemper','S':'vosaline','R':'sigma_theta','US':'uuss','VS':'vuss','WL':'lm','Bathy':'mbathy', 'D':'Distc'}
     for fvar in varlist:
         if fvar == 'U':
             dimensions = {'lon': 'glamf', 'lat': 'gphif', 'depth': 'depthw','time': 'time_counter'}
         elif fvar == 'US':
             dimensions = {'lon': 'longitude', 'lat': 'latitude', 'time': 'time'}
-        elif fvar == 'Bathy':
+        elif fvar == 'Bathy' or fvar == 'D':
             dimensions = {'lon': 'glamf', 'lat': 'gphif','time': 'time_counter'}
     
     file2,var2 = {},{}
