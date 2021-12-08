@@ -88,7 +88,7 @@ def mapanimation(outfile,N,n,clon,clat,fps=1,local=1):
     plt.xlabel('Longitude',fontsize=16)
     t = ax.text(0.02, 0.02, '', transform=ax.transAxes)
     t.set_text('')
-    ss = scatter_particles(ax, N,n, 0,0, ds.lat,ds.lon)
+    ss = []#scatter_particles(ax, N,n, 0,0, ds.lat,ds.lon)
     sed= {0: "w", 1: "k"}
 
     def update(frame):
