@@ -68,8 +68,7 @@ def AdvectionRK4_3D(particle, fieldset, time):
 def Beaching(particle, fieldset, time):
     '''Beaching prob'''  
     if particle.sediment == 0 and particle.beached == 0:        
-        D = 500
-        Tb = 3.8*86400 #proportional to 76days for D = 10000
+        Tb = particle.Lb*86400 #proportional to 76days for D = 10000
         distance = fieldset.Distc[time, particle.depth, particle.lat, particle.lon]
         if distance == 1:
             Pb = 1 - exp(-particle.dt/Tb)

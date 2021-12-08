@@ -98,7 +98,7 @@ def mapanimation(outfile,N,n,clon,clat,fps=1,local=1):
         for scat in ss:
             scat.remove()
         ss = scatter_particles(ax, N,n, frame,frame, ds.lat,ds.lon)
-        #ss.append(ax.scatter(ds.lon[:,frame], ds.lat[:,frame],c='r',s=5,alpha=ds.sediment[:,frame].fillna(0)))
+        ss.append(ax.scatter(ds.lon[:,frame], ds.lat[:,frame],c='m',s=5,alpha=ds.sediment[:,frame].fillna(0)))
         ss.append(ax.scatter(ds.lon[:,frame], ds.lat[:,frame],c='r',s=15,alpha=ds.beached[:,frame].fillna(0)))
         #ss.append(ax.scatter(clon,clat,c='r', marker='*', linewidths=2))
         return ss
