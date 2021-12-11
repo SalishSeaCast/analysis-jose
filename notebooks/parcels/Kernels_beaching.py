@@ -65,13 +65,36 @@ def AdvectionRK4_3D(particle, fieldset, time):
         particle.lat += (v1 + 2*v2 + 2*v3 + v4) / 6. * particle.dt
         particle.depth += (w1 + 2*w2 + 2*w3 + w4) / 6. * particle.dt
 
+
 def Beaching(particle, fieldset, time):
     '''Beaching prob'''  
     if particle.sediment == 0 and particle.beached == 0:        
-        Tb = particle.Lb*86400 #proportional to 76days for D = 10000
-        distance = fieldset.Distc[time, particle.depth, particle.lat, particle.lon]
-        if distance == 1:
-            Pb = 1 - exp(-particle.dt/Tb)
-            if ParcelsRandom.uniform(0,1) < Pb:
-                particle.beached = 1
+        Tb = particle.Lb*86400 
+        Db = particle.Db 
+        Pb = 1 - exp(-particle.dt/Tb)
+        degmet = 111319.5
+        latCC = 0.682
+        y_offset=ParcelsRandom.uniform(-Db,Db)/degmet+particle.lat
+        x_offset =ParcelsRandom.uniform(-Db,Db)/(degmet*latCC)+particle.lon
+        WHS = fieldset.U[time, particle.depth, y_offset, x_offset]
+        if WHS == 0 and ParcelsRandom.uniform(0,1)<Pb:
+            particle.beached = 1
+
+def Unbeaching(particle, fieldset, time):
+    '''Resuspension prob'''  
+    if particle.sediment == 0 and particle.beached == 1:        
+        Ub = particle.Ub*86400  
+        Pr = 1 - exp(-particle.dt/Ub)
+        if ParcelsRandom.uniform(0,1)<Pr:
+            particle.beached = 0
+        
+# def Beaching(particle, fieldset, time):
+#     '''Beaching prob'''  
+#     if particle.sediment == 0 and particle.beached == 0:        
+#         Tb = particle.Lb #proportional to 76days for D = 10000
+#         distance = fieldset.Distc[time, particle.depth, particle.lat, particle.lon]
+#         if distance == 1:
+#             Pb = 1 - exp(-particle.dt/Tb)
+#             if ParcelsRandom.uniform(0,1) < Pb:
+#                 particle.beached = 1
         
