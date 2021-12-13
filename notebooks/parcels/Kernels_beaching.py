@@ -70,13 +70,12 @@ def Beaching(particle, fieldset, time):
     '''Beaching prob'''  
     if particle.sediment == 0 and particle.beached == 0:        
         Tb = particle.Lb*86400 
-        Db = particle.Db 
+        Db = particle.Db/111319.5 
         Pb = 1 - exp(-particle.dt/Tb)
-        degmet = 111319.5
         latCC = 0.682
-        y_offset=ParcelsRandom.uniform(-Db,Db)/degmet+particle.lat
-        x_offset =ParcelsRandom.uniform(-Db,Db)/(degmet*latCC)+particle.lon
-        WHS = fieldset.U[time, particle.depth, y_offset, x_offset]
+        y_offset=ParcelsRandom.uniform(-Db,Db)+particle.lat
+        x_offset =(ParcelsRandom.uniform(-Db,Db)/latCC)+particle.lon
+        WHS = fieldset.U[time, 0.5, y_offset, x_offset]
         if WHS == 0 and ParcelsRandom.uniform(0,1)<Pb:
             particle.beached = 1
 
