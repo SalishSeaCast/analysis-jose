@@ -70,14 +70,22 @@ def Beaching(particle, fieldset, time):
     '''Beaching prob'''  
     if particle.sediment == 0 and particle.beached == 0:        
         Tb = particle.Lb*86400 
-        Db = particle.Db/111319.5 
+        x_offset = particle.Db/111319.5
+        y_offset = particle.Db/(111319.5*0.682)
         Pb = 1 - exp(-particle.dt/Tb)
-        latCC = 0.682
-        y_offset=ParcelsRandom.uniform(-Db,Db)+particle.lat
-        x_offset =(ParcelsRandom.uniform(-Db,Db)/latCC)+particle.lon
-        WHS = fieldset.U[time, 0.5, y_offset, x_offset]
-        if WHS == 0 and ParcelsRandom.uniform(0,1)<Pb:
+        DWS1 = fieldset.U[time, 0.5, particle.lat+y_offset, particle.lon+x_offset]
+        DWS2 = fieldset.U[time, 0.5, particle.lat-y_offset, particle.lon+x_offset]
+        DWS3 = fieldset.U[time, 0.5, particle.lat-y_offset, particle.lon-x_offset]
+        DWS4 = fieldset.U[time, 0.5, particle.lat+y_offset, particle.lon-x_offset]
+    
+        if DWS1 == 0 and ParcelsRandom.uniform(0,1)<Pb:
             particle.beached = 1
+        elif DWS2 == 0 and ParcelsRandom.uniform(0,1)<Pb:
+            particle.beached = 1
+        elif DWS2 == 0 and ParcelsRandom.uniform(0,1)<Pb:
+            particle.beached = 1
+        elif DWS2 == 0 and ParcelsRandom.uniform(0,1)<Pb:
+           particle.beached = 1
 
 def Unbeaching(particle, fieldset, time):
     '''Resuspension prob'''  
