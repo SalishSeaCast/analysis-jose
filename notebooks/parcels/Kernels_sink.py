@@ -9,7 +9,6 @@ def Buoyancy(particle, fieldset, time):
         bath = 10*fieldset.mbathy[time, particle.depth, particle.lat, particle.lon]
         if  z > bath:
             particle.sediment = 1
-            #print('Particle on sediment')
         else:
             g = 9.8
             #ParcelsRandom.uniform(0,2)
