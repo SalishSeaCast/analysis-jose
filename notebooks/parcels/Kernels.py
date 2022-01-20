@@ -34,7 +34,7 @@ def DeleteParticle(particle, fieldset, time):
 def Stokes_drift(particle, fieldset, time):
     '''Stokes drift'''  
     lat = particle.lat
-    if lat > 48 and lat < 51: #Check that particle is inside WW3 data field
+    if lat > 48 and lat < 51: #Check that particle is inside WW3 data field 
         R = 6378137
         z = particle.depth
         (us0, vs0, wl) = fieldset.stokes[time, particle.depth, particle.lat, particle.lon]
