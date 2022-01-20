@@ -258,17 +258,6 @@ def p_deploy(N,n,dmin,dd,r = 1000):
             zvals1=np.concatenate((zvals1[:],zvals[i]))
     return x_offset, y_offset, zvals1   
 
-    def update(frame):
-        tstamp = ds.time[0, frame].values.astype('datetime64[s]').astype(datetime)
-        t.set_text(tstamp.strftime('%Y-%b-%d %H:%M UTC'))
-        global ss
-        for scat in ss:
-            scat.remove()
-        ss = scatter_particles(ax, N,n, frame,frame, ds.lat,ds.lon)
-        ss.append(ax.scatter(clon,clat,c='r', marker='*', linewidths=2))
-        return ss
-    return animation.FuncAnimation(fig, update, frames=np.arange(0,len(ds.lon[0,:]),fps))
-
 def get_WW3_path(date):
     """Construct WW3 results path given the date
     e.g., /opp/wwatch3/nowcast/SoG_ww3_fields_YYYYMMDD_YYYYMMDD.nc
