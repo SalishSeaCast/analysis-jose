@@ -95,13 +95,4 @@ def Unbeaching(particle, fieldset, time):
         if ParcelsRandom.uniform(0,1)<Pr:
             particle.beached = 0
         
-# def Beaching(particle, fieldset, time):
-#     '''Beaching prob'''  
-#     if particle.sediment == 0 and particle.beached == 0:        
-#         Tb = particle.Lb #proportional to 76days for D = 10000
-#         distance = fieldset.Distc[time, particle.depth, particle.lat, particle.lon]
-#         if distance == 1:
-#             Pb = 1 - exp(-particle.dt/Tb)
-#             if ParcelsRandom.uniform(0,1) < Pb:
-#                 particle.beached = 1
         

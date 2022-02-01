@@ -3,7 +3,7 @@ import os
 import math
 from cartopy import crs, feature
 from matplotlib import pyplot as plt, animation, rc
-import xarray as xr
+import xarray as xr 
 from datetime import datetime, timedelta
 
 def path(local = 1):
@@ -298,3 +298,25 @@ def dist_coord(LAT,LON):
     return d/1e3
 
 
+def p_unidist(lat0,lon0,bat,dy,dx):
+    latbat = np.zeros(bat.shape)
+    lonbat = np.zeros(bat.shape)
+
+    for i in range(bat.shape[0]):
+        for j in range(bat.shape[1]):
+            if bat[i,j]>1e-5:
+                latbat[i,j] = lat0[i,j]
+                lonbat[i,j] = lon0[i,j]
+
+    yi = np.arange(0,latbat.shape[0],dy)
+    xi = np.arange(0,latbat.shape[1],dx)
+    plat0,plon0 = latbat[yi,:],lonbat[yi,:]
+    plat1,plon1 = plat0[:,xi],plon0[:,xi]
+
+    plon,plat = [],[]
+    for i in range(plat1.shape[0]):
+        for j in range(plat1.shape[1]):
+            if plat1[i,j]>1e-5:
+                plat.append(plat1[i,j])
+                plon.append(plon1[i,j])
+    return plat,plon
