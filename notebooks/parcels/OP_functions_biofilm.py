@@ -5,7 +5,7 @@ from cartopy import crs, feature
 from matplotlib import pyplot as plt, animation, rc
 import xarray as xr 
 from datetime import datetime, timedelta
-
+ 
 def path(local = 1):
     '''Change with your paths'''
     if local == 1:

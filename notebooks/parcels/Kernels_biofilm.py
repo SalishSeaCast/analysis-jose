@@ -4,7 +4,7 @@ def Buoyancy(particle, fieldset, time):
         Rp = particle.ro-1000 #Density particle: LDPE (~920 kg/m3 ),PS (~150 kg/m3), PET (~1370 kg/m3).
         d = particle.diameter # particle diameter
         l = particle.length # particle length
-        visc=1e-3 #average viscosity sea water
+        visc=1e-3 #average viscosity sea water 
         z = particle.depth
         bath = 10*fieldset.mbathy[time, particle.depth, particle.lat, particle.lon]
         if  z > bath:
