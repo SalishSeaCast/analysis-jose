@@ -1,23 +1,24 @@
 def Buoyancy(particle, fieldset, time):
     '''Stokes law settling velocity'''
     if particle.sediment == 0 and particle.beached == 0:
-        Rp = particle.ro-1000 #Density particle: LDPE (~920 kg/m3 ),PS (~150 kg/m3), PET (~1370 kg/m3).
-        d = particle.diameter # particle diameter
-        l = particle.length # particle length
-        visc=1e-3 #average viscosity sea water 
+        # Rp = particle.ro-1000 #Density particle: LDPE (~920 kg/m3 ),PS (~150 kg/m3), PET (~1370 kg/m3).
+        # d = particle.diameter # particle diameter
+        # l = particle.length # particle length
+        # visc=1e-3 #average viscosity sea water 
         z = particle.depth
         bath = 10*fieldset.mbathy[time, particle.depth, particle.lat, particle.lon]
         if  z > bath:
             particle.sediment = 1
             #print('Particle on sediment')
         else:
-            g = 9.8
-            #ParcelsRandom.uniform(0,2)
-            #t = fieldset.T[time, particle.depth, particle.lat, particle.lon]
-            ro = fieldset.R[time, particle.depth, particle.lat, particle.lon]
-            dro = Rp-ro
+            # g = 9.8
+            # #ParcelsRandom.uniform(0,2)
+            # #t = fieldset.T[time, particle.depth, particle.lat, particle.lon]
+            # ro = fieldset.R[time, particle.depth, particle.lat, particle.lon]
+            # dro = Rp-ro
             #visc = 4.2844e-5 + 1/(0.157*((t + 64.993)**2)-91.296)
-            Ws= ((l/d)**-1.664)*0.079*((l**2)*g*(dro))/(visc)
+            #Ws= ((l/d)**-1.664)*0.079*((l**2)*g*(dro))/(visc)
+            Ws = 18/86400
             dz = Ws*particle.dt
         if dz+z > 0:
             particle.depth += dz 
@@ -78,14 +79,9 @@ def Beaching(particle, fieldset, time):
         DWS3 = fieldset.U[time, 0.5, particle.lat-y_offset, particle.lon-x_offset]
         DWS4 = fieldset.U[time, 0.5, particle.lat+y_offset, particle.lon-x_offset]
     
-        if DWS1 == 0 and ParcelsRandom.uniform(0,1)<Pb:
-            particle.beached = 1
-        elif DWS2 == 0 and ParcelsRandom.uniform(0,1)<Pb:
-            particle.beached = 1
-        elif DWS2 == 0 and ParcelsRandom.uniform(0,1)<Pb:
-            particle.beached = 1
-        elif DWS2 == 0 and ParcelsRandom.uniform(0,1)<Pb:
-           particle.beached = 1
+        if ParcelsRandom.uniform(0,1)<Pb:
+            if DWS1 == 0 or DWS2 == 0 or DWS3 == 0 or DWS4 == 0:
+                particle.beached = 1
 
 def Unbeaching(particle, fieldset, time):
     '''Resuspension prob'''  
