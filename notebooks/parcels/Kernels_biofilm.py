@@ -18,7 +18,7 @@ def Buoyancy(particle, fieldset, time):
             # dro = Rp-ro
             #visc = 4.2844e-5 + 1/(0.157*((t + 64.993)**2)-91.296)
             #Ws= ((l/d)**-1.664)*0.079*((l**2)*g*(dro))/(visc)
-            Ws = 18/86400
+            Ws = 54/86400
             dz = Ws*particle.dt
         if dz+z > 0:
             particle.depth += dz 
