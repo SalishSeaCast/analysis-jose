@@ -134,6 +134,28 @@ def visual(outfile,N,n,clon,clat,dmin,dd, nmin=0, nmax=-1,local=1):
         dmin=[0-di for di in dmin]
     ax2.scatter(clon,-dmin,c='r', marker='*', linewidths=1)
 
+
+def visual2(ax1,outfile,N,n,clon,clat,dmin,dd, nmin=0, nmax=-1,local=1):
+    '''visual(outfile,N,n,clon,clat,dmin,dmax, nmin=0, nmax=-1,local=1)
+    Use this function to return an animated map of the particles,
+    keep local=1 when working local and = 0 when remote. 
+    outfile is the name of the output file from OP
+    N= number of deploying sites,n=number of particles oper location, dmin,dmax=deploying min,max depths,
+    clat,clon location of deploying locations.
+    '''
+    coords,mask,ds = output(outfile,local)
+    
+    ax1.contour(coords.nav_lon, coords.nav_lat, mask.mbathy[0,:,:],colors='k',linewidths=0.1)
+    ax1.contourf(coords.nav_lon, coords.nav_lat, mask.tmask[0, 0, ...], levels=[-0.01, 0.01], colors='lightgray')
+    ax1.contour(coords.nav_lon, coords.nav_lat, mask.tmask[0, 0, ...], levels=[-0.01, 0.01], colors='k')
+    ax1.set_xlim([-125, -123])
+    ax1.set_xticks(np.arange(-125, -123,0.5))
+    ax1.set_ylim([48.5, 50.5])
+    ax1.top_labels, ax1.right_labels = False, False
+
+    scatter_particles(ax1, N,n, nmin, nmax, ds.lat,ds.lon)
+    #ax1.scatter(clon,clat,c='g', marker='*', linewidths=1)
+
 def output(outfile,local=1):
     '''coords,mask,ds = output(outfile,local=1) 
     outfile is the name of the output file'''
@@ -171,6 +193,31 @@ def profile(N,n,length,outfile,local=1,labels=labels0,levels=20,colors=colores):
     plt.xticks(fontsize=12)
     plt.yticks(fontsize=12)
     plt.legend(fontsize=12)
+
+def profile2(ax,N,n,length,outfile,local=1,labels=labels0,levels=20,colors=colores):
+    '''profile(N,n,length,outfile,levels=20,local=1)
+    Use this function to return a depth profile of the particles,
+    keep local=1 when working local and = 0 when remote. 
+    outfile is the name of the output file from OP
+    N= number of deploying sites,n=number of particles oper location, 
+    length= number days of run,
+    levels= how many layers to count particles
+    '''
+    coords,mask,ds = output(outfile,local)
+    Z = np.linspace(0,430,levels)
+    time = length*24+1
+    zn = np.zeros([len(Z)-1,time])
+    for j in range(time):
+        zn[:,j],z_levels = np.histogram(ds.z[:, j], bins=Z)
+   
+    ax.plot(zn[:,0],-z_levels[1:],'--',label='$t_0$')
+    ax.grid()
+    ax.set_ylabel('Depth [m]')
+    ax.set_title(outfile[30:39])
+    ax.plot(zn[:,-1],-z_levels[1:],'-',label='$t_{end}$')
+    plt.xticks(fontsize=12)
+    plt.yticks(fontsize=12)
+    ax.legend(fontsize=12)
     
     
 def filename_set(start,length,varlist=['U','V','W'],local=0):
