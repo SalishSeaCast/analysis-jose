@@ -145,9 +145,9 @@ def visual2(ax1,outfile,N,n,clon,clat,dmin,dd, nmin=0, nmax=-1,local=1):
     '''
     coords,mask,ds = output(outfile,local)
     
-    ax1.contour(coords.nav_lon, coords.nav_lat, mask.mbathy[0,:,:],colors='k',linewidths=0.1)
+    #ax1.contour(coords.nav_lon, coords.nav_lat, mask.mbathy[0,:,:],colors='k',linewidths=0.1)
     ax1.contourf(coords.nav_lon, coords.nav_lat, mask.tmask[0, 0, ...], levels=[-0.01, 0.01], colors='lightgray')
-    ax1.contour(coords.nav_lon, coords.nav_lat, mask.tmask[0, 0, ...], levels=[-0.01, 0.01], colors='k')
+    #ax1.contour(coords.nav_lon, coords.nav_lat, mask.tmask[0, 0, ...], levels=[-0.01, 0.01], colors='k')
     ax1.set_xlim([-125, -123])
     ax1.set_xticks(np.arange(-125, -123,0.5))
     ax1.set_ylim([48.5, 50.5])
