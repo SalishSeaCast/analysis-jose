@@ -1,14 +1,18 @@
 def Buoyancy(particle, fieldset, time):
     '''Stokes law settling velocity'''
-    if particle.sediment == 0 and particle.beached == 0:
+    if particle.beached == 0:
         # Rp = particle.ro-1000 #Density particle: LDPE (~920 kg/m3 ),PS (~150 kg/m3), PET (~1370 kg/m3).
         # d = particle.diameter # particle diameter
         # l = particle.length # particle length
         # visc=1e-3 #average viscosity sea water 
+        particle.tau+=particle.dt
+        Tmax = 400/Ws
+        if particle.tau>Tmax:
+            particle.delete()
         z = particle.depth
         bath = 10*fieldset.mbathy[time, particle.depth, particle.lat, particle.lon]
         if  z > bath:
-            particle.sediment = 1
+            particle.beached = 3 
             #print('Particle on sediment')
         else:
             # g = 9.8
@@ -24,10 +28,11 @@ def Buoyancy(particle, fieldset, time):
             particle.depth += dz 
         else:
             particle.depth = 0.5
+        
 
 def Stokes_drift(particle, fieldset, time):
     '''Stokes drift'''  
-    if particle.sediment == 0 and particle.beached == 0:
+    if particle.beached == 0:
         lat = particle.lat
         if lat > 48 and lat < 51: #Check that particle is inside WW3 data field
             deg2met = 111319.5
@@ -48,7 +53,7 @@ def DeleteParticle(particle, fieldset, time):
     particle.delete()
 
 def AdvectionRK4_3D(particle, fieldset, time):
-    if particle.sediment == 0 and particle.beached == 0:
+    if particle.beached == 0:
         (u1, v1, w1) = fieldset.UVW[time, particle.depth, particle.lat, particle.lon]
         lon1 = particle.lon + u1*.5*particle.dt
         lat1 = particle.lat + v1*.5*particle.dt
@@ -69,12 +74,12 @@ def AdvectionRK4_3D(particle, fieldset, time):
 
 def Beaching(particle, fieldset, time):
     '''Beaching prob'''  
-    if particle.sediment == 0 and particle.beached == 0:        
+    if particle.beached == 0:        
         Tb = particle.Lb*86400 
         x_offset = particle.Db/111319.5
         y_offset = particle.Db/(111319.5*0.682)
         Pb = 1 - exp(-particle.dt/Tb)
-        DWS1 = fieldset.U[time, 0.5, particle.lat+y_offset, particle.lon+x_offset]
+        DWS1 = fieldset.U[time, 0.5, particle.lat+y_offset, particle.lon+x_offset] #particle.depth 0.5 check surface beach
         DWS2 = fieldset.U[time, 0.5, particle.lat-y_offset, particle.lon+x_offset]
         DWS3 = fieldset.U[time, 0.5, particle.lat-y_offset, particle.lon-x_offset]
         DWS4 = fieldset.U[time, 0.5, particle.lat+y_offset, particle.lon-x_offset]
@@ -85,7 +90,7 @@ def Beaching(particle, fieldset, time):
 
 def Unbeaching(particle, fieldset, time):
     '''Resuspension prob'''  
-    if particle.sediment == 0 and particle.beached == 1:        
+    if particle.beached == 1:        
         Ub = particle.Ub*86400  
         Pr = 1 - exp(-particle.dt/Ub)
         if ParcelsRandom.uniform(0,1)<Pr:

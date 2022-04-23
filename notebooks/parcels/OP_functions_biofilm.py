@@ -16,7 +16,7 @@ def path(local = 1):
         'home': '/Users/jvalenti/MOAD/analysis-jose/notebooks/parcels',
         'anim': '/Users/jvalenti/MOAD/animations'}
     else:
-        path = {'NEMO': '/results/SalishSea/nowcast-green.201812/',
+        path = {'NEMO': '/results2/SalishSea/nowcast-green.201905/',
         'coords': '/ocean/jvalenti/MOAD/grid/coordinates_seagrid_SalishSea201702.nc',
         'coordsWW3': '/ocean/jvalenti/MOAD/grid/WW3_grid.nc',
         'mask': '/ocean/jvalenti/MOAD/grid/mesh_mask201702.nc',
@@ -98,11 +98,54 @@ def mapanimation(outfile,N,n,clon,clat,fps=1,local=1):
         for scat in ss:
             scat.remove()
         ss = scatter_particles(ax, N,n, frame,frame, ds.lat,ds.lon)
-        ss.append(ax.scatter(ds.lon[:,frame], ds.lat[:,frame],c='m',s=5,alpha=ds.sediment[:,frame].fillna(0)))
-        ss.append(ax.scatter(ds.lon[:,frame], ds.lat[:,frame],c='r',s=15,alpha=ds.beached[:,frame].fillna(0)))
+        #ss.append(ax.scatter(ds.lon[:,frame], ds.lat[:,frame],c='m',s=5,alpha=ds.beached[:,frame].fillna(0))/3)
         #ss.append(ax.scatter(clon,clat,c='r', marker='*', linewidths=2))
         return ss
     return animation.FuncAnimation(fig, update, frames=np.arange(0,len(ds.lon[0,:]),fps))
+
+
+def mapanimationd(outfile,N,n,clon,clat,fps=1,local=1):
+    '''mapanimation(outfile,N,n,clon,clat,fps=1,local=1)
+    Use this function to return an animated map of the particles,
+    keep local=1 when working local and = 0 when remote. 
+    outfile is the name of the output file from OP
+    N= number of deploying sites,n=number of particles oper location,
+    clat,clon location of deploying locations.
+    '''
+    coords,mask,ds = output(outfile,local)
+    fig = plt.figure(figsize=(19, 8))
+    ax = plt.axes(xlim=(-127,-121),ylim=(46.8,51.2))
+    ax.contour(coords.nav_lon, coords.nav_lat, mask.mbathy[0,:,:],colors='k',linewidths=0.1)
+    ax.contourf(coords.nav_lon, coords.nav_lat, mask.tmask[0, 0, ...], levels=[-0.01, 0.01], colors='lightgray')
+    ax.contour(coords.nav_lon, coords.nav_lat, mask.tmask[0, 0, ...], levels=[-0.01, 0.01], colors='k')
+    ax.grid()
+    ax.set_aspect(1/1)
+    plt.ylabel('Latitude',fontsize=16)
+    plt.xlabel('Longitude',fontsize=16)
+    t = ax.text(0.02, 0.02, '', transform=ax.transAxes)
+    t.set_text('')
+    ss = []#scatter_particles(ax, N,n, 0,0, ds.lat,ds.lon)
+    sed= {0: "w", 1: "k"}
+
+    def update(frame):
+        tstamp = ds.time[0, frame].values.astype('datetime64[s]').astype(datetime)
+        t.set_text(tstamp.strftime('%Y-%b-%d %H:%M UTC'))
+        
+        ds2=ds.where(ds.time==ds.time[0,frame])
+        dsb=ds2.where(ds.beached==1)
+        dss=ds2.where(ds.beached==3)
+        global ss
+        for scat in ss:
+            scat.remove()
+        ss =[]
+        ss.append(ax.scatter(ds2.lon, ds2.lat,s=1,color='b'))
+        ss.append(ax.scatter(dsb.lon, dsb.lat,c='m',s=5))
+        ss.append(ax.scatter(dss.lon, dss.lat,c='g',s=5))
+        #ss.append(ax.scatter(ds.lon[:,frame], ds.lat[:,frame],c='m',s=5,alpha=ds.beached[:,frame].fillna(0))/3)
+        #ss.append(ax.scatter(clon,clat,c='r', marker='*', linewidths=2))
+        return ss
+    return animation.FuncAnimation(fig, update, frames=np.arange(0,len(ds.lon[0,:]),fps))
+
 
     
 
