@@ -124,8 +124,6 @@ def mapanimationd(outfile,N,n,clon,clat,fps=1,local=1):
     plt.xlabel('Longitude',fontsize=16)
     t = ax.text(0.02, 0.02, '', transform=ax.transAxes)
     t.set_text('')
-    ss = []#scatter_particles(ax, N,n, 0,0, ds.lat,ds.lon)
-    sed= {0: "w", 1: "k"}
 
     def update(frame):
         tstamp = ds.time[0, frame].values.astype('datetime64[s]').astype(datetime)
@@ -141,8 +139,8 @@ def mapanimationd(outfile,N,n,clon,clat,fps=1,local=1):
         ss.append(ax.scatter(ds2.lon, ds2.lat,s=1,color='b'))
         ss.append(ax.scatter(dsb.lon, dsb.lat,c='m',s=5))
         ss.append(ax.scatter(dss.lon, dss.lat,c='g',s=5))
-        #ss.append(ax.scatter(ds.lon[:,frame], ds.lat[:,frame],c='m',s=5,alpha=ds.beached[:,frame].fillna(0))/3)
-        #ss.append(ax.scatter(clon,clat,c='r', marker='*', linewidths=2))
+        if frame%fps==0:
+            print(f'{frame*100/fps}% completed')
         return ss
     return animation.FuncAnimation(fig, update, frames=np.arange(0,len(ds.lon[0,:]),fps))
 
