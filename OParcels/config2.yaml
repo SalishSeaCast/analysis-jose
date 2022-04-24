@@ -1,6 +1,6 @@
 # yaml file tu run op
 file: 
-  name: 'fibresheavy' #name output file
+  name: 'fibresmed' #name output file
 startdate:
   year: 2020
   month: 1
@@ -19,7 +19,7 @@ particle:
   Lb: 0.23
   Db: 33
   Ub: 69
-  Ws: 2.3e-4 #20m/day
+  Ws: 5.8e-5 #5m/day
   beached: 0
   tau: 0
   #ro : 1025

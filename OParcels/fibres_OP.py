@@ -72,7 +72,11 @@ def fibers_OP(config,local=0,restart=0):
     
 ######RUN OCEAN PARCELS WITH DEFINED PARTICLE AND PRESET FIELDS
     if restart==1:
-        pass
+        name_temp=find_temp(paths['out'])
+        os.system(f"cd {paths['out']} && parcels_convert_npydir_to_netcdf {name_temp}")
+        outfile=newest(paths['out'])
+        
+        pset = ParticleSet.from_particlefile(field_set, MPParticle,outfile)
     else:
         pset = ParticleSet.from_list(field_set, MPParticle, lon=lon, lat=lat, depth=z, repeatdt = timedelta(hours=dtp))
     
@@ -115,6 +119,30 @@ def particle_maker(config):
             tau = Variable('tau', initial =  0) # track age particle
     return MPParticle
 
+def find_temp(rootdir):
+    dirs=[]
+    for file in os.listdir(rootdir):
+        d = os.path.join(rootdir, file)
+        if os.path.isdir(d):
+            dirs.append(d)
+    temp=sorted(dirs, key=lambda x: os.path.getctime(x), reverse=True)[:1][0]
+    return temp[-12:]
+
+def newest(path):
+    files = os.listdir(path)
+    paths = [os.path.join(path, basename) for basename in files]
+    return max(paths, key=os.path.getctime)
+
 if __name__=="__main__":
-     config = sys.argv[1:]
-     fibers_OP(config)
+    try:
+        config,restart = sys.argv[1:]
+        config = [str(config)]
+    except ValueError:
+        pass
+        try:
+            config = sys.argv[1:]
+            restart=0
+        except :
+            print('Something went wrong')
+    fibers_OP(config,restart)
+     
