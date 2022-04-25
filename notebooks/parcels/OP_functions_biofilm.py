@@ -120,6 +120,7 @@ def mapanimationd(outfile,N,n,clon,clat,fps=1,local=1):
     ax.contour(coords.nav_lon, coords.nav_lat, mask.tmask[0, 0, ...], levels=[-0.01, 0.01], colors='k')
     ax.grid()
     ax.set_aspect(1/1)
+    dslo=len(ds.lon[0,:])
     plt.ylabel('Latitude',fontsize=16)
     plt.xlabel('Longitude',fontsize=16)
     t = ax.text(0.02, 0.02, '', transform=ax.transAxes)
@@ -136,11 +137,11 @@ def mapanimationd(outfile,N,n,clon,clat,fps=1,local=1):
         for scat in ss:
             scat.remove()
         ss =[]
+        ss.append(ax.scatter(dsb.lon, dsb.lat,c='m',s=3))
+        ss.append(ax.scatter(dss.lon, dss.lat,c='g',s=3))
         ss.append(ax.scatter(ds2.lon, ds2.lat,s=1,color='b'))
-        ss.append(ax.scatter(dsb.lon, dsb.lat,c='m',s=5))
-        ss.append(ax.scatter(dss.lon, dss.lat,c='g',s=5))
-        if frame%fps==0:
-            print(f'{frame*100/fps}% completed')
+        if dslo%(frame*fps)==0:
+            print(f'{100*frame*fps/dslo}% completed')
         return ss
     return animation.FuncAnimation(fig, update, frames=np.arange(0,len(ds.lon[0,:]),fps))
 

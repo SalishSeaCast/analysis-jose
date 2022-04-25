@@ -5,10 +5,6 @@ def Buoyancy(particle, fieldset, time):
         # d = particle.diameter # particle diameter
         # l = particle.length # particle length
         # visc=1e-3 #average viscosity sea water 
-        particle.tau+=particle.dt
-        Tmax = 400/Ws
-        if particle.tau>Tmax:
-            particle.delete()
         z = particle.depth
         bath = 10*fieldset.mbathy[time, particle.depth, particle.lat, particle.lon]
         if  z > bath:
