@@ -4,6 +4,7 @@ import math
 from cartopy import crs, feature
 from matplotlib import pyplot as plt, animation, rc
 import xarray as xr 
+import yaml
 import cmocean
 from datetime import datetime, timedelta
  
@@ -39,7 +40,7 @@ def make_prefix(date, path, res='h'):
     return prefix
 colores=['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf']
 
-def scatter_particles(ax, N ,n,nmin, nmax,yvar,lon,HD=0,colors=colores):
+def scatter_particles(ax, N ,n,nmin, nmax,yvar,lon,HD=0,colors='b'):
     '''scatter_particles(ax, N ,n,nmin, nmax,yvar,lon,HD=0,colors=colores)
     Use this function to scatter particles with different colours for each deploy location
     N= number of deploying sites,n=number of particles oper location, nmin,max=time min,max, yvar is the variable to plot on the yaxis, 
@@ -55,15 +56,15 @@ def scatter_particles(ax, N ,n,nmin, nmax,yvar,lon,HD=0,colors=colores):
     
     if HD == 0:
         if nmin==nmax:
-            scatter.append(ax.scatter(lon[:, nmin], yvar[:, nmin],s=1,color='b'))
+            scatter.append(ax.scatter(lon[:, nmin], yvar[:, nmin],s=1,color=colors))
         else:
             
-            scatter.append(ax.scatter(lon[:, nmin:nmax], yvar[:, nmin:nmax],s=1,color='b'))
+            scatter.append(ax.scatter(lon[:, nmin:nmax], yvar[:, nmin:nmax],s=1,color=colors))
     else:
         if nmin==nmax:
-            scatter.append(ax.scatter(lon[:, nmin], yvar[:, nmin],s=1,transform=crs.PlateCarree(),zorder=2,color='b'))
+            scatter.append(ax.scatter(lon[:, nmin], yvar[:, nmin],s=1,transform=crs.PlateCarree(),zorder=2,color=colors))
         else:
-            scatter.append(ax.scatter(lon[:, nmin:nmax], yvar[:, nmin:nmax],s=1,transform=crs.PlateCarree(),zorder=2,color='b'))
+            scatter.append(ax.scatter(lon[:, nmin:nmax], yvar[:, nmin:nmax],s=1,transform=crs.PlateCarree(),zorder=2,color=colors))
         
     return scatter
 
@@ -181,7 +182,7 @@ def visual(outfile,N,n,clon,clat,dmin,dd, nmin=0, nmax=-1,local=1):
     ax2.scatter(clon,-dmin,c='r', marker='*', linewidths=1)
 
 
-def visual2(ax1,outfile,N,n,clon,clat,dmin,dd, nmin=0, nmax=-1,local=1):
+def visuald(ax,outfile,N,n,clon,clat,dmin,dd, nmin=0, nmax=-1,local=1):
     '''visual(outfile,N,n,clon,clat,dmin,dmax, nmin=0, nmax=-1,local=1)
     Use this function to return an animated map of the particles,
     keep local=1 when working local and = 0 when remote. 
@@ -190,39 +191,25 @@ def visual2(ax1,outfile,N,n,clon,clat,dmin,dd, nmin=0, nmax=-1,local=1):
     clat,clon location of deploying locations.
     '''
     coords,mask,ds = output(outfile,local)
-    
-    #ax1.contour(coords.nav_lon, coords.nav_lat, mask.mbathy[0,:,:],colors='k',linewidths=0.1)
-    ax1.contourf(coords.nav_lon, coords.nav_lat, mask.tmask[0, 0, ...], levels=[-0.01, 0.01], colors='lightgray')
-    #ax1.contour(coords.nav_lon, coords.nav_lat, mask.tmask[0, 0, ...], levels=[-0.01, 0.01], colors='k')
-    ax1.set_xlim([-125, -123])
-    ax1.set_xticks(np.arange(-125, -123,0.5))
-    ax1.set_ylim([48.5, 50.5])
-    ax1.top_labels, ax1.right_labels = False, False
-
-    scatter_particles(ax1, N,n, nmin, nmax, ds.lat,ds.lon)
-    #ax1.scatter(clon,clat,c='g', marker='*', linewidths=1)
-
-def visuald(outfile,N,n,clon,clat,dmin,dd, nmin=0, nmax=-1,local=1):
-    '''visual(outfile,N,n,clon,clat,dmin,dmax, nmin=0, nmax=-1,local=1)
-    Use this function to return an animated map of the particles,
-    keep local=1 when working local and = 0 when remote. 
-    outfile is the name of the output file from OP
-    N= number of deploying sites,n=number of particles oper location, dmin,dmax=deploying min,max depths,
-    clat,clon location of deploying locations.
-    '''
-    coords,mask,ds = output(outfile,local)
-    fig, (ax1, ax2) = plt.subplots(1,2,figsize=(19, 8))
-    ax1.contour(coords.nav_lon, coords.nav_lat, mask.mbathy[0,:,:],colors='k',linewidths=0.1)
-    ax1.contourf(coords.nav_lon, coords.nav_lat, mask.tmask[0, 0, ...], levels=[-0.01, 0.01], colors='lightgray')
-    ax1.contour(coords.nav_lon, coords.nav_lat, mask.tmask[0, 0, ...], levels=[-0.01, 0.01], colors='k')
+    #fig, (ax1, ax2) = plt.subplots(1,2,figsize=(19, 8))
+    ax[0].contour(coords.nav_lon, coords.nav_lat, mask.mbathy[0,:,:],colors='k',linewidths=0.1)
+    ax[0].contourf(coords.nav_lon, coords.nav_lat, mask.tmask[0, 0, ...], levels=[-0.01, 0.01], colors='lightgray')
+    ax[0].contour(coords.nav_lon, coords.nav_lat, mask.tmask[0, 0, ...], levels=[-0.01, 0.01], colors='k')
+   
     
     ds0=ds.where(ds.time<=ds.time[0,nmax])
     ds2=ds0.where(ds0.time>=ds0.time[0,nmin])
-    scatter_particles(ax1, N,n, 0, -1, ds2.lat,ds2.lon)
-    #ax1.scatter(clon,clat,c='g', marker='*', linewidths=1)
+    dss=ds2.where(ds2.beached==3)
+    scatter_particles(ax[0], N,n, 0, -1, ds2.lat,ds2.lon)
+    ax[0].scatter(clon,clat,c='r', marker='*', linewidths=1)
 
-    scatter_particles(ax2, N,n, 0, -1, -ds2.z,ds2.lon)
-    ax2.grid()
+    scatter_particles(ax[1], N,n, 0, -1, -ds2.z,ds2.lon)
+    scatter_particles(ax[1], N,n, 0, -1, -dss.z,dss.lon,colors='g')
+    t = ax[0].text(0.02, 0.02, '', transform=ax[0].transAxes)
+    t.set_text('')
+    tstamp = ds.time[0, nmax].values.astype('datetime64[s]').astype(datetime)
+    t.set_text(tstamp.strftime('%Y-%b-%d %H:%M UTC'))
+    ax[1].grid()
     plt.ylabel('Depth [m]')
     plt.xlabel('Longitude')
 
@@ -230,9 +217,7 @@ def visuald(outfile,N,n,clon,clat,dmin,dd, nmin=0, nmax=-1,local=1):
         dmin=np.repeat((dmin),len(clon))
     else:
         dmin=[0-di for di in dmin]
-    ax2.scatter(clon,-dmin,c='r', marker='*', linewidths=1)
-
-
+    ax[1].scatter(clon,-dmin,c='r', marker='*', linewidths=1)
 
 
 def output(outfile,local=1):
@@ -446,3 +431,8 @@ def p_unidist(lat0,lon0,bat,dy,dx):
                 plat.append(plat1[i,j])
                 plon.append(plon1[i,j])
     return plat,plon
+
+def load_config(config_yaml):
+   with open(config_yaml) as f:
+       config = yaml.safe_load(f)
+   return config
