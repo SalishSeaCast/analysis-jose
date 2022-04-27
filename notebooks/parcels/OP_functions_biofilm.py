@@ -202,6 +202,8 @@ def visuald(ax,outfile,N,n,clon,clat,dmin,dd, nmin=0, nmax=-1,local=1):
     dss=ds2.where(ds2.beached==3)
     scatter_particles(ax[0], N,n, 0, -1, ds2.lat,ds2.lon)
     ax[0].scatter(clon,clat,c='r', marker='*', linewidths=1)
+    ax[0].set_ylabel('Longitude')
+    ax[0].set_xlabel('Latitude')
 
     scatter_particles(ax[1], N,n, 0, -1, -ds2.z,ds2.lon)
     scatter_particles(ax[1], N,n, 0, -1, -dss.z,dss.lon,colors='g')
@@ -210,8 +212,8 @@ def visuald(ax,outfile,N,n,clon,clat,dmin,dd, nmin=0, nmax=-1,local=1):
     tstamp = ds.time[0, nmax].values.astype('datetime64[s]').astype(datetime)
     t.set_text(tstamp.strftime('%Y-%b-%d %H:%M UTC'))
     ax[1].grid()
-    plt.ylabel('Depth [m]')
-    plt.xlabel('Longitude')
+    ax[1].set_ylabel('Depth [m]')
+
 
     if isinstance(dmin,int) :
         dmin=np.repeat((dmin),len(clon))
