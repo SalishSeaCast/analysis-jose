@@ -4,6 +4,7 @@ import math
 from cartopy import crs, feature
 from matplotlib import pyplot as plt, animation, rc
 import xarray as xr 
+import cmocean
 from datetime import datetime, timedelta
  
 def path(local = 1):
@@ -125,23 +126,26 @@ def mapanimationd(outfile,N,n,clon,clat,fps=1,local=1):
     plt.xlabel('Longitude',fontsize=16)
     t = ax.text(0.02, 0.02, '', transform=ax.transAxes)
     t.set_text('')
+    cm = cmocean.cm.ice
 
     def update(frame):
         tstamp = ds.time[0, frame].values.astype('datetime64[s]').astype(datetime)
         t.set_text(tstamp.strftime('%Y-%b-%d %H:%M UTC'))
         
         ds2=ds.where(ds.time==ds.time[0,frame])
-        dsb=ds2.where(ds.beached==1)
-        dss=ds2.where(ds.beached==3)
+        ds2p=ds2.where(ds2.beached==0)
+        dsb=ds2.where(ds2.beached==1)
+        dss=ds2.where(ds2.beached==3)
         global ss
         for scat in ss:
             scat.remove()
         ss =[]
+        
         ss.append(ax.scatter(dsb.lon, dsb.lat,c='m',s=3))
         ss.append(ax.scatter(dss.lon, dss.lat,c='g',s=3))
-        ss.append(ax.scatter(ds2.lon, ds2.lat,s=1,color='b'))
-        if dslo%(frame*fps)==0:
-            print(f'{100*frame*fps/dslo}% completed')
+        ss.append(ax.scatter(ds2p.lon, ds2p.lat,s=1,c=ds2p.tau,cmap=cm))
+        
+        print(f'{100*frame/dslo}% completed')
         return ss
     return animation.FuncAnimation(fig, update, frames=np.arange(0,len(ds.lon[0,:]),fps))
 
@@ -197,6 +201,39 @@ def visual2(ax1,outfile,N,n,clon,clat,dmin,dd, nmin=0, nmax=-1,local=1):
 
     scatter_particles(ax1, N,n, nmin, nmax, ds.lat,ds.lon)
     #ax1.scatter(clon,clat,c='g', marker='*', linewidths=1)
+
+def visuald(outfile,N,n,clon,clat,dmin,dd, nmin=0, nmax=-1,local=1):
+    '''visual(outfile,N,n,clon,clat,dmin,dmax, nmin=0, nmax=-1,local=1)
+    Use this function to return an animated map of the particles,
+    keep local=1 when working local and = 0 when remote. 
+    outfile is the name of the output file from OP
+    N= number of deploying sites,n=number of particles oper location, dmin,dmax=deploying min,max depths,
+    clat,clon location of deploying locations.
+    '''
+    coords,mask,ds = output(outfile,local)
+    fig, (ax1, ax2) = plt.subplots(1,2,figsize=(19, 8))
+    ax1.contour(coords.nav_lon, coords.nav_lat, mask.mbathy[0,:,:],colors='k',linewidths=0.1)
+    ax1.contourf(coords.nav_lon, coords.nav_lat, mask.tmask[0, 0, ...], levels=[-0.01, 0.01], colors='lightgray')
+    ax1.contour(coords.nav_lon, coords.nav_lat, mask.tmask[0, 0, ...], levels=[-0.01, 0.01], colors='k')
+    
+    ds0=ds.where(ds.time<=ds.time[0,nmax])
+    ds2=ds0.where(ds0.time>=ds0.time[0,nmin])
+    scatter_particles(ax1, N,n, 0, -1, ds2.lat,ds2.lon)
+    #ax1.scatter(clon,clat,c='g', marker='*', linewidths=1)
+
+    scatter_particles(ax2, N,n, 0, -1, -ds2.z,ds2.lon)
+    ax2.grid()
+    plt.ylabel('Depth [m]')
+    plt.xlabel('Longitude')
+
+    if isinstance(dmin,int) :
+        dmin=np.repeat((dmin),len(clon))
+    else:
+        dmin=[0-di for di in dmin]
+    ax2.scatter(clon,-dmin,c='r', marker='*', linewidths=1)
+
+
+
 
 def output(outfile,local=1):
     '''coords,mask,ds = output(outfile,local=1) 

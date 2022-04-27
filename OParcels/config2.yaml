@@ -21,7 +21,7 @@ particle:
   Ub: 69
   Ws: 5.8e-5 #5m/day
   beached: 0
-  tau: 0
+  #tau: 0
   #ro : 1025
   #diameter : 1.5e-5
   #length : 61e-5
