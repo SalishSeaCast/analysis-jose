@@ -1,0 +1,27 @@
+# yaml file tu run op
+file: 
+  name: 'fibreslight_L' #name output file
+startdate:
+  year: 2020
+  month: 1
+  day: 1 
+
+param:
+  length: 210 # Set Time length [days] 
+  dt: 90 #toggle between - or + to pick backwards or forwards 
+  N: 1 # number of deploying locations
+  n: 2 # 1000   # number of particles per location
+  dmin: 68 #minimum depth
+  dd: 5 #max depth difference from dmin
+  dtp: 1 #how often particle released in hours
+
+particle:
+  Lb: 0.23
+  Db: 33
+  Ub: 69
+  Ws: 1.16e-5 #1m/day
+  beached: 0
+  #tau: 0
+  #ro : 1025
+  #diameter : 1.5e-5
+  #length : 61e-5
