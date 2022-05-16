@@ -206,7 +206,7 @@ def visuald(ax,outfile,N,n,clon,clat,dmin,dd, nmin=0, nmax=-1,local=1):
     ax[0].set_xlabel('Latitude')
 
     scatter_particles(ax[1], N,n, 0, -1, -ds2.z,ds2.lon)
-    scatter_particles(ax[1], N,n, 0, -1, -dss.z,dss.lon,colors='g')
+    scatter_particles(ax[1], N,n, 0, -1, -dss.z,dss.lon,colors='r')
     t = ax[0].text(0.02, 0.02, '', transform=ax[0].transAxes)
     t.set_text('')
     tstamp = ds.time[0, nmax].values.astype('datetime64[s]').astype(datetime)

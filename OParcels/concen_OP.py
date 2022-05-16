@@ -44,6 +44,7 @@ def concen_OP(config):
     time=np.array(DS.xs(0, level='traj').iloc[:,1])
     jjii = xr.open_dataset('~/MOAD/grid/grid/grid_from_lat_lon_mask999.nc')
     for tt,t in enumerate(time):
+        print(f'{100*tt/len(time):.2f}% done.')
         dss=DS[DS.time==t]
         dssla=np.array(dss.lat)
         dsslo=np.array(dss.lon)
@@ -55,7 +56,7 @@ def concen_OP(config):
     data_set=xr.Dataset( coords={'time': time, 'lat': (['x', 'y'], coords.nav_lat.data),
                     'lon': (['x', 'y'], coords.nav_lon.data)})
     data_set["conc"]=([ 'time','x', 'y'],  conc)
-    data_set.to_netcdf(path=config[0][:-5]+'.nc')
+    data_set.load().to_netcdf(path=config[0][:-5]+'.nc')
 
 if __name__=="__main__":
     try:
