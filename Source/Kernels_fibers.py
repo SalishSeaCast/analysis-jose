@@ -5,6 +5,7 @@ def Buoyancy(particle, fieldset, time):
         if particle.tau==0:
             particle.diameter = ParcelsRandom.normalvariate(particle.diameter, particle.SDD)
             particle.length = ParcelsRandom.normalvariate(particle.length, particle.SDL)
+            particle.tau = 4*fieldset.rorunoff[time, particle.depth, 49.57871, -123.020164] #fraser river outflow released every second
         d = particle.diameter # particle diameter
         l = particle.length # particle length
         visc=1e-3 #average viscosity sea water 

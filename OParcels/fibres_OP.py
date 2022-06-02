@@ -7,9 +7,9 @@ import math
 from datetime import datetime, timedelta
 from parcels import FieldSet, Field, VectorField, ParticleSet, JITParticle, ErrorCode, ParcelsRandom, Variable
 
-sys.path.append('/home/jvalenti/MOAD/analysis-jose/notebooks/parcels')
-from Kernels_biofilm import DeleteParticle, Buoyancy, AdvectionRK4_3D, Stokes_drift, Beaching, Unbeaching
-from OP_functions_biofilm import *
+sys.path.append('/home/jvalenti/MOAD/analysis-jose/Source')
+from Kernels_fibers import DeleteParticle, Buoyancy, AdvectionRK4_3D, Stokes_drift, Beaching, Unbeaching
+from OP_functions_fibers import *
 
 def fibers_OP(config,local=0,restart=0):
     param = load_config(config)
@@ -27,9 +27,10 @@ def fibers_OP(config,local=0,restart=0):
     paths = path(local)
 #Set outfall coordinates (Modify to choose other deploying location)    
     coord=xr.open_dataset(paths['coords'],decode_times=False)
-    outf_lat=coord['nav_lat'][445,304]
-    outf_lon=coord['nav_lon'][445,304]
-    clon, clat = [float(outf_lon)],[float(outf_lat)] 
+    #outf_lat=coord['nav_lat'][445,304]
+    #outf_lon=coord['nav_lon'][445,304]
+    clat,clon = [49.198421], [-123.131407]
+    #clon, clat = [float(outf_lon)],[float(outf_lat)] 
 
     duration = timedelta(days=Tmax)
     x_offset, y_offset, z = p_deploy(N,n,dmin,dd)
@@ -68,6 +69,11 @@ def fibers_OP(config,local=0,restart=0):
     filenames,variables,dimensions=filename_set(start,Tmax,['Bathy'],local)
     Bth = Field.from_netcdf(filenames['Bathy'], variables['Bathy'], dimensions,allow_time_extrapolation=True)
     field_set.add_field(Bth)
+
+    filenames,variables,dimensions=filename_set(start,Tmax,['FS'],local)
+    Fraser = Field.from_netcdf(filenames['FS'], variables['FS'], dimensions,allow_time_extrapolation=True,timestamps=get_timestamps(start,Tmax))
+    field_set.add_field(Fraser)
+
     MPParticle = particle_maker(param)
     
 ######RUN OCEAN PARCELS WITH DEFINED PARTICLE AND PRESET FIELDS
@@ -103,6 +109,10 @@ def particle_maker(config):
             ro = Variable('ro', initial = config['particle']['ro'])  # config['particle']['ro']
         if 'diameter' in config['particle']:           
             diameter = Variable('diameter', initial = config['particle']['diameter'])
+        if 'SDD' in config['particle']:  
+            Sdd = Variable('SDD', initial = config['particle']['SDD'])
+        if 'SDL' in config['particle']:           
+            Sdl = Variable('SDL', initial = config['particle']['SDL'])
         if 'length' in config['particle']:  
             length = Variable('length', initial = config['particle']['length'])
         if 'Lb' in config['particle']:  
@@ -116,7 +126,7 @@ def particle_maker(config):
         if 'Ws' in config['particle']:  
             Ws = Variable('Ws', initial =  config['particle']['Ws']) #200m/dia
         if 'tau' in config['particle']:  
-            tau = Variable('tau', initial =  0) # track age particle
+            tau = Variable('tau', initial =  0) # track number of particles
     return MPParticle
 
 def find_temp(rootdir):
