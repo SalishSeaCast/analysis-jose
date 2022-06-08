@@ -30,7 +30,7 @@ def Buoyancy(particle, fieldset, time):
         if dz+z > 0:
             particle.depth += dz 
         else:
-            particle.depth = 0.5
+            particle.depth = 0.1
         
 def turb_mix(particle,fieldset,time):
     wprime = 0
@@ -42,7 +42,10 @@ def turb_mix(particle,fieldset,time):
     dW = ParcelsRandom.normalvariate(0, sqrt(particle.dt))
     wprime = Kzdz + (sqrt(2*Kz)*dW)/particle.dt
     dzp = wprime*particle.dt
-    particle.depth += dzp 
+    if dzp+particle.depth > 0:
+            particle.depth += dzp 
+    else:
+        particle.depth = 0.1
 
 
 def Stokes_drift(particle, fieldset, time):

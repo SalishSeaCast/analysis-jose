@@ -57,7 +57,7 @@ def concen_OP(config):
     data_set=xr.Dataset( coords={'time': time, 'lat': (['x', 'y'], coords.nav_lat.data),
                     'lon': (['x', 'y'], coords.nav_lon.data)})
     data_set["conc"]=([ 'time','x', 'y'],  conc)
-    data_set.load().to_netcdf(path=config[0][:-5]+'.nc')
+    data_set.load().to_netcdf(path='/home/jvalenti/MOAD/results/'+config[0][:-5]+'.nc')
 
 if __name__=="__main__":
     try:
