@@ -1,6 +1,7 @@
 def Buoyancy(particle, fieldset, time):
     '''Stokes law settling velocity'''
     if particle.beached == 0:
+<<<<<<< HEAD
         if particle.tau==0:
             if ParcelsRandom.uniform(0,1) < particle.fratio:
                 particle.ro = 1025
@@ -8,6 +9,13 @@ def Buoyancy(particle, fieldset, time):
             particle.length = ParcelsRandom.normalvariate(particle.length, particle.SDL)
             particle.tau = 4*fieldset.rorunoff[time, particle.depth, 49.57871, -123.020164] #fraser river outflow released every second
         Rp = particle.ro-1000 #Density particle: LDPE (~920 kg/m3 ),PS (~150 kg/m3), PET (~1370 kg/m3).
+=======
+        Rp = particle.ro-1000 #Density particle: LDPE (~920 kg/m3 ),PS (~150 kg/m3), PET (~1370 kg/m3).
+        if particle.tau==0:
+            particle.diameter = ParcelsRandom.normalvariate(particle.diameter, particle.SDD)
+            particle.length = ParcelsRandom.normalvariate(particle.length, particle.SDL)
+            particle.tau = 4*fieldset.rorunoff[time, particle.depth, 49.57871, -123.020164] #fraser river outflow released every second
+>>>>>>> 65ada943f46442f96e815236ef9d7faacfa02bd9
         d = particle.diameter # particle diameter
         l = particle.length # particle length
         visc=1e-3 #average viscosity sea water 
@@ -32,6 +40,7 @@ def Buoyancy(particle, fieldset, time):
         else:
             particle.depth = 0.5
         
+<<<<<<< HEAD
 def turb_mix(particle,fieldset,time):
     wprime = 0
     Kz = fieldset.vert_eddy_diff[time, particle.depth, particle.lat, particle.lon]
@@ -45,6 +54,8 @@ def turb_mix(particle,fieldset,time):
     print(dzp)
     particle.depth += dzp 
 
+=======
+>>>>>>> 65ada943f46442f96e815236ef9d7faacfa02bd9
 
 def Stokes_drift(particle, fieldset, time):
     '''Stokes drift'''  
@@ -95,11 +106,20 @@ def Beaching(particle, fieldset, time):
         x_offset = particle.Db/111319.5
         y_offset = particle.Db/(111319.5*0.682)
         Pb = 1 - exp(-particle.dt/Tb)
+<<<<<<< HEAD
         if ParcelsRandom.uniform(0,1)<Pb:
             DWS1 = fieldset.U[time, 0.5, particle.lat+y_offset, particle.lon+x_offset] #particle.depth 0.5 check surface beach
             DWS2 = fieldset.U[time, 0.5, particle.lat-y_offset, particle.lon+x_offset]
             DWS3 = fieldset.U[time, 0.5, particle.lat-y_offset, particle.lon-x_offset]
             DWS4 = fieldset.U[time, 0.5, particle.lat+y_offset, particle.lon-x_offset]
+=======
+        DWS1 = fieldset.U[time, 0.5, particle.lat+y_offset, particle.lon+x_offset] #particle.depth 0.5 check surface beach
+        DWS2 = fieldset.U[time, 0.5, particle.lat-y_offset, particle.lon+x_offset]
+        DWS3 = fieldset.U[time, 0.5, particle.lat-y_offset, particle.lon-x_offset]
+        DWS4 = fieldset.U[time, 0.5, particle.lat+y_offset, particle.lon-x_offset]
+    
+        if ParcelsRandom.uniform(0,1)<Pb:
+>>>>>>> 65ada943f46442f96e815236ef9d7faacfa02bd9
             if DWS1 == 0 or DWS2 == 0 or DWS3 == 0 or DWS4 == 0:
                 particle.beached = 1
 

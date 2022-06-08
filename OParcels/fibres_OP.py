@@ -8,7 +8,11 @@ from datetime import datetime, timedelta
 from parcels import FieldSet, Field, VectorField, ParticleSet, JITParticle, ErrorCode, ParcelsRandom, Variable
 
 sys.path.append('/home/jvalenti/MOAD/analysis-jose/Source')
+<<<<<<< HEAD
 from Kernels_fibers import DeleteParticle, Buoyancy, AdvectionRK4_3D, Stokes_drift, Beaching, Unbeaching, turb_mix
+=======
+from Kernels_fibers import DeleteParticle, Buoyancy, AdvectionRK4_3D, Stokes_drift, Beaching, Unbeaching
+>>>>>>> 65ada943f46442f96e815236ef9d7faacfa02bd9
 from OP_functions_fibers import *
 
 def fibers_OP(config,local=0,restart=0):
@@ -30,10 +34,18 @@ def fibers_OP(config,local=0,restart=0):
     coord=xr.open_dataset(paths['coords'],decode_times=False)
     #outf_lat=coord['nav_lat'][445,304]
     #outf_lon=coord['nav_lon'][445,304]
+<<<<<<< HEAD
     clat,clon = [49.195796], [-122.913127]
     #clon, clat = [float(outf_lon)],[float(outf_lat)] 
     duration = timedelta(days=length)
     x_offset, y_offset, z = p_deploy(N,n,dmin,dd,rrr)
+=======
+    clat,clon = [49.198421], [-123.131407]
+    #clon, clat = [float(outf_lon)],[float(outf_lat)] 
+
+    duration = timedelta(days=Tmax)
+    x_offset, y_offset, z = p_deploy(N,n,dmin,dd)
+>>>>>>> 65ada943f46442f96e815236ef9d7faacfa02bd9
 
 #Set deploy locations
     lon = np.zeros([N,n])
@@ -70,6 +82,7 @@ def fibers_OP(config,local=0,restart=0):
     Bth = Field.from_netcdf(filenames['Bathy'], variables['Bathy'], dimensions,allow_time_extrapolation=True)
     field_set.add_field(Bth)
 
+<<<<<<< HEAD
     filenames,variables,dimensions=filename_set(start,length,['FS'],local)
     Fraser = Field.from_netcdf(filenames['FS'], variables['FS'], dimensions,allow_time_extrapolation=True,timestamps=get_timestamps(start,length))
     field_set.add_field(Fraser)
@@ -78,6 +91,12 @@ def fibers_OP(config,local=0,restart=0):
     Kz = Field.from_netcdf(filenames['Kz'], variables['Kz'], dimensions,allow_time_extrapolation=True)
     field_set.add_field(Kz)
 
+=======
+    filenames,variables,dimensions=filename_set(start,Tmax,['FS'],local)
+    Fraser = Field.from_netcdf(filenames['FS'], variables['FS'], dimensions,allow_time_extrapolation=True,timestamps=get_timestamps(start,Tmax))
+    field_set.add_field(Fraser)
+
+>>>>>>> 65ada943f46442f96e815236ef9d7faacfa02bd9
     MPParticle = particle_maker(param)
     
 ######RUN OCEAN PARCELS WITH DEFINED PARTICLE AND PRESET FIELDS
@@ -131,9 +150,13 @@ def particle_maker(config):
         if 'Ws' in config['particle']:  
             Ws = Variable('Ws', initial =  config['particle']['Ws']) #200m/dia
         if 'tau' in config['particle']:  
+<<<<<<< HEAD
             tau = Variable('tau', initial =  config['particle']['tau']) # track number of particles
         if 'fratio' in config['particle']:  
             fratio = Variable('fratio', initial =  config['particle']['fratio']) # track number of particles
+=======
+            tau = Variable('tau', initial =  0) # track number of particles
+>>>>>>> 65ada943f46442f96e815236ef9d7faacfa02bd9
     return MPParticle
 
 def find_temp(rootdir):
