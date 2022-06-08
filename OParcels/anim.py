@@ -5,8 +5,8 @@ import xarray as xr
 from matplotlib import pyplot as plt, animation, rc
 from datetime import datetime, timedelta
 import yaml
-sys.path.append('/home/jvalenti/MOAD/analysis-jose/notebooks/parcels')
-from OP_functions_biofilm import *
+sys.path.append('/home/jvalenti/MOAD/analysis-jose/Source')
+from OP_functions_fibers import *
 
 def anim(config,fps,local=0,):
     param = load_config(config)

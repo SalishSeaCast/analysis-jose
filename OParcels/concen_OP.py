@@ -6,8 +6,8 @@ import xarray as xr
 
 import yaml
 
-sys.path.append('/home/jvalenti/MOAD/analysis-jose/notebooks/parcels')
-from OP_functions_biofilm import *
+sys.path.append('/home/jvalenti/MOAD/analysis-jose/Source')
+from OP_functions_fibers import *
 
 # Define paths
 local = 0 #Set to 0 when working on server
@@ -29,29 +29,30 @@ def loadyamls(config):
     dmin = param['param']['dmin'] #minimum depth
     dd = param['param']['dd'] #max depth difference from dmin
     name = param['file']['name'] #name output file
-    WS = param['particle']['Ws']
     daterange = [start+timedelta(days=i) for i in range(Tmax)]
     fn =  name + '_'.join(d.strftime('%Y%m%d')+'_1n' for d in [start, start+duration]) + '.nc'
     outfile = os.path.join(paths['out'], fn)
-    return outfile, WS
+    return outfile
 
 def concen_OP(config):
-    outfile,WS=loadyamls(config)
+    outfile=loadyamls(config)
     coords=xr.open_dataset(paths['coords'],decode_times=False)
     ds = xr.open_dataset(outfile)
-    conc=np.zeros((ds.time.shape[1],coords.nav_lon.shape[0],coords.nav_lon.shape[1]))
     DS=ds.to_dataframe()
     time=np.array(DS.xs(0, level='traj').iloc[:,1])
+    time = time[0::48]
+    conc=np.zeros((len(time),coords.nav_lon.shape[0],coords.nav_lon.shape[1]))
     jjii = xr.open_dataset('~/MOAD/grid/grid/grid_from_lat_lon_mask999.nc')
     for tt,t in enumerate(time):
         print(f'{100*tt/len(time):.2f}% done.')
         dss=DS[DS.time==t]
         dssla=np.array(dss.lat)
         dsslo=np.array(dss.lon)
+        dsscon= np.array(dss.tau)
         for i in range(len(dss)):
             jj = jjii.jj.sel(lats=dssla[i], lons=dsslo[i], method='nearest').item()
             ii = jjii.ii.sel(lats=dssla[i], lons=dsslo[i], method='nearest').item()
-            conc[tt,jj,ii] += 1
+            conc[tt,jj,ii] += dsscon[i]
     time=np.datetime_as_string(time, unit='m')
     data_set=xr.Dataset( coords={'time': time, 'lat': (['x', 'y'], coords.nav_lat.data),
                     'lon': (['x', 'y'], coords.nav_lon.data)})
