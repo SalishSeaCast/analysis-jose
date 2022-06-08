@@ -7,24 +7,21 @@ def Buoyancy(particle, fieldset, time):
             particle.diameter = ParcelsRandom.normalvariate(particle.diameter, particle.SDD)
             particle.length = ParcelsRandom.normalvariate(particle.length, particle.SDL)
             particle.tau = 4*fieldset.rorunoff[time, particle.depth, 49.57871, -123.020164] #fraser river outflow released every second
-        Rp = particle.ro-1000 #Density particle: LDPE (~920 kg/m3 ),PS (~150 kg/m3), PET (~1370 kg/m3).
         d = particle.diameter # particle diameter
         l = particle.length # particle length
         visc=1e-3 #average viscosity sea water 
         z = particle.depth
         bath = 10*fieldset.mbathy[time, particle.depth, particle.lat, particle.lon]
         if  z > bath:
-            particle.beached = 3 
-            #print('Particle on sediment')
+            particle.beached = 3 #particle trapped in the sediment
         else:
             g = 9.8
-            # #ParcelsRandom.uniform(0,2)
             # #t = fieldset.T[time, particle.depth, particle.lat, particle.lon]
             ro = fieldset.R[time, particle.depth, particle.lat, particle.lon]
-            dro = Rp-ro
+            dro = particle.ro-1000-ro  #difference Density sea water and particle: LDPE (~920 kg/m3 ),PS (~150 kg/m3), PET (~1370 kg/m3). 
             #visc = 4.2844e-5 + 1/(0.157*((t + 64.993)**2)-91.296)
             Ws= ((l/d)**-1.664)*0.079*((l**2)*g*(dro))/(visc)
-            #Ws = particle.Ws
+            #Ws = particle.Ws #Only when forcing a sinking velocity
             dz = Ws*particle.dt
             particle.tau += 1
         if dz+z > 0:
@@ -95,9 +92,11 @@ def Beaching(particle, fieldset, time):
     if particle.beached == 0:        
         Tb = particle.Lb*86400 
         x_offset = particle.Db/111319.5
-        y_offset = particle.Db/(111319.5*0.682)
+        y_offset = particle.Db/(111319.5*0.682)     
         Pb = 1 - exp(-particle.dt/Tb)
-        if ParcelsRandom.uniform(0,1)<Pb:
+        if particle.lat < 48.6 and particle.lon < -124.7 or particle.lat < 49.237 and particle.lon > -123.196 and particle.lat > 49.066:
+            pass
+        elif ParcelsRandom.uniform(0,1)<Pb:
             DWS1 = fieldset.U[time, 0.5, particle.lat+y_offset, particle.lon+x_offset] #particle.depth 0.5 check surface beach
             DWS2 = fieldset.U[time, 0.5, particle.lat-y_offset, particle.lon+x_offset]
             DWS3 = fieldset.U[time, 0.5, particle.lat-y_offset, particle.lon-x_offset]
