@@ -90,13 +90,9 @@ def fibers_OP(config,local=0,restart=0):
     else:
         pset = ParticleSet.from_list(field_set, MPParticle, lon=lon, lat=lat, depth=z, repeatdt = timedelta(hours=dtp))
     
-    k_sink = pset.Kernel(Buoyancy)
-    k_waves = pset.Kernel(Stokes_drift)
-    k_beach = pset.Kernel(Beaching)
-    k_unbeach = pset.Kernel(Unbeaching)
-    k_turb = pset.Kernel(turb_mix)
-    
-    pset.execute(AdvectionRK4_3D + k_sink + k_waves + k_beach + k_unbeach + k_turb,
+
+    KERNELS = kernel_asem(pset,param)
+    pset.execute(KERNELS,
                 runtime=duration, 
                 dt=dt,
                 output_file=pset.ParticleFile(name=outfile, outputdt=timedelta(hours=1)),
@@ -106,6 +102,21 @@ def load_config(config_yaml):
    with open(config_yaml[0]) as f:
        config = yaml.safe_load(f)
    return config
+
+def kernel_asem(pset,config):
+    KER = AdvectionRK4_3D 
+    if 'Buoyancy' in config['kernel']:
+        KER += pset.Kernel(Buoyancy)
+    if 'Stokes_drift' in config['kernel']:
+        KER += pset.Kernel(Stokes_drift)
+    if 'Beaching' in config['kernel']:
+        KER += pset.Kernel(Beaching)
+        KER += pset.Kernel(Unbeaching)
+    if 'Turb_mix' in config['kernel']:
+        KER += pset.Kernel(turb_mix)
+    if 'Biofilm' in config['kernel']:
+        KER += pset.Kernel(Biofilm)
+    return KER
 
 def particle_maker(config):
     #Define particle properties 

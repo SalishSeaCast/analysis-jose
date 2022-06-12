@@ -1,7 +1,7 @@
 
   # yaml file tu run op
 file: 
-  name: 'Fraser3' #name output file
+  name: 'Fraser_turb' #name output file
 startdate:
   year: 2020 
   month: 1
@@ -32,3 +32,10 @@ particle:
   fratio: 0.3
 
   
+kernel:
+  Buoyancy: 1
+  Turb_mix: 1
+  Beaching: 1
+  Stokes_drift: 1
+  #Biofilm: 1
+
