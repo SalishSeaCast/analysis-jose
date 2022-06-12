@@ -94,7 +94,7 @@ def Beaching(particle, fieldset, time):
         x_offset = particle.Db/111319.5
         y_offset = particle.Db/(111319.5*0.682)     
         Pb = 1 - exp(-particle.dt/Tb)
-        if particle.lat < 48.6 and particle.lon < -124.7 or particle.lat < 49.237 and particle.lon > -123.196 and particle.lat > 49.066:
+        if particle.lat < 48.6 and particle.lon < -124.7 or particle.lat < 49.237 and particle.lon > -123.196 and particle.lat > 49.074:
             pass
         elif ParcelsRandom.uniform(0,1)<Pb:
             DWS1 = fieldset.U[time, 0.5, particle.lat+y_offset, particle.lon+x_offset] #particle.depth 0.5 check surface beach
@@ -104,6 +104,7 @@ def Beaching(particle, fieldset, time):
             if DWS1 == 0 or DWS2 == 0 or DWS3 == 0 or DWS4 == 0:
                 particle.beached = 1
 
+
 def Unbeaching(particle, fieldset, time):
     '''Resuspension prob'''  
     if particle.beached == 1:        
@@ -111,5 +112,7 @@ def Unbeaching(particle, fieldset, time):
         Pr = 1 - exp(-particle.dt/Ub)
         if ParcelsRandom.uniform(0,1)<Pr:
             particle.beached = 0
+     
+        
         
         
