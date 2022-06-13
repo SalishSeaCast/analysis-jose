@@ -11,31 +11,23 @@ def Buoyancy(particle, fieldset, time):
             particle.tau = 4*fieldset.rorunoff[time, particle.depth, 49.57871, -123.020164] #fraser river outflow released every second
         d = particle.diameter # particle diameter
         l = particle.length # particle length
-        visc=1e-3 #average viscosity sea water 
+        #visc=1e-3 #average viscosity sea water 
         z = particle.depth
         bath = 10*fieldset.mbathy[time, particle.depth, particle.lat, particle.lon]
         if  z > bath:
             particle.beached = 3 #particle trapped in the sediment
         else:
             g = 9.8
-            #t = fieldset.T[time, particle.depth, particle.lat, particle.lon]
+            t = fieldset.T[time, particle.depth, particle.lat, particle.lon]
             ro = fieldset.R[time, particle.depth, particle.lat, particle.lon]
             NN = particle.Nbac
             Vcell=8.3e-19 #volume Hbac cell
-            #ath = 2*math.pi
-            #bth = math.pi*l + 4*math.pi*(d/2)
-            #cth = 2*math.pi*(d/2)**2 + 2*math.pi*(d/2)*l
-            #dth = -Vcell*NN
-            #pth = -bth/(3*ath)
-            #qth = pth**3 + (bth*cth-3*ath*dth)/(6*ath**2)   
-            #rth = cth/(3*ath)
-            #th=((qth + (qth**2 + (rth-pth**2)**3)**(1/2))**(1/3) + (qth - (qth**2 + (rth-pth**2)**3)**(1/2))**(1/3) + pth).real - 2.033e-20
             th= (Vcell*NN)/(2.5*2*math.pi*(d/2)*l+(d/2)**2) #rough approximation 
             particle.ro=(rhop*l*(d/2)**2+rhob*(2*(d/2)**2*th+l*th**2+2*th**3))/(l*(d/2)**2+2*(d/2)**2*th+l*th**2+2*th**3)
             dro = particle.ro-1000-ro  #difference Density sea water and particle: LDPE (~920 kg/m3 ),PS (~150 kg/m3), PET (~1370 kg/m3). 
-            particle.diameter += 2*th
-            particle.length += 2*th
-            #visc = 4.2844e-5 + 1/(0.157*((t + 64.993)**2)-91.296)
+            d+=2*th
+            l+=2*th
+            visc = 4.2844e-5 + 1/(0.157*((t + 64.993)**2)-91.296)
             Ws= ((l/d)**-1.664)*0.079*((l**2)*g*(dro))/(visc)
             dz = Ws*particle.dt
             particle.tau += 1
@@ -133,8 +125,12 @@ def Unbeaching(particle, fieldset, time):
 def Biofilm(particle, fieldset, time):
     Nbac = particle.Nbac
     Nflag = particle.Nflag
-    D = particle.diameter*1e2
+    Vcell=8.3e-13 #volume Hbac cell
+    D = particle.diameter*1e2 
     L = particle.length*1e2
+    th2= (Vcell*NN)/(2.5*2*math.pi*(d/2)*l+(d/2)**2) #rough approximation 
+    D+= 2*th2
+    L+= 2*th2
     ESRt = (((D**2)*3*L/2)**(1/3))/2
     Cb = 1.5e6 #Bacterial abundance in the strait of georgia /cm3
     Cf = fieldset.microzooplankton[time, particle.depth, particle.lat, particle.lon]*4733.5 #conversion from mmolNm3 to cell/cm3
