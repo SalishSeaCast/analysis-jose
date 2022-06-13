@@ -8,8 +8,8 @@ from datetime import datetime, timedelta
 from parcels import FieldSet, Field, VectorField, ParticleSet, JITParticle, ErrorCode, ParcelsRandom, Variable
 
 sys.path.append('/home/jvalenti/MOAD/analysis-jose/Source')
-from Kernels_fibers import DeleteParticle, Buoyancy, AdvectionRK4_3D, Stokes_drift, Beaching, Unbeaching, turb_mix
-from OP_functions_fibers import *
+from Kernels import DeleteParticle, Buoyancy, AdvectionRK4_3D, Stokes_drift, Beaching, Unbeaching, turb_mix, Biofilm
+from OP_functions import *
 
 def fibers_OP(config,local=0,restart=0):
     param = load_config(config)
@@ -78,7 +78,18 @@ def fibers_OP(config,local=0,restart=0):
     Kz = Field.from_netcdf(filenames['Kz'], variables['Kz'], dimensions,allow_time_extrapolation=True)
     field_set.add_field(Kz)
 
+    varlist=['MZ','Diat','Flag']
+    filenames,variables,dimensions=filename_set(start,length,varlist,local)
+
+    MZ = Field.from_netcdf(filenames['MZ'], variables['MZ'], dimensions,allow_time_extrapolation=True)
+    Diat = Field.from_netcdf(filenames['Diat'], variables['Diat'], dimensions,allow_time_extrapolation=True)
+    Flag = Field.from_netcdf(filenames['Flag'], variables['Flag'], dimensions,allow_time_extrapolation=True)
+    field_set.add_field(MZ)
+    field_set.add_field(Diat)
+    field_set.add_field(Flag)
+
     MPParticle = particle_maker(param)
+
     
 ######RUN OCEAN PARCELS WITH DEFINED PARTICLE AND PRESET FIELDS
     if restart==1:
@@ -145,6 +156,10 @@ def particle_maker(config):
             tau = Variable('tau', initial =  config['particle']['tau']) # track number of particles
         if 'fratio' in config['particle']:  
             fratio = Variable('fratio', initial =  config['particle']['fratio']) # track number of particles
+        if 'Nbac' in config['particle']:  
+            Nbac = Variable('Nbac', initial =  0) # number of bacteria attached
+        if 'Nflag' in config['particle']:  
+            Nflag = Variable('Nflag', initial =  0) # number of flagellates grazing on the attached bacteria
     return MPParticle
 
 def find_temp(rootdir):
