@@ -78,13 +78,12 @@ def fibers_OP(config,local=0,restart=0):
     Kz = Field.from_netcdf(filenames['Kz'], variables['Kz'], dimensions,allow_time_extrapolation=True)
     field_set.add_field(Kz)
 
-    varlist=['MZ','Diat','Flag']
+    varlist=['Diat','Flag']
     filenames,variables,dimensions=filename_set(start,length,varlist,local)
-
-    MZ = Field.from_netcdf(filenames['MZ'], variables['MZ'], dimensions,allow_time_extrapolation=True)
+    #MZ = Field.from_netcdf(filenames['MZ'], variables['MZ'], dimensions,allow_time_extrapolation=True)
     Diat = Field.from_netcdf(filenames['Diat'], variables['Diat'], dimensions,allow_time_extrapolation=True)
     Flag = Field.from_netcdf(filenames['Flag'], variables['Flag'], dimensions,allow_time_extrapolation=True)
-    field_set.add_field(MZ)
+    #field_set.add_field(MZ)
     field_set.add_field(Diat)
     field_set.add_field(Flag)
 

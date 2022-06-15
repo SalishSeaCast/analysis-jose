@@ -299,16 +299,18 @@ def filename_set(start,length,varlist=['U','V','W'],local=0):
     Rlist,Tlist,Ulist, Vlist, Wlist = [], [], [], [], []
     Waveslist = []
     Flist = []
-    Biolist = []
+    Biolist,MZlist = [],[]
    
     for day in range(duration.days):
         path_NEMO = make_prefix(start + timedelta(days=day), paths['NEMO'])
+        path_NEMO_d = make_prefix(start + timedelta(days=day), paths['NEMO'],res='d')
         Ulist.append(path_NEMO + '_grid_U.nc')
         Vlist.append(path_NEMO + '_grid_V.nc')
         Wlist.append(path_NEMO + '_grid_W.nc')
         Tlist.append(path_NEMO + '_grid_T.nc')
         Rlist.append(path_NEMO + '_carp_T.nc')
-        Biolist.append(path_NEMO + '_ptrc_T.nc')
+        Biolist.append(path_NEMO_d + '_prod_T.nc')
+        MZlist.append(path_NEMO + '_ptrc_T.nc')
         Waveslist.append(get_WW3_path(start + timedelta(days=day)))
         Flist.append(get_Fraser_path(start + timedelta(days=day)))
         
@@ -328,15 +330,15 @@ def filename_set(start,length,varlist=['U','V','W'],local=0):
         'VS' : {'lon': paths['coordsWW3'], 'lat': paths['coordsWW3'], 'data': Waveslist},
         'WL' : {'lon': paths['coordsWW3'], 'lat': paths['coordsWW3'], 'data': Waveslist},
         'FS' :  {'lon': paths['coords'], 'lat': paths['coords'],'data': Flist},
-        'MZ' : {'lon': paths['coords'], 'lat': paths['coords'], 'depth': Wlist[0], 'data': Biolist},
+        'MZ' : {'lon': paths['coords'], 'lat': paths['coords'], 'depth': Wlist[0], 'data': MZlist},
         'Diat' : {'lon': paths['coords'], 'lat': paths['coords'], 'depth': Wlist[0], 'data': Biolist},
         'Flag' : {'lon': paths['coords'], 'lat': paths['coords'], 'depth': Wlist[0], 'data': Biolist},
     }
     variables = {'U': 'vozocrtx', 'V': 'vomecrty','W': 'vovecrtz','T':'votemper','S':'vosaline','R':'sigma_theta',
         'US':'uuss','VS':'vuss','WL':'lm','Bathy':'mbathy', 'D':'Distc','FS':'rorunoff','Kz':'vert_eddy_diff',
-        'MZ':'microzooplankton','Diat':'diatoms','Flag':'flagellates'}
+        'MZ':'microzooplankton','Diat':'PPDIATNO3','Flag':'PPPHYNO3'}
     for fvar in varlist:
-        if fvar == 'U' or fvar == 'Kz' or fvar == 'MZ':
+        if fvar == 'U' or fvar == 'Kz' or fvar == 'Diat':
             dimensions = {'lon': 'glamf', 'lat': 'gphif', 'depth': 'depthw','time': 'time_counter'}
         elif fvar == 'US':
             dimensions = {'lon': 'longitude', 'lat': 'latitude', 'time': 'time'}

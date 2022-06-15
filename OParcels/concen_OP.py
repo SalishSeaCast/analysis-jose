@@ -7,7 +7,7 @@ import xarray as xr
 import yaml
 
 sys.path.append('/home/jvalenti/MOAD/analysis-jose/Source')
-from OP_functions_fibers import *
+from OP_functions import *
 
 # Define paths
 local = 0 #Set to 0 when working on server
@@ -46,6 +46,7 @@ def concen_OP(config):
     for tt,t in enumerate(time):
         print(f'{100*tt/len(time):.2f}% done.')
         dss=DS[DS.time==t]
+        dss=dss[dss.beached==0]## non sediment
         dssla=np.array(dss.lat)
         dsslo=np.array(dss.lon)
         dsscon= np.array(dss.tau)
@@ -57,7 +58,8 @@ def concen_OP(config):
     data_set=xr.Dataset( coords={'time': time, 'lat': (['x', 'y'], coords.nav_lat.data),
                     'lon': (['x', 'y'], coords.nav_lon.data)})
     data_set["conc"]=([ 'time','x', 'y'],  conc)
-    data_set.load().to_netcdf(path='/home/jvalenti/MOAD/results/'+config[0][:-5]+'.nc')
+    param = load_config(config)
+    data_set.load().to_netcdf(path='/home/jvalenti/MOAD/results/'+param['file']['name']+'.nc')
 
 if __name__=="__main__":
     try:
