@@ -74,6 +74,7 @@ def DeleteParticle(particle, fieldset, time):
 def AdvectionRK4_3D(particle, fieldset, time):
     if particle.beached == 0: #Check particle is in the water column
         (u1, v1, w1) = fieldset.UVW[time, particle.depth, particle.lat, particle.lon]
+        print(u1)
         lon1 = particle.lon + u1*.5*particle.dt
         lat1 = particle.lat + v1*.5*particle.dt
         dep1 = particle.depth + w1*.5*particle.dt

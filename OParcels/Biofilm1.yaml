@@ -1,20 +1,20 @@
 
   # yaml file tu run op
 file: 
-  name: 'Fraser_test' #name output file
+  name: 'Fraser_biof' #name output file
 startdate:
-  year: 2021 
+  year: 2020 
   month: 6
   day: 1 
 
 param:
-  length: 3 # Set Time length [days] 
+  length: 60 # Set Time length [days] 
   dt: 90 #toggle between - or + to pick backwards or forwards 
   N: 1 # number of deploying locations
   n: 5 # 1000   # number of particles per location
   dmin: 2 #minimum depth
   dd: 1 #max depth differenbdce from dmin
-  dtp: 1 #how often particle released in hours
+  dtp: 2 #how often particle released in hours
   r: 200
 
 particle:

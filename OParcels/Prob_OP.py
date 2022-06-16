@@ -40,25 +40,29 @@ def Prob_OP(config):
     ds = xr.open_dataset(outfile)
     DS=ds.to_dataframe()
     time=np.array(DS.xs(0, level='traj').iloc[:,1])
-    time = time[0::48]
-    conc=np.zeros((coords.nav_lon.shape[0],coords.nav_lon.shape[1]))
+    mask = xr.open_dataset(paths['mask'])
+    conc=np.zeros((coords.nav_lon.shape[0],coords.nav_lon.shape[1],mask.gdepw_0.shape[1]))
     jjii = xr.open_dataset('~/MOAD/grid/grid/grid_from_lat_lon_mask999.nc')
-        
+    arr = mask.gdepw_0[0,:,240,340]
     dss=DS[DS.beached==0]## In the water column
     dssla=np.array(dss.lat)
     dsslo=np.array(dss.lon)
     dsscon= np.array(dss.tau)
+    dssdep=np.array(dss.z)
     for i in range(len(dss)):
         if i%5000==0:
             print(f'{100*i/len(dss):.2f}% done.')
         jj = jjii.jj.sel(lats=dssla[i], lons=dsslo[i], method='nearest').item()
         ii = jjii.ii.sel(lats=dssla[i], lons=dsslo[i], method='nearest').item()
-        conc[jj,ii] += dsscon[i]
-    data_set=xr.Dataset( coords={'lat': (['x', 'y'], coords.nav_lat.data),
-                    'lon': (['x', 'y'], coords.nav_lon.data)})
-    data_set["Prob"]=(['x', 'y'],  conc)
+        dep = (np.abs(arr - dssdep[i])).argmin()
+        if arr[dep] > dssdep[i]:
+            dep+=-1
+        conc[jj,ii,dep] += dsscon[i]
+    data_set=xr.Dataset(coords={'lat': (['x', 'y'], coords.nav_lat.data),
+                    'lon': (['x', 'y'], coords.nav_lon.data),'depth':arr})
+    data_set["Prob"]=(['x', 'y','z'], conc)
     param = load_config(config)
-    data_set.load().to_netcdf(path='/home/jvalenti/MOAD/results/'+param['file']['name']+'prob.nc')
+    data_set.load().to_netcdf(path='/home/jvalenti/MOAD/results/'+param['file']['name']+'_prob.nc')
 
 if __name__=="__main__":
     try:
