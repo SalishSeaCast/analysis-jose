@@ -18,7 +18,6 @@ def Buoyancy(particle, fieldset, time):
             g = 9.8 #Gravity
             rhob=1080 #HBac density fixed
             Vcell=8.3e-19 #volume Hbac cell fixed
-
             t = fieldset.T[time, particle.depth, particle.lat, particle.lon] #Loading temperature from SSC
             ro = fieldset.R[time, particle.depth, particle.lat, particle.lon] #Loading density sw from SSC
             NN = particle.Nbac #Number of bacteria attached to MP
@@ -74,7 +73,6 @@ def DeleteParticle(particle, fieldset, time):
 def AdvectionRK4_3D(particle, fieldset, time):
     if particle.beached == 0: #Check particle is in the water column
         (u1, v1, w1) = fieldset.UVW[time, particle.depth, particle.lat, particle.lon]
-        print(u1)
         lon1 = particle.lon + u1*.5*particle.dt
         lat1 = particle.lat + v1*.5*particle.dt
         dep1 = particle.depth + w1*.5*particle.dt
@@ -137,7 +135,6 @@ def Biofilm(particle, fieldset, time):
     detf = 6.667e-5 #detaching rate Het.Nanoflag (Kiorbe et al, 2003)
     pp = fieldset.PPDIATNO3[time, particle.depth, particle.lat, particle.lon]+fieldset.PPPHYNO3[time, particle.depth, particle.lat, particle.lon]
     grb = pp*2.65 #conversion from PP to bacterial growth rate considering 20% of PP ends up as BP
-    print(grb)
     fcl = 8.33e-9 #clearence rate nanoflagelates (Kiorbe et al, 2003)
     Pf = (fcl/(1+fcl*3.22e-2*(Nbac))) #flagellate grazing coefficient
     af = Pf*1e-2
