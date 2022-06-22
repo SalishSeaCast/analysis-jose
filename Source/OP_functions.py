@@ -335,7 +335,7 @@ def filename_set(start,length,varlist=['U','V','W'],local=0):
         'Flag' : {'lon': paths['coords'], 'lat': paths['coords'], 'depth': Wlist[0], 'data': Biolist},
     }
     variables = {'U': 'vozocrtx', 'V': 'vomecrty','W': 'vovecrtz','T':'votemper','S':'vosaline','R':'sigma_theta',
-        'US':'uuss','VS':'vuss','WL':'lm','Bathy':'mbathy', 'D':'Distc','FS':'rorunoff','Kz':'vert_eddy_diff',
+        'US':'uuss','VS':'vuss','WL':'lm','Bathy':'bathym', 'D':'Distc','FS':'rorunoff','Kz':'vert_eddy_diff',
         'MZ':'microzooplankton','Diat':'PPDIATNO3','Flag':'PPPHYNO3'}
     for fvar in varlist:
         if fvar == 'U' or fvar == 'Kz' or fvar == 'Diat':

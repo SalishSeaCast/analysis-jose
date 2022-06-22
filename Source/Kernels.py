@@ -11,7 +11,7 @@ def Buoyancy(particle, fieldset, time):
         l = particle.length # particle length
         #visc=1e-3 #average viscosity sea water 
         z = particle.depth #particle depth
-        bath = 10*fieldset.mbathy[time, particle.depth, particle.lat, particle.lon]
+        bath = fieldset.bathym[time, particle.depth, particle.lat, particle.lon]
         if  z > bath: #Check bathymetry to trap in the sediment if too deep.
             particle.beached = 3 #particle trapped in the sediment
         else:
