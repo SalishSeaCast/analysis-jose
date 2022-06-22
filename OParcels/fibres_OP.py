@@ -8,10 +8,10 @@ from datetime import datetime, timedelta
 from parcels import FieldSet, Field, VectorField, ParticleSet, JITParticle, ErrorCode, ParcelsRandom, Variable
 
 sys.path.append('/home/jvalenti/MOAD/analysis-jose/Source')
-from Kernels import DeleteParticle, Buoyancy, AdvectionRK4_3D, Stokes_drift, Beaching, Unbeaching, turb_mix, Biofilm
+from Kernels_1 import DeleteParticle, Buoyancy, AdvectionRK4_3D, Stokes_drift, Beaching, Unbeaching, turb_mix, Biofilm
 from OP_functions import *
 
-def fibers_OP(config,local=1,restart=0):
+def fibers_OP(config,local=0,restart=0):
     param = load_config(config)
     #Definitions
     start = datetime(param['startdate']['year'], param['startdate']['month'], param['startdate']['day']) #Start date
@@ -67,7 +67,7 @@ def fibers_OP(config,local=1,restart=0):
     field_set.add_vector_field(VectorField("stokes", us, vs, wl))
 
     filenames,variables,dimensions=filename_set(start,length,['Bathy'],local)
-    Bth = Field.from_netcdf(filenames['Bathy'], variables['Bathy'], dimensions,allow_time_extrapolation=True,timestamps=get_timestamps(start,length))
+    Bth = Field.from_netcdf(filenames['Bathy'], variables['Bathy'], dimensions,allow_time_extrapolation=True)
     field_set.add_field(Bth)
 
     filenames,variables,dimensions=filename_set(start,length,['FS'],local)
