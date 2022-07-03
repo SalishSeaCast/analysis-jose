@@ -44,17 +44,16 @@ def DeleteParticle(particle, fieldset, time):
 def turb_mix(particle,fieldset,time):
     Kz = fieldset.vert_eddy_diff[time, particle.depth, particle.lat, particle.lon] #Vertical diffusivity SSC
     if particle.depth > 0.6: #Only calculate gradient of diffusion for particles deeper than 0.6 otherwise OP will check for particles outside the domain and remove it.
-        Kzdz = (fieldset.vert_eddy_diff[time, particle.depth+0.5, particle.lat, particle.lon]-fieldset.vert_eddy_diff[time, particle.depth-0.5, particle.lat, particle.lon])/2
+        Kzdz = (fieldset.vert_eddy_diff[time, particle.depth+0.5, particle.lat, particle.lon]-fieldset.vert_eddy_diff[time, particle.depth-0.5, particle.lat, particle.lon])
     else: 
         Kzdz = 0 #No gradient in diffusion 
     dW = ParcelsRandom.normalvariate(0, sqrt(particle.dt)) 
     wprime = Kzdz + (sqrt(2*Kz)*dW)/particle.dt 
-    dzp = wprime*particle.dt
-    bath = fieldset.bathym[time, particle.depth, particle.lat, particle.lon]
+    dzp = wprime*sqrt(particle.dt)
     if dzp+particle.depth > 0:
             particle.depth += dzp #Change particle depth according to turbulent mixing
     elif dzp+particle.depth>bath:
-        particle.depth = bath - 5 #keep particle inside water column
+        particle.depth = bath - 1 #keep particle inside water column
     else:
         particle.depth = 0.5 #Keep particle near surface.
 
