@@ -1,7 +1,7 @@
 
   # yaml file tu run op
 file: 
-  name: 'No_float' #name output file
+  name: 'No_float-noturb' #name output file
 startdate:
   year: 2020 
   month: 6
@@ -35,7 +35,7 @@ particle:
 
 kernel:
   Buoyancy: 1
-  Turb_mix: 1
+  #Turb_mix: 1
   Beaching: 1
   Stokes_drift: 1
   Biofilm: 1
