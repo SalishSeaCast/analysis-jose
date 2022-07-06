@@ -1,7 +1,7 @@
 
   # yaml file tu run op
 file: 
-  name: 'Fraser_biof' #name output file
+  name: 'Nobiof' #name output file
 startdate:
   year: 2020 
   month: 6
@@ -31,12 +31,12 @@ particle:
   SDL: 24.4e-5
   fratio: 0.3
   Nbac: 0
-  Nflag: 0
+  Nflag: 00
 
 kernel:
   Buoyancy: 1
   Turb_mix: 1
   Beaching: 1
   Stokes_drift: 1
-  Biofilm: 1
+  #Biofilm: 1
 

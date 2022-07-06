@@ -3,7 +3,7 @@ def Buoyancy(particle, fieldset, time):
     if particle.beached == 0: #Check particle is in the water column
         if particle.tau==0: #Check age particle is 0
             if ParcelsRandom.uniform(0,1) < particle.fratio: 
-                particle.ro = 1015 #randomly assign a fraction of the particles a different density, in this case floating density (keep a fraction of MP afloat)          
+                particle.ro = 980 #randomly assign a fraction of the particles a different density, in this case floating density (keep a fraction of MP afloat)          
             particle.diameter = ParcelsRandom.normalvariate(particle.diameter, particle.SDD) #Randomly assign a value of diameter inside the Bamfield mesocosm size dist
             particle.length = ParcelsRandom.normalvariate(particle.length, particle.SDL) #Same for length
             particle.tau = 4*fieldset.rorunoff[time, particle.depth, 49.57871, -123.020164] #Assign Fraser river outflow at deploting time to particle (Used to calculate MP/m3)
@@ -32,7 +32,7 @@ def Buoyancy(particle, fieldset, time):
         if dz+z > 0:
             particle.depth += dz #Change particle depth according to WS
         else:
-            particle.depth = 0.5 #Keep particle near surface.
+            particle.depth = dz #Keep particle near surface. assuming reflexion in the boundary
 
 def DeleteParticle(particle, fieldset, time):
     """Delete particle from OceanParcels simulation to avoid run failure
@@ -42,20 +42,25 @@ def DeleteParticle(particle, fieldset, time):
     particle.delete()
 
 def turb_mix(particle,fieldset,time):
-    Kz = fieldset.vert_eddy_diff[time, particle.depth, particle.lat, particle.lon] #Vertical diffusivity SSC
-    if particle.depth > 0.6: #Only calculate gradient of diffusion for particles deeper than 0.6 otherwise OP will check for particles outside the domain and remove it.
-        Kzdz = (fieldset.vert_eddy_diff[time, particle.depth+0.5, particle.lat, particle.lon]-fieldset.vert_eddy_diff[time, particle.depth-0.5, particle.lat, particle.lon])
+    if particle.depth > 1: #Only calculate gradient of diffusion for particles deeper than 0.6 otherwise OP will check for particles outside the domain and remove it.
+        Kzdz = 0.5*(fieldset.vert_eddy_diff[time, particle.depth+1, particle.lat, particle.lon]-fieldset.vert_eddy_diff[time, particle.depth-1, particle.lat, particle.lon])
     else: 
-        Kzdz = 0 #No gradient in diffusion 
-    dW = ParcelsRandom.normalvariate(0, sqrt(particle.dt)) 
-    wprime = Kzdz + (sqrt(2*Kz)*dW)/particle.dt 
-    dzp = wprime*sqrt(particle.dt)
+        Kzdz = (fieldset.vert_eddy_diff[time, particle.depth+1, particle.lat, particle.lon]-fieldset.vert_eddy_diff[time, particle.depth, particle.lat, particle.lon]) #forward difference 
+    dgrad = Kzdz*particle.dt
+    Kz = fieldset.vert_eddy_diff[time, particle.depth+0.5*dgrad, particle.lat, particle.lon] #Vertical diffusivity SSC
+
+    Rr = math.sqrt(math.fabs(particle.dt)*3)
+    dW = ParcelsRandom.uniform(-Rr, Rr)
+    d_random = (math.sqrt(2 * Kz) * dW)
+
+    dzp = dgrad + d_random
+    print(Kz)
     if dzp+particle.depth > 0:
             particle.depth += dzp #Change particle depth according to turbulent mixing
     elif dzp+particle.depth>bath:
-        particle.depth = bath - 1 #keep particle inside water column
+        particle.depth = bath - dzp/2 #keep particle inside water column Assume reflexion in the bottom
     else:
-        particle.depth = 0.5 #Keep particle near surface.
+        particle.depth = dzp/2 #Keep particle near surface.
 
 
 def Stokes_drift(particle, fieldset, time):
