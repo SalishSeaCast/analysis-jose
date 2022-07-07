@@ -9,7 +9,7 @@ startdate:
 
 param:
   length: 60 # Set Time length [days] 
-  dt: 90 #toggle between - or + to pick backwards or forwards 
+  dt: 30 #toggle between - or + to pick backwards or forwards 
   N: 1 # number of deploying locations
   n: 5 # 1000   # number of particles per location
   dmin: 2 #minimum depth
@@ -31,7 +31,8 @@ particle:
   SDL: 24.4e-5
   fratio: 0.3
   Nbac: 0
-  Nflag: 00
+  Nflag: 0
+  dz: 0
 
 kernel:
   Buoyancy: 1

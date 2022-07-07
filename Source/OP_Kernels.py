@@ -2,7 +2,7 @@ def Buoyancy(particle, fieldset, time):
     '''Stokes law settling velocity'''
     if particle.beached == 0: #Check particle is in the water column
         if particle.tau==0: #Check age particle is 0
-            if ParcelsRandom.uniform(0,1) < particle.fratio: 
+            if ParcelsRandom.uniform(1e-5,1) < particle.fratio: 
                 particle.ro = 980 #randomly assign a fraction of the particles a different density, in this case floating density (keep a fraction of MP afloat)          
             particle.diameter = ParcelsRandom.normalvariate(particle.diameter, particle.SDD) #Randomly assign a value of diameter inside the Bamfield mesocosm size dist
             particle.length = ParcelsRandom.normalvariate(particle.length, particle.SDL) #Same for length
@@ -22,17 +22,17 @@ def Buoyancy(particle, fieldset, time):
             ro = fieldset.R[time, particle.depth, particle.lat, particle.lon] #Loading density sw from SSC
             NN = particle.Nbac #Number of bacteria attached to MP
             th= (Vcell*NN)/(2.5*2*math.pi*(d/2)*l+(d/2)**2) #rough approximation of thickness biofilm
-            rho=(particle.ro*l*(d/2)**2+rhob*(2*(d/2)**2*th+l*th**2+2*th**3))/(l*(d/2)**2+2*(d/2)**2*th+l*th**2+2*th**3) #Total density considering biofilm
-            dro = rho-1000-ro  #difference Density sea water and particle: LDPE (~920 kg/m3 ),PS (~150 kg/m3), PET (~1370 kg/m3). 
+            rho=-1000-ro+(particle.ro*l*(d/2)**2+rhob*(2*(d/2)**2*th+l*th**2+2*th**3))/(l*(d/2)**2+2*(d/2)**2*th+l*th**2+2*th**3) #Total density considering biofilm
+            #difference Density sea water and particle: LDPE (~920 kg/m3 ),PS (~150 kg/m3), PET (~1370 kg/m3). 
             d+=2*th #diameter considering biofilm
             l+=2*th #length considering biofilm
             visc = 4.2844e-5 + 1/(0.157*((t + 64.993)**2)-91.296) #kinematic viscosity for Temp of SSC
-            Ws= ((l/d)**-1.664)*0.079*((l**2)*g*(dro))/(visc) #sinking velocity considering density and dimensions change from biofouling
-            dz = Ws*particle.dt #Change in depth estimated
-        if dz+z > 0:
-            particle.depth += dz #Change particle depth according to WS
-        else:
-            particle.depth = dz #Keep particle near surface. assuming reflexion in the boundary
+            Ws= ((l/d)**-1.664)*0.079*((l**2)*g*(rho))/(visc) #sinking velocity considering density and dimensions change from biofouling
+            particle.dz = Ws*particle.dt
+        #if dz+z > 0:
+        #    particle.depth += dz #Change particle depth according to WS
+        #else:
+        #    particle.depth = dz #Keep particle near surface. assuming reflexion in the boundary
 
 def DeleteParticle(particle, fieldset, time):
     """Delete particle from OceanParcels simulation to avoid run failure
@@ -49,18 +49,20 @@ def turb_mix(particle,fieldset,time):
     dgrad = Kzdz*particle.dt
     Kz = fieldset.vert_eddy_diff[time, particle.depth+0.5*dgrad, particle.lat, particle.lon] #Vertical diffusivity SSC
 
-    Rr = math.sqrt(math.fabs(particle.dt)*3)
+    Rr = sqrt(math.fabs(particle.dt)*3)
     dW = ParcelsRandom.uniform(-Rr, Rr)
-    d_random = (math.sqrt(2 * Kz) * dW)
+    d_random = (sqrt(2 * Kz) * dW)
 
-    dzp = dgrad + d_random
-    print(Kz)
-    if dzp+particle.depth > 0:
-            particle.depth += dzp #Change particle depth according to turbulent mixing
-    elif dzp+particle.depth>bath:
-        particle.depth = bath - dzp/2 #keep particle inside water column Assume reflexion in the bottom
+    dzp = dgrad + d_random + particle.dz
+    print(Kzdz)
+    if dzp+particle.depth > 0: #reflecting boundary condtions
+        if dzp+particle.depth>bath:
+            particle.depth = 2*bath - dzp - particle.depth#keep particle inside water column Assume reflexion in the bottom
+        else:
+            particle.depth += dzp #Change particle depth according to turbulent mixing        
     else:
-        particle.depth = dzp/2 #Keep particle near surface.
+        particle.depth = -dzp+particle.depth #Keep particle near surface.
+    
 
 
 def Stokes_drift(particle, fieldset, time):

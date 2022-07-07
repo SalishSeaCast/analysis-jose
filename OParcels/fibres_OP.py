@@ -159,6 +159,8 @@ def particle_maker(config):
             Nbac = Variable('Nbac', initial =  0) # number of bacteria attached
         if 'Nflag' in config['particle']:  
             Nflag = Variable('Nflag', initial =  0) # number of flagellates grazing on the attached bacteria
+        if 'dz' in config['particle']:  
+            dz = Variable('dz', initial =  0) # dz variable
     return MPParticle
 
 def find_temp(rootdir):
