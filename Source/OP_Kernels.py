@@ -54,7 +54,7 @@ def turb_mix(particle,fieldset,time):
     d_random = (sqrt(2 * Kz) * dW)
 
     dzp = dgrad + d_random + particle.dz
-    print(Kzdz)
+
     if dzp+particle.depth > 0: #reflecting boundary condtions
         if dzp+particle.depth>bath:
             particle.depth = 2*bath - dzp - particle.depth#keep particle inside water column Assume reflexion in the bottom
