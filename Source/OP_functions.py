@@ -21,7 +21,7 @@ def path(local = 1):
         path = {'NEMO': '/results2/SalishSea/nowcast-green.201905/',
         'coords': '/ocean/jvalenti/MOAD/grid/coordinates_seagrid_SalishSea201702.nc',
         'coordsWW3': '/ocean/jvalenti/MOAD/grid/WW3_grid.nc',
-        'mask': '/ocean/jvalenti/MOAD/grid/grid/mesh_maskBat201702.nc',
+        'mask': '/ocean/jvalenti/MOAD/grid/grid/mesh_maskBatCoast201702.nc',
         'out': '/home/jvalenti/MOAD/results',
         'home': '/home/jvalenti/MOAD/analysis-jose/notebooks/parcels',
         'anim': '/home/jvalenti/MOAD/animations'}
@@ -325,6 +325,7 @@ def filename_set(start,length,varlist=['U','V','W'],local=0):
         'S': {'lon': paths['coords'], 'lat': paths['coords'], 'depth': Wlist[0], 'data': Tlist},
         'R': {'lon': paths['coords'], 'lat': paths['coords'], 'depth': Wlist[0], 'data': Rlist},
         'Bathy' : {'lon': paths['coords'], 'lat': paths['coords'], 'data': paths['mask']},
+        'Cmask' : {'lon': paths['coords'], 'lat': paths['coords'],'depth': Wlist[0], 'data': paths['mask']},
         'D' : {'lon': paths['coords'], 'lat': paths['coords'], 'data': paths['mask']},
         'US' : {'lon': paths['coordsWW3'], 'lat': paths['coordsWW3'], 'data': Waveslist},
         'VS' : {'lon': paths['coordsWW3'], 'lat': paths['coordsWW3'], 'data': Waveslist},
@@ -336,9 +337,9 @@ def filename_set(start,length,varlist=['U','V','W'],local=0):
     }
     variables = {'U': 'vozocrtx', 'V': 'vomecrty','W': 'vovecrtz','T':'votemper','S':'vosaline','R':'sigma_theta',
         'US':'uuss','VS':'vuss','WL':'lm','Bathy':'bathym', 'D':'Distc','FS':'rorunoff','Kz':'vert_eddy_diff',
-        'MZ':'microzooplankton','Diat':'PPDIATNO3','Flag':'PPPHYNO3'}
+        'MZ':'microzooplankton','Diat':'PPDIATNO3','Flag':'PPPHYNO3','Cmask':'coast_mask'}
     for fvar in varlist:
-        if fvar == 'U' or fvar == 'Kz' or fvar == 'Diat':
+        if fvar == 'U' or fvar == 'Kz' or fvar == 'Diat' or fvar== 'Cmask':
             dimensions = {'lon': 'glamf', 'lat': 'gphif', 'depth': 'depthw','time': 'time_counter'}
         elif fvar == 'US':
             dimensions = {'lon': 'longitude', 'lat': 'latitude', 'time': 'time'}

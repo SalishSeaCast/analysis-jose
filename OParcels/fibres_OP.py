@@ -29,8 +29,9 @@ def fibers_OP(config,local=0,restart=0):
 #Set outfall coordinates (Modify to choose other deploying location)    
     coord=xr.open_dataset(paths['coords'],decode_times=False)
     #outf_lat=coord['nav_lat'][445,304]
-    #outf_lon=coord['nav_lon'][445,304]
+    #outf_lon=coord['nav_lon'][445,304] 
     clat,clon = [49.195796], [-122.913127]
+    #clat,clon = [49.19579], [-122.913127]
     #clon, clat = [float(outf_lon)],[float(outf_lat)] 
     duration = timedelta(days=length)
     x_offset, y_offset, z = p_deploy(N,n,dmin,dd,rrr)
@@ -69,6 +70,10 @@ def fibers_OP(config,local=0,restart=0):
     filenames,variables,dimensions=filename_set(start,length,['Bathy'],local)
     Bth = Field.from_netcdf(filenames['Bathy'], variables['Bathy'], dimensions,allow_time_extrapolation=True)
     field_set.add_field(Bth)
+
+    filenames,variables,dimensions=filename_set(start,length,['Cmask'],local)
+    cms = Field.from_netcdf(filenames['Cmask'], variables['Cmask'], dimensions,allow_time_extrapolation=True)
+    field_set.add_field(cms)
 
     filenames,variables,dimensions=filename_set(start,length,['FS'],local)
     Fraser = Field.from_netcdf(filenames['FS'], variables['FS'], dimensions,allow_time_extrapolation=True,timestamps=get_timestamps(start,length))
