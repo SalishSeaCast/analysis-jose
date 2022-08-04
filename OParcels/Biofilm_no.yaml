@@ -9,7 +9,7 @@ startdate:
 
 param:
   length: 30 # Set Time length [days] 
-  dt: 20 #toggle between - or + to pick backwards or forwards 
+  dt: 5 #toggle between - or + to pick backwards or forwards 
   N: 1 # number of deploying locations
   n: 10 # 1000   # number of particles per location
   dmin: 2 #minimum depth

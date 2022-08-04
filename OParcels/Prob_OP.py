@@ -62,7 +62,7 @@ def Prob_OP(config):
                     'lon': (['x', 'y'], coords.nav_lon.data),'depth':arr})
     data_set["Prob"]=(['x', 'y','z'], conc)
     param = load_config(config)
-    data_set.load().to_netcdf(path='/home/jvalenti/MOAD/results/'+param['file']['name']+'_prob.nc')
+    data_set.load().to_netcdf(path='/home/jvalenti/MOAD/results/'+param['file']['name']+'_prob'+str(param['startdate']['year'])+'.nc')
 
 if __name__=="__main__":
     try:
