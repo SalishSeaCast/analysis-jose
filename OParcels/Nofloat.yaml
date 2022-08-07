@@ -1,14 +1,14 @@
 
   # yaml file tu run op
 file: 
-  name: 'No_float' #name output file
+  name: 'No_float_Summer2' #name output file
 startdate:
   year: 2020 
   month: 6
   day: 1 
 
 param:
-  length: 30 # Set Time length [days] 
+  length: 90 # Set Time length [days] 
   dt: 5 #toggle between - or + to pick backwards or forwards 
   N: 1 # number of deploying locations
   n: 10 # 1000   # number of particles per location

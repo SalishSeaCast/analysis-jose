@@ -1,7 +1,7 @@
 
   # yaml file tu run op
 file: 
-  name: 'All_kernel_Summer2' #name output file
+  name: 'All_kernel' #name output file
 startdate:
   year: 2020 
   month: 6

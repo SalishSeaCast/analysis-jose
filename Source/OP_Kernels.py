@@ -94,7 +94,6 @@ def Stokes_drift(particle, fieldset, time):
 def AdvectionRK4_3D(particle, fieldset, time):
     if particle.beached == 0: #Check particle is in the water column
         if particle.dz > 0:
-            print('noturb')
             if particle.dz+particle.depth > 0:
                 particle.depth += particle.dz #Change particle depth according to WS
             else:
@@ -118,7 +117,7 @@ def AdvectionRK4_3D(particle, fieldset, time):
         particle.depth += (w1 + 2*w2 + 2*w3 + w4) / 6. * particle.dt
 
 
-def Beaching2(particle, fieldset, time):
+def Beaching(particle, fieldset, time):
     '''Beaching prob'''  
     if particle.beached == 0: #Check particle is in the water column       
         Tb = particle.Lb*86400 #timescale beaching in seconds
@@ -135,15 +134,16 @@ def Beaching2(particle, fieldset, time):
             if DWS1 == 0 or DWS2 == 0 or DWS3 == 0 or DWS4 == 0:
                 particle.beached = 1
 
-def Beaching(particle, fieldset, time):
+def Beaching2(particle, fieldset, time):
     '''Beaching prob'''  
     if particle.beached == 0: #Check particle is in the water column       
         Tb = particle.Lb*86400 #timescale beaching in seconds
         Pb = 1 - exp(-particle.dt/Tb)
         if particle.lat < 48.6 and particle.lon < -124.7 or particle.lat < 49.237 and particle.lon > -123.196 and particle.lat > 49.074:
             pass #Dont let particles beach inside the fraser river
-        elif fieldset.coast_mask[time, 1, particle.lat, particle.lon]==1:
+        elif fieldset.coast_mask[time, 1, particle.lat, particle.lon] == 1:
             if ParcelsRandom.uniform(0,1)<Pb:
+                print('beached')
                 particle.beached = 1
 
 
