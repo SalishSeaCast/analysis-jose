@@ -19,5 +19,7 @@
         "titleBar.inactiveBackground": "#44628199",
         "titleBar.inactiveForeground": "#e7e7e799"
     },
-    "peacock.remoteColor": "446281"
+    "peacock.remoteColor": "446281",
+    "workbench.editor.enablePreview": false,
+    "editor.accessibilityPageSize": 500
 }

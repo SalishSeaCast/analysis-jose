@@ -1,14 +1,14 @@
 
   # yaml file tu run op
 file: 
-  name: 'All_kernel_Summer2' #name output file
+  name: 'No_float' #name output file
 startdate:
   year: 2020 
   month: 6
   day: 1 
 
 param:
-  length: 90 # Set Time length [days] 
+  length: 30 # Set Time length [days] 
   dt: 5 #toggle between - or + to pick backwards or forwards 
   N: 1 # number of deploying locations
   n: 10 # 1000   # number of particles per location
@@ -28,11 +28,11 @@ particle:
   length: 4.5e-4
   SDD: 3.34e-6
   SDL: 24.4e-5
-  fratio: 0.3
+  fratio: 0.0
   Nbac: 0
   Nflag: 0
   dz: 0
-
+  
 kernel:
   Buoyancy: 1
   Turb_mix: 1

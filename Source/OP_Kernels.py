@@ -46,34 +46,35 @@ def turb_mix(particle,fieldset,time):
     else: 
         Kzdz = (fieldset.vert_eddy_diff[time, particle.depth+1, particle.lat, particle.lon]-fieldset.vert_eddy_diff[time, particle.depth, particle.lat, particle.lon]) #forward difference 
     dgrad = Kzdz*particle.dt
-    Kz = fieldset.vert_eddy_diff[time, particle.depth+0.5*dgrad, particle.lat, particle.lon] #Vertical diffusivity SSC  #
-    Rr = ParcelsRandom.normalvariate(0, 1)
+    if particle.depth+0.5*dgrad > 0.5:
+        Kz = fieldset.vert_eddy_diff[time, particle.depth+0.5*dgrad, particle.lat, particle.lon] #Vertical diffusivity SSC  #
+    else:
+        Kz = fieldset.vert_eddy_diff[time, 0.5, particle.lat, particle.lon] #Vertical diffusivity SSC  #
+    Rr = ParcelsRandom.uniform(-1, 1)
+
     #Rr = sqrt(math.fabs(particle.dt)*3)
     #dW = ParcelsRandom.uniform(-Rr, Rr)
     #d_random = (sqrt(2*Kz) * dW)
-    d_random = sqrt(2*Kz*particle.dt) * Rr
+    d_random = sqrt(3*2*Kz*particle.dt) * Rr
     dzs = dgrad + particle.dz
-    print(Kz)
-    print(d_random)
-    if dzs+particle.depth > 0:
-        particle.depth += dzs #Change particle depth according to WS
-        if particle.depth > bath: #Check bathymetry to trap in the sediment if too deep.
-            particle.beached = 3 #particle trapped in the sediment
-    else:
-        particle.depth = 0.5 #Keep particle near surface.
+    particle.dz = 0
     
-    Dlayer = 2
-    if d_random +particle.depth > Dlayer: #reflecting boundary condtions
-        if d_random +particle.depth > bath - Dlayer:
-            particle.depth = bath - Dlayer * ParcelsRandom.uniform(0, 1) #Well mixed boundary layer
+    Dlayer = 1 #1m mixing layer
+    if dzs < 0:
+        if d_random + dzs +particle.depth > bath: #randomly in the water column
+            particle.depth = bath * ParcelsRandom.uniform(0, 1)
+        if d_random +particle.depth +dzs < 0:
+                particle.depth = Dlayer * ParcelsRandom.uniform(0, 1) #Well mixed boundary layer
             #particle.depth = 2*bath - dzp - particle.depth#keep particle inside water column Assume reflexion in the bottom
-        else:
-            particle.depth += d_random  #Change particle depth according to turbulent mixing        
     else:
-        particle.depth = Dlayer * ParcelsRandom.uniform(0, 1) #Well mixed boundary layer
-        #particle.depth = -dzp+particle.depth #assume reflexion in the surface.
+        if d_random + dzs +particle.depth > bath: #randomly in the water column
+            particle.beached = 3
+        if d_random +particle.depth +dzs < 0:
+                particle.depth = Dlayer * ParcelsRandom.uniform(0, 1) #Well mixed boundary layer
+            #particle.depth = 2*bath - dzp - particle.depth#keep particle inside water column Assume reflexion in the bottom
     
-
+    
+    
 def Stokes_drift(particle, fieldset, time):
     '''Stokes drift'''  
     if particle.beached == 0:
@@ -92,6 +93,12 @@ def Stokes_drift(particle, fieldset, time):
 
 def AdvectionRK4_3D(particle, fieldset, time):
     if particle.beached == 0: #Check particle is in the water column
+        if particle.dz > 0:
+            if particle.dz+particle.depth > 0:
+                particle.depth += particle.dz #Change particle depth according to WS
+            else:
+                particle.depth = abs(particle.dz) #Keep particle near surface. assuming reflexion in the boundary
+
         (u1, v1, w1) = fieldset.UVW[time, particle.depth, particle.lat, particle.lon]
         lon1 = particle.lon + u1*.5*particle.dt
         lat1 = particle.lat + v1*.5*particle.dt
@@ -110,7 +117,7 @@ def AdvectionRK4_3D(particle, fieldset, time):
         particle.depth += (w1 + 2*w2 + 2*w3 + w4) / 6. * particle.dt
 
 
-def Beaching2(particle, fieldset, time):
+def Beaching(particle, fieldset, time):
     '''Beaching prob'''  
     if particle.beached == 0: #Check particle is in the water column       
         Tb = particle.Lb*86400 #timescale beaching in seconds
@@ -127,15 +134,16 @@ def Beaching2(particle, fieldset, time):
             if DWS1 == 0 or DWS2 == 0 or DWS3 == 0 or DWS4 == 0:
                 particle.beached = 1
 
-def Beaching(particle, fieldset, time):
+def Beaching2(particle, fieldset, time):
     '''Beaching prob'''  
     if particle.beached == 0: #Check particle is in the water column       
         Tb = particle.Lb*86400 #timescale beaching in seconds
         Pb = 1 - exp(-particle.dt/Tb)
         if particle.lat < 48.6 and particle.lon < -124.7 or particle.lat < 49.237 and particle.lon > -123.196 and particle.lat > 49.074:
             pass #Dont let particles beach inside the fraser river
-        elif fieldset.coast_mask[time, particle.depth, particle.lat, particle.lon]==1:
+        elif fieldset.coast_mask[time, 1, particle.lat, particle.lon] == 1:
             if ParcelsRandom.uniform(0,1)<Pb:
+                print('beached')
                 particle.beached = 1
 
 
