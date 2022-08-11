@@ -63,16 +63,19 @@ def turb_mix(particle,fieldset,time):
     if dzs < 0:
         if d_random + dzs +particle.depth > bath: #randomly in the water column
             particle.depth = bath * ParcelsRandom.uniform(0, 1)
-        if d_random +particle.depth +dzs < 0:
+        elif d_random +particle.depth +dzs < 0:
                 particle.depth = Dlayer * ParcelsRandom.uniform(0, 1) #Well mixed boundary layer
             #particle.depth = 2*bath - dzp - particle.depth#keep particle inside water column Assume reflexion in the bottom
+        else:
+            particle.depth += d_random + dzs
     else:
         if d_random + dzs +particle.depth > bath: #randomly in the water column
             particle.beached = 3
-        if d_random +particle.depth +dzs < 0:
+        elif d_random +particle.depth +dzs < 0:
                 particle.depth = Dlayer * ParcelsRandom.uniform(0, 1) #Well mixed boundary layer
             #particle.depth = 2*bath - dzp - particle.depth#keep particle inside water column Assume reflexion in the bottom
-    
+        else:
+            particle.depth += d_random + dzs
     
     
 def Stokes_drift(particle, fieldset, time):

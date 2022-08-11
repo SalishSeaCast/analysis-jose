@@ -49,15 +49,20 @@ def Prob_OP(config):
     dsslo=np.array(dss.lon)
     dsscon= np.array(dss.tau)
     dssdep=np.array(dss.z)
+    
     for i in range(len(dss)):
         if i%5000==0:
             print(f'{100*i/len(dss):.2f}% done.')
         jj = jjii.jj.sel(lats=dssla[i], lons=dsslo[i], method='nearest').item()
         ii = jjii.ii.sel(lats=dssla[i], lons=dsslo[i], method='nearest').item()
-        dep = (np.abs(arr - dssdep[i])).argmin()
-        if arr[dep] > dssdep[i]:
-            dep+=-1
-        conc[jj,ii,dep] += dsscon[i]
+        try:
+            dep = (np.abs(arr - dssdep[i])).argmin()
+            if arr[dep] > dssdep[i]:
+                dep+=-1
+            conc[jj,ii,dep] += dsscon[i]
+        except ValueError:
+            pass
+        
     data_set=xr.Dataset(coords={'lat': (['x', 'y'], coords.nav_lat.data),
                     'lon': (['x', 'y'], coords.nav_lon.data),'depth':arr})
     data_set["Prob"]=(['x', 'y','z'], conc)
