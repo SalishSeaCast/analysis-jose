@@ -31,7 +31,7 @@ def fibers_OP(config,local=0,restart=0):
     #outf_lat=coord['nav_lat'][445,304]
     #outf_lon=coord['nav_lon'][445,304] 
     clat,clon = [49.195796], [-122.913127]
-    #clat,clon = [49.19579], [-122.913127]
+
     #clon, clat = [float(outf_lon)],[float(outf_lat)] 
     duration = timedelta(days=length)
     x_offset, y_offset, z = p_deploy(N,n,dmin,dd,rrr)

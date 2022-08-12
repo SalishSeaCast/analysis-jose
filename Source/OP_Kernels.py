@@ -41,31 +41,34 @@ def DeleteParticle(particle, fieldset, time):
     particle.delete()
 
 def turb_mix(particle,fieldset,time):
-    if particle.depth > 1: #Only calculate gradient of diffusion for particles deeper than 0.6 otherwise OP will check for particles outside the domain and remove it.
-        Kzdz = 0.5*(fieldset.vert_eddy_diff[time, particle.depth+1, particle.lat, particle.lon]-fieldset.vert_eddy_diff[time, particle.depth-1, particle.lat, particle.lon])
+    if particle.depth + 0.5 > bath: #Only calculate gradient of diffusion for particles deeper than 0.6 otherwise OP will check for particles outside the domain and remove it.
+        Kzdz = 0
     else: 
-        Kzdz = (fieldset.vert_eddy_diff[time, particle.depth+1, particle.lat, particle.lon]-fieldset.vert_eddy_diff[time, particle.depth, particle.lat, particle.lon]) #forward difference 
+        Kzdz = 2*(fieldset.vert_eddy_diff[time, particle.depth+0.5, particle.lat, particle.lon]-fieldset.vert_eddy_diff[time, particle.depth, particle.lat, particle.lon]) #forward difference 
     dgrad = Kzdz*particle.dt
     if particle.depth+0.5*dgrad > 0.5:
         Kz = fieldset.vert_eddy_diff[time, particle.depth+0.5*dgrad, particle.lat, particle.lon] #Vertical diffusivity SSC  #
     else:
         Kz = fieldset.vert_eddy_diff[time, 0.5, particle.lat, particle.lon] #Vertical diffusivity SSC  #
     Rr = ParcelsRandom.uniform(-1, 1)
+    Rrx = ParcelsRandom.uniform(-1, 1)
+    Rry = ParcelsRandom.uniform(-1, 1)
 
-    #Rr = sqrt(math.fabs(particle.dt)*3)
-    #dW = ParcelsRandom.uniform(-Rr, Rr)
-    #d_random = (sqrt(2*Kz) * dW)
     d_random = sqrt(3*2*Kz*particle.dt) * Rr
     dzs = dgrad + particle.dz
     particle.dz = 0
+
+    Kh = 20.5
+    d_randomx = sqrt(3*2*Kh*particle.dt) * Rrx /(111319.5*cos(particle.lat*(math.pi/180)))
+    d_randomy = sqrt(3*2*Kh*particle.dt) * Rry /111319.5
+
     
-    Dlayer = 1 #1m mixing layer
+    Dlayer = 0.5*sqrt(Kz*particle.dt) #mixing layer dependant on Kz
     if dzs < 0:
         if d_random + dzs +particle.depth > bath: #randomly in the water column
-            particle.depth = bath * ParcelsRandom.uniform(0, 1)
-        elif d_random +particle.depth +dzs < 0:
+            particle.depth = bath - Dlayer * ParcelsRandom.uniform(0, 1)
+        elif d_random + particle.depth +dzs < 0:
                 particle.depth = Dlayer * ParcelsRandom.uniform(0, 1) #Well mixed boundary layer
-            #particle.depth = 2*bath - dzp - particle.depth#keep particle inside water column Assume reflexion in the bottom
         else:
             particle.depth += d_random + dzs
     else:
@@ -73,7 +76,6 @@ def turb_mix(particle,fieldset,time):
             particle.beached = 3
         elif d_random +particle.depth +dzs < 0:
                 particle.depth = Dlayer * ParcelsRandom.uniform(0, 1) #Well mixed boundary layer
-            #particle.depth = 2*bath - dzp - particle.depth#keep particle inside water column Assume reflexion in the bottom
         else:
             particle.depth += d_random + dzs
     
@@ -119,12 +121,57 @@ def AdvectionRK4_3D(particle, fieldset, time):
         particle.lat += (v1 + 2*v2 + 2*v3 + v4) / 6. * particle.dt
         particle.depth += (w1 + 2*w2 + 2*w3 + w4) / 6. * particle.dt
 
+def turb_mix2(particle,fieldset,time):
+    if particle.depth + 0.5 > bath: #Only calculate gradient of diffusion for particles deeper than 0.6 otherwise OP will check for particles outside the domain and remove it.
+        Kzdz = 0
+    else: 
+        Kzdz = 2*(fieldset.vert_eddy_diff[time, particle.depth+0.5, particle.lat, particle.lon]-fieldset.vert_eddy_diff[time, particle.depth, particle.lat, particle.lon]) #forward difference 
+    dgrad = Kzdz*particle.dt
+    if particle.depth+0.5*dgrad > 0.5:
+        Kz = fieldset.vert_eddy_diff[time, particle.depth+0.5*dgrad, particle.lat, particle.lon] #Vertical diffusivity SSC  #
+    else:
+        Kz = fieldset.vert_eddy_diff[time, 0.5, particle.lat, particle.lon] #Vertical diffusivity SSC  #
+    Rr = ParcelsRandom.uniform(-1, 1)
+    Rrx = ParcelsRandom.uniform(-1, 1)
+    Rry = ParcelsRandom.uniform(-1, 1)
+
+    d_random = sqrt(3*2*Kz*particle.dt) * Rr
+    dzs = dgrad + particle.dz
+    particle.dz = 0
+
+    Kh = 20.5
+    d_randomx = particle.lon + sqrt(3*2*Kh*particle.dt) * Rrx /(111319.5*cos(particle.lat*(math.pi/180)))
+    d_randomy = particle.lat + sqrt(3*2*Kh*particle.dt) * Rry /111319.5
+    if particle.lat < 48.6 and particle.lon < -124.7 or particle.lat < 49.237 and particle.lon > -123.196 and particle.lat > 49.074:
+        pass #Dont let particles beach inside the fraser river
+    elif fieldset.U[time, 0.5, d_randomy, d_randomx] == 0:
+        particle.beached = 1
+    else:
+        particle.lat = d_randomy
+        particle.lon = d_randomx
+
+    Dlayer = 0.5*sqrt(Kz*particle.dt) #mixing layer dependant on Kz
+    if dzs < 0:
+        if d_random + dzs +particle.depth > bath: #randomly in the water colum01n
+            particle.depth = bath - Dlayer * ParcelsRandom.uniform(0, 1)
+        elif d_random + particle.depth +dzs < 0:
+            particle.depth = Dlayer * ParcelsRandom.uniform(0, 1) #Well mixed boundary layer
+        else:
+            particle.depth += d_random + dzs
+    else:
+        if d_random + dzs +particle.depth > bath: #randomly in the water column
+            particle.beached = 3
+        elif d_random +particle.depth +dzs < 0:
+                particle.depth = Dlayer * ParcelsRandom.uniform(0, 1) #Well mixed boundary layer
+        else:
+            particle.depth += d_random + dzs
+
 
 def Beaching(particle, fieldset, time):
     '''Beaching prob'''  
     if particle.beached == 0: #Check particle is in the water column       
         Tb = particle.Lb*86400 #timescale beaching in seconds
-        x_offset = particle.Db/(111319.5*0.682) #Checking distance x of possible beaching
+        x_offset = particle.Db/(111319.5*cos(particle.lat*(math.pi/180))) #Checking distance x of possible beaching
         y_offset = particle.Db/111319.5 #Checking distance y of possible beaching
         Pb = 1 - exp(-particle.dt/Tb)
         if particle.lat < 48.6 and particle.lon < -124.7 or particle.lat < 49.237 and particle.lon > -123.196 and particle.lat > 49.074:
