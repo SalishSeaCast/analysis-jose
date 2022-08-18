@@ -50,16 +50,13 @@ def fibers_OP(config,local=0,restart=0):
 ####BUILD FIELDS FOR SIMULATION######
 
 #Fill in the list of variables that you want to use as fields
-    varlist=['U','V','W','R','T','Kz','Diat','Flag']
+    varlist=['U','V','W','R','T']
     filenames,variables,dimensions=filename_set(start,length,varlist,local)
     field_set=FieldSet.from_nemo(filenames, variables, dimensions, allow_time_extrapolation=True)
-    
-    filenames,variables,dimensions=filename_set(start,length,['Cmask'],local)
-    cms = Field.from_netcdf(filenames['Cmask'], variables['Cmask'], dimensions,allow_time_extrapolation=True)
-    field_set.add_field(cms)
 
     varlist=['US','VS','WL']
     filenames,variables,dimensions=filename_set(start,length,varlist,local)
+
     us = Field.from_netcdf(filenames['US'], variables['US'], dimensions,allow_time_extrapolation=True)
     vs = Field.from_netcdf(filenames['VS'], variables['VS'], dimensions,allow_time_extrapolation=True)
     wl = Field.from_netcdf(filenames['WL'], variables['WL'], dimensions,allow_time_extrapolation=True)
@@ -68,13 +65,29 @@ def fibers_OP(config,local=0,restart=0):
     field_set.add_field(wl)
     field_set.add_vector_field(VectorField("stokes", us, vs, wl))
 
-    varlist=['Bathy','FS']
-    filenames,variables,dimensions=filename_set(start,length,varlist,local)
+    filenames,variables,dimensions=filename_set(start,length,['Bathy'],local)
     Bth = Field.from_netcdf(filenames['Bathy'], variables['Bathy'], dimensions,allow_time_extrapolation=True)
-    Fraser = Field.from_netcdf(filenames['FS'], variables['FS'], dimensions,allow_time_extrapolation=True,timestamps=get_timestamps(start,length))
     field_set.add_field(Bth)
+
+    filenames,variables,dimensions=filename_set(start,length,['Cmask'],local)
+    cms = Field.from_netcdf(filenames['Cmask'], variables['Cmask'], dimensions,allow_time_extrapolation=True)
+    field_set.add_field(cms)
+
+    filenames,variables,dimensions=filename_set(start,length,['FS'],local)
+    Fraser = Field.from_netcdf(filenames['FS'], variables['FS'], dimensions,allow_time_extrapolation=True,timestamps=get_timestamps(start,length))
     field_set.add_field(Fraser)
-    
+
+    filenames,variables,dimensions=filename_set(start,length,['Kz'],local)
+    Kz = Field.from_netcdf(filenames['Kz'], variables['Kz'], dimensions,allow_time_extrapolation=True)
+    field_set.add_field(Kz)
+
+    varlist=['Diat','Flag']
+    filenames,variables,dimensions=filename_set(start,length,varlist,local)
+    Diat = Field.from_netcdf(filenames['Diat'], variables['Diat'], dimensions,allow_time_extrapolation=True)
+    Flag = Field.from_netcdf(filenames['Flag'], variables['Flag'], dimensions,allow_time_extrapolation=True)
+    field_set.add_field(Diat)
+    field_set.add_field(Flag)
+
     MPParticle = particle_maker(param)
 
     

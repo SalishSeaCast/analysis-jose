@@ -10,7 +10,7 @@ import cmocean
 from datetime import datetime, timedelta
 from parcels import FieldSet, Field, VectorField, ParticleSet, JITParticle, ErrorCode, ParcelsRandom, Variable
 
-sys.path.append('/home/jvalenti/MOAD/analysis-jose/Source') #Add directory where OP_Kernels is located.
+sys.path.append('/home/jvalenti/MOAD/analysis-jose/Source')
 from OP_Kernels import DeleteParticle, Buoyancy, AdvectionRK4_3D, Stokes_drift, Beaching, Unbeaching, turb_mix,turb_mix2 , Biofilm
  
 def path(local = 1):
@@ -43,6 +43,189 @@ def make_prefix(date, path, res='h'):
     prefix = os.path.join(path, f'{folder}/SalishSea_1{res}_{datestr}')
     
     return prefix
+colores=['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf']
+
+def scatter_particles(ax, N ,n,nmin, nmax,yvar,lon,HD=0,colors='b'):
+    '''scatter_particles(ax, N ,n,nmin, nmax,yvar,lon,HD=0,colors=colores)
+    Use this function to scatter particles with different colours for each deploy location
+    N= number of deploying sites,n=number of particles oper location, nmin,max=time min,max, yvar is the variable to plot on the yaxis, 
+    Keep HD to 0 unless you want to plot with cartopy (only works for maps so yvar= latitude)
+    '''
+    
+    scatter=[]
+    #N is the number of stations, n the number of particles
+    #Color is a list of strings picking the desired colors
+    #nmin is t0, nmax is tmax
+    #yvar is the y coordinate, lon is the longitud array
+    #HD (1 for cartopy plot) 0 otherwise
+    
+    if HD == 0:
+        if nmin==nmax:
+            scatter.append(ax.scatter(lon[:, nmin], yvar[:, nmin],s=1,color=colors))
+        else:
+            
+            scatter.append(ax.scatter(lon[:, nmin:nmax], yvar[:, nmin:nmax],s=1,color=colors))
+    else:
+        if nmin==nmax:
+            scatter.append(ax.scatter(lon[:, nmin], yvar[:, nmin],s=1,transform=crs.PlateCarree(),zorder=2,color=colors))
+        else:
+            scatter.append(ax.scatter(lon[:, nmin:nmax], yvar[:, nmin:nmax],s=1,transform=crs.PlateCarree(),zorder=2,color=colors))
+        
+    return scatter
+
+ss=[]
+
+def mapanimation(outfile,N,n,clon,clat,fps=1,local=1):
+    '''mapanimation(outfile,N,n,clon,clat,fps=1,local=1)
+    Use this function to return an animated map of the particles,
+    keep local=1 when working local and = 0 when remote. 
+    outfile is the name of the output file from OP
+    N= number of deploying sites,n=number of particles oper location,
+    clat,clon location of deploying locations.
+    '''
+    coords,mask,ds = output(outfile,local)
+    fig = plt.figure(figsize=(19, 8))
+    ax = plt.axes(xlim=(-127,-121),ylim=(46.8,51.2))
+    ax.contour(coords.nav_lon, coords.nav_lat, mask.mbathy[0,:,:],colors='k',linewidths=0.1)
+    ax.contourf(coords.nav_lon, coords.nav_lat, mask.tmask[0, 0, ...], levels=[-0.01, 0.01], colors='lightgray')
+    ax.contour(coords.nav_lon, coords.nav_lat, mask.tmask[0, 0, ...], levels=[-0.01, 0.01], colors='k')
+    ax.grid()
+    ax.set_aspect(1/1)
+    plt.ylabel('Latitude',fontsize=16)
+    plt.xlabel('Longitude',fontsize=16)
+    t = ax.text(0.02, 0.02, '', transform=ax.transAxes)
+    t.set_text('')
+    ss = []#scatter_particles(ax, N,n, 0,0, ds.lat,ds.lon)
+    sed= {0: "w", 1: "k"}
+
+    def update(frame):
+        tstamp = ds.time[0, frame].values.astype('datetime64[s]').astype(datetime)
+        t.set_text(tstamp.strftime('%Y-%b-%d %H:%M UTC'))
+        global ss
+        for scat in ss:
+            scat.remove()
+        ss = scatter_particles(ax, N,n, frame,frame, ds.lat,ds.lon)
+        #ss.append(ax.scatter(ds.lon[:,frame], ds.lat[:,frame],c='m',s=5,alpha=ds.beached[:,frame].fillna(0))/3)
+        #ss.append(ax.scatter(clon,clat,c='r', marker='*', linewidths=2))
+        return ss
+    return animation.FuncAnimation(fig, update, frames=np.arange(0,len(ds.lon[0,:]),fps))
+
+
+def mapanimationd(outfile,N,n,clon,clat,fps=1,local=1):
+    '''mapanimation(outfile,N,n,clon,clat,fps=1,local=1)
+    Use this function to return an animated map of the particles,
+    keep local=1 when working local and = 0 when remote. 
+    outfile is the name of the output file from OP
+    N= number of deploying sites,n=number of particles oper location,
+    clat,clon location of deploying locations.
+    '''
+    coords,mask,ds = output(outfile,local)
+    fig = plt.figure(figsize=(19, 8))
+    ax = plt.axes(xlim=(-125,-122.5),ylim=(48.5,49.7))
+    ax.contour(coords.nav_lon, coords.nav_lat, mask.mbathy[0,:,:],colors='k',linewidths=0.1)
+    ax.contourf(coords.nav_lon, coords.nav_lat, mask.tmask[0, 0, ...], levels=[-0.01, 0.01], colors='lightgray')
+    ax.contour(coords.nav_lon, coords.nav_lat, mask.tmask[0, 0, ...], levels=[-0.01, 0.01], colors='k')
+    ax.set_aspect(1/1)
+    dslo=len(ds.lon[0,:])
+    plt.ylabel('Latitude',fontsize=16)
+    plt.xlabel('Longitude',fontsize=16)
+    t = ax.text(0.02, 0.02, '', transform=ax.transAxes)
+    t.set_text('')
+    cm = cmocean.cm.ice
+
+    def update(frame):
+        tstamp = ds.time[0, frame].values.astype('datetime64[s]').astype(datetime)
+        t.set_text(tstamp.strftime('%Y-%b-%d %H:%M UTC'))
+        
+        ds2=ds.where(ds.time==ds.time[0,frame])
+        ds2p=ds2.where(ds2.beached==0)
+        dsb=ds2.where(ds2.beached==1)
+        dss=ds2.where(ds2.beached==3)
+        global ss
+        for scat in ss:
+            scat.remove()
+        ss =[]
+        
+        
+        #ss.append(ax.scatter(ds2.lon, ds2.lat,c='b',s=1))
+        ss.append(ax.scatter(dsb.lon, dsb.lat,c='m',s=3))
+        ss.append(ax.scatter(dss.lon, dss.lat,c='g',s=3))
+        ss.append(ax.scatter(ds2p.lon, ds2p.lat,s=1,c=ds2p.tau,cmap=cm))
+        
+        print(f'{100*frame/dslo:.2f}% completed')
+        return ss
+    return animation.FuncAnimation(fig, update, frames=np.arange(0,len(ds.lon[0,:]),fps))
+
+
+    
+
+def visual(outfile,N,n,clon,clat,dmin,dd, nmin=0, nmax=-1,local=1):
+    '''visual(outfile,N,n,clon,clat,dmin,dmax, nmin=0, nmax=-1,local=1)
+    Use this function to return an animated map of the particles,
+    keep local=1 when working local and = 0 when remote. 
+    outfile is the name of the output file from OP
+    N= number of deploying sites,n=number of particles oper location, dmin,dmax=deploying min,max depths,
+    clat,clon location of deploying locations.
+    '''
+    coords,mask,ds = output(outfile,local)
+    fig, (ax1, ax2) = plt.subplots(1,2,figsize=(19, 8))
+    ax1.contour(coords.nav_lon, coords.nav_lat, mask.mbathy[0,:,:],colors='k',linewidths=0.1)
+    ax1.contourf(coords.nav_lon, coords.nav_lat, mask.tmask[0, 0, ...], levels=[-0.01, 0.01], colors='lightgray')
+    ax1.contour(coords.nav_lon, coords.nav_lat, mask.tmask[0, 0, ...], levels=[-0.01, 0.01], colors='k')
+
+    scatter_particles(ax1, N,n, nmin, nmax, ds.lat,ds.lon)
+    #ax1.scatter(clon,clat,c='g', marker='*', linewidths=1)
+
+    scatter_particles(ax2, N,n, nmin, nmax, -ds.z,ds.lon)
+    ax2.grid()
+    plt.ylabel('Depth [m]')
+    plt.xlabel('Longitude')
+
+    if isinstance(dmin,int) :
+        dmin=np.repeat((dmin),len(clon))
+    else:
+        dmin=[0-di for di in dmin]
+    ax2.scatter(clon,-dmin,c='r', marker='*', linewidths=1)
+
+
+def visuald(ax,outfile,N,n,clon,clat,dmin,dd, nmin=0, nmax=-1,local=1):
+    '''visual(outfile,N,n,clon,clat,dmin,dmax, nmin=0, nmax=-1,local=1)
+    Use this function to return an animated map of the particles,
+    keep local=1 when working local and = 0 when remote. 
+    outfile is the name of the output file from OP
+    N= number of deploying sites,n=number of particles oper location, dmin,dmax=deploying min,max depths,
+    clat,clon location of deploying locations.
+    '''
+    coords,mask,ds = output(outfile,local)
+    #fig, (ax1, ax2) = plt.subplots(1,2,figsize=(19, 8))
+    ax[0].contour(coords.nav_lon, coords.nav_lat, mask.mbathy[0,:,:],colors='k',linewidths=0.1)
+    ax[0].contourf(coords.nav_lon, coords.nav_lat, mask.tmask[0, 0, ...], levels=[-0.01, 0.01], colors='lightgray')
+    ax[0].contour(coords.nav_lon, coords.nav_lat, mask.tmask[0, 0, ...], levels=[-0.01, 0.01], colors='k')
+   
+    
+    ds0=ds.where(ds.time<=ds.time[0,nmax])
+    ds2=ds0.where(ds0.time>=ds0.time[0,nmin])
+    dss=ds2.where(ds2.beached==3)
+    scatter_particles(ax[0], N,n, 0, -1, ds2.lat,ds2.lon)
+    ax[0].scatter(clon,clat,c='r', marker='*', linewidths=1)
+    ax[0].set_ylabel('Longitude')
+    ax[0].set_xlabel('Latitude')
+
+    scatter_particles(ax[1], N,n, 0, -1, -ds2.z,ds2.lon)
+    scatter_particles(ax[1], N,n, 0, -1, -dss.z,dss.lon,colors='r')
+    t = ax[0].text(0.02, 0.02, '', transform=ax[0].transAxes)
+    t.set_text('')
+    tstamp = ds.time[0, nmax].values.astype('datetime64[s]').astype(datetime)
+    t.set_text(tstamp.strftime('%Y-%b-%d %H:%M UTC'))
+    ax[1].grid()
+    ax[1].set_ylabel('Depth [m]')
+
+
+    if isinstance(dmin,int) :
+        dmin=np.repeat((dmin),len(clon))
+    else:
+        dmin=[0-di for di in dmin]
+    ax[1].scatter(clon,-dmin,c='r', marker='*', linewidths=1)
 
 
 def output(outfile,local=1):
@@ -53,6 +236,60 @@ def output(outfile,local=1):
     mask = xr.open_dataset(paths['mask'])
     ds = xr.open_dataset(outfile)
     return  coords,mask,ds
+
+labels0=['Nnm','Cmp','Vnc','Stl','Vct','Otf']
+def profile(N,n,length,outfile,local=1,labels=labels0,levels=20,colors=colores):
+    '''profile(N,n,length,outfile,levels=20,local=1)
+    Use this function to return a depth profile of the particles,
+    keep local=1 when working local and = 0 when remote. 
+    outfile is the name of the output file from OP
+    N= number of deploying sites,n=number of particles oper location, 
+    length= number days of run,
+    levels= how many layers to count particles
+    '''
+    coords,mask,ds = output(outfile,local)
+    Z = np.linspace(0,430,levels)
+    time = length*24+1
+    zn = np.zeros([len(Z)-1,time])
+    for j in range(time):
+        zn[:,j],z_levels = np.histogram(ds.z[:, j], bins=Z)
+    fig = plt.figure(figsize=(8, 8))
+    ax = plt.axes(xlim=(-5,np.max(zn[:,0]+5)),ylim=(-500,0))
+   
+    plt.plot(zn[:,0],-z_levels[1:],'--')
+    ax.grid()
+    plt.ylabel('Depth [m]',fontsize=16)
+    plt.xlabel('Particles',fontsize=16)
+
+    plt.plot(zn[:,-1],-z_levels[1:],'-')
+    plt.xticks(fontsize=12)
+    plt.yticks(fontsize=12)
+    plt.legend(fontsize=12)
+
+def profile2(ax,N,n,length,outfile,local=1,labels=labels0,levels=20,colors=colores):
+    '''profile(N,n,length,outfile,levels=20,local=1)
+    Use this function to return a depth profile of the particles,
+    keep local=1 when working local and = 0 when remote. 
+    outfile is the name of the output file from OP
+    N= number of deploying sites,n=number of particles oper location, 
+    length= number days of run,
+    levels= how many layers to count particles
+    '''
+    coords,mask,ds = output(outfile,local)
+    Z = np.linspace(0,430,levels)
+    time = length*24+1
+    zn = np.zeros([len(Z)-1,time])
+    for j in range(time):
+        zn[:,j],z_levels = np.histogram(ds.z[:, j], bins=Z)
+   
+    ax.plot(zn[:,0],-z_levels[1:],'--',label='$t_0$')
+    ax.grid()
+    ax.set_ylabel('Depth [m]')
+    ax.set_title(outfile[30:39])
+    ax.plot(zn[:,-1],-z_levels[1:],'-',label='$t_{end}$')
+    plt.xticks(fontsize=12)
+    plt.yticks(fontsize=12)
+    ax.legend(fontsize=12)
     
     
 def filename_set(start,length,varlist=['U','V','W'],local=0):
@@ -94,10 +331,12 @@ def filename_set(start,length,varlist=['U','V','W'],local=0):
         'R': {'lon': paths['coords'], 'lat': paths['coords'], 'depth': Wlist[0], 'data': Rlist},
         'Bathy' : {'lon': paths['coords'], 'lat': paths['coords'], 'data': paths['mask']},
         'Cmask' : {'lon': paths['coords'], 'lat': paths['coords'],'depth': Wlist[0], 'data': paths['mask']},
+        'D' : {'lon': paths['coords'], 'lat': paths['coords'], 'data': paths['mask']},
         'US' : {'lon': paths['coordsWW3'], 'lat': paths['coordsWW3'], 'data': Waveslist},
         'VS' : {'lon': paths['coordsWW3'], 'lat': paths['coordsWW3'], 'data': Waveslist},
         'WL' : {'lon': paths['coordsWW3'], 'lat': paths['coordsWW3'], 'data': Waveslist},
         'FS' :  {'lon': paths['coords'], 'lat': paths['coords'],'data': Flist},
+        'MZ' : {'lon': paths['coords'], 'lat': paths['coords'], 'depth': Wlist[0], 'data': MZlist},
         'Diat' : {'lon': paths['coords'], 'lat': paths['coords'], 'depth': Wlist[0], 'data': Biolist},
         'Flag' : {'lon': paths['coords'], 'lat': paths['coords'], 'depth': Wlist[0], 'data': Biolist},
     }
@@ -105,13 +344,14 @@ def filename_set(start,length,varlist=['U','V','W'],local=0):
         'US':'uuss','VS':'vuss','WL':'lm','Bathy':'bathym', 'D':'Distc','FS':'rorunoff','Kz':'vert_eddy_diff',
         'MZ':'microzooplankton','Diat':'PPDIATNO3','Flag':'PPPHYNO3','Cmask':'coast_mask'}
     for fvar in varlist:
-        if fvar == 'U' or fvar == 'Cmask':
+        if fvar == 'U' or fvar == 'Kz' or fvar == 'Diat' or fvar== 'Cmask':
             dimensions = {'lon': 'glamf', 'lat': 'gphif', 'depth': 'depthw','time': 'time_counter'}
         elif fvar == 'US':
             dimensions = {'lon': 'longitude', 'lat': 'latitude', 'time': 'time'}
-        elif fvar == 'Bathy':
+        elif fvar == 'Bathy' or fvar == 'D' or fvar == 'FS':
             dimensions = {'lon': 'glamf', 'lat': 'gphif','time': 'time_counter'}
         
+    
     file2,var2 = {},{}
     for var in varlist:
         file2[var]=filenames[var]
@@ -302,248 +542,3 @@ def particle_maker(config):
         if 'dz' in config['particle']:  
             dz = Variable('dz', initial =  0) # dz variable
     return MPParticle
-
-
-
-########################################### PLOTTING FUNCTIONS ################################################
-
-    
-colores=['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf']
-
-def scatter_particles(ax, N ,n,nmin, nmax,yvar,lon,HD=0,colors='b'):
-    '''scatter_particles(ax, N ,n,nmin, nmax,yvar,lon,HD=0,colors=colores)
-    Use this function to scatter particles with different colours for each deploy location
-    N= number of deploying sites,n=number of particles oper location, nmin,max=time min,max, yvar is the variable to plot on the yaxis, 
-    Keep HD to 0 unless you want to plot with cartopy (only works for maps so yvar= latitude)
-    '''
-    
-    scatter=[]
-    #N is the number of stations, n the number of particles
-    #Color is a list of strings picking the desired colors
-    #nmin is t0, nmax is tmax
-    #yvar is the y coordinate, lon is the longitud array
-    #HD (1 for cartopy plot) 0 otherwise
-    
-    if HD == 0:
-        if nmin==nmax:
-            scatter.append(ax.scatter(lon[:, nmin], yvar[:, nmin],s=1,color=colors))
-        else:
-            
-            scatter.append(ax.scatter(lon[:, nmin:nmax], yvar[:, nmin:nmax],s=1,color=colors))
-    else:
-        if nmin==nmax:
-            scatter.append(ax.scatter(lon[:, nmin], yvar[:, nmin],s=1,transform=crs.PlateCarree(),zorder=2,color=colors))
-        else:
-            scatter.append(ax.scatter(lon[:, nmin:nmax], yvar[:, nmin:nmax],s=1,transform=crs.PlateCarree(),zorder=2,color=colors))
-        
-    return scatter
-
-ss=[]
-
-def mapanimation(outfile,N,n,clon,clat,fps=1,local=1):
-    '''mapanimation(outfile,N,n,clon,clat,fps=1,local=1)
-    Use this function to return an animated map of the particles,
-    keep local=1 when working local and = 0 when remote. 
-    outfile is the name of the output file from OP
-    N= number of deploying sites,n=number of particles oper location,
-    clat,clon location of deploying locations.
-    '''
-    coords,mask,ds = output(outfile,local)
-    fig = plt.figure(figsize=(19, 8))
-    ax = plt.axes(xlim=(-127,-121),ylim=(46.8,51.2))
-    ax.contour(coords.nav_lon, coords.nav_lat, mask.mbathy[0,:,:],colors='k',linewidths=0.1)
-    ax.contourf(coords.nav_lon, coords.nav_lat, mask.tmask[0, 0, ...], levels=[-0.01, 0.01], colors='lightgray')
-    ax.contour(coords.nav_lon, coords.nav_lat, mask.tmask[0, 0, ...], levels=[-0.01, 0.01], colors='k')
-    ax.grid()
-    ax.set_aspect(1/1)
-    plt.ylabel('Latitude',fontsize=16)
-    plt.xlabel('Longitude',fontsize=16)
-    t = ax.text(0.02, 0.02, '', transform=ax.transAxes)
-    t.set_text('')
-    ss = []#scatter_particles(ax, N,n, 0,0, ds.lat,ds.lon)
-    sed= {0: "w", 1: "k"}
-
-    def update(frame):
-        tstamp = ds.time[0, frame].values.astype('datetime64[s]').astype(datetime)
-        t.set_text(tstamp.strftime('%Y-%b-%d %H:%M UTC'))
-        global ss
-        for scat in ss:
-            scat.remove()
-        ss = scatter_particles(ax, N,n, frame,frame, ds.lat,ds.lon)
-        #ss.append(ax.scatter(ds.lon[:,frame], ds.lat[:,frame],c='m',s=5,alpha=ds.beached[:,frame].fillna(0))/3)
-        #ss.append(ax.scatter(clon,clat,c='r', marker='*', linewidths=2))
-        return ss
-    return animation.FuncAnimation(fig, update, frames=np.arange(0,len(ds.lon[0,:]),fps))
-
-
-def mapanimationd(outfile,N,n,clon,clat,fps=1,local=1):
-    '''mapanimation(outfile,N,n,clon,clat,fps=1,local=1)
-    Use this function to return an animated map of the particles,
-    keep local=1 when working local and = 0 when remote. 
-    outfile is the name of the output file from OP
-    N= number of deploying sites,n=number of particles oper location,
-    clat,clon location of deploying locations.
-    '''
-    coords,mask,ds = output(outfile,local)
-    fig = plt.figure(figsize=(19, 8))
-    ax = plt.axes(xlim=(-125,-122.5),ylim=(48.5,49.7))
-    ax.contour(coords.nav_lon, coords.nav_lat, mask.mbathy[0,:,:],colors='k',linewidths=0.1)
-    ax.contourf(coords.nav_lon, coords.nav_lat, mask.tmask[0, 0, ...], levels=[-0.01, 0.01], colors='lightgray')
-    ax.contour(coords.nav_lon, coords.nav_lat, mask.tmask[0, 0, ...], levels=[-0.01, 0.01], colors='k')
-    ax.set_aspect(1/1)
-    dslo=len(ds.lon[0,:])
-    plt.ylabel('Latitude',fontsize=16)
-    plt.xlabel('Longitude',fontsize=16)
-    t = ax.text(0.02, 0.02, '', transform=ax.transAxes)
-    t.set_text('')
-    cm = cmocean.cm.ice
-
-    def update(frame):
-        tstamp = ds.time[0, frame].values.astype('datetime64[s]').astype(datetime)
-        t.set_text(tstamp.strftime('%Y-%b-%d %H:%M UTC'))
-        
-        ds2=ds.where(ds.time==ds.time[0,frame])
-        ds2p=ds2.where(ds2.beached==0)
-        dsb=ds2.where(ds2.beached==1)
-        dss=ds2.where(ds2.beached==3)
-        global ss
-        for scat in ss:
-            scat.remove()
-        ss =[]
-        
-        
-        #ss.append(ax.scatter(ds2.lon, ds2.lat,c='b',s=1))
-        ss.append(ax.scatter(dsb.lon, dsb.lat,c='m',s=3))
-        ss.append(ax.scatter(dss.lon, dss.lat,c='g',s=3))
-        ss.append(ax.scatter(ds2p.lon, ds2p.lat,s=1,c=ds2p.tau,cmap=cm))
-        
-        print(f'{100*frame/dslo:.2f}% completed')
-        return ss
-    return animation.FuncAnimation(fig, update, frames=np.arange(0,len(ds.lon[0,:]),fps))
-
-
-    
-
-def visual(outfile,N,n,clon,clat,dmin,dd, nmin=0, nmax=-1,local=1):
-    '''visual(outfile,N,n,clon,clat,dmin,dmax, nmin=0, nmax=-1,local=1)
-    Use this function to return an animated map of the particles,
-    keep local=1 when working local and = 0 when remote. 
-    outfile is the name of the output file from OP
-    N= number of deploying sites,n=number of particles oper location, dmin,dmax=deploying min,max depths,
-    clat,clon location of deploying locations.
-    '''
-    coords,mask,ds = output(outfile,local)
-    fig, (ax1, ax2) = plt.subplots(1,2,figsize=(19, 8))
-    ax1.contour(coords.nav_lon, coords.nav_lat, mask.mbathy[0,:,:],colors='k',linewidths=0.1)
-    ax1.contourf(coords.nav_lon, coords.nav_lat, mask.tmask[0, 0, ...], levels=[-0.01, 0.01], colors='lightgray')
-    ax1.contour(coords.nav_lon, coords.nav_lat, mask.tmask[0, 0, ...], levels=[-0.01, 0.01], colors='k')
-
-    scatter_particles(ax1, N,n, nmin, nmax, ds.lat,ds.lon)
-    #ax1.scatter(clon,clat,c='g', marker='*', linewidths=1)
-
-    scatter_particles(ax2, N,n, nmin, nmax, -ds.z,ds.lon)
-    ax2.grid()
-    plt.ylabel('Depth [m]')
-    plt.xlabel('Longitude')
-
-    if isinstance(dmin,int) :
-        dmin=np.repeat((dmin),len(clon))
-    else:
-        dmin=[0-di for di in dmin]
-    ax2.scatter(clon,-dmin,c='r', marker='*', linewidths=1)
-
-
-def visuald(ax,outfile,N,n,clon,clat,dmin,dd, nmin=0, nmax=-1,local=1):
-    '''visual(outfile,N,n,clon,clat,dmin,dmax, nmin=0, nmax=-1,local=1)
-    Use this function to return an animated map of the particles,
-    keep local=1 when working local and = 0 when remote. 
-    outfile is the name of the output file from OP
-    N= number of deploying sites,n=number of particles oper location, dmin,dmax=deploying min,max depths,
-    clat,clon location of deploying locations.
-    '''
-    coords,mask,ds = output(outfile,local)
-    #fig, (ax1, ax2) = plt.subplots(1,2,figsize=(19, 8))
-    ax[0].contour(coords.nav_lon, coords.nav_lat, mask.mbathy[0,:,:],colors='k',linewidths=0.1)
-    ax[0].contourf(coords.nav_lon, coords.nav_lat, mask.tmask[0, 0, ...], levels=[-0.01, 0.01], colors='lightgray')
-    ax[0].contour(coords.nav_lon, coords.nav_lat, mask.tmask[0, 0, ...], levels=[-0.01, 0.01], colors='k')
-   
-    
-    ds0=ds.where(ds.time<=ds.time[0,nmax])
-    ds2=ds0.where(ds0.time>=ds0.time[0,nmin])
-    dss=ds2.where(ds2.beached==3)
-    scatter_particles(ax[0], N,n, 0, -1, ds2.lat,ds2.lon)
-    ax[0].scatter(clon,clat,c='r', marker='*', linewidths=1)
-    ax[0].set_ylabel('Longitude')
-    ax[0].set_xlabel('Latitude')
-
-    scatter_particles(ax[1], N,n, 0, -1, -ds2.z,ds2.lon)
-    scatter_particles(ax[1], N,n, 0, -1, -dss.z,dss.lon,colors='r')
-    t = ax[0].text(0.02, 0.02, '', transform=ax[0].transAxes)
-    t.set_text('')
-    tstamp = ds.time[0, nmax].values.astype('datetime64[s]').astype(datetime)
-    t.set_text(tstamp.strftime('%Y-%b-%d %H:%M UTC'))
-    ax[1].grid()
-    ax[1].set_ylabel('Depth [m]')
-
-
-    if isinstance(dmin,int) :
-        dmin=np.repeat((dmin),len(clon))
-    else:
-        dmin=[0-di for di in dmin]
-    ax[1].scatter(clon,-dmin,c='r', marker='*', linewidths=1)
-
-
-
-labels0=['Nnm','Cmp','Vnc','Stl','Vct','Otf']
-def profile(N,n,length,outfile,local=1,labels=labels0,levels=20,colors=colores):
-    '''profile(N,n,length,outfile,levels=20,local=1)
-    Use this function to return a depth profile of the particles,
-    keep local=1 when working local and = 0 when remote. 
-    outfile is the name of the output file from OP
-    N= number of deploying sites,n=number of particles oper location, 
-    length= number days of run,
-    levels= how many layers to count particles
-    '''
-    coords,mask,ds = output(outfile,local)
-    Z = np.linspace(0,430,levels)
-    time = length*24+1
-    zn = np.zeros([len(Z)-1,time])
-    for j in range(time):
-        zn[:,j],z_levels = np.histogram(ds.z[:, j], bins=Z)
-    fig = plt.figure(figsize=(8, 8))
-    ax = plt.axes(xlim=(-5,np.max(zn[:,0]+5)),ylim=(-500,0))
-   
-    plt.plot(zn[:,0],-z_levels[1:],'--')
-    ax.grid()
-    plt.ylabel('Depth [m]',fontsize=16)
-    plt.xlabel('Particles',fontsize=16)
-
-    plt.plot(zn[:,-1],-z_levels[1:],'-')
-    plt.xticks(fontsize=12)
-    plt.yticks(fontsize=12)
-    plt.legend(fontsize=12)
-
-def profile2(ax,N,n,length,outfile,local=1,labels=labels0,levels=20,colors=colores):
-    '''profile(N,n,length,outfile,levels=20,local=1)
-    Use this function to return a depth profile of the particles,
-    keep local=1 when working local and = 0 when remote. 
-    outfile is the name of the output file from OP
-    N= number of deploying sites,n=number of particles oper location, 
-    length= number days of run,
-    levels= how many layers to count particles
-    '''
-    coords,mask,ds = output(outfile,local)
-    Z = np.linspace(0,430,levels)
-    time = length*24+1
-    zn = np.zeros([len(Z)-1,time])
-    for j in range(time):
-        zn[:,j],z_levels = np.histogram(ds.z[:, j], bins=Z)
-   
-    ax.plot(zn[:,0],-z_levels[1:],'--',label='$t_0$')
-    ax.grid()
-    ax.set_ylabel('Depth [m]')
-    ax.set_title(outfile[30:39])
-    ax.plot(zn[:,-1],-z_levels[1:],'-',label='$t_{end}$')
-    plt.xticks(fontsize=12)
-    plt.yticks(fontsize=12)
-    ax.legend(fontsize=12)
