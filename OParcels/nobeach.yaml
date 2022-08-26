@@ -1,7 +1,7 @@
 
   # yaml file tu run op
 file: 
-  name: 'check' #name output file
+  name: 'nobeach' #name output file
 startdate:
   year: 2020 
   month: 6
@@ -15,7 +15,11 @@ param:
   dmin: 2 #minimum depth
   dd: 1 #max depth differenbdce from dmin
   dtp: 2 #how often particle released in hours
+  odt: 1 #hours between output
   r: 200
+  lats: [49.195796]
+  lons: [-122.913127]
+
 
 particle:
   Lb: 0.23
@@ -35,8 +39,8 @@ particle:
 
 kernel:
   Buoyancy: 1
-  Turb_mix: 1
-  Beaching: 1
+  Turb_mix2: 1
+  #Beaching: 1
   Stokes_drift: 1
   Biofilm: 1
 

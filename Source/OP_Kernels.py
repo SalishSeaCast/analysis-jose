@@ -44,21 +44,21 @@ def turb_mix(particle,fieldset,time):
     if particle.depth + 0.5 > bath: #Only calculate gradient of diffusion for particles deeper than 0.6 otherwise OP will check for particles outside the domain and remove it.
         Kzdz = 0
     else: 
-        Kzdz = 2*(fieldset.Kz[time, particle.depth+0.5, particle.lat, particle.lon]-fieldset.Kz[time, particle.depth, particle.lat, particle.lon]) #forward difference 
+        Kzdz = 2*(fieldset.vert_eddy_diff[time, particle.depth+0.5, particle.lat, particle.lon]-fieldset.vert_eddy_diff[time, particle.depth, particle.lat, particle.lon]) #forward difference 
     dgrad = Kzdz*particle.dt
     if particle.depth+0.5*dgrad > 0.5:
-        Kzn = fieldset.Kz[time, particle.depth+0.5*dgrad, particle.lat, particle.lon] #Vertical diffusivity SSC  #
+        Kz = fieldset.vert_eddy_diff[time, particle.depth+0.5*dgrad, particle.lat, particle.lon] #Vertical diffusivity SSC  #
     else:
-        Kzn = fieldset.Kz[time, 0.5, particle.lat, particle.lon] #Vertical diffusivity SSC  #
+        Kz = fieldset.vert_eddy_diff[time, 0.5, particle.lat, particle.lon] #Vertical diffusivity SSC  #
     Rr = ParcelsRandom.uniform(-1, 1)
     Rrx = ParcelsRandom.uniform(-1, 1)
     Rry = ParcelsRandom.uniform(-1, 1)
 
-    d_random = sqrt(3*2*Kzn*particle.dt) * Rr
+    d_random = sqrt(3*2*Kz*particle.dt) * Rr
     dzs = dgrad + particle.dz
     particle.dz = 0
   
-    Dlayer = 0.5*sqrt(Kzn*particle.dt) #mixing layer dependant on Kz
+    Dlayer = 0.5*sqrt(Kz*particle.dt) #mixing layer dependant on Kz
     if dzs < 0:
         if d_random + dzs +particle.depth > bath: #randomly in the water column
             particle.depth = bath - Dlayer * ParcelsRandom.uniform(0, 1)
@@ -120,32 +120,34 @@ def turb_mix2(particle,fieldset,time):
     if particle.depth + 0.5 > bath: #Only calculate gradient of diffusion for particles deeper than 0.6 otherwise OP will check for particles outside the domain and remove it.
         Kzdz = 0
     else: 
-        Kzdz = 2*(fieldset.Kz[time, particle.depth+0.5, particle.lat, particle.lon]-fieldset.Kz[time, particle.depth, particle.lat, particle.lon]) #forward difference 
+        Kzdz = 2*(fieldset.vert_eddy_diff[time, particle.depth+0.5, particle.lat, particle.lon]-fieldset.vert_eddy_diff[time, particle.depth, particle.lat, particle.lon]) #forward difference 
     dgrad = Kzdz*particle.dt
     if particle.depth+0.5*dgrad > 0.5:
-        Kzn = fieldset.Kz[time, particle.depth+0.5*dgrad, particle.lat, particle.lon] #Vertical diffusivity SSC  #
+        Kz = fieldset.vert_eddy_diff[time, particle.depth+0.5*dgrad, particle.lat, particle.lon] #Vertical diffusivity SSC  #
     else:
-        Kzn = fieldset.Kz[time, 0.5, particle.lat, particle.lon] #Vertical diffusivity SSC  #
+        Kz = fieldset.vert_eddy_diff[time, 0.5, particle.lat, particle.lon] #Vertical diffusivity SSC  #
     Rr = ParcelsRandom.uniform(-1, 1)
     Rrx = ParcelsRandom.uniform(-1, 1)
     Rry = ParcelsRandom.uniform(-1, 1)
 
-    d_random = sqrt(3*2*Kzn*particle.dt) * Rr
+    Kh = 1
+    d_random = sqrt(3*2*Kz*particle.dt) * Rr
+    d_x = sqrt(3*2*Kh*particle.dt) * Rrx
+    d_y = sqrt(3*2*Kh*particle.dt) * Rry 
     dzs = dgrad + particle.dz
     particle.dz = 0
-
-    Kh = 4
-    d_randomx = particle.lon + (sqrt(3*2*Kh*particle.dt) * Rrx /(111319.5*cos(particle.lat*(math.pi/180))))
-    d_randomy = particle.lat + (sqrt(3*2*Kh*particle.dt) * Rry /111319.5)
-    if particle.lat < 48.6 and particle.lon < -124.7 or particle.lat < 49.237 and particle.lon > -123.196 and particle.lat > 49.074:
+    d_randomx = particle.lon + d_x/(deg2met*latT)
+    d_randomy = particle.lat + d_y/deg2met
+    
+    if particle.lat < 49.237 and particle.lon > -123.196 and particle.lat > 49.074:
         pass #Dont let particles beach inside the fraser river
-    elif fieldset.U[time, 0.5, d_randomy, d_randomx] == 0:
+    elif fieldset.U[time, 0.5, d_randomy, d_randomx] == 0 and fieldset.V[time, 0.5, d_randomy, d_randomx] == 0:
         particle.beached = 1
     else:
         particle.lat = d_randomy
         particle.lon = d_randomx
 
-    Dlayer = 0.5*sqrt(Kzn*particle.dt) #mixing layer dependant on Kz
+    Dlayer = 0.5*sqrt(Kz*particle.dt) #mixing layer dependant on Kz
     if dzs < 0:
         if d_random + dzs +particle.depth > bath: #randomly in the water colum01n
             particle.depth = bath - Dlayer * ParcelsRandom.uniform(0, 1)
@@ -166,8 +168,8 @@ def Beaching(particle, fieldset, time):
     '''Beaching prob'''  
     if particle.beached == 0: #Check particle is in the water column       
         Tb = particle.Lb*86400 #timescale beaching in seconds
-        x_offset = particle.Db/(111319.5*cos(particle.lat*(math.pi/180))) #Checking distance x of possible beaching
-        y_offset = particle.Db/111319.5 #Checking distance y of possible beaching
+        x_offset = particle.Db/(deg2met*latT) #Checking distance x of possible beaching
+        y_offset = particle.Db/deg2met #Checking distance y of possible beaching
         Pb = 1 - exp(-particle.dt/Tb)
         if particle.lat < 48.6 and particle.lon < -124.7 or particle.lat < 49.237 and particle.lon > -123.196 and particle.lat > 49.074:
             pass #Dont let particles beach inside the fraser river
@@ -218,7 +220,7 @@ def Biofilm(particle, fieldset, time):
     Df = 5.83-5 #Diffusion Het.Nanoflag (Kiorbe et al, 2003)
     detb = 2.83e-4 #detaching rate bacteria (Kiorbe et al, 2003)
     detf = 6.667e-5 #detaching rate Het.Nanoflag (Kiorbe et al, 2003)
-    pp = fieldset.Diat[time, particle.depth, particle.lat, particle.lon]+fieldset.Flag[time, particle.depth, particle.lat, particle.lon]
+    pp = fieldset.PPDIATNO3[time, particle.depth, particle.lat, particle.lon]+fieldset.PPPHYNO3[time, particle.depth, particle.lat, particle.lon]
     grb = pp*2.65 #conversion from PP to bacterial growth rate considering 20% of PP ends up as BP
     fcl = 8.33e-9 #clearence rate nanoflagelates (Kiorbe et al, 2003)
     Pf = (fcl/(1+fcl*3.22e-2*(Nbac))) #flagellate grazing coefficient

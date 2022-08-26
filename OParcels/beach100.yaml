@@ -1,23 +1,24 @@
 
   # yaml file tu run op
 file: 
-  name: 'No_beach' #name output file
+  name: 'beach100' #name output file
 startdate:
   year: 2020 
   month: 6
   day: 1 
 
-param: #particle deploy details
-  length: 30 # Set Time length [days] 
+param:
+  length: 5 # Set Time length [days] 
   dt: 5 #toggle between - or + to pick backwards or forwards 
   N: 1 # number of deploying locations
-  n: 10 # 1000   # number of particles per location
+  n: 100 # 1000   # number of particles per location
   dmin: 2 #minimum depth
   dd: 1 #max depth differenbdce from dmin
-  dtp: 2 #how often particle released in hours
-  r: 200
-  lats: [49.195796]
-  lons: [-122.913127]
+  dtp: 0 #how often particle released in hours
+  odt: 1 #hours between output
+  r: 10
+  lats: [49.087169]
+  lons: [-123.656669]
 
 
 particle:
@@ -31,15 +32,15 @@ particle:
   length: 4.5e-4
   SDD: 3.34e-6
   SDL: 24.4e-5
-  fratio: 0.3
+  fratio: 1.0
   Nbac: 0
   Nflag: 0
   dz: 0
 
 kernel:
   Buoyancy: 1
-  Turb_mix: 1
-  Beaching: 1
+  Turb_mix2: 1
+  #Beaching: 1
   Stokes_drift: 1
   Biofilm: 1
 

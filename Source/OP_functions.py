@@ -105,12 +105,13 @@ def filename_set(start,length,varlist=['U','V','W'],local=0):
         'US':'uuss','VS':'vuss','WL':'lm','Bathy':'bathym', 'D':'Distc','FS':'rorunoff','Kz':'vert_eddy_diff',
         'MZ':'microzooplankton','Diat':'PPDIATNO3','Flag':'PPPHYNO3','Cmask':'coast_mask'}
     for fvar in varlist:
-        if fvar == 'U' or fvar == 'Cmask':
+        if fvar == 'U' or fvar == 'Kz' or fvar == 'Diat' or fvar== 'Cmask':
             dimensions = {'lon': 'glamf', 'lat': 'gphif', 'depth': 'depthw','time': 'time_counter'}
         elif fvar == 'US':
             dimensions = {'lon': 'longitude', 'lat': 'latitude', 'time': 'time'}
-        elif fvar == 'Bathy':
+        elif fvar == 'Bathy' or fvar == 'D' or fvar == 'FS':
             dimensions = {'lon': 'glamf', 'lat': 'gphif','time': 'time_counter'}
+        
         
     file2,var2 = {},{}
     for var in varlist:
@@ -215,10 +216,10 @@ def p_unidist(lat0,lon0,bat,dy,dx):
                 plon.append(plon1[i,j])
     return plat,plon
 
-#def load_config(config_yaml):
-#   with open(config_yaml) as f:
-#       config = yaml.safe_load(f)
-#   return config
+def load_config1(config_yaml):
+   with open(config_yaml) as f:
+       config = yaml.safe_load(f)
+   return config
 
 
 def load_config(config_yaml):
@@ -244,12 +245,6 @@ def get_Fraser_path(date):
         raise ValueError(f"No file found for the specified date {date.strftime('%Y-%b-%d')}")
     return path
 
-def get_timestamps(start,length):
-    timestamps=[]
-    duration = timedelta(days=length)
-    for day in range(duration.days):
-        timestamps.append([start + timedelta(days=day)])
-    return np.array(timestamps, dtype='datetime64')
 
 def kernel_asem(pset,config):
     KER = AdvectionRK4_3D 
