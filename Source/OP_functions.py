@@ -154,6 +154,24 @@ def get_WW3_path(date):
 
     return path
 
+def homodist():
+    with open('/home/jvalenti/MOAD/analysis-jose/Source/clat.txt') as f:
+        clat = f.read()
+        clat= clat[1:-1]
+        clat0 = clat.split(",")
+        f.close()
+    with open('/home/jvalenti/MOAD/analysis-jose/Source/clon.txt') as f:
+        clon = f.read()
+        clon=clon[1:-1]
+        clon0 = clon.split(",")
+        f.close()
+    clat,clon=[],[]
+    for i in range(len(clat0)):
+        clat.append(float(clat0[i]))
+        clon.append(float(clon0[i]))
+    return clat, clon
+    
+
 
 def p_unidist(lat0,lon0,bat,dy,dx):
     latbat = np.zeros(bat.shape)
@@ -296,6 +314,8 @@ def particle_maker(config):
             Nflag = Variable('Nflag', initial =  0) # number of flagellates grazing on the attached bacteria
         if 'dz' in config['particle']:  
             dz = Variable('dz', initial =  0) # dz variable
+        if 'Kh' in config['particle']:  
+            Kh = Variable('Kh', initial =  0) # Kh horizontal diff
     return MPParticle
 
 

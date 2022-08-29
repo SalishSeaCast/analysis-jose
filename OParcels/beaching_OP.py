@@ -34,10 +34,10 @@ def fibers_OP(config,local=0,restart=0):
     duration = timedelta(days=length)
     x_offset, y_offset, z = p_deploy(N,n,dmin,dd,rrr)
 
+#Set deploy locations
     if clat == 'homodist' and clon == 'homodist':
         clat,clon = homodist()
-        
-#Set deploy locations
+
     lon = np.zeros([N,n])
     lat = np.zeros([N,n])
     for i in range(N):
