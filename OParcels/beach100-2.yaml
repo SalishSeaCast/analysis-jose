@@ -1,7 +1,7 @@
 
   # yaml file tu run op
 file: 
-  name: 'beach100-1' #name output file
+  name: 'beach100-2' #name output file
 startdate:
   year: 2020 
   month: 6

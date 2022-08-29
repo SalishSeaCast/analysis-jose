@@ -1,7 +1,7 @@
 
   # yaml file tu run op
 file: 
-  name: 'beach100-1' #name output file
+  name: 'beach50-2' #name output file
 startdate:
   year: 2020 
   month: 6
@@ -17,8 +17,8 @@ param:
   dtp: 0 #how often particle released in hours
   odt: 1 #hours between output
   r: 10
-  lats: [49.087169]
-  lons: [-123.656669]
+  lats: [49.086930]
+  lons: [-123.657224]
 
 
 particle:

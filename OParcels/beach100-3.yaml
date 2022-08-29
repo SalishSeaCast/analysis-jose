@@ -1,7 +1,7 @@
 
   # yaml file tu run op
 file: 
-  name: 'beach100-1' #name output file
+  name: 'beach100-3' #name output file
 startdate:
   year: 2020 
   month: 6
@@ -32,7 +32,7 @@ particle:
   length: 4.5e-4
   SDD: 3.34e-6
   SDL: 24.4e-5
-  fratio: 1.0
+  fratio: 0.3
   Nbac: 0
   Nflag: 0
   dz: 0
