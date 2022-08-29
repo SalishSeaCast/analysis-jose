@@ -1,7 +1,7 @@
 
   # yaml file tu run op
 file: 
-  name: 'beach500-2' #name output file
+  name: 'beach500-4' #name output file
 startdate:
   year: 2020 
   month: 6
@@ -20,6 +20,7 @@ param:
   lats: [49.088556,49.407157]
   lons: [-123.651646,-123.611589] 
 
+
 particle:
   Lb: 0.23
   Db: 33
@@ -31,7 +32,7 @@ particle:
   length: 4.5e-4
   SDD: 3.34e-6
   SDL: 24.4e-5
-  fratio: 1.0
+  fratio: 0.3
   Nbac: 0
   Nflag: 0
   dz: 0
