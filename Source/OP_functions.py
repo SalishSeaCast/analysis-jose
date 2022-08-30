@@ -154,13 +154,16 @@ def get_WW3_path(date):
 
     return path
 
-def homodist():
-    with open('/home/jvalenti/MOAD/analysis-jose/Source/clat.txt') as f:
+def homodist(N):
+    ff = '/home/jvalenti/MOAD/analysis-jose/Source/'
+    Tlat = {1:'clat.txt',2:'clat2.txt'}
+    Tlon = {1:'clon.txt',2:'clon2.txt'}
+    with open(ff+Tlat[N]) as f:
         clat = f.read()
         clat= clat[1:-1]
         clat0 = clat.split(",")
         f.close()
-    with open('/home/jvalenti/MOAD/analysis-jose/Source/clon.txt') as f:
+    with open(ff+Tlon[N]) as f:
         clon = f.read()
         clon=clon[1:-1]
         clon0 = clon.split(",")

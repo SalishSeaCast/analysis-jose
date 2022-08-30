@@ -1,10 +1,10 @@
 
   # yaml file tu run op
 file: 
-  name: 'Beachsummer' #name output file
+  name: 'Beachwinter' #name output file
 startdate:
   year: 2020 
-  month: 6
+  month: 12
   day: 1 
 
 param:
