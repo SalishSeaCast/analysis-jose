@@ -84,8 +84,8 @@ def Stokes_drift(particle, fieldset, time):
             latT = 0.6495 #cos(particle.lat*(math.pi/180))
             (us0, vs0, wl) = fieldset.stokes[time, particle.depth, particle.lat, particle.lon]
             k = (2*math.pi)/wl
-            us = (us0*exp(-abs(2*k*particle.depth)))/(deg2met*latT)
-            vs = (vs0*exp(-abs(2*k*particle.depth)))/deg2met
+            us = (us0*exp(-math.fabs(2*k*particle.depth)))/(deg2met*latT)
+            vs = (vs0*exp(-math.fabs(2*k*particle.depth)))/deg2met
             particle.lon += us * particle.dt 
             particle.lat += vs * particle.dt
         
@@ -97,7 +97,7 @@ def AdvectionRK4_3D(particle, fieldset, time):
             if particle.dz+particle.depth > 0:
                 particle.depth += particle.dz #Change particle depth according to WS
             else:
-                particle.depth = abs(particle.dz) #Keep particle near surface. assuming reflexion in the boundary
+                particle.depth = math.fabs(particle.dz) #Keep particle near surface. assuming reflexion in the boundary
 
         (u1, v1, w1) = fieldset.UVW[time, particle.depth, particle.lat, particle.lon]
         lon1 = particle.lon + u1*.5*particle.dt
@@ -139,10 +139,10 @@ def turb_mix2(particle,fieldset,time):
         particle.dz = 0
         d_randomx = particle.lon + d_x/(deg2met*latT)
         d_randomy = particle.lat + d_y/deg2met
-        
+        (uch,vch) = fieldset.UV[time, 0.5, d_randomy, d_randomx]
         if particle.lat < 49.237 and particle.lon > -123.196 and particle.lat > 49.074:
             pass #Dont let particles beach inside the fraser river
-        elif fieldset.U[time, 0.5, d_randomy, d_randomx] == 0 and fieldset.V[time, 0.5, d_randomy, d_randomx] == 0:
+        elif uch == 0 and vch == 0:
             particle.beached = 1
         else:
             particle.lat = d_randomy

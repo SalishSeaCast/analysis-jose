@@ -8,7 +8,7 @@ startdate:
   day: 1 
 
 param:
-  length: 24 # Set Time length [days] 
+  length: 5 # Set Time length [days] 
   dt: 5 #toggle between - or + to pick backwards or forwards 
   N: 841 # number of deploying locations [841 or 3360 for homodist]
   n: 1 # 1000   # number of particles per location
