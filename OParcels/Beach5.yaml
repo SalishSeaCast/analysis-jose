@@ -1,10 +1,10 @@
 
   # yaml file tu run op
 file: 
-  name: 'Beach-winter-1.5' #name output file
+  name: 'Beach-kh3' #name output file
 startdate:
   year: 2020 
-  month: 12
+  month: 6
   day: 1 
 
 param:
@@ -36,7 +36,7 @@ particle:
   Nbac: 0
   Nflag: 0
   dz: 0
-  Kh: 1.5 #value used in SSSC  
+  Kh: 10.0 #value used in SSSC  
 
 kernel:
   Buoyancy: 1

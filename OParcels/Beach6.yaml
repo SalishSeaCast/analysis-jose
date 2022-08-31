@@ -1,11 +1,11 @@
 
   # yaml file tu run op
 file: 
-  name: 'Beach-winter-1.5' #name output file
+  name: 'Beach-2019' #name output file
 startdate:
-  year: 2020 
-  month: 12
-  day: 1 
+  year: 2019 
+  month: 6
+  day: 1
 
 param:
   length: 24 # Set Time length [days] 

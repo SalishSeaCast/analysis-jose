@@ -131,10 +131,10 @@ def turb_mix2(particle,fieldset,time):
         Rrx = ParcelsRandom.uniform(-1, 1)
         Rry = ParcelsRandom.uniform(-1, 1)
 
-        Kh = 1
+        kh = particle.Kh
         d_random = sqrt(3*2*Kz*particle.dt) * Rr
-        d_x = sqrt(3*2*Kh*particle.dt) * Rrx
-        d_y = sqrt(3*2*Kh*particle.dt) * Rry 
+        d_x = sqrt(3*2*kh*particle.dt) * Rrx
+        d_y = sqrt(3*2*kh*particle.dt) * Rry 
         dzs = dgrad + particle.dz
         particle.dz = 0
         d_randomx = particle.lon + d_x/(deg2met*latT)

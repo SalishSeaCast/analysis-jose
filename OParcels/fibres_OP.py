@@ -32,12 +32,18 @@ def fibers_OP(config,local=0,restart=0):
     clon = param['param']['lons']
     #clon, clat = [float(outf_lon)],[float(outf_lat)] 
     duration = timedelta(days=length)
-    x_offset, y_offset, z = p_deploy(N,n,dmin,dd,rrr)
+    
+#Set deploy locations
 
     if clat == 'homodist' and clon == 'homodist':
-        clat,clon = homodist()
-        
-#Set deploy locations
+        N = 841
+        clat,clon = homodist(1)
+    elif clat == 'homodist2' and clon == 'homodist2':
+        N = 3360
+        clat,clon = homodist(2)
+
+    x_offset, y_offset, z = p_deploy(N,n,dmin,dd,rrr)
+
     lon = np.zeros([N,n])
     lat = np.zeros([N,n])
     for i in range(N):
@@ -49,7 +55,6 @@ def fibers_OP(config,local=0,restart=0):
     daterange = [start+timedelta(days=i) for i in range(length)]
     fn =  name + '_'.join(d.strftime('%Y%m%d')+'_1n' for d in [start, start+duration]) + '.nc'
     outfile = os.path.join(paths['out'], fn)
-
 ####BUILD FIELDS FOR SIMULATION######
 
 #Fill in the list of variables that you want to use as fields
