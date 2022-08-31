@@ -1,10 +1,10 @@
 
   # yaml file tu run op
 file: 
-  name: 'Beach-2019' #name output file
+  name: 'Beach-winter' #name output file
 startdate:
-  year: 2019 
-  month: 6
+  year: 2018 
+  month: 1
   day: 1
 
 param:
@@ -24,7 +24,7 @@ param:
 particle:
   Lb: 0.23
   Db: 33
-  Ub: 69
+  Ub: 200
   beached: 0
   tau: 0
   ro: 1350
@@ -40,8 +40,8 @@ particle:
 
 kernel:
   Buoyancy: 1
-  Turb_mix2: 1
-  #Beaching: 1
+  Turb_mix: 1
+  Beaching: 1
   Stokes_drift: 1
   Biofilm: 1
 

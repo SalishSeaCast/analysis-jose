@@ -11,7 +11,7 @@ from datetime import datetime, timedelta
 from parcels import FieldSet, Field, VectorField, ParticleSet, JITParticle, ErrorCode, ParcelsRandom, Variable
 
 sys.path.append('/home/jvalenti/MOAD/analysis-jose/Source') #Add directory where OP_Kernels is located.
-from OP_Kernels import DeleteParticle, Buoyancy, AdvectionRK4_3D, Stokes_drift, Beaching, Unbeaching, turb_mix,turb_mix2 , Biofilm
+from OP_Kernels import DeleteParticle, Buoyancy, AdvectionRK4_3D, Stokes_drift, Beaching, Unbeaching, turb_mix , Biofilm
  
 def path(local = 1):
     '''Change with your paths'''
@@ -318,7 +318,7 @@ def particle_maker(config):
         if 'dz' in config['particle']:  
             dz = Variable('dz', initial =  0) # dz variable
         if 'Kh' in config['particle']:  
-            Kh = Variable('Kh', initial =  0) # Kh horizontal diff
+            Kh = Variable('Kh', initial =  config['particle']['Kh']) # Kh horizontal diff
     return MPParticle
 
 
