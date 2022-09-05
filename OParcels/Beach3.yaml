@@ -3,7 +3,7 @@
 file: 
   name: 'Beach-kh1' #name output file
 startdate:
-  year: 2020 
+  year: 2017
   month: 6
   day: 1 
 
@@ -24,7 +24,7 @@ param:
 particle:
   Lb: 0.23
   Db: 33
-  Ub: 69
+  Ub: 200
   beached: 0
   tau: 0
   ro: 1350
@@ -36,12 +36,12 @@ particle:
   Nbac: 0
   Nflag: 0
   dz: 0
-  Kh: 1 #value used in SSSC  
+  Kh: 1.0 #value used in SSSC  
 
 kernel:
   Buoyancy: 1
-  Turb_mix2: 1
-  #Beaching: 1
+  Turb_mix: 1
+  Beaching: 1
   Stokes_drift: 1
   Biofilm: 1
 

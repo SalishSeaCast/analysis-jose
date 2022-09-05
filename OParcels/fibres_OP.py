@@ -58,7 +58,7 @@ def fibers_OP(config,local=0,restart=0):
 ####BUILD FIELDS FOR SIMULATION######
 
 #Fill in the list of variables that you want to use as fields
-    varlist=['U','V','W','R','T']
+    varlist=['U','V','W','R','T','S']
     filenames,variables,dimensions=filename_set(start,length,varlist,local)
     field_set=FieldSet.from_nemo(filenames, variables, dimensions, allow_time_extrapolation=True)
 
