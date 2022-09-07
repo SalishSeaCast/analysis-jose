@@ -1,4 +1,4 @@
-name: parcels
+name: parcels_v2
 channels:
   - conda-forge
   - defaults
