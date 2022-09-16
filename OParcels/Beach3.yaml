@@ -1,25 +1,28 @@
 
   # yaml file tu run op
 file: 
-  name: 'Beach-kh1' #name output file
+  name: 'NorthernSOG_3' #name output file
 startdate:
-  year: 2017
+  year: 2016 
   month: 6
-  day: 1 
+  day: 15
 
 param:
   length: 24 # Set Time length [days] 
   dt: 5 #toggle between - or + to pick backwards or forwards 
-  N: 841 # number of deploying locations [841 or 3360 for homodist]
-  n: 1 # 1000   # number of particles per location
+  N: 500 # number of deploying locations except when using distr = hmg this variable represent how many
+  #deploy locations per gridcell
+  n: 2 # 1000   # number of particles per location
   dmin: 2 #minimum depth
   dd: 1 #max depth differenbdce from dmin
   dtp: 0 #how often particle released in hours
   odt: 1 #hours between output
-  r: 10
-  lats: 'homodist' #use homodist for uniformly distributed virtual particles
-  lons: 'homodist'
-
+  r: 200
+  # Use list of coordinates for standard, initial and final coordinates for transects or empty list
+  # for homogeneous.
+  lats: [49.316369,49.543061] 
+  lons: [ -124.244478,-123.986083]
+  distr: 'trst'   #{std: for selected coordinates, hmg: for homogeneous distribution, trst: for transect from coord 1 to coord2}
 
 particle:
   Lb: 0.23
@@ -36,7 +39,8 @@ particle:
   Nbac: 0
   Nflag: 0
   dz: 0
-  Kh: 1.0 #value used in SSSC  
+  Kh: 3 #value used in SSSC  
+  surf: 0
 
 kernel:
   Buoyancy: 1

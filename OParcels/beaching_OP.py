@@ -16,7 +16,7 @@ def fibers_OP(config,local=0,restart=0):
     start = datetime(param['startdate']['year'], param['startdate']['month'], param['startdate']['day']) #Start date
     length = param['param']['length'] # Set Time length [days] 
     dt = param['param']['dt'] #toggle between - or + to pick backwards or forwards 
-    N = len(param['param']['lats']) # number of deploying locations
+    N = param['param']['N'] # number of deploying locations
     n = param['param']['n'] # 1000   # number of particles per location
     dmin = param['param']['dmin'] #minimum depth
     dd = param['param']['dd'] #max depth difference from dmin
@@ -24,6 +24,7 @@ def fibers_OP(config,local=0,restart=0):
     dtp = param['param']['dtp'] #how often particle released in hours
     odt = param['param']['odt'] #how often data is recorded
     rrr = param['param']['r'] #radious of particle deployment
+    distr = param['param']['distr']
 # Define paths
     paths = path(local)
 #Set outfall coordinates (Modify to choose other deploying location)    
@@ -34,12 +35,13 @@ def fibers_OP(config,local=0,restart=0):
     duration = timedelta(days=length)
 
 #Set deploy locations
-    if clat == 'homodist' and clon == 'homodist':
-        N = 841
-        clat,clon = homodist(1)
-    elif clat == 'homodist2' and clon == 'homodist2':
-        N = 3360
-        clat,clon = homodist(2)
+    if distr == 'hmg':
+        clat,clon = p_unidist(N,N)
+        N = len(param['param']['lats'])
+    elif distr == 'trst':
+        clat,clon = transect_deploy(clat,clon,N)
+    elif distr == 'std':
+        N = len(param['param']['lats'])
 
     x_offset, y_offset, z = p_deploy(N,n,dmin,dd,rrr)
     lon = np.zeros([N,n])

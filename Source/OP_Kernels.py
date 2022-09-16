@@ -1,10 +1,10 @@
 def Buoyancy(particle, fieldset, time):
     """Stokes law calculating settling velocity"""
-    if particle.beached == 0: #Check particle is in the water column
+    if particle.beached == 0 and particle.surf == 0: #Check particle is in the water column
         if particle.tau==0: #Check age particle is 0 
             if ParcelsRandom.uniform(1e-5,1) < particle.fratio: 
                 # LDPE (~920 kg/m3 ),PS (~150 kg/m3), PET (~1370 kg/m3). 
-                particle.ro = 300 #randomly assign a fraction of the particles a different density, in this case floating density (keep a fraction of MP afloat)          
+                particle.surf = 1 #randomly assign a fraction of the particles a different density, in this case floating density (keep a fraction of MP afloat)          
             particle.diameter = ParcelsRandom.normalvariate(particle.diameter, particle.SDD) #Randomly assign a value of diameter inside the Bamfield mesocosm size dist
             particle.length = ParcelsRandom.normalvariate(particle.length, particle.SDL) #Same for length
             particle.tau = 4*fieldset.rorunoff[time, particle.depth, 49.57871, -123.020164] #Assign Fraser river outflow at deploting time to particle (Used to calculate MP/m3)
@@ -25,6 +25,7 @@ def Buoyancy(particle, fieldset, time):
         visc = 4.2844e-5 + 1/(0.157*((t + 64.993)**2)-91.296) #kinematic viscosity for Temp of SSC
         Ws= ((l/d)**-1.664)*0.079*((l**2)*g*(rho))/(visc) #sinking velocity considering density and dimensions change from biofouling
         particle.dz = Ws*particle.dt
+
    
 def DeleteParticle(particle, fieldset, time):
     """Delete particle from OceanParcels simulation to avoid run failure"""
@@ -47,6 +48,8 @@ def Stokes_drift(particle, fieldset, time):
         
 def AdvectionRK4_3D(particle, fieldset, time):
     if particle.beached == 0: #Check particle is in the water column
+        if particle.surf==1:
+            particle.depth = 0.5
         (u1, v1, w1) = fieldset.UVW[time, particle.depth, particle.lat, particle.lon]
         lon1 = particle.lon + u1*.5*particle.dt
         lat1 = particle.lat + v1*.5*particle.dt
@@ -64,9 +67,10 @@ def AdvectionRK4_3D(particle, fieldset, time):
         particle.lat += (v1 + 2*v2 + 2*v3 + v4) / 6. * particle.dt
         particle.depth += (w1 + 2*w2 + 2*w3 + w4) / 6. * particle.dt
 
+
 def turb_mix(particle,fieldset,time):
     """Vertical mixing and applying buoyancy"""
-    if particle.beached==0:
+    if particle.beached==0 and particle.surf==0:
         if particle.depth + 0.5 > bath: #Only calculate gradient of diffusion for particles deeper than 0.6 otherwise OP will check for particles outside the domain and remove it.
             Kzdz = 0
         else: 

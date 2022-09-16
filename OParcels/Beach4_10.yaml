@@ -1,11 +1,11 @@
 
   # yaml file tu run op
 file: 
-  name: 'Northern SOG' #name output file
+  name: 'NorthernSOG_1' #name output file
 startdate:
   year: 2016 
   month: 6
-  day: 15
+  day: 25
 
 param:
   length: 24 # Set Time length [days] 
@@ -39,7 +39,7 @@ particle:
   Nbac: 0
   Nflag: 0
   dz: 0
-  Kh: 1.5 #value used in SSSC  
+  Kh: 1 #value used in SSSC  
   surf: 0
 
 kernel:

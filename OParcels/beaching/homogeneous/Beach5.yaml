@@ -1,0 +1,47 @@
+
+  # yaml file tu run op
+file: 
+  name: 'Beach-kh3' #name output file
+startdate:
+  year: 2017
+  month: 6
+  day: 1 
+
+param:
+  length: 24 # Set Time length [days] 
+  dt: 5 #toggle between - or + to pick backwards or forwards 
+  N: 841 # number of deploying locations [841 or 3360 for homodist]
+  n: 1 # 1000   # number of particles per location
+  dmin: 2 #minimum depth
+  dd: 1 #max depth differenbdce from dmin
+  dtp: 0 #how often particle released in hours
+  odt: 1 #hours between output
+  r: 10
+  lats: 'homodist' #use homodist for uniformly distributed virtual particles
+  lons: 'homodist'
+
+
+particle:
+  Lb: 0.23
+  Db: 33
+  Ub: 200 #69
+  beached: 0
+  tau: 0
+  ro: 1350
+  diameter: 2.16e-5
+  length: 4.5e-4
+  SDD: 3.34e-6
+  SDL: 24.4e-5
+  fratio: 1.0
+  Nbac: 0
+  Nflag: 0
+  dz: 0
+  Kh: 3.0 #value used in SSSC  
+
+kernel:
+  Buoyancy: 1
+  Turb_mix: 1
+  Beaching: 1
+  Stokes_drift: 1
+  Biofilm: 1
+

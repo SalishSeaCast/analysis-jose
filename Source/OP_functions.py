@@ -2,6 +2,7 @@ import numpy as np
 import os
 import sys
 import math
+import pandas as pd
 from cartopy import crs, feature
 from matplotlib import pyplot as plt, animation, rc
 import xarray as xr 
@@ -144,9 +145,8 @@ def get_WW3_path(date):
     :returns: WW3 path
     :rtype: str
     """
-
     # Make WW3 path
-    path = '/opp/wwatch3/nowcast'
+    path = '/opp/wwatch3/hindcast'
     datestr = [date.strftime(fmt) for fmt in ('%d%b%y', '%Y%m%d_%Y%m%d')]
     path = os.path.join(path, datestr[0].lower(), f'SoG_ww3_fields_{datestr[1]}.nc')
     if not os.path.exists(path):
@@ -154,16 +154,16 @@ def get_WW3_path(date):
 
     return path
 
-def homodist(N):
+def homodist(Ni):
     ff = '/home/jvalenti/MOAD/analysis-jose/Source/'
     Tlat = {1:'clat.txt',2:'clat2.txt'}
     Tlon = {1:'clon.txt',2:'clon2.txt'}
-    with open(ff+Tlat[N]) as f:
+    with open(ff+Tlat[Ni]) as f:
         clat = f.read()
         clat= clat[1:-1]
         clat0 = clat.split(",")
         f.close()
-    with open(ff+Tlon[N]) as f:
+    with open(ff+Tlon[Ni]) as f:
         clon = f.read()
         clon=clon[1:-1]
         clon0 = clon.split(",")
@@ -173,31 +173,6 @@ def homodist(N):
         clat.append(float(clat0[i]))
         clon.append(float(clon0[i]))
     return clat, clon
-    
-
-
-def p_unidist(lat0,lon0,bat,dy,dx):
-    latbat = np.zeros(bat.shape)
-    lonbat = np.zeros(bat.shape)
-
-    for i in range(bat.shape[0]):
-        for j in range(bat.shape[1]):
-            if bat[i,j]>1e-5:
-                latbat[i,j] = lat0[i,j]
-                lonbat[i,j] = lon0[i,j]
-
-    yi = np.arange(0,latbat.shape[0],dy)
-    xi = np.arange(0,latbat.shape[1],dx)
-    plat0,plon0 = latbat[yi,:],lonbat[yi,:]
-    plat1,plon1 = plat0[:,xi],plon0[:,xi]
-
-    plon,plat = [],[]
-    for i in range(plat1.shape[0]):
-        for j in range(plat1.shape[1]):
-            if plat1[i,j]>1e-5:
-                plat.append(plat1[i,j])
-                plon.append(plon1[i,j])
-    return plat,plon
 
 def dist_coord(LAT,LON):
     la1,la2 = LAT[0],LAT[-1]
@@ -213,22 +188,24 @@ def dist_coord(LAT,LON):
     d = R * c
     return d/1e3
 
+def transect_deploy(llat,llon,N):
+    '''use decimal coordinates, only works without coordinate sign changes'''
+    dxlat = abs(llat[0]-llat[1])/(N-1)
+    dxlon = abs(llon[0]-llon[1])/(N-1)
+    clat = []
+    clon = []
+    for i in range(N):
+        clat.append(llat[0]+i*dxlat)
+        clon.append(llon[0]+i*dxlon)
+    return clat, clon
 
-def p_unidist(lat0,lon0,bat,dy,dx):
-    latbat = np.zeros(bat.shape)
-    lonbat = np.zeros(bat.shape)
-
-    for i in range(bat.shape[0]):
-        for j in range(bat.shape[1]):
-            if bat[i,j]>1e-5:
-                latbat[i,j] = lat0[i,j]
-                lonbat[i,j] = lon0[i,j]
-
+def p_unidist(dy,dx):
+    latbat = np.array(pd.read_csv("/home/jvalenti/MOAD/analysis-jose/Source/lat_bat.csv").drop('Unnamed: 0', axis=1))
+    lonbat = np.array(pd.read_csv("/home/jvalenti/MOAD/analysis-jose/Source/lon_bat.csv").drop('Unnamed: 0', axis=1))
     yi = np.arange(0,latbat.shape[0],dy)
     xi = np.arange(0,latbat.shape[1],dx)
     plat0,plon0 = latbat[yi,:],lonbat[yi,:]
     plat1,plon1 = plat0[:,xi],plon0[:,xi]
-
     plon,plat = [],[]
     for i in range(plat1.shape[0]):
         for j in range(plat1.shape[1]):
@@ -305,6 +282,8 @@ def particle_maker(config):
             Ub = Variable('Ub', initial = config['particle']['Ub'])  #days to have 67% probability of unbeaching
         if 'beached' in config['particle']:  
             beached = Variable('beached', initial = 0)
+        if 'surf' in config['particle']:  
+            surf = Variable('surf', initial =  0)     
         if 'Ws' in config['particle']:  
             Ws = Variable('Ws', initial =  config['particle']['Ws']) #200m/dia
         if 'tau' in config['particle']:  
@@ -319,6 +298,7 @@ def particle_maker(config):
             dz = Variable('dz', initial =  0) # dz variable
         if 'Kh' in config['particle']:  
             Kh = Variable('Kh', initial =  config['particle']['Kh']) # Kh horizontal diff
+    
     return MPParticle
 
 
@@ -369,21 +349,21 @@ def mapanimation(outfile,N,n,clon,clat,fps=1,local=1):
     coords,mask,ds = output(outfile,local)
     fig = plt.figure(figsize=(19, 8))
     ax = plt.axes(xlim=(-127,-121),ylim=(46.8,51.2))
-    ax.contour(coords.nav_lon, coords.nav_lat, mask.mbathy[0,:,:],colors='k',linewidths=0.1)
-    ax.contourf(coords.nav_lon, coords.nav_lat, mask.tmask[0, 0, ...], levels=[-0.01, 0.01], colors='lightgray')
+    ax.contour(coords.nav_lon, coords.nav_lat, mask.mbathy[0,:,:],colors='#f0f0f5',linewidths=0.1)
+    ax.contourf(coords.nav_lon, coords.nav_lat, mask.tmask[0, 0, ...], levels=[-0.01, 0.01], colors='#f0f0f5')
     ax.contour(coords.nav_lon, coords.nav_lat, mask.tmask[0, 0, ...], levels=[-0.01, 0.01], colors='k')
     ax.grid()
     ax.set_aspect(1/1)
     plt.ylabel('Latitude',fontsize=16)
     plt.xlabel('Longitude',fontsize=16)
-    #t = ax.text(0.02, 0.02, '', transform=ax.transAxes)
-    #t.set_text('')
+    t = ax.text(0.02, 0.02, '', transform=ax.transAxes)
+    t.set_text('')
     ss = []#scatter_particles(ax, N,n, 0,0, ds.lat,ds.lon)
     sed= {0: "w", 1: "k"}
 
     def update(frame):
-        #tstamp = ds.time[0, frame].values.astype('datetime64[s]').astype(datetime)
-        #t.set_text(tstamp.strftime('%Y-%b-%d %H:%M UTC'))
+        tstamp = ds.time[0, frame].values.astype('datetime64[s]').astype(datetime)
+        t.set_text(tstamp.strftime('%Y-%b-%d %H:%M UTC'))
         global ss
         for scat in ss:
             scat.remove()
@@ -394,7 +374,10 @@ def mapanimation(outfile,N,n,clon,clat,fps=1,local=1):
             dsblat = ds.lat[ds.beached[:,frame]==1.0,frame]
             dsblon = ds.lon[ds.beached[:,frame]==1.0,frame]
         ss = scatter_particles(ax, N,n, frame,frame, ds.lat,ds.lon)
-        ss.append(ax.scatter(dsblon, dsblat,c='m',s=5))
+        if frame==0:
+            pass
+        else:
+            ss.append(ax.scatter(dsblon, dsblat,c='m',s=5))
         #ss.append(ax.scatter(clon,clat,c='r', marker='*', linewidths=2))
         return ss
     return animation.FuncAnimation(fig, update, frames=np.arange(0,len(ds.lon[0,:]),fps))
