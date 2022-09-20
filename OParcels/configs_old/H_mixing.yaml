@@ -8,13 +8,13 @@ startdate:
   day: 1 
 
 param:
-  length: 30 # Set Time length [days] 
+  length: 80 # Set Time length [days] 
   dt: 5 #toggle between - or + to pick backwards or forwards 
-  N: 1 # number of deploying locations
-  n: 10 # 1000   # number of particles per location
+  N: 10 # number of deploying locations
+  n: 2 # 1000   # number of particles per location
   dmin: 2 #minimum depth
   dd: 1 #max depth differenbdce from dmin
-  dtp: 2 #how often particle released in hours
+  dtp: 168 #how often particle released in hours
   odt: 1 #hours between output
   r: 200
   lats: [49.195796]

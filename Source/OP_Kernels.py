@@ -7,8 +7,9 @@ def Buoyancy(particle, fieldset, time):
                 particle.surf = 1 #randomly assign a fraction of the particles a different density, in this case floating density (keep a fraction of MP afloat)          
             particle.diameter = ParcelsRandom.normalvariate(particle.diameter, particle.SDD) #Randomly assign a value of diameter inside the Bamfield mesocosm size dist
             particle.length = ParcelsRandom.normalvariate(particle.length, particle.SDL) #Same for length
-            particle.tau = 4*fieldset.rorunoff[time, particle.depth, 49.57871, -123.020164] #Assign Fraser river outflow at deploting time to particle (Used to calculate MP/m3)
+            #particle.tau = 4*fieldset.rorunoff[time, particle.depth, 49.57871, -123.020164] #Assign Fraser river outflow at deploting time to particle (Used to calculate MP/m3)
         d = particle.diameter # particle diameter
+        particle.tau += particle.dt
         l = particle.length # particle length
         #visc=1e-3 #average viscosity sea water 
         bath = fieldset.bathym[time, particle.depth, particle.lat, particle.lon]
