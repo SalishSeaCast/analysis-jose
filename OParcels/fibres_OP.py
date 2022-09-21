@@ -37,7 +37,7 @@ def fibers_OP(config,local=0,restart=0):
 #Set deploy locations
     if distr == 'hmg':
         clat,clon = p_unidist(N,N)
-        N = len(param['param']['lats'])
+        N = len(clat)
     elif distr == 'trst':
         clat,clon = transect_deploy(clat,clon,N)
     elif distr == 'std':
