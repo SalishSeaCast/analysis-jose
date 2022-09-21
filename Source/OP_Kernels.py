@@ -19,8 +19,8 @@ def Buoyancy(particle, fieldset, time):
         t = fieldset.T[time, particle.depth, particle.lat, particle.lon] #Loading temperature from SSC
         ro = fieldset.R[time, particle.depth, particle.lat, particle.lon] #Loading density sw from SSC
         NN = particle.Nbac #Number of bacteria attached to MP
-        th= (Vcell*NN)/(2.5*2*math.pi*(d/2)*l+(d/2)**2) #rough approximation of thickness biofilm
-        rho=-1000-ro+(particle.ro*l*(d/2)**2+rhob*(2*(d/2)**2*th+l*th**2+2*th**3))/(l*(d/2)**2+2*(d/2)**2*th+l*th**2+2*th**3) #Total density considering biofilm (- sw density) 
+        th= (Vcell*NN)/(5*math.pi*(d/2)*l+(d/2)**2) #rough approximation of thickness biofilm
+        rho=-1000-ro+particle.ro*l*(d/2)**2 + rhob*(1-((l*(d/2)**2)/(l*(d/2)**2 + 2*th*(d/2)**2 + l*th**2 + 2*th**3))) #Total density considering biofilm (- sw density) )
         d+=2*th #diameter considering biofilm
         l+=2*th #length considering biofilm
         visc = 4.2844e-5 + 1/(0.157*((t + 64.993)**2)-91.296) #kinematic viscosity for Temp of SSC
@@ -150,8 +150,8 @@ def Biofilm(particle, fieldset, time):
     fcl = 8.33e-9 #clearence rate nanoflagelates (Kiorbe et al, 2003)
     Pf = (fcl/(1+fcl*3.22e-2*(NN))) #flagellate grazing coefficient
     af = Pf*1e-2
-    Betab = Db/ESRt
-    Betaf = Df/ESRt
+    Betab = Db/(ESRt*100)
+    Betaf = Df/(ESRt*100)
     Ap = 2*math.pi*((D/2)*L+(D/2)**2) #Surface area of particle.
     particle.Nbac += (Betab*Cb*Ap + (grb - detb)*NN -Pf*NN*Nflag)*particle.dt
     particle.Nflag +=  (Betaf*Cf*Ap + af*NN*Nflag - detf*Nflag)*particle.dt
