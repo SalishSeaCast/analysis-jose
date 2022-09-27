@@ -2,15 +2,12 @@ def Buoyancy(particle, fieldset, time):
     """Stokes law calculating settling velocity"""
     if particle.beached == 0 and particle.surf == 0: #Check particle is in the water column
         if particle.tau==0: #Check age particle is 0 
-            if ParcelsRandom.uniform(1e-5,1) < particle.fratio: 
-                # LDPE (~920 kg/m3 ),PS (~150 kg/m3), PET (~1370 kg/m3). 
-                particle.surf = 1 #randomly assign a fraction of the particles a different density, in this case floating density (keep a fraction of MP afloat)          
             particle.diameter = ParcelsRandom.normalvariate(particle.diameter, particle.SDD) #Randomly assign a value of diameter inside the Bamfield mesocosm size dist
             particle.length = ParcelsRandom.normalvariate(particle.length, particle.SDL) #Same for length
             #particle.tau = 4*fieldset.rorunoff[time, particle.depth, 49.57871, -123.020164] #Assign Fraser river outflow at deploting time to particle (Used to calculate MP/m3)
         d = particle.diameter # particle diameter
-        particle.tau += particle.dt
         l = particle.length # particle length
+        particle.tau += particle.dt
         #visc=1e-3 #average viscosity sea water 
         bath = fieldset.bathym[time, particle.depth, particle.lat, particle.lon]
         g = 9.8 #Gravity
@@ -67,6 +64,7 @@ def AdvectionRK4_3D(particle, fieldset, time):
         particle.lon += (u1 + 2*u2 + 2*u3 + u4) / 6. * particle.dt
         particle.lat += (v1 + 2*v2 + 2*v3 + v4) / 6. * particle.dt
         particle.depth += (w1 + 2*w2 + 2*w3 + w4) / 6. * particle.dt
+    
 
 
 def turb_mix(particle,fieldset,time):
@@ -98,7 +96,11 @@ def turb_mix(particle,fieldset,time):
         if particle.dz + particle.depth > bath: #Sedimentation
             particle.beached = 3 #Trap particle in sediment (sticky bottom)
         elif particle.dz + particle.depth < 0:
-            particle.depth = math.fabs(particle.dz) - particle.depth  #Keep particle near surface in water column (Reflecting surface)
+            if ParcelsRandom.uniform(1e-5,1) < particle.fratio: 
+                particle.depth = 0.5
+                particle.surf = 1
+            else:
+                particle.depth = math.fabs(particle.dz)/2 + particle.depth  #Keep particle near surface in water column (Reflecting surface)  
         else:
             particle.depth += particle.dz #apply buoyancy
 
@@ -110,8 +112,6 @@ def Beaching(particle, fieldset, time):
         Rry = ParcelsRandom.uniform(-1, 1)
         d_x = sqrt(3*2*kh*particle.dt) * Rrx
         d_y = sqrt(3*2*kh*particle.dt) * Rry   
-        deg2met = 111319.5
-        latT = 0.6495
         d_randomx = particle.lon + d_x/(deg2met*latT)
         d_randomy = particle.lat + d_y/deg2met
         Sbh = fieldset.S[time, 1, d_randomy, d_randomx] #Check if particles reach coast (Salinity = 0)
@@ -130,6 +130,11 @@ def Unbeaching(particle, fieldset, time):
         Pr = 1 - exp(-particle.dt/Ub)
         if ParcelsRandom.uniform(0,1)<Pr:
             particle.beached = 0
+    if particle.surf == 1:
+        WCC = 0.0003 #White capping
+        if ParcelsRandom.uniform(0,1)<WCC:
+            particle.surf = 0
+            particle.depth = 0.5
 
 def Biofilm(particle, fieldset, time):
     Nflag = particle.Nflag

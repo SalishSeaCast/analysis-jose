@@ -1,21 +1,21 @@
 
   # yaml file tu run op
 file: 
-  name: 'Uniform_SOG_stokes1' #name output file
+  name: 'test' #name output file
 startdate:
   year: 2016 
   month: 6
   day: 15
 
 param:
-  length: 80 # Set Time length [days] 
+  length: 5 # Set Time length [days] 
   dt: 5 #toggle between - or + to pick backwards or forwards 
-  N: 500 # number of deploying locations except when using distr = hmg this variable represent how many
+  N: 30 # number of deploying locations except when using distr = hmg this variable represent how many
   #deploy locations per gridcell
-  n: 2 # 1000   # number of particles per location
+  n: 1 # 1000   # number of particles per location
   dmin: 2 #minimum depth
   dd: 1 #max depth differenbdce from dmin
-  dtp: 168 #how often particle released in hours
+  dtp: 0 #how often particle released in hours
   odt: 1 #hours between output
   r: 100
   # Use list of coordinates for standard, initial and final coordinates for transects or empty list
@@ -35,17 +35,17 @@ particle:
   length: 4.5e-4
   SDD: 3.34e-6
   SDL: 24.4e-5
-  fratio: 1.0
+  fratio: 0.01
   Nbac: 0
   Nflag: 0
   dz: 0
-  Kh: 1 #value used in SSSC  
+  Kh: 1.5 #value used in SSSC  
   surf: 0
 
 kernel:
   Buoyancy: 1
   Turb_mix: 1
   Beaching: 1
-  #Stokes_drift: 1
+  Stokes_drift: 1
   Biofilm: 1
 

@@ -1,7 +1,7 @@
 
   # yaml file tu run op
 file: 
-  name: 'Uniform_SOG4' #name output file
+  name: 'Uniform_SOG_stokes4' #name output file
 startdate:
   year: 2016 
   month: 6
@@ -46,6 +46,6 @@ kernel:
   Buoyancy: 1
   Turb_mix: 1
   Beaching: 1
-  Stokes_drift: 1
+  #Stokes_drift: 1
   Biofilm: 1
 

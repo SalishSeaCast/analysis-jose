@@ -356,14 +356,14 @@ def mapanimation(outfile,N,n,clon,clat,fps=1,local=1):
     ax.set_aspect(1/1)
     plt.ylabel('Latitude',fontsize=16)
     plt.xlabel('Longitude',fontsize=16)
-    t = ax.text(0.02, 0.02, '', transform=ax.transAxes)
-    t.set_text('')
+    #t = ax.text(0.02, 0.02, '', transform=ax.transAxes)
+    #t.set_text('')
     ss = []#scatter_particles(ax, N,n, 0,0, ds.lat,ds.lon)
     sed= {0: "w", 1: "k"}
 
     def update(frame):
-        tstamp = ds.time[0, frame].values.astype('datetime64[s]').astype(datetime)
-        t.set_text(tstamp.strftime('%Y-%b-%d %H:%M UTC'))
+        #tstamp = ds.time[0, frame].values.astype('datetime64[s]').astype(datetime)
+        #t.set_text(tstamp.strftime('%Y-%b-%d %H:%M UTC'))
         global ss
         for scat in ss:
             scat.remove()
