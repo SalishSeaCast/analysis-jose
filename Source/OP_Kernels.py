@@ -139,10 +139,10 @@ def Biofilm(particle, fieldset, time):
     L+= 2*th2
     ESRt = (((D**2)*3*L/2)**(1/3))/2
     Cb = 1.5e6 #aver Bacterial abundance in SoG /cm3 (S.W. Wilhelm et al., 2001)
-    Cf = 1650 #Estimation Proportional to Hbacteria abundance (Gasol,1994)
+    Cf = 1650 #Estimation Proportional to Hbacteria abundance (Gasol,1994) close to 1640 coastal surface normal average abundance. Fukami 1996 
     ###Cf = fieldset.microzooplankton[time, particle.depth, particle.lat, particle.lon]*4733.5 #conversion from mmolNm3 to cell/cm3
-    Db = 1.83e-5 #Diffusion Bacteria (Kiorbe et al, 2003) cm2/s
-    Df = 5.83-5 #Diffusion Het.Nanoflag (Kiorbe et al, 2003)
+    Db = 2.33e-5 #Diffusion Bacteria (Kiorbe et al, 2003) cm2/s
+    Df = 9.8e-5 #Diffusion Het.Nanoflag (Kiorbe et al, 2003)
     detb = 2.83e-4 #detaching rate bacteria (Kiorbe et al, 2003)
     detf = 6.667e-5 #detaching rate Het.Nanoflag (Kiorbe et al, 2003)
     pp = fieldset.PPDIATNO3[time, particle.depth, particle.lat, particle.lon]+fieldset.PPPHYNO3[time, particle.depth, particle.lat, particle.lon]
