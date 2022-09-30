@@ -1,11 +1,11 @@
 
   # yaml file tu run op
 file: 
-  name: 'Uniform_SOG_stokes1' #name output file
+  name: 'Uniform_SOG_winter1' #name output file
 startdate:
   year: 2016 
-  month: 6
-  day: 15
+  month: 12
+  day: 1
 
 param:
   length: 80 # Set Time length [days] 
