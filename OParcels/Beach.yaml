@@ -1,11 +1,11 @@
 
   # yaml file tu run op
 file: 
-  name: 'Uniform_SOG_winter' #name output file
+  name: 'Uniform_SOG' #name output file
 startdate:
   year: 2016 
-  month: 12
-  day: 1
+  month: 6
+  day: 15
 
 param:
   length: 80 # Set Time length [days] 
@@ -46,6 +46,6 @@ kernel:
   Buoyancy: 1
   Turb_mix: 1
   Beaching: 1
-  #Stokes_drift: 1
+  Stokes_drift: 1
   Biofilm: 1
 
