@@ -116,6 +116,7 @@ def fibers_OP(config,local=0,restart=0):
     pset.execute(KERNELS,
                 runtime=duration, 
                 dt=dt,
+                endtime=timedelta(hours=48),
                 output_file=pset.ParticleFile(name=outfile, outputdt=timedelta(hours=odt)),
                 recovery={ErrorCode.ErrorOutOfBounds: DeleteParticle})
 

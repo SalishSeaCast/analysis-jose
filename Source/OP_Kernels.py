@@ -38,12 +38,12 @@ def Stokes_drift(particle, fieldset, time):
     if particle.beached == 0:
         lat = particle.lat
         if lat > 48 and lat < 51: #Check that particle is inside WW3 data field
-            deg2met = 111319.5
-            latT = 0.6495 #cos(particle.lat*(math.pi/180))
+            deg2met_st = 111319.5
+            latT_st = 0.6495 #cos(particle.lat*(math.pi/180))
             (us0, vs0, wl) = fieldset.stokes[time, particle.depth, particle.lat, particle.lon]
             k = (2*math.pi)/wl
-            us = (us0*exp(-math.fabs(2*k*particle.depth)))/(deg2met*latT)
-            vs = (vs0*exp(-math.fabs(2*k*particle.depth)))/deg2met
+            us = (us0*exp(-math.fabs(2*k*particle.depth)))/(deg2met_st*latT)
+            vs = (vs0*exp(-math.fabs(2*k*particle.depth)))/deg2met_st
             particle.lon += us * particle.dt 
             particle.lat += vs * particle.dt
         
