@@ -1,14 +1,14 @@
 
   # yaml file tu run op
 file: 
-  name: 'Uniform_SOG' #name output file
+  name: 'Yearly_SoG' #name output file
 startdate:
   year: 2016 
-  month: 6
-  day: 15
+  month: 1
+  day: 1
 
 param:
-  length: 80 # Set Time length [days] 
+  length: 360 # Set Time length [days] 
   dt: 5 #toggle between - or + to pick backwards or forwards 
   N: 500 # number of deploying locations except when using distr = hmg this variable represent how many
   #deploy locations per gridcell
@@ -41,6 +41,7 @@ particle:
   dz: 0
   Kh: 1.5 #value used in SSSC  
   surf: 0
+  dtmax: 30 # days after particle release the particles are deleted 
 
 kernel:
   Buoyancy: 1

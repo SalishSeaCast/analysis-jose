@@ -9,7 +9,6 @@ def Buoyancy(particle, fieldset, time):
             particle.length = ParcelsRandom.normalvariate(particle.length, particle.SDL) #Same for length
             #particle.tau = 4*fieldset.rorunoff[time, particle.depth, 49.57871, -123.020164] #Assign Fraser river outflow at deploting time to particle (Used to calculate MP/m3)
         d = particle.diameter # particle diameter
-        particle.tau += particle.dt
         l = particle.length # particle length
         #visc=1e-3 #average viscosity sea water 
         bath = fieldset.bathym[time, particle.depth, particle.lat, particle.lon]
@@ -42,15 +41,16 @@ def Stokes_drift(particle, fieldset, time):
             latT_st = 0.6495 #cos(particle.lat*(math.pi/180))
             (us0, vs0, wl) = fieldset.stokes[time, particle.depth, particle.lat, particle.lon]
             k = (2*math.pi)/wl
-            us = (us0*exp(-math.fabs(2*k*particle.depth)))/(deg2met_st*latT)
+            us = (us0*exp(-math.fabs(2*k*particle.depth)))/(deg2met_st*latT_st)
             vs = (vs0*exp(-math.fabs(2*k*particle.depth)))/deg2met_st
             particle.lon += us * particle.dt 
             particle.lat += vs * particle.dt
         
 def AdvectionRK4_3D(particle, fieldset, time):
     if particle.beached == 0: #Check particle is in the water column
-        if particle.surf==1:
-            particle.depth = 0.5
+        particle.tau += particle.dt
+        if particle.tau > particle.dtmax:
+            particle.delete()
         (u1, v1, w1) = fieldset.UVW[time, particle.depth, particle.lat, particle.lon]
         lon1 = particle.lon + u1*.5*particle.dt
         lat1 = particle.lat + v1*.5*particle.dt
@@ -125,7 +125,10 @@ def Beaching(particle, fieldset, time):
 
 def Unbeaching(particle, fieldset, time):
     '''Resuspension prob'''  
-    if particle.beached == 1:        
+    if particle.beached == 1: 
+        particle.tau += particle.dt
+        if particle.tau > particle.dtmax:
+            particle.delete()       
         Ub = particle.Ub*86400  #timescale unbeaching in seconds
         Pr = 1 - exp(-particle.dt/Ub)
         if ParcelsRandom.uniform(0,1)<Pr:

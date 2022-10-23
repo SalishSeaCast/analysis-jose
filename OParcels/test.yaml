@@ -41,6 +41,7 @@ particle:
   dz: 0
   Kh: 1.5 #value used in SSSC  
   surf: 0
+  #dtmax: 3 # days after particle release the particles are deleted 
 
 kernel:
   Buoyancy: 1
