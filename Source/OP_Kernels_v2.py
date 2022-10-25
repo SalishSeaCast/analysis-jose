@@ -1,5 +1,5 @@
 def Buoyancy(particle, fieldset, time):
-    """Stokes law calculating settling velocity"""
+    """Stokes law calculating settling velocity""" 'needs improvement'
     if particle.beached == 0 and particle.surf == 0: #Check particle is in the water column
         if particle.tau==0: #Check age particle is 0 
             if ParcelsRandom.uniform(1e-5,1) < particle.fratio: 
@@ -49,8 +49,8 @@ def Stokes_drift(particle, fieldset, time):
 def AdvectionRK4_3D(particle, fieldset, time):
     if particle.beached == 0: #Check particle is in the water column
         particle.tau += particle.dt
-        if particle.tau > particle.dtmax:
-            particle.delete()
+        #if particle.tau > particle.dtmax:
+        #    particle.delete()
         (u1, v1, w1) = fieldset.UVW[time, particle.depth, particle.lat, particle.lon]
         lon1 = particle.lon + u1*.5*particle.dt
         lat1 = particle.lat + v1*.5*particle.dt
@@ -127,40 +127,42 @@ def Unbeaching(particle, fieldset, time):
     '''Resuspension prob'''  
     if particle.beached == 1: 
         particle.tau += particle.dt
-        if particle.tau > particle.dtmax:
-            particle.delete()       
+        #if particle.tau > particle.dtmax:
+        #    particle.delete()       
         Ub = particle.Ub*86400  #timescale unbeaching in seconds
         Pr = 1 - exp(-particle.dt/Ub)
         if ParcelsRandom.uniform(0,1)<Pr:
             particle.beached = 0
 
 def Biofilm(particle, fieldset, time):
-    Nflag = particle.Nflag
-    #Vcell=8.3e-13 #volume Hbac cell
-    D = particle.diameter*1e2 
-    L = particle.length*1e2
-    th2= (Vcell*NN)/(2.5*2*math.pi*(D/2)*L+(D/2)**2) #rough approximation 
-    D+= 2*th2
-    L+= 2*th2
-    ESRt = (((D**2)*3*L/2)**(1/3))/2
-    Cb = 1.5e6 #aver Bacterial abundance in SoG /cm3 (S.W. Wilhelm et al., 2001)
-    Cf = 1650 #Estimation Proportional to Hbacteria abundance (Gasol,1994) close to 1640 coastal surface normal average abundance. Fukami 1996 
-    ###Cf = fieldset.microzooplankton[time, particle.depth, particle.lat, particle.lon]*4733.5 #conversion from mmolNm3 to cell/cm3
-    Db = 2.33e-5 #Diffusion Bacteria (Kiorbe et al, 2003) cm2/s
-    Df = 9.8e-5 #Diffusion Het.Nanoflag (Kiorbe et al, 2003)
-    detb = 2.83e-4 #detaching rate bacteria (Kiorbe et al, 2003)
-    detf = 6.667e-5 #detaching rate Het.Nanoflag (Kiorbe et al, 2003)
-    pp = fieldset.PPDIATNO3[time, particle.depth, particle.lat, particle.lon]+fieldset.PPPHYNO3[time, particle.depth, particle.lat, particle.lon]
-    grb = pp*2.65 #conversion from PP to bacterial growth rate considering 20% of PP ends up as BP
-    fcl = 8.33e-9 #clearence rate nanoflagelates (Kiorbe et al, 2003)
-    Pf = (fcl/(1+fcl*3.22e-2*(NN))) #flagellate grazing coefficient
-    af = Pf*1e-2
-    Betab = Db/(ESRt*100)
-    Betaf = Df/(ESRt*100)
-    Ap = 2*math.pi*((D/2)*L+(D/2)**2) #Surface area of particle.
-    particle.Nbac += (Betab*Cb*Ap + (grb - detb)*NN -Pf*NN*Nflag)*particle.dt
-    particle.Nflag +=  (Betaf*Cf*Ap + af*NN*Nflag - detf*Nflag)*particle.dt
-    if particle.Nbac < 0:
-        particle.Nbac = 0
-    if particle.Nflag < 0:
-        particle.Nflag = 0
+    '''needs improvement'''
+    if particle.beached==0:
+        Nflag = particle.Nflag
+        #Vcell=8.3e-13 #volume Hbac cell
+        D = particle.diameter*1e2 
+        L = particle.length*1e2
+        th2= (Vcell*NN)/(2.5*2*math.pi*(D/2)*L+(D/2)**2) #rough approximation 
+        D+= 2*th2
+        L+= 2*th2
+        ESRt = (((D**2)*3*L/2)**(1/3))/2
+        Cb = 1.5e6 #aver Bacterial abundance in SoG /cm3 (S.W. Wilhelm et al., 2001)
+        Cf = 1650 #Estimation Proportional to Hbacteria abundance (Gasol,1994) close to 1640 coastal surface normal average abundance. Fukami 1996 
+        ###Cf = fieldset.microzooplankton[time, particle.depth, particle.lat, particle.lon]*4733.5 #conversion from mmolNm3 to cell/cm3
+        Db = 2.33e-5 #Diffusion Bacteria (Kiorbe et al, 2003) cm2/s
+        Df = 9.8e-5 #Diffusion Het.Nanoflag (Kiorbe et al, 2003)
+        detb = 2.83e-4 #detaching rate bacteria (Kiorbe et al, 2003)
+        detf = 6.667e-5 #detaching rate Het.Nanoflag (Kiorbe et al, 2003)
+        pp = fieldset.PPDIATNO3[time, particle.depth, particle.lat, particle.lon]+fieldset.PPPHYNO3[time, particle.depth, particle.lat, particle.lon]
+        grb = pp*2.65 #conversion from PP to bacterial growth rate considering 20% of PP ends up as BP
+        fcl = 8.33e-9 #clearence rate nanoflagelates (Kiorbe et al, 2003)
+        Pf = (fcl/(1+fcl*3.22e-2*(NN))) #flagellate grazing coefficient
+        af = Pf*1e-2
+        Betab = Db/(ESRt*100)
+        Betaf = Df/(ESRt*100)
+        Ap = 2*math.pi*((D/2)*L+(D/2)**2) #Surface area of particle.
+        particle.Nbac += (Betab*Cb*Ap + (grb - detb)*NN -Pf*NN*Nflag)*particle.dt
+        particle.Nflag +=  (Betaf*Cf*Ap + af*NN*Nflag - detf*Nflag)*particle.dt
+        if particle.Nbac < 0:
+            particle.Nbac = 0
+        if particle.Nflag < 0:
+            particle.Nflag = 0
