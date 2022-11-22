@@ -25,6 +25,7 @@ def fibers_OP(config,local=0,restart=0):
     odt = param['param']['odt'] #how often data is recorded
     rrr = param['param']['r'] #radious of particle deployment
     distr = param['param']['distr']
+    MFc = param['param']['MFc']
 # Define paths
     paths = path(local)
 #Set outfall coordinates (Modify to choose other deploying location)    
@@ -33,7 +34,6 @@ def fibers_OP(config,local=0,restart=0):
     clon = param['param']['lons']
     #clon, clat = [float(outf_lon)],[float(outf_lat)] 
     duration = timedelta(days=length)
-    
 #Set deploy locations
     if distr == 'hmg':
         clat,clon = p_unidist(N,N)
@@ -42,6 +42,10 @@ def fibers_OP(config,local=0,restart=0):
         clat,clon = transect_deploy(clat,clon,N)
     elif distr == 'std':
         N = len(param['param']['lats'])
+    elif distr == 'pd':
+        clat, clon, N = pandas_deploy(N,MFc,int(dtp))
+        n = 1
+
 
     x_offset, y_offset, z = p_deploy(N,n,dmin,dd,rrr)
 
