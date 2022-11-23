@@ -2,13 +2,7 @@
 
 def Buoyancy(particle, fieldset, time):
     """Stokes law calculating settling velocity"""
-    if particle.beached == 0: #Check particle is in the water column
-        if particle.tau==0: #Check age particle is 0 
-            if ParcelsRandom.uniform(1e-5,1) < particle.fratio: 
-                # LDPE (~920 kg/m3 ),PS (~150 kg/m3), PET (~1370 kg/m3). 
-                particle.ro = 300 #randomly assign a fraction of the particles a different density, in this case floating density (keep a fraction of MP afloat)          
-            particle.diameter = ParcelsRandom.normalvariate(particle.diameter, particle.SDD) #Randomly assign a value of diameter inside the Bamfield mesocosm size dist
-            particle.length = ParcelsRandom.normalvariate(particle.length, particle.SDL) #Same for length         
+    if particle.beached == 0: #Check particle is in the water column     
         d = particle.diameter # particle diameter
         l = particle.length # particle length
         #? visc=1e-3 #average viscosity sea water 
@@ -49,6 +43,12 @@ def Stokes_drift(particle, fieldset, time):
         
 def AdvectionRK4_3D(particle, fieldset, time):
     if particle.beached == 0: #Check particle is in the water column
+        if particle.tau==0: #Check age particle is 0 
+            if ParcelsRandom.uniform(1e-5,1) < particle.fratio: 
+                # LDPE (~920 kg/m3 ),PS (~150 kg/m3), PET (~1370 kg/m3). 
+                particle.ro = 300 #randomly assign a fraction of the particles a different density, in this case floating density (keep a fraction of MP afloat)          
+            particle.diameter = ParcelsRandom.normalvariate(particle.diameter, particle.SDD) #Randomly assign a value of diameter inside the Bamfield mesocosm size dist
+            particle.length = ParcelsRandom.normalvariate(particle.length, particle.SDL) #Same for length    
         particle.tau += particle.dt
         if particle.tau > particle.dtmax:
             particle.delete()
@@ -99,8 +99,8 @@ def turb_mix(particle,fieldset,time):
         #Apply buoyancy to z
         if particle.dz + particle.depth > bath: #Sedimentation
             particle.beached = 3 #Trap particle in sediment (sticky bottom)
-        elif particle.dz + particle.depth < 0:
-            particle.depth = math.fabs(particle.dz) - particle.depth  #Keep particle near surface in water column (Reflecting surface)
+        elif particle.dz + particle.depth < 0.5:
+            particle.depth = math.fabs(particle.dz)/2 + particle.depth  #Keep particle near surface in water column (Reflecting surface)
         else:
             particle.depth += particle.dz #apply buoyancy
 
@@ -135,6 +135,8 @@ def Unbeaching(particle, fieldset, time):
         Pr = 1 - exp(-particle.dt/Ub)
         if ParcelsRandom.uniform(0,1)<Pr:
             particle.beached = 0
+    elif particle.beached == 3:
+        particle.tau += particle.dt
 
 def Biofilm(particle, fieldset, time):
     Nflag = particle.Nflag

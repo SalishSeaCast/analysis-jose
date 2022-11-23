@@ -298,7 +298,7 @@ def particle_maker(config):
             dz = Variable('dz', initial =  0) # dz variable
         if 'Kh' in config['particle']:  
             Kh = Variable('Kh', initial =  config['particle']['Kh']) # Kh horizontal diff
-        if 'MFcount' in config['particle']:  
+        if 'MFcount' in config['param']:  
             MFcount = Variable('MFcount', initial =  config['param']['MFc']) # MF per parcel
         if 'dtmax' in config['particle']:  
             dtmax = Variable('dtmax', initial =  86400*config['particle']['dtmax']) # max time run
