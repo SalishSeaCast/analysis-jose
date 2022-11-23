@@ -298,8 +298,12 @@ def particle_maker(config):
             dz = Variable('dz', initial =  0) # dz variable
         if 'Kh' in config['particle']:  
             Kh = Variable('Kh', initial =  config['particle']['Kh']) # Kh horizontal diff
+        if 'MFcount' in config['param']:  
+            MFcount = Variable('MFcount', initial =  config['param']['MFc']) # MF per parcel
         if 'dtmax' in config['particle']:  
             dtmax = Variable('dtmax', initial =  86400*config['particle']['dtmax']) # max time run
+        else:
+            dtmax = Variable('dtmax', initial =  86400*5e3) #! max time run 14 years
     
     return MPParticle
 
@@ -556,3 +560,17 @@ def profile2(ax,N,n,length,outfile,local=1,labels=labels0,levels=20,colors=color
     plt.xticks(fontsize=12)
     plt.yticks(fontsize=12)
     ax.legend(fontsize=12)
+
+def pandas_deploy(N,MFc,dtp):
+    MFc = float(MFc)
+    Rivers_deploy = pd.read_csv(N, index_col = [0])
+    Pol = list(Rivers_deploy.Population_polluting)
+    Lat = Rivers_deploy.Latitude
+    Lon = Rivers_deploy.Longitude
+    clat = []
+    clon = []
+    for i,loc in enumerate(Pol):
+        for j in range(int(round((loc*250*dtp)/MFc,0))):
+            clat.append(Lat.iat[i])
+            clon.append(Lon.iat[i])
+    return clat, clon, len(clat)   

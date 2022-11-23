@@ -1,29 +1,24 @@
+
+
 def Buoyancy(particle, fieldset, time):
     """Stokes law calculating settling velocity"""
-    if particle.beached == 0 and particle.surf == 0: #Check particle is in the water column
-        if particle.tau==0: #Check age particle is 0 
-            if ParcelsRandom.uniform(1e-5,1) < particle.fratio: 
-                # LDPE (~920 kg/m3 ),PS (~150 kg/m3), PET (~1370 kg/m3). 
-                particle.surf = 1 #randomly assign a fraction of the particles a different density, in this case floating density (keep a fraction of MP afloat)          
-            particle.diameter = ParcelsRandom.normalvariate(particle.diameter, particle.SDD) #Randomly assign a value of diameter inside the Bamfield mesocosm size dist
-            particle.length = ParcelsRandom.normalvariate(particle.length, particle.SDL) #Same for length
-            #particle.tau = 4*fieldset.rorunoff[time, particle.depth, 49.57871, -123.020164] #Assign Fraser river outflow at deploting time to particle (Used to calculate MP/m3)
+    if particle.beached == 0: #Check particle is in the water column     
         d = particle.diameter # particle diameter
         l = particle.length # particle length
-        #visc=1e-3 #average viscosity sea water 
-        bath = fieldset.bathym[time, particle.depth, particle.lat, particle.lon]
+        #? visc=1e-3 #average viscosity sea water 
         g = 9.8 #Gravity
-        rhob=1080 #HBac density fixed
-        Vcell=8.3e-19 #volume Hbac cell fixed bacilus avg
+        #? rhob=1080 #HBac density fixed
+        #? Vcell=8.3e-19 #volume Hbac cell fixed bacilus avg
         t = fieldset.T[time, particle.depth, particle.lat, particle.lon] #Loading temperature from SSC
         ro = fieldset.R[time, particle.depth, particle.lat, particle.lon] #Loading density sw from SSC
-        NN = particle.Nbac #Number of bacteria attached to MP
-        th= (Vcell*NN)/(5*math.pi*(d/2)*l+(d/2)**2) #rough approximation of thickness biofilm
-        rho=-1000-ro+particle.ro*l*(d/2)**2 + rhob*(1-((l*(d/2)**2)/(l*(d/2)**2 + 2*th*(d/2)**2 + l*th**2 + 2*th**3))) #Total density considering biofilm (- sw density) )
-        d+=2*th #diameter considering biofilm
-        l+=2*th #length considering biofilm
+        #? NN = particle.Nbac #Number of bacteria attached to MP
+        #? th= (Vcell*NN)/(5*math.pi*(d/2)*l+(d/2)**2) #rough approximation of thickness biofilm
+        #? rho=-1000-ro+particle.ro*l*(d/2)**2 + rhob*(1-((l*(d/2)**2)/(l*(d/2)**2 + 2*th*(d/2)**2 + l*th**2 + 2*th**3))) #Total density considering biofilm (- sw density) )
+        #? d+=2*th #diameter considering biofilm
+        #? l+=2*th #length considering biofilm
         visc = 4.2844e-5 + 1/(0.157*((t + 64.993)**2)-91.296) #kinematic viscosity for Temp of SSC
-        Ws= ((l/d)**-1.664)*0.079*((l**2)*g*(rho))/(visc) #sinking velocity considering density and dimensions change from biofouling
+        Ws= ((l/d)**-1.664)*0.079*((l**2)*g*(particle.ro-1000-ro))/(visc)
+        #? Ws= ((l/d)**-1.664)*0.079*((l**2)*g*(rho))/(visc) #sinking velocity considering density and dimensions change from biofouling
         particle.dz = Ws*particle.dt
 
    
@@ -48,6 +43,12 @@ def Stokes_drift(particle, fieldset, time):
         
 def AdvectionRK4_3D(particle, fieldset, time):
     if particle.beached == 0: #Check particle is in the water column
+        if particle.tau==0: #Check age particle is 0 
+            if ParcelsRandom.uniform(1e-5,1) < particle.fratio: 
+                # LDPE (~920 kg/m3 ),PS (~150 kg/m3), PET (~1370 kg/m3). 
+                particle.ro = 300 #randomly assign a fraction of the particles a different density, in this case floating density (keep a fraction of MP afloat)          
+            particle.diameter = ParcelsRandom.normalvariate(particle.diameter, particle.SDD) #Randomly assign a value of diameter inside the Bamfield mesocosm size dist
+            particle.length = ParcelsRandom.normalvariate(particle.length, particle.SDL) #Same for length    
         particle.tau += particle.dt
         if particle.tau > particle.dtmax:
             particle.delete()
@@ -71,7 +72,8 @@ def AdvectionRK4_3D(particle, fieldset, time):
 
 def turb_mix(particle,fieldset,time):
     """Vertical mixing and applying buoyancy"""
-    if particle.beached==0 and particle.surf==0:
+    if particle.beached==0:
+        bath = fieldset.bathym[time, particle.depth, particle.lat, particle.lon]
         if particle.depth + 0.5 > bath: #Only calculate gradient of diffusion for particles deeper than 0.6 otherwise OP will check for particles outside the domain and remove it.
             Kzdz = 0
         else: 
@@ -97,8 +99,8 @@ def turb_mix(particle,fieldset,time):
         #Apply buoyancy to z
         if particle.dz + particle.depth > bath: #Sedimentation
             particle.beached = 3 #Trap particle in sediment (sticky bottom)
-        elif particle.dz + particle.depth < 0:
-            particle.depth = math.fabs(particle.dz) - particle.depth  #Keep particle near surface in water column (Reflecting surface)
+        elif particle.dz + particle.depth < 0.5:
+            particle.depth = math.fabs(particle.dz)/2 + particle.depth  #Keep particle near surface in water column (Reflecting surface)
         else:
             particle.depth += particle.dz #apply buoyancy
 
@@ -133,6 +135,8 @@ def Unbeaching(particle, fieldset, time):
         Pr = 1 - exp(-particle.dt/Ub)
         if ParcelsRandom.uniform(0,1)<Pr:
             particle.beached = 0
+    elif particle.beached == 3:
+        particle.tau += particle.dt
 
 def Biofilm(particle, fieldset, time):
     Nflag = particle.Nflag
