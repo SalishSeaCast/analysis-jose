@@ -18,6 +18,46 @@ def load_config(config_yaml):
        config = yaml.safe_load(f)
    return config
 
+def get_conc(latmin,latmax,lonmin,lonmax, conc):
+    z = mask.gdepw_0[0,:,240,340]
+    vol=xr.open_dataset('/home/jvalenti/MOAD/grid/grid/mesh_maskBV201702.nc')['volume_cell']
+    jjii = xr.open_dataset('~/MOAD/grid/grid/grid_from_lat_lon_mask999.nc')
+    j = [jjii.jj.sel(lats=latmin, lons=lonmin, method='nearest').item()]
+    i = [jjii.ii.sel(lats=latmin, lons=lonmin, method='nearest').item()]
+    j.append(jjii.jj.sel(lats=latmin, lons=lonmax, method='nearest').item())
+    i.append(jjii.ii.sel(lats=latmin, lons=lonmax, method='nearest').item())
+    j.append(jjii.jj.sel(lats=latmax, lons=lonmin, method='nearest').item())
+    i.append(jjii.ii.sel(lats=latmax, lons=lonmin, method='nearest').item())
+    j.append(jjii.jj.sel(lats=latmax, lons=lonmax, method='nearest').item())
+    i.append(jjii.ii.sel(lats=latmax, lons=lonmax, method='nearest').item())
+    a=[min(j),max(j),min(i),max(i)]
+    Len = (a[1]-a[0])*(a[3]-a[2])
+    SD = []
+    Mean = []
+    for ki in range(len(z)):
+        values = []
+        vols = []
+        for j in range(a[0],a[1],1):
+            for i in range(a[2],a[3],1):
+                values.append(conc[j,i,ki])
+                vols.append(vol[0,ki,j,i])
+        values = np.array(values)
+        vols = np.array(vols)
+        Mean.append(np.sum(values)/np.sum(vols))
+        valuess = np.divide(values,vols)
+        SD.append(np.std(valuess)/np.sqrt(Len))
+    return Mean,SD
+def MP_measure(conc):
+    PugC_MP,PugC_SE=get_conc(47.65,47.75,-122.5,-122.3,conc)
+    PugN_MP,PugN_SE=get_conc(48,48.1,-122.75,-122.55,conc)
+    JdFE_MP,JdFE_SE=get_conc(48.2,48.3,-123.25,-123.05,conc)
+    JdFW_MP,JdFE_SW=get_conc(48.3,48.4,-124.25,-124.05,conc)
+    SoGC_MP,SoGC_SE =get_conc(49.3,49.4,-124,-123.8,conc)
+    SoGN_MP,SoGN_SE =get_conc(49.8,49.9,-124.9,-124.7,conc)
+    Fraser_MP,Fraser_SE =get_conc(49,49.1,-123.5,-123.3,conc)
+    return PugC_MP,PugC_SE,PugN_MP,PugN_SE,JdFE_MP,JdFE_SE,JdFW_MP,JdFE_SW,SoGC_MP,SoGC_SE,SoGN_MP,SoGN_SE,Fraser_MP,Fraser_SE
+
+
 def loadyamls(config):
     param = load_config(config)
     start = datetime(param['startdate']['year'], param['startdate']['month'], param['startdate']['day']) #Start date
@@ -32,10 +72,11 @@ def loadyamls(config):
     daterange = [start+timedelta(days=i) for i in range(Tmax)]
     fn =  name + '_'.join(d.strftime('%Y%m%d')+'_1n' for d in [start, start+duration]) + '.nc'
     outfile = os.path.join(paths['out'], fn)
-    return outfile
+    MFc = param['param']['MFc']
+    return outfile, MFc
 
 def Conc_OP(config):
-    outfile=loadyamls(config)
+    outfile, MFc=loadyamls(config)
     coords=xr.open_dataset(paths['coords'],decode_times=False)
     ds = xr.open_dataset(outfile)
     DS=ds.to_dataframe()
@@ -47,7 +88,7 @@ def Conc_OP(config):
     dss=DS[DS.beached==0]## In the water column
     dssla=np.array(dss.lat)
     dsslo=np.array(dss.lon)
-    dsscon= np.array(dss.tau)
+    dsscon= float(MFc)
     dssdep=np.array(dss.z)
     
     for i in range(len(dss)):
@@ -59,7 +100,7 @@ def Conc_OP(config):
             dep = (np.abs(arr - dssdep[i])).argmin()
             if arr[dep] > dssdep[i]:
                 dep+=-1
-            conc[jj,ii,dep] += dsscon[i]
+            conc[jj,ii,dep] += dsscon
         except ValueError:
             pass
         
@@ -68,6 +109,12 @@ def Conc_OP(config):
     data_set["Prob"]=(['x', 'y','z'], conc)
     param = load_config(config)
     data_set.load().to_netcdf(path='/home/jvalenti/MOAD/results/'+param['file']['name']+'_prob'+str(param['startdate']['year'])+'.nc')
+    PugC_MP,PugC_SE,PugN_MP,PugN_SE,JdFE_MP,JdFE_SE,JdFW_MP,JdFE_SW,SoGC_MP,SoGC_SE,SoGN_MP,SoGN_SE,Fraser_MP,Fraser_SE=MP_measure(conc)
+    dict = {'PugC_MP':PugC_MP,'PugC_SE':PugC_SE,'PugN_MP':PugN_MP,'PugN_SE':PugN_SE,'JdFE_MP':JdFE_MP,'JdFE_SE':JdFE_SE,'JdFW_MP':JdFW_MP,
+    'JdFE_SW':JdFE_SW,'SoGC_MP':SoGC_MP,'SoGC_SE':SoGC_SE,'SoGN_MP':SoGN_MP,'SoGN_SE':SoGN_SE,'Fraser_MP':Fraser_MP,'Fraser_SE':Fraser_SE}
+    df = pd.DataFrame(dict) 
+    df.to_csv('resultsSalish2.csv')
+    
 
 if __name__=="__main__":
     try:
