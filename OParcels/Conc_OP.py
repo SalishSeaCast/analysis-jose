@@ -50,19 +50,19 @@ def get_conc(latmin,latmax,lonmin,lonmax, conc):
     return Mean,SD
 def MP_measure(conc):
     print('0% done')
-    PugC_MP,PugC_SE=get_conc(47.65,47.75,-122.5,-122.3,conc)
+    PugC_MP,PugC_SE=get_conc(47.8,47.9,-122.48,-122.39,conc)
     print('15% done')
-    PugN_MP,PugN_SE=get_conc(48,48.1,-122.75,-122.55,conc)
+    PugN_MP,PugN_SE=PugC_MP,PugC_SE#get_conc(48,48.1,-122.75,-122.55,conc)
     print('30% done')
-    JdFE_MP,JdFE_SE=get_conc(48.2,48.3,-123.25,-123.05,conc)
+    JdFE_MP,JdFE_SE=PugC_MP,PugC_SE#get_conc(48.2,48.3,-123.25,-123.05,conc)
     print('45% done')
     JdFW_MP,JdFE_SW=get_conc(48.3,48.4,-124.25,-124.05,conc)
     print('60% done')
-    SoGC_MP,SoGC_SE =get_conc(49.3,49.4,-124,-123.8,conc)
+    SoGC_MP,SoGC_SE =PugC_MP,PugC_SE#get_conc(49.3,49.4,-124,-123.8,conc)
     print('75% done')
     SoGN_MP,SoGN_SE =get_conc(49.8,49.9,-124.9,-124.7,conc)
     print('90% done')
-    Fraser_MP,Fraser_SE =get_conc(49,49.1,-123.5,-123.3,conc)
+    Fraser_MP,Fraser_SE =get_conc(49.15,49.25,-123.5,-123.3,conc)
     print('100% done')
     return PugC_MP,PugC_SE,PugN_MP,PugN_SE,JdFE_MP,JdFE_SE,JdFW_MP,JdFE_SW,SoGC_MP,SoGC_SE,SoGN_MP,SoGN_SE,Fraser_MP,Fraser_SE
 
@@ -123,7 +123,7 @@ def Conc_OP(config):
     dict = {'PugC_MP':PugC_MP,'PugC_SE':PugC_SE,'PugN_MP':PugN_MP,'PugN_SE':PugN_SE,'JdFE_MP':JdFE_MP,'JdFE_SE':JdFE_SE,'JdFW_MP':JdFW_MP,
     'JdFE_SW':JdFE_SW,'SoGC_MP':SoGC_MP,'SoGC_SE':SoGC_SE,'SoGN_MP':SoGN_MP,'SoGN_SE':SoGN_SE,'Fraser_MP':Fraser_MP,'Fraser_SE':Fraser_SE}
     df = pd.DataFrame(dict) 
-    df.to_csv('resultsSalish2.csv')
+    df.to_csv('resultsSalish3.csv')
     
 
 if __name__=="__main__":
