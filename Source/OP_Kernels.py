@@ -40,6 +40,38 @@ def Stokes_drift(particle, fieldset, time):
             vs = (vs0*exp(-math.fabs(2*k*particle.depth)))/deg2met_st
             particle.lon += us * particle.dt 
             particle.lat += vs * particle.dt
+
+def Stokes_driftRK4_3D(particle, fieldset, time):
+    """Stokes drift solved with 4th order RungeKutta"""
+    if particle.beached == 0:
+        lat = particle.lat
+        if lat > 48 and lat < 51: #Check that particle is inside WW3 data field
+            deg2met_st = 111319.5
+            latT_st = 0.6495 #cos(particle.lat*(math.pi/180))
+            (us0, vs0, wl) = fieldset.stokes[time, particle.depth, particle.lat, particle.lon]
+            k = (2*math.pi)/wl
+            us1 = (us0*exp(-math.fabs(2*k*particle.depth)))/(deg2met_st*latT_st)
+            vs1 = (vs0*exp(-math.fabs(2*k*particle.depth)))/deg2met_st
+            lon1 = particle.lon + us1 * .5 *particle.dt 
+            lat1 = particle.lat + vs1 * .5 * particle.dt
+            (us0, vs0, wl) = fieldset.stokes[time + .5 * particle.dt, particle.depth, lat1, lon1]
+            k = (2*math.pi)/wl
+            us2 = (us0*exp(-math.fabs(2*k*particle.depth)))/(deg2met_st*latT_st)
+            vs2 = (vs0*exp(-math.fabs(2*k*particle.depth)))/deg2met_st
+            lon2 = particle.lon + us2 * .5 *particle.dt 
+            lat2 = particle.lat + vs2 * .5 * particle.dt
+            (us0, vs0, wl) = fieldset.stokes[time + .5 * particle.dt, particle.depth, lat2, lon2]
+            k = (2*math.pi)/wl
+            us3 = (us0*exp(-math.fabs(2*k*particle.depth)))/(deg2met_st*latT_st)
+            vs3 = (vs0*exp(-math.fabs(2*k*particle.depth)))/deg2met_st
+            lon3 = particle.lon + us3 * .5 *particle.dt 
+            lat3 = particle.lat + vs3 * .5 * particle.dt
+            (us0, vs0, wl) = fieldset.stokes[time + particle.dt, particle.depth, lat3, lon3]
+            k = (2*math.pi)/wl
+            us4 = (us0*exp(-math.fabs(2*k*particle.depth)))/(deg2met_st*latT_st)
+            vs4 = (vs0*exp(-math.fabs(2*k*particle.depth)))/deg2met_st
+            particle.lon += (us1 + 2*us2 + 2*us3 + us4) / 6. * particle.dt
+            particle.lat += (vs1 + 2*vs2 + 2*vs3 + vs4) / 6. * particle.dt
         
 def AdvectionRK4_3D(particle, fieldset, time):
     if particle.beached == 0: #Check particle is in the water column
