@@ -12,7 +12,7 @@ from datetime import datetime, timedelta
 from parcels import FieldSet, Field, VectorField, ParticleSet, JITParticle, ErrorCode, ParcelsRandom, Variable
 
 sys.path.append('/home/jvalenti/MOAD/analysis-jose/Source') #Add directory where OP_Kernels is located.
-from OP_Kernels import DeleteParticle, Buoyancy, AdvectionRK4_3D, Stokes_drift, Beaching, Unbeaching, turb_mix , Biofilm
+from OP_Kernels import *
  
 def path(local = 1):
     '''Change with your paths'''
@@ -259,6 +259,9 @@ def kernel_asem(pset,config):
         KER += pset.Kernel(turb_mix2)
     if 'Biofilm' in config['kernel']:
         KER += pset.Kernel(Biofilm)
+    if 'Stokes_driftRK4' in config['kernel']:
+        KER += pset.Kernel(Stokes_driftRK4)
+   
     return KER
 
 def particle_maker(config):

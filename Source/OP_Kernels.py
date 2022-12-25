@@ -1,5 +1,3 @@
-
-
 def Buoyancy(particle, fieldset, time):
     """Stokes law calculating settling velocity"""
     if particle.beached == 0: #Check particle is in the water column     
@@ -41,7 +39,8 @@ def Stokes_drift(particle, fieldset, time):
             particle.lon += us * particle.dt 
             particle.lat += vs * particle.dt
 
-def Stokes_driftRK4_3D(particle, fieldset, time):
+
+def Stokes_driftRK4(particle, fieldset, time):
     """Stokes drift solved with 4th order RungeKutta"""
     if particle.beached == 0:
         lat = particle.lat
@@ -52,21 +51,21 @@ def Stokes_driftRK4_3D(particle, fieldset, time):
             k = (2*math.pi)/wl
             us1 = (us0*exp(-math.fabs(2*k*particle.depth)))/(deg2met_st*latT_st)
             vs1 = (vs0*exp(-math.fabs(2*k*particle.depth)))/deg2met_st
-            lon1 = particle.lon + us1 * .5 *particle.dt 
-            lat1 = particle.lat + vs1 * .5 * particle.dt
-            (us0, vs0, wl) = fieldset.stokes[time + .5 * particle.dt, particle.depth, lat1, lon1]
+            lon1s = particle.lon + us1 * .5 *particle.dt 
+            lat1s = particle.lat + vs1 * .5 * particle.dt
+            (us0, vs0, wl) = fieldset.stokes[time + .5 * particle.dt, particle.depth, lat1s, lon1s]
             k = (2*math.pi)/wl
             us2 = (us0*exp(-math.fabs(2*k*particle.depth)))/(deg2met_st*latT_st)
             vs2 = (vs0*exp(-math.fabs(2*k*particle.depth)))/deg2met_st
-            lon2 = particle.lon + us2 * .5 *particle.dt 
-            lat2 = particle.lat + vs2 * .5 * particle.dt
-            (us0, vs0, wl) = fieldset.stokes[time + .5 * particle.dt, particle.depth, lat2, lon2]
+            lon2s = particle.lon + us2 * .5 *particle.dt 
+            lat2s = particle.lat + vs2 * .5 * particle.dt
+            (us0, vs0, wl) = fieldset.stokes[time + .5 * particle.dt, particle.depth, lat2s, lon2s]
             k = (2*math.pi)/wl
             us3 = (us0*exp(-math.fabs(2*k*particle.depth)))/(deg2met_st*latT_st)
             vs3 = (vs0*exp(-math.fabs(2*k*particle.depth)))/deg2met_st
-            lon3 = particle.lon + us3 * .5 *particle.dt 
-            lat3 = particle.lat + vs3 * .5 * particle.dt
-            (us0, vs0, wl) = fieldset.stokes[time + particle.dt, particle.depth, lat3, lon3]
+            lon3s = particle.lon + us3 * .5 *particle.dt 
+            lat3s = particle.lat + vs3 * .5 * particle.dt
+            (us0, vs0, wl) = fieldset.stokes[time + particle.dt, particle.depth, lat3s, lon3s]
             k = (2*math.pi)/wl
             us4 = (us0*exp(-math.fabs(2*k*particle.depth)))/(deg2met_st*latT_st)
             vs4 = (vs0*exp(-math.fabs(2*k*particle.depth)))/deg2met_st
