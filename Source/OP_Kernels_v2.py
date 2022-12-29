@@ -1,32 +1,4 @@
-def Buoyancy(particle, fieldset, time):
-    """Stokes law calculating settling velocity"""
-    if particle.beached == 0 and particle.surf == 0: #Check particle is in the water column
-        if particle.tau==0: #Check age particle is 0 
-            if ParcelsRandom.uniform(1e-5,1) < particle.fratio: 
-                # LDPE (~920 kg/m3 ),PS (~150 kg/m3), PET (~1370 kg/m3). 
-                particle.surf = 1 #randomly assign a fraction of the particles a different density, in this case floating density (keep a fraction of MP afloat)          
-            particle.diameter = ParcelsRandom.normalvariate(particle.diameter, particle.SDD) #Randomly assign a value of diameter inside the Bamfield mesocosm size dist
-            particle.length = ParcelsRandom.normalvariate(particle.length, particle.SDL) #Same for length
-            #particle.tau = 4*fieldset.rorunoff[time, particle.depth, 49.57871, -123.020164] #Assign Fraser river outflow at deploting time to particle (Used to calculate MP/m3)
-        d = particle.diameter # particle diameter
-        l = particle.length # particle length
-        #visc=1e-3 #average viscosity sea water 
-        bath = fieldset.bathym[time, particle.depth, particle.lat, particle.lon]
-        g = 9.8 #Gravity
-        rhob=1080 #HBac density fixed
-        Vcell=8.3e-19 #volume Hbac cell fixed bacilus avg
-        t = fieldset.T[time, particle.depth, particle.lat, particle.lon] #Loading temperature from SSC
-        ro = fieldset.R[time, particle.depth, particle.lat, particle.lon] #Loading density sw from SSC
-        NN = particle.Nbac #Number of bacteria attached to MP
-        th= (Vcell*NN)/(5*math.pi*(d/2)*l+(d/2)**2) #rough approximation of thickness biofilm
-        rho=-1000-ro+particle.ro*l*(d/2)**2 + rhob*(1-((l*(d/2)**2)/(l*(d/2)**2 + 2*th*(d/2)**2 + l*th**2 + 2*th**3))) #Total density considering biofilm (- sw density) )
-        d+=2*th #diameter considering biofilm
-        l+=2*th #length considering biofilm
-        visc = 4.2844e-5 + 1/(0.157*((t + 64.993)**2)-91.296) #kinematic viscosity for Temp of SSC
-        Ws= ((l/d)**-1.664)*0.079*((l**2)*g*(rho))/(visc) #sinking velocity considering density and dimensions change from biofouling
-        particle.dz = Ws*particle.dt
 
-   
 def DeleteParticle(particle, fieldset, time):
     """Delete particle from OceanParcels simulation to avoid run failure"""
     print(f'Particle {particle.id} lost !! [{particle.time}, {particle.depth}, {particle.lat}, {particle.lon}]')
@@ -48,6 +20,12 @@ def Stokes_drift(particle, fieldset, time):
         
 def AdvectionRK4_3D(particle, fieldset, time):
     if particle.beached == 0: #Check particle is in the water column
+        if particle.tau==0: #Check age particle is 0 
+            if ParcelsRandom.uniform(1e-5,1) < particle.fratio: 
+                # LDPE (~920 kg/m3 ),PS (~150 kg/m3), PET (~1370 kg/m3). 
+                particle.ro = 300 #randomly assign a fraction of the particles a different density, in this case floating density (keep a fraction of MP afloat)          
+            particle.diameter = ParcelsRandom.normalvariate(particle.diameter, particle.SDD) #Randomly assign a value of diameter inside the Bamfield mesocosm size dist
+            particle.length = ParcelsRandom.normalvariate(particle.length, particle.SDL) #Same for length    
         particle.tau += particle.dt
         if particle.tau > particle.dtmax:
             particle.delete()
@@ -71,7 +49,8 @@ def AdvectionRK4_3D(particle, fieldset, time):
 
 def turb_mix(particle,fieldset,time):
     """Vertical mixing and applying buoyancy"""
-    if particle.beached==0 and particle.surf==0:
+    if particle.beached==0:
+        bath = fieldset.bathym[time, particle.depth, particle.lat, particle.lon]
         if particle.depth + 0.5 > bath: #Only calculate gradient of diffusion for particles deeper than 0.6 otherwise OP will check for particles outside the domain and remove it.
             Kzdz = 0
         else: 
@@ -94,13 +73,6 @@ def turb_mix(particle,fieldset,time):
             particle.depth = Dlayer * ParcelsRandom.uniform(0, 1) #Well mixed boundary layer
         else:
             particle.depth += dzs #apply mixing
-        #Apply buoyancy to z
-        if particle.dz + particle.depth > bath: #Sedimentation
-            particle.beached = 3 #Trap particle in sediment (sticky bottom)
-        elif particle.dz + particle.depth < 0:
-            particle.depth = math.fabs(particle.dz) - particle.depth  #Keep particle near surface in water column (Reflecting surface)
-        else:
-            particle.depth += particle.dz #apply buoyancy
 
 def Beaching(particle, fieldset, time):
     """Horizontal mixing to impose beaching for particles reaching coast"""  
@@ -117,8 +89,6 @@ def Beaching(particle, fieldset, time):
         Sbh = fieldset.S[time, 1, d_randomy, d_randomx] #Check if particles reach coast (Salinity = 0)
         if particle.lat < 49.237 and particle.lon > -123.196 and particle.lat > 49.074:
             pass #Dont let particles beach inside the fraser river
-        elif Sbh == 0:
-            particle.beached = 1
         else:
             particle.lat = d_randomy
             particle.lon = d_randomx
@@ -133,35 +103,5 @@ def Unbeaching(particle, fieldset, time):
         Pr = 1 - exp(-particle.dt/Ub)
         if ParcelsRandom.uniform(0,1)<Pr:
             particle.beached = 0
-
-def Biofilm(particle, fieldset, time):
-    Nflag = particle.Nflag
-    #Vcell=8.3e-13 #volume Hbac cell
-    D = particle.diameter*1e2 
-    L = particle.length*1e2
-    th2= (Vcell*NN)/(2.5*2*math.pi*(D/2)*L+(D/2)**2) #rough approximation 
-    D+= 2*th2
-    L+= 2*th2
-    ESRt = (((D**2)*3*L/2)**(1/3))/2
-    Cb = 1.5e6 #aver Bacterial abundance in SoG /cm3 (S.W. Wilhelm et al., 2001)
-    Cf = 1650 #Estimation Proportional to Hbacteria abundance (Gasol,1994) close to 1640 coastal surface normal average abundance. Fukami 1996 
-    ###Cf = fieldset.microzooplankton[time, particle.depth, particle.lat, particle.lon]*4733.5 #conversion from mmolNm3 to cell/cm3
-    Db = 2.33e-5 #Diffusion Bacteria (Kiorbe et al, 2003) cm2/s
-    Df = 9.8e-5 #Diffusion Het.Nanoflag (Kiorbe et al, 2003)
-    detb = 2.83e-4 #detaching rate bacteria (Kiorbe et al, 2003)
-    detf = 6.667e-5 #detaching rate Het.Nanoflag (Kiorbe et al, 2003)
-    pp = fieldset.PPDIATNO3[time, particle.depth, particle.lat, particle.lon]+fieldset.PPPHYNO3[time, particle.depth, particle.lat, particle.lon]
-    grb = pp*2.65 #conversion from PP to bacterial growth rate considering 20% of PP ends up as BP
-    fcl = 8.33e-9 #clearence rate nanoflagelates (Kiorbe et al, 2003)
-    Pf = (fcl/(1+fcl*3.22e-2*(NN))) #flagellate grazing coefficient
-    af = Pf*1e-2
-    Betab = Db/(ESRt*100)
-    Betaf = Df/(ESRt*100)
-    Ap = 2*math.pi*((D/2)*L+(D/2)**2) #Surface area of particle.
-    particle.Nbac += (Betab*Cb*Ap + (grb - detb)*NN -Pf*NN*Nflag)*particle.dt
-    particle.Nflag +=  (Betaf*Cf*Ap + af*NN*Nflag - detf*Nflag)*particle.dt
-    if particle.Nbac < 0:
-        particle.Nbac = 0
-    if particle.Nflag < 0:
-        particle.Nflag = 0
-
+    elif particle.beached == 3:
+        particle.tau += particle.dt

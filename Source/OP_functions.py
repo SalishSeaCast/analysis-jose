@@ -12,7 +12,7 @@ from datetime import datetime, timedelta
 from parcels import FieldSet, Field, VectorField, ParticleSet, JITParticle, ErrorCode, ParcelsRandom, Variable
 
 sys.path.append('/home/jvalenti/MOAD/analysis-jose/Source') #Add directory where OP_Kernels is located.
-from OP_Kernels import *
+from OP_Kernels_v2 import *
  
 def path(local = 1):
     '''Change with your paths'''
