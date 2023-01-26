@@ -20,12 +20,6 @@ def Stokes_drift(particle, fieldset, time):
         
 def AdvectionRK4_3D(particle, fieldset, time):
     if particle.beached == 0: #Check particle is in the water column
-        if particle.tau==0: #Check age particle is 0 
-            if ParcelsRandom.uniform(1e-5,1) < particle.fratio: 
-                # LDPE (~920 kg/m3 ),PS (~150 kg/m3), PET (~1370 kg/m3). 
-                particle.ro = 300 #randomly assign a fraction of the particles a different density, in this case floating density (keep a fraction of MP afloat)          
-            particle.diameter = ParcelsRandom.normalvariate(particle.diameter, particle.SDD) #Randomly assign a value of diameter inside the Bamfield mesocosm size dist
-            particle.length = ParcelsRandom.normalvariate(particle.length, particle.SDL) #Same for length    
         particle.tau += particle.dt
         if particle.tau > particle.dtmax:
             particle.delete()
@@ -73,6 +67,8 @@ def turb_mix(particle,fieldset,time):
             particle.depth = Dlayer * ParcelsRandom.uniform(0, 1) #Well mixed boundary layer
         else:
             particle.depth += dzs #apply mixing
+        if particle.depth < 5:
+            particle.beached = 6
 
 def Beaching(particle, fieldset, time):
     """Horizontal mixing to impose beaching for particles reaching coast"""  
