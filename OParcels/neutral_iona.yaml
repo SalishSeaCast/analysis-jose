@@ -1,19 +1,19 @@
 
   # yaml file tu run op
 file: 
-  name: 'IonaNeutral_2018' #name output file
+  name: 'IonaNeutral_2017' #name output file
 startdate:
-  year: 2018 
+  year: 2017
   month: 1
   day: 1
 
 param:
   MFc: 1
-  length: 366 # Set Time length [days] 
+  length: 700 # Set Time length [days] 
   dt: 90 #toggle between - or + to pick backwards or forwards 
   N: 1 # number of deploying locations except when using distr = hmg this variable represent how many
   #deploy locations per gridcell, or when using distr = pd, where this variable will be the pandas filename.
-  n: 100 # 1000   # number of particles per location #! No need to change for pd
+  n: 50 # 1000   # number of particles per location #! No need to change for pd
   dmin: 70 #minimum depth
   dd: 3 #max depth difference from dmin
   dtp: 72 #how often particle released in hours
