@@ -44,7 +44,7 @@ def AdvectionRK4_3D(particle, fieldset, time):
 def turb_mix(particle,fieldset,time):
     """Vertical mixing and applying buoyancy"""
     if particle.beached==0:
-        bath = fieldset.Bathymetria[time, particle.depth, particle.lat, particle.lon]
+        bath = fieldset.Bathymetry[time, particle.depth, particle.lat, particle.lon]
         if particle.depth + 0.5 > bath: #Only calculate gradient of diffusion for particles deeper than 0.6 otherwise OP will check for particles outside the domain and remove it.
             Kzdz = 0
         else: 
@@ -82,7 +82,7 @@ def Beaching(particle, fieldset, time):
         latT = 0.6495
         d_randomx = particle.lon + d_x/(deg2met*latT)
         d_randomy = particle.lat + d_y/deg2met
-        Sbh = fieldset.S[time, 1, d_randomy, d_randomx] #Check if particles reach coast (Salinity = 0)
+        Sbh = fieldset.vosaline[time, 1, d_randomy, d_randomx] #Check if particles reach coast (Salinity = 0)
         if particle.lat < 49.237 and particle.lon > -123.196 and particle.lat > 49.074:
             pass #Dont let particles beach inside the fraser river
         else:

@@ -7,8 +7,8 @@ def Buoyancy(particle, fieldset, time):
         g = 9.8 #Gravity
         #? rhob=1080 #HBac density fixed
         #? Vcell=8.3e-19 #volume Hbac cell fixed bacilus avg
-        t = fieldset.votemper[time, particle.depth/dfactor, particle.lat, particle.lon] #Loading temperature from SSC
-        ro = fieldset.sigma_theta[time, particle.depth/dfactor, particle.lat, particle.lon] #Loading density sw from SSC
+        t = fieldset.votemper[time, particle.depth, particle.lat, particle.lon] #Loading temperature from SSC
+        ro = fieldset.sigma_theta[time, particle.depth, particle.lat, particle.lon] #Loading density sw from SSC
         #? NN = particle.Nbac #Number of bacteria attached to MP
         #? th= (Vcell*NN)/(5*math.pi*(d/2)*l+(d/2)**2) #rough approximation of thickness biofilm
         #? rho=-1000-ro+particle.ro*l*(d/2)**2 + rhob*(1-((l*(d/2)**2)/(l*(d/2)**2 + 2*th*(d/2)**2 + l*th**2 + 2*th**3))) #Total density considering biofilm (- sw density) )
@@ -32,12 +32,45 @@ def Stokes_drift(particle, fieldset, time):
         if lat > 48 and lat < 51: #Check that particle is inside WW3 data field
             deg2met_st = 111319.5
             latT_st = 0.6495 #cos(particle.lat*(math.pi/180))
-            (us0, vs0, wl) = fieldset.stokes[time, particle.depth/dfactor, particle.lat, particle.lon]
+            (us0, vs0, wl) = fieldset.stokes[time, particle.depth, particle.lat, particle.lon]
             k = (2*math.pi)/wl
-            us = (us0*exp(-math.fabs(2*k*particle.depth/dfactor)))/(deg2met_st*latT_st)
-            vs = (vs0*exp(-math.fabs(2*k*particle.depth/dfactor)))/deg2met_st
+            us = (us0*exp(-math.fabs(2*k*particle.depth)))/(deg2met_st*latT_st)
+            vs = (vs0*exp(-math.fabs(2*k*particle.depth)))/deg2met_st
             particle.lon += us * particle.dt 
             particle.lat += vs * particle.dt
+
+
+def Stokes_driftRK4(particle, fieldset, time):
+    """Stokes drift solved with 4th order RungeKutta"""
+    if particle.beached == 0:
+        lat = particle.lat
+        if lat > 48 and lat < 51: #Check that particle is inside WW3 data field
+            deg2met_st = 111319.5
+            latT_st = 0.6495 #cos(particle.lat*(math.pi/180))
+            (us0, vs0, wl) = fieldset.stokes[time, particle.depth, particle.lat, particle.lon]
+            k = (2*math.pi)/wl
+            us1 = (us0*exp(-math.fabs(2*k*particle.depth)))/(deg2met_st*latT_st)
+            vs1 = (vs0*exp(-math.fabs(2*k*particle.depth)))/deg2met_st
+            lon1s = particle.lon + us1 * .5 *particle.dt 
+            lat1s = particle.lat + vs1 * .5 * particle.dt
+            (us0, vs0, wl) = fieldset.stokes[time + .5 * particle.dt, particle.depth, lat1s, lon1s]
+            k = (2*math.pi)/wl
+            us2 = (us0*exp(-math.fabs(2*k*particle.depth)))/(deg2met_st*latT_st)
+            vs2 = (vs0*exp(-math.fabs(2*k*particle.depth)))/deg2met_st
+            lon2s = particle.lon + us2 * .5 *particle.dt 
+            lat2s = particle.lat + vs2 * .5 * particle.dt
+            (us0, vs0, wl) = fieldset.stokes[time + .5 * particle.dt, particle.depth, lat2s, lon2s]
+            k = (2*math.pi)/wl
+            us3 = (us0*exp(-math.fabs(2*k*particle.depth)))/(deg2met_st*latT_st)
+            vs3 = (vs0*exp(-math.fabs(2*k*particle.depth)))/deg2met_st
+            lon3s = particle.lon + us3 * .5 *particle.dt 
+            lat3s = particle.lat + vs3 * .5 * particle.dt
+            (us0, vs0, wl) = fieldset.stokes[time + particle.dt, particle.depth, lat3s, lon3s]
+            k = (2*math.pi)/wl
+            us4 = (us0*exp(-math.fabs(2*k*particle.depth)))/(deg2met_st*latT_st)
+            vs4 = (vs0*exp(-math.fabs(2*k*particle.depth)))/deg2met_st
+            particle.lon += (us1 + 2*us2 + 2*us3 + us4) / 6. * particle.dt
+            particle.lat += (vs1 + 2*vs2 + 2*vs3 + vs4) / 6. * particle.dt
         
 def AdvectionRK4_3D(particle, fieldset, time):
     if particle.beached == 0: #Check particle is in the water column
@@ -50,22 +83,19 @@ def AdvectionRK4_3D(particle, fieldset, time):
         particle.tau += particle.dt
         if particle.tau > particle.dtmax:
             particle.delete()
-        TD = fieldset.totaldepth[time, particle.depth, particle.lat, particle.lon]
-        ssh = fieldset.sossheig[time, particle.depth, particle.lat, particle.lon]
-        dfactor = (1+ssh/TD)
-        (u1, v1, w1) = fieldset.UVW[time, particle.depth/dfactor, particle.lat, particle.lon]
+        (u1, v1, w1) = fieldset.UVW[time, particle.depth, particle.lat, particle.lon]
         lon1 = particle.lon + u1*.5*particle.dt
         lat1 = particle.lat + v1*.5*particle.dt
         dep1 = particle.depth + w1*.5*particle.dt
-        (u2, v2, w2) = fieldset.UVW[time + .5 * particle.dt, dep1/dfactor, lat1, lon1]
+        (u2, v2, w2) = fieldset.UVW[time + .5 * particle.dt, dep1, lat1, lon1]
         lon2 = particle.lon + u2*.5*particle.dt
         lat2 = particle.lat + v2*.5*particle.dt
         dep2 = particle.depth + w2*.5*particle.dt
-        (u3, v3, w3) = fieldset.UVW[time + .5 * particle.dt, dep2/dfactor, lat2, lon2]
+        (u3, v3, w3) = fieldset.UVW[time + .5 * particle.dt, dep2, lat2, lon2]
         lon3 = particle.lon + u3*particle.dt
         lat3 = particle.lat + v3*particle.dt
         dep3 = particle.depth + w3*particle.dt
-        (u4, v4, w4) = fieldset.UVW[time + particle.dt, dep3/dfactor, lat3, lon3]
+        (u4, v4, w4) = fieldset.UVW[time + particle.dt, dep3, lat3, lon3]
         particle.lon += (u1 + 2*u2 + 2*u3 + u4) / 6. * particle.dt
         particle.lat += (v1 + 2*v2 + 2*v3 + v4) / 6. * particle.dt
         particle.depth += (w1 + 2*w2 + 2*w3 + w4) / 6. * particle.dt
@@ -74,14 +104,14 @@ def AdvectionRK4_3D(particle, fieldset, time):
 def turb_mix(particle,fieldset,time):
     """Vertical mixing and applying buoyancy"""
     if particle.beached==0:
-        bath = fieldset.Bathymetry[time, particle.depth/dfactor, particle.lat, particle.lon]
-        if particle.depth/dfactor + 0.5 > bath: #Only calculate gradient of diffusion for particles deeper than 0.6 otherwise OP will check for particles outside the domain and remove it.
+        bath = fieldset.Bathymetry[time, particle.depth, particle.lat, particle.lon]
+        if particle.depth + 0.5 > bath: #Only calculate gradient of diffusion for particles deeper than 0.6 otherwise OP will check for particles outside the domain and remove it.
             Kzdz = 0
         else: 
-            Kzdz = 2*(fieldset.vert_eddy_diff[time, particle.depth/dfactor+0.5, particle.lat, particle.lon]-fieldset.vert_eddy_diff[time, particle.depth/dfactor, particle.lat, particle.lon]) #forward difference 
+            Kzdz = 2*(fieldset.vert_eddy_diff[time, particle.depth+0.5, particle.lat, particle.lon]-fieldset.vert_eddy_diff[time, particle.depth, particle.lat, particle.lon]) #forward difference 
         dgrad = Kzdz*particle.dt
-        if particle.depth/dfactor+0.5*dgrad > 0.5:
-            Kz = fieldset.vert_eddy_diff[time, particle.depth/dfactor+0.5*dgrad, particle.lat, particle.lon] #Vertical diffusivity SSC  #
+        if particle.depth+0.5*dgrad > 0.5:
+            Kz = fieldset.vert_eddy_diff[time, particle.depth+0.5*dgrad, particle.lat, particle.lon] #Vertical diffusivity SSC  #
         else:
             Kz = fieldset.vert_eddy_diff[time, 0.5, particle.lat, particle.lon] #Vertical diffusivity SSC  #
 
@@ -91,16 +121,16 @@ def turb_mix(particle,fieldset,time):
     ####Boundary conditions 
         Dlayer = 0.5*sqrt(Kz*particle.dt) #mixing layer dependant on Kz
         #First turbulent mixing second buoyancy.
-        if dzs + particle.depth/dfactor > bath: #randomly in the water colum01n
+        if dzs + particle.depth > bath: #randomly in the water colum01n
             particle.depth = bath - Dlayer * ParcelsRandom.uniform(0, 1)
-        elif particle.depth/dfactor + dzs < 0:
+        elif particle.depth + dzs < 0:
             particle.depth = Dlayer * ParcelsRandom.uniform(0, 1) #Well mixed boundary layer
         else:
             particle.depth += dzs #apply mixing
         #Apply buoyancy to z
-        if particle.dz + particle.depth/dfactor > bath: #Sedimentation
+        if particle.dz + particle.depth > bath: #Sedimentation
             particle.beached = 3 #Trap particle in sediment (sticky bottom)
-        elif particle.dz + particle.depth/dfactor < 0.5:
+        elif particle.dz + particle.depth < 0.5:
             particle.depth = math.fabs(particle.dz)/2 + particle.depth  #Keep particle near surface in water column (Reflecting surface)
         else:
             particle.depth += particle.dz #apply buoyancy
@@ -150,12 +180,12 @@ def Biofilm(particle, fieldset, time):
     ESRt = (((D**2)*3*L/2)**(1/3))/2
     Cb = 1.5e6 #aver Bacterial abundance in SoG /cm3 (S.W. Wilhelm et al., 2001)
     Cf = 1650 #Estimation Proportional to Hbacteria abundance (Gasol,1994) close to 1640 coastal surface normal average abundance. Fukami 1996 
-    ###Cf = fieldset.microzooplankton[time, particle.depth/dfactor, particle.lat, particle.lon]*4733.5 #conversion from mmolNm3 to cell/cm3
+    ###Cf = fieldset.microzooplankton[time, particle.depth, particle.lat, particle.lon]*4733.5 #conversion from mmolNm3 to cell/cm3
     Db = 2.33e-5 #Diffusion Bacteria (Kiorbe et al, 2003) cm2/s
     Df = 9.8e-5 #Diffusion Het.Nanoflag (Kiorbe et al, 2003)
     detb = 2.83e-4 #detaching rate bacteria (Kiorbe et al, 2003)
     detf = 6.667e-5 #detaching rate Het.Nanoflag (Kiorbe et al, 2003)
-    pp = fieldset.PPDIATNO3[time, particle.depth/dfactor, particle.lat, particle.lon]+fieldset.PPPHYNO3[time, particle.depth/dfactor, particle.lat, particle.lon]
+    pp = fieldset.PPDIATNO3[time, particle.depth, particle.lat, particle.lon]+fieldset.PPPHYNO3[time, particle.depth, particle.lat, particle.lon]
     grb = pp*2.65 #conversion from PP to bacterial growth rate considering 20% of PP ends up as BP
     fcl = 8.33e-9 #clearence rate nanoflagelates (Kiorbe et al, 2003)
     Pf = (fcl/(1+fcl*3.22e-2*(NN))) #flagellate grazing coefficient

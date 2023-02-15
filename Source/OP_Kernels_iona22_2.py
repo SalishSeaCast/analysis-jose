@@ -1,3 +1,37 @@
+
+
+
+def turb_mix(particle,fieldset,time):
+    """Vertical mixing and applying buoyancy"""
+    if particle.beached==0:
+        bath = fieldset.Bathymetry[time, particle.depth, particle.lat, particle.lon]
+        if particle.depth/dfactor + 0.5 > bath: #Only calculate gradient of diffusion for particles deeper than 0.6 otherwise OP will check for particles outside the domain and remove it.
+            Kzdz = 0
+        else: 
+            Kzdz = 2*(fieldset.vert_eddy_diff[time, particle.depth/dfactor+0.5, particle.lat, particle.lon]-fieldset.vert_eddy_diff[time, particle.depth/dfactor, particle.lat, particle.lon]) #forward difference 
+        dgrad = Kzdz*particle.dt
+        if particle.depth/dfactor+0.5*dgrad > 0.5:
+            Kz = fieldset.vert_eddy_diff[time, particle.depth/dfactor+0.5*dgrad, particle.lat, particle.lon] #Vertical diffusivity SSC  #
+        else:
+            Kz = fieldset.vert_eddy_diff[time, 0.5, particle.lat, particle.lon] #Vertical diffusivity SSC  #
+
+        Rr = ParcelsRandom.uniform(-1, 1)
+        d_random = sqrt(3*2*Kz*particle.dt) * Rr
+        dzs = dgrad + d_random
+    ####Boundary conditions 
+        Dlayer = 0.5*sqrt(Kz*particle.dt) #mixing layer dependant on Kz
+        #First turbulent mixing second buoyancy.
+        if dzs + particle.depth/dfactor > bath: #randomly in the water colum01n
+            particle.depth = bath - Dlayer * ParcelsRandom.uniform(0, 1)
+        elif particle.depth/dfactor + dzs < 0:
+            particle.depth = Dlayer * ParcelsRandom.uniform(0, 1) #Well mixed boundary layer
+        else:
+            particle.depth += dzs #apply mixing
+        if particle.depth/dfactor < 2:
+            particle.beached = 6
+
+
+
 def Buoyancy(particle, fieldset, time):
     """Stokes law calculating settling velocity"""
     if particle.beached == 0: #Check particle is in the water column     
@@ -71,40 +105,6 @@ def AdvectionRK4_3D(particle, fieldset, time):
         particle.depth += (w1 + 2*w2 + 2*w3 + w4) / 6. * particle.dt
 
 
-def turb_mix(particle,fieldset,time):
-    """Vertical mixing and applying buoyancy"""
-    if particle.beached==0:
-        bath = fieldset.Bathymetry[time, particle.depth/dfactor, particle.lat, particle.lon]
-        if particle.depth/dfactor + 0.5 > bath: #Only calculate gradient of diffusion for particles deeper than 0.6 otherwise OP will check for particles outside the domain and remove it.
-            Kzdz = 0
-        else: 
-            Kzdz = 2*(fieldset.vert_eddy_diff[time, particle.depth/dfactor+0.5, particle.lat, particle.lon]-fieldset.vert_eddy_diff[time, particle.depth/dfactor, particle.lat, particle.lon]) #forward difference 
-        dgrad = Kzdz*particle.dt
-        if particle.depth/dfactor+0.5*dgrad > 0.5:
-            Kz = fieldset.vert_eddy_diff[time, particle.depth/dfactor+0.5*dgrad, particle.lat, particle.lon] #Vertical diffusivity SSC  #
-        else:
-            Kz = fieldset.vert_eddy_diff[time, 0.5, particle.lat, particle.lon] #Vertical diffusivity SSC  #
-
-        Rr = ParcelsRandom.uniform(-1, 1)
-        d_random = sqrt(3*2*Kz*particle.dt) * Rr
-        dzs = dgrad + d_random
-    ####Boundary conditions 
-        Dlayer = 0.5*sqrt(Kz*particle.dt) #mixing layer dependant on Kz
-        #First turbulent mixing second buoyancy.
-        if dzs + particle.depth/dfactor > bath: #randomly in the water colum01n
-            particle.depth = bath - Dlayer * ParcelsRandom.uniform(0, 1)
-        elif particle.depth/dfactor + dzs < 0:
-            particle.depth = Dlayer * ParcelsRandom.uniform(0, 1) #Well mixed boundary layer
-        else:
-            particle.depth += dzs #apply mixing
-        #Apply buoyancy to z
-        if particle.dz + particle.depth/dfactor > bath: #Sedimentation
-            particle.beached = 3 #Trap particle in sediment (sticky bottom)
-        elif particle.dz + particle.depth/dfactor < 0.5:
-            particle.depth = math.fabs(particle.dz)/2 + particle.depth  #Keep particle near surface in water column (Reflecting surface)
-        else:
-            particle.depth += particle.dz #apply buoyancy
-
 def Beaching(particle, fieldset, time):
     """Horizontal mixing to impose beaching for particles reaching coast"""  
     if particle.beached == 0:
@@ -121,7 +121,7 @@ def Beaching(particle, fieldset, time):
         if particle.lat < 49.237 and particle.lon > -123.196 and particle.lat > 49.074:
             pass #Dont let particles beach inside the fraser river
         elif Sbh == 0:
-            particle.beached = 1
+           pass
         else:
             particle.lat = d_randomy
             particle.lon = d_randomx
