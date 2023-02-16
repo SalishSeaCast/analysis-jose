@@ -1,6 +1,3 @@
-
-
-
 def turb_mix(particle,fieldset,time):
     """Vertical mixing and applying buoyancy"""
     if particle.beached==0:
@@ -84,9 +81,9 @@ def AdvectionRK4_3D(particle, fieldset, time):
         particle.tau += particle.dt
         if particle.tau > particle.dtmax:
             particle.delete()
-        TD = fieldset.totaldepth[time, particle.depth, particle.lat, particle.lon]
-        ssh = fieldset.sossheig[time, particle.depth, particle.lat, particle.lon]
-        dfactor = (1+ssh/TD)
+        #TD = fieldset.totaldepth[time, particle.depth, particle.lat, particle.lon]
+        #ssh = fieldset.sossheig[time, particle.depth, particle.lat, particle.lon]
+        dfactor = 1#(1+ssh/TD)
         (u1, v1, w1) = fieldset.UVW[time, particle.depth/dfactor, particle.lat, particle.lon]
         lon1 = particle.lon + u1*.5*particle.dt
         lat1 = particle.lat + v1*.5*particle.dt
