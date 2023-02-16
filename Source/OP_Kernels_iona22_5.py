@@ -2,13 +2,13 @@ def turb_mix(particle,fieldset,time):
     """Vertical mixing and applying buoyancy"""
     if particle.beached==0:
         bath = fieldset.Bathymetry[time, particle.depth, particle.lat, particle.lon]
-        if particle.depth/dfactor + 0.5 > bath: #Only calculate gradient of diffusion for particles deeper than 0.6 otherwise OP will check for particles outside the domain and remove it.
+        if particle.depth + 0.5 > bath: #Only calculate gradient of diffusion for particles deeper than 0.6 otherwise OP will check for particles outside the domain and remove it.
             Kzdz = 0
         else: 
-            Kzdz = 2*(fieldset.vert_eddy_diff[time, particle.depth/dfactor+0.5, particle.lat, particle.lon]-fieldset.vert_eddy_diff[time, particle.depth/dfactor, particle.lat, particle.lon]) #forward difference 
+            Kzdz = 2*(fieldset.vert_eddy_diff[time, sdepth+0.5, particle.lat, particle.lon]-fieldset.vert_eddy_diff[time, sdepth, particle.lat, particle.lon]) #forward difference 
         dgrad = Kzdz*particle.dt
-        if particle.depth/dfactor+0.5*dgrad > 0.5:
-            Kz = fieldset.vert_eddy_diff[time, particle.depth/dfactor+0.5*dgrad, particle.lat, particle.lon] #Vertical diffusivity SSC  #
+        if particle.depth+0.5*dgrad > 0.5:
+            Kz = fieldset.vert_eddy_diff[time, sdepth+0.5*dgrad, particle.lat, particle.lon] #Vertical diffusivity SSC  #
         else:
             Kz = fieldset.vert_eddy_diff[time, 0.5, particle.lat, particle.lon] #Vertical diffusivity SSC  #
 
@@ -18,15 +18,14 @@ def turb_mix(particle,fieldset,time):
     ####Boundary conditions 
         Dlayer = 0.5*sqrt(Kz*particle.dt) #mixing layer dependant on Kz
         #First turbulent mixing second buoyancy.
-        if dzs + particle.depth/dfactor > bath: #randomly in the water colum01n
+        if dzs + particle.depth > bath: #randomly in the water colum01n
             particle.depth = bath - Dlayer * ParcelsRandom.uniform(0, 1)
-        elif particle.depth/dfactor + dzs < 0:
+        elif particle.depth + dzs < 0:
             particle.depth = Dlayer * ParcelsRandom.uniform(0, 1) #Well mixed boundary layer
         else:
             particle.depth += dzs #apply mixing
-        if particle.depth/dfactor < 5:
+        if particle.depth < 5:
             particle.beached = 6
-
 
 
 def Buoyancy(particle, fieldset, time):
@@ -38,8 +37,8 @@ def Buoyancy(particle, fieldset, time):
         g = 9.8 #Gravity
         #? rhob=1080 #HBac density fixed
         #? Vcell=8.3e-19 #volume Hbac cell fixed bacilus avg
-        t = fieldset.votemper[time, particle.depth/dfactor, particle.lat, particle.lon] #Loading temperature from SSC
-        ro = fieldset.sigma_theta[time, particle.depth/dfactor, particle.lat, particle.lon] #Loading density sw from SSC
+        t = fieldset.votemper[time, sdepth, particle.lat, particle.lon] #Loading temperature from SSC
+        ro = fieldset.sigma_theta[time, sdepth, particle.lat, particle.lon] #Loading density sw from SSC
         #? NN = particle.Nbac #Number of bacteria attached to MP
         #? th= (Vcell*NN)/(5*math.pi*(d/2)*l+(d/2)**2) #rough approximation of thickness biofilm
         #? rho=-1000-ro+particle.ro*l*(d/2)**2 + rhob*(1-((l*(d/2)**2)/(l*(d/2)**2 + 2*th*(d/2)**2 + l*th**2 + 2*th**3))) #Total density considering biofilm (- sw density) )
@@ -63,10 +62,10 @@ def Stokes_drift(particle, fieldset, time):
         if lat > 48 and lat < 51: #Check that particle is inside WW3 data field
             deg2met_st = 111319.5
             latT_st = 0.6495 #cos(particle.lat*(math.pi/180))
-            (us0, vs0, wl) = fieldset.stokes[time, particle.depth/dfactor, particle.lat, particle.lon]
+            (us0, vs0, wl) = fieldset.stokes[time, particle.depth, particle.lat, particle.lon]
             k = (2*math.pi)/wl
-            us = (us0*exp(-math.fabs(2*k*particle.depth/dfactor)))/(deg2met_st*latT_st)
-            vs = (vs0*exp(-math.fabs(2*k*particle.depth/dfactor)))/deg2met_st
+            us = (us0*exp(-math.fabs(2*k*particle.depth)))/(deg2met_st*latT_st)
+            vs = (vs0*exp(-math.fabs(2*k*particle.depth)))/deg2met_st
             particle.lon += us * particle.dt 
             particle.lat += vs * particle.dt
         
@@ -81,9 +80,9 @@ def AdvectionRK4_3D(particle, fieldset, time):
         particle.tau += particle.dt
         if particle.tau > particle.dtmax:
             particle.delete()
-        #TD = fieldset.totaldepth[time, particle.depth, particle.lat, particle.lon]
-        #ssh = fieldset.sossheig[time, particle.depth, particle.lat, particle.lon]
-        dfactor = 1#(1+ssh/TD)
+        TD = fieldset.totaldepth[time, particle.depth, particle.lat, particle.lon] 
+        ssh = fieldset.sossheig[time, particle.depth, particle.lat, particle.lon]
+        dfactor = (1+ssh/TD) #Assume dfactor is constant over one dt
         (u1, v1, w1) = fieldset.UVW[time, particle.depth/dfactor, particle.lat, particle.lon]
         lon1 = particle.lon + u1*.5*particle.dt
         lat1 = particle.lat + v1*.5*particle.dt
@@ -100,6 +99,10 @@ def AdvectionRK4_3D(particle, fieldset, time):
         particle.lon += (u1 + 2*u2 + 2*u3 + u4) / 6. * particle.dt
         particle.lat += (v1 + 2*v2 + 2*v3 + v4) / 6. * particle.dt
         particle.depth += (w1 + 2*w2 + 2*w3 + w4) / 6. * particle.dt
+        TD = fieldset.totaldepth[time, particle.depth, particle.lat, particle.lon] 
+        ssh = fieldset.sossheig[time, particle.depth, particle.lat, particle.lon]
+        dfactor = (1+ssh/TD) 
+        sdepth = particle.depth/dfactor
 
 
 def Beaching(particle, fieldset, time):
@@ -152,7 +155,7 @@ def Biofilm(particle, fieldset, time):
     Df = 9.8e-5 #Diffusion Het.Nanoflag (Kiorbe et al, 2003)
     detb = 2.83e-4 #detaching rate bacteria (Kiorbe et al, 2003)
     detf = 6.667e-5 #detaching rate Het.Nanoflag (Kiorbe et al, 2003)
-    pp = fieldset.PPDIATNO3[time, particle.depth/dfactor, particle.lat, particle.lon]+fieldset.PPPHYNO3[time, particle.depth/dfactor, particle.lat, particle.lon]
+    pp = fieldset.PPDIATNO3[time, sdepth, particle.lat, particle.lon]+fieldset.PPPHYNO3[time, sdepth, particle.lat, particle.lon]
     grb = pp*2.65 #conversion from PP to bacterial growth rate considering 20% of PP ends up as BP
     fcl = 8.33e-9 #clearence rate nanoflagelates (Kiorbe et al, 2003)
     Pf = (fcl/(1+fcl*3.22e-2*(NN))) #flagellate grazing coefficient

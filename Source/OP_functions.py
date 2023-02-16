@@ -26,8 +26,8 @@ def path(local = 1):
     else:
         path = {'NEMO': '/results2/SalishSea/nowcast-green.201905/',
         'coords': '/ocean/jvalenti/MOAD/grid/coordinates_seagrid_SalishSea201702.nc',
-        'coordsWW3': '/ocean/jvalenti/MOAD/grid/WW3_grid.nc',
-        'mask': '/ocean/jvalenti/MOAD/grid/grid/mesh_maskBatCoast201702.nc',
+        'coordsWW3': '/ocean/jvalenti/MOAD/grid2/WW3_grid.nc',
+        'mask': '/ocean/jvalenti/MOAD/grid2/grid/mesh_maskBatCoast201702.nc',
         'out': '/home/jvalenti/MOAD/results',
         'home': '/home/jvalenti/MOAD/analysis-jose/notebooks/parcels',
         'anim': '/home/jvalenti/MOAD/animations'}
