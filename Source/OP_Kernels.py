@@ -26,7 +26,7 @@ def DeleteParticle(particle, fieldset, time):
     particle.delete()
         
 def Stokes_drift(particle, fieldset, time):
-    """Stokes drift"""
+    """Stokes drift"""  
     if particle.beached == 0:
         lat = particle.lat
         if lat > 48 and lat < 51: #Check that particle is inside WW3 data field
