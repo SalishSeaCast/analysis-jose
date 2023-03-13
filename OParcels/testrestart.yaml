@@ -1,7 +1,7 @@
 
   # yaml file tu run op
 file: 
-  name: 'Test_inertia_population2' #name output file
+  name: 'restart_test' #name output file
 startdate:
   year: 2022
   month: 1

@@ -10,7 +10,8 @@ from parcels import FieldSet, Field, VectorField, ParticleSet, JITParticle, Erro
 sys.path.append('/home/jvalenti/MOAD/analysis-jose/Source')
 from OP_functions23 import *
 
-def fibers_OP(config,local=0,restart=0):
+def fibers_OP(config,restart=0):
+    local = 0
     param = load_config(config)
     #Definitions
     start = datetime(param['startdate']['year'], param['startdate']['month'], param['startdate']['day']) #Start date
@@ -58,7 +59,7 @@ def fibers_OP(config,local=0,restart=0):
 #Set start date time and the name of the output file
 
     daterange = [start+timedelta(days=i) for i in range(length)]
-    fn =  name + '_'.join(d.strftime('%Y%m%d')+'_1n' for d in [start, start+duration]) + '.nc'
+    fn =  name + '_'.join(d.strftime('%Y%m%d')+'_1n' for d in [start, start+duration]) + '.zarr'
     outfile = os.path.join(paths['out'], fn)
 ####BUILD FIELDS FOR SIMULATION######
     #Fill in the list of variables that you want to use as fields
@@ -115,13 +116,14 @@ def fibers_OP(config,local=0,restart=0):
     
     MPParticle = particle_maker(param)
 
-    
 ######RUN OCEAN PARCELS WITH DEFINED PARTICLE AND PRESET FIELDS
-    if restart==1:
-        name_temp=find_temp(paths['out'])
-        os.system(f"cd {paths['out']} && parcels_convert_npydir_to_netcdf {name_temp}")
-        outfile=newest(paths['out'])
-        pset = ParticleSet.from_particlefile(field_set, MPParticle,outfile)
+    if restart=='1':
+        #name_temp=find_temp(paths['out'])
+        #os.system(f"cd {paths['out']} && parcels_convert_npydir_to_netcdf {name_temp}")
+        #outfile=newest(paths['out'])
+        print('restarting run with '+outfile)
+        pset = ParticleSet.from_particlefile(field_set, MPParticle,outfile,restart=True)
+        outfile = outfile[:-5]+'restart.zarr'
     else:
         if dtp == 0:
             pset = ParticleSet.from_list(field_set, MPParticle, lon=lon, lat=lat, depth=z,time=start+timedelta(hours=odt))
@@ -129,7 +131,7 @@ def fibers_OP(config,local=0,restart=0):
             pset = ParticleSet.from_list(field_set, MPParticle, lon=lon, lat=lat, depth=z, repeatdt = timedelta(hours=dtp))
     
 
-    KERNELS =  Buoyancy + pset.Kernel(Advection) + pset.Kernel(Stokes_driftRK3) + pset.Kernel(turb_mix) + pset.Kernel(Beaching) + pset.Kernel(Unbeaching)
+    KERNELS =  Buoyancy + pset.Kernel(Advection) + pset.Kernel(Stokes_drift) + pset.Kernel(turb_mix) + pset.Kernel(Beaching) + pset.Kernel(Unbeaching)
     
     pset.execute(KERNELS,
                 runtime=duration, 
@@ -137,20 +139,6 @@ def fibers_OP(config,local=0,restart=0):
                 output_file=pset.ParticleFile(name=outfile, outputdt=timedelta(hours=odt)),
                 recovery={ErrorCode.ErrorOutOfBounds: DeleteParticle})
 
-
-def find_temp(rootdir):
-    dirs=[]
-    for file in os.listdir(rootdir):
-        d = os.path.join(rootdir, file)
-        if os.path.isdir(d):
-            dirs.append(d)
-    temp=sorted(dirs, key=lambda x: os.path.getctime(x), reverse=True)[:1][0]
-    return temp[-12:]
-
-def newest(path):
-    files = os.listdir(path)
-    paths = [os.path.join(path, basename) for basename in files]
-    return max(paths, key=os.path.getctime)
 
 def get_timestamps(start,length):
     timestamps=[]
@@ -164,7 +152,7 @@ if __name__=="__main__":
         config,restart = sys.argv[1:]
         config = [str(config)]
     except ValueError:
-        pass
+        print('Not restarting')
         try:
             config = sys.argv[1:]
             restart=0

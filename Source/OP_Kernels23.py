@@ -61,57 +61,45 @@ def Advection(particle, fieldset, time):
         (u1, v1, w1) = fieldset.UVW[time, particle.depth, particle.lat, particle.lon]
         lon1 = particle.lon + u1*.5*particle.dt
         lat1 = particle.lat + v1*.5*particle.dt
-        if copysign(1,particle.ws) != copysign(1,w1):
-            w1 =+ particle.ws
-        else:
-            w1 = copysign(1,w1)*max(math.fabs(w1),math.fabs(particle.ws))
+        # if copysign(1,particle.ws) != copysign(1,w1):
+        #     w1 =+ particle.ws
+        # else:
+        #     w1 = copysign(1,w1)*max(math.fabs(w1),math.fabs(particle.ws))
         dep1 = particle.depth + w1*.5*particle.dt
         (u2, v2, w2) = fieldset.UVW[time + .5 * particle.dt, dep1, lat1, lon1]
         lon2 = particle.lon + u2*.5*particle.dt
         lat2 = particle.lat + v2*.5*particle.dt
-        if copysign(1,particle.ws) != copysign(1,w2):
-            w2 =+ particle.ws
-        else:
-            w2 = copysign(1,w2)*max(math.fabs(w2),math.fabs(particle.ws))
+        # if copysign(1,particle.ws) != copysign(1,w2):
+        #     w2 =+ particle.ws
+        # else:
+        #     w2 = copysign(1,w2)*max(math.fabs(w2),math.fabs(particle.ws))
         dep2 = particle.depth + w2*.5*particle.dt
         (u3, v3, w3) = fieldset.UVW[time + .5 * particle.dt, dep2, lat2, lon2]
         lon3 = particle.lon + u3*particle.dt
         lat3 = particle.lat + v3*particle.dt
-        if copysign(1,particle.ws) != copysign(1,w3):
-            w3 =+ particle.ws
-        else:
-            w3 = copysign(1,w3)*max(math.fabs(w3),math.fabs(particle.ws))
+        # if copysign(1,particle.ws) != copysign(1,w3):
+        #     w3 =+ particle.ws
+        # else:
+        #     w3 = copysign(1,w3)*max(math.fabs(w3),math.fabs(particle.ws))
         dep3 = particle.depth + w3*particle.dt
         (u4, v4, w4) = fieldset.UVW[time + particle.dt, dep3, lat3, lon3]
-        if copysign(1,particle.ws) != copysign(1,w4):
-            w4 =+ particle.ws
+        wa = (w1 + 2*w2 + 2*w3 + w4) / 6.
+        particle.wa = wa
+        if copysign(1,particle.ws) != copysign(1,wa):
+            wa =+ particle.ws
         else:
-            w4 = copysign(1,w4)*max(math.fabs(w4),math.fabs(particle.ws))
+            wa = copysign(1.,wa)*max(math.fabs(wa),math.fabs(particle.ws))
         particle.lon += (u1 + 2*u2 + 2*u3 + u4) / 6. * particle.dt
         particle.lat += (v1 + 2*v2 + 2*v3 + v4) / 6. * particle.dt
-        particle.depth += (w1 + 2*w2 + 2*w3 + w4) / 6. * particle.dt
+        particle.depth += wa * particle.dt
         if particle.depth > bath:
             particle.beached = 3 #Trap particle in sediment (sticky bottom)
         elif particle.depth < 0.5: 
             particle.depth = 0.5
 
 
-# def Stokes_drift(particle, fieldset, time):
-#     """Stokes drift"""
-#     if particle.beached == 0:
-#         lat = particle.lat
-#         if lat > 48 and lat < 51: #Check that particle is inside WW3 data field
-#             deg2met_st = 111319.5
-#             latT_st = 0.6495 #cos(particle.lat*(math.pi/180))
-#             (us0, vs0, wl) = fieldset.stokes[time, particle.depth, particle.lat, particle.lon]
-#             k = (2*math.pi)/wl
-#             us = (us0*exp(-math.fabs(2*k*particle.depth)))/(deg2met_st*latT_st)
-#             vs = (vs0*exp(-math.fabs(2*k*particle.depth)))/deg2met_st
-#             particle.lon += us * particle.dt 
-#             particle.lat += vs * particle.dt
-
-def Stokes_driftRK3(particle, fieldset, time):
-    """Stokes drift solved with 3rd order RungeKutta"""
+def Stokes_drift(particle, fieldset, time):
+    """Stokes drift"""
     if particle.beached == 0:
         lat = particle.lat
         if lat > 48 and lat < 51: #Check that particle is inside WW3 data field
@@ -119,22 +107,36 @@ def Stokes_driftRK3(particle, fieldset, time):
             latT = 0.6495 #cos(particle.lat*(math.pi/180))
             (us0, vs0, wl) = fieldset.stokes[time, particle.depth, particle.lat, particle.lon]
             k = (2*math.pi)/wl
-            us1 = (us0*exp(-math.fabs(2*k*particle.depth)))/(deg2met*latT)
-            vs1 = (vs0*exp(-math.fabs(2*k*particle.depth)))/deg2met
-            lon1s = particle.lon + us1 * (1/3) *particle.dt 
-            lat1s = particle.lat + vs1 * (1/3) * particle.dt
-            (us0, vs0, wl) = fieldset.stokes[time + (1/3) * particle.dt, particle.depth, lat1s, lon1s]
-            k = (2*math.pi)/wl
-            us2 = (us0*exp(-math.fabs(2*k*particle.depth)))/(deg2met*latT)
-            vs2 = (vs0*exp(-math.fabs(2*k*particle.depth)))/deg2met
-            lon2s = particle.lon + us2 * .5 *particle.dt 
-            lat2s = particle.lat + vs2 * .5 * particle.dt
-            (us0, vs0, wl) = fieldset.stokes[time + .5 * particle.dt, particle.depth, lat2s, lon2s]
-            k = (2*math.pi)/wl
-            us3 = (us0*exp(-math.fabs(2*k*particle.depth)))/(deg2met*latT)
-            vs3 = (vs0*exp(-math.fabs(2*k*particle.depth)))/deg2met
-            particle.lon +=  us3 * .5 *particle.dt 
-            particle.lat +=  vs3 * .5 * particle.dt
+            us = (us0*exp(-math.fabs(2*k*particle.depth)))/(deg2met*latT)
+            vs = (vs0*exp(-math.fabs(2*k*particle.depth)))/deg2met
+            particle.lon += us * particle.dt 
+            particle.lat += vs * particle.dt
+
+# def Stokes_driftRK3(particle, fieldset, time):
+#     """Stokes drift solved with 3rd order RungeKutta"""
+#     if particle.beached == 0:
+#         lat = particle.lat
+#         if lat > 48 and lat < 51: #Check that particle is inside WW3 data field
+#             deg2met = 111319.5
+#             latT = 0.6495 #cos(particle.lat*(math.pi/180))
+#             (us0, vs0, wl) = fieldset.stokes[time, particle.depth, particle.lat, particle.lon]
+#             k = (2*math.pi)/wl
+#             us1 = (us0*exp(-math.fabs(2*k*particle.depth)))/(deg2met*latT)
+#             vs1 = (vs0*exp(-math.fabs(2*k*particle.depth)))/deg2met
+#             lon1s = particle.lon + us1 * (1/3) *particle.dt 
+#             lat1s = particle.lat + vs1 * (1/3) * particle.dt
+#             (us0, vs0, wl) = fieldset.stokes[time + (1/3) * particle.dt, particle.depth, lat1s, lon1s]
+#             k = (2*math.pi)/wl
+#             us2 = (us0*exp(-math.fabs(2*k*particle.depth)))/(deg2met*latT)
+#             vs2 = (vs0*exp(-math.fabs(2*k*particle.depth)))/deg2met
+#             lon2s = particle.lon + us2 * .5 *particle.dt 
+#             lat2s = particle.lat + vs2 * .5 * particle.dt
+#             (us0, vs0, wl) = fieldset.stokes[time + .5 * particle.dt, particle.depth, lat2s, lon2s]
+#             k = (2*math.pi)/wl
+#             us3 = (us0*exp(-math.fabs(2*k*particle.depth)))/(deg2met*latT)
+#             vs3 = (vs0*exp(-math.fabs(2*k*particle.depth)))/deg2met
+#             particle.lon +=  us3 * .5 *particle.dt 
+#             particle.lat +=  vs3 * .5 * particle.dt
 
 
 def turb_mix(particle,fieldset,time):
@@ -156,10 +158,10 @@ def turb_mix(particle,fieldset,time):
     ####Boundary conditions 
         Dlayer = 0.5*sqrt(Kz*particle.dt) #mixing layer dependant on Kz
         #apply turbulent mixing.
-        if dzs + particle.depth > bath: #randomly in the water colum01n
+        if dzs + particle.depth > bath: #randomly in the water column
             particle.depth = bath - Dlayer * ParcelsRandom.uniform(0, 1)
-        elif particle.depth + dzs < 0:
-            particle.depth = Dlayer * ParcelsRandom.uniform(0, 1) #Well mixed boundary layer
+        elif particle.depth + dzs < 0.5:
+            particle.depth = 0.5 + Dlayer * ParcelsRandom.uniform(0, 1) #Well mixed boundary layer
         else:
             particle.depth += dzs #apply mixing
 
@@ -200,5 +202,6 @@ def Unbeaching(particle, fieldset, time):
 
 def DeleteParticle(particle, fieldset, time):
     """Delete particle from OceanParcels simulation to avoid run failure"""
+    particle.beached = 4
     print(f'Particle {particle.id} lost !! [{particle.time}, {particle.depth}, {particle.lat}, {particle.lon}]')
-    particle.delete()
+    #particle.delete()

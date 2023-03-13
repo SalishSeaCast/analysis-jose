@@ -281,9 +281,9 @@ def particle_maker(config):
         if 'diameter' in config['particle']:           
             diameter = Variable('diameter', initial = config['particle']['diameter'])
         if 'SDD' in config['particle']:  
-            Sdd = Variable('SDD', initial = config['particle']['SDD'])
+            SDD = Variable('SDD', initial = config['particle']['SDD'])
         if 'SDL' in config['particle']:           
-            Sdl = Variable('SDL', initial = config['particle']['SDL'])
+            SDL = Variable('SDL', initial = config['particle']['SDL'])
         if 'length' in config['particle']:  
             length = Variable('length', initial = config['particle']['length'])
         if 'Lb' in config['particle']:  
@@ -306,8 +306,8 @@ def particle_maker(config):
             Nbac = Variable('Nbac', initial =  0) # number of bacteria attached
         if 'Nflag' in config['particle']:  
             Nflag = Variable('Nflag', initial =  0) # number of flagellates grazing on the attached bacteria
-        if 'dz' in config['particle']:  
-            dz = Variable('dz', initial =  0) # dz variable
+        if 'wa' in config['particle']:  
+            wa = Variable('wa', initial =  0) # dz variable
         if 'Kh' in config['particle']:  
             Kh = Variable('Kh', initial =  config['particle']['Kh']) # Kh horizontal diff
         if 'MFcount' in config['param']:  
