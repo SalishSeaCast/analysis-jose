@@ -1,6 +1,9 @@
 def Advection(particle, fieldset, time):
     if particle.beached == 0: #Check particle is in the water column
         if particle.tau==0: #Check age particle is 0    
+            if ParcelsRandom.uniform(1e-5,1) < particle.fratio: 
+                # LDPE (~920 kg/m3 ),PS (~150 kg/m3), PET (~1370 kg/m3). 
+                particle.ro = 300 #randomly assign a fraction of the particles a different density, in this case floating density (keep a fraction of MP afloat)      
             '''Assign length and diameter to particles following input distribution''' 
             particle.diameter = ParcelsRandom.normalvariate(particle.diameter, particle.SDD) #Randomly assign a value of diameter inside the Bamfield mesocosm size dist
             particle.length = ParcelsRandom.normalvariate(particle.length, particle.SDL) #Same for length    
@@ -141,8 +144,8 @@ def Displacement(particle,fieldset,time):
         #Apply buoyancy
         if particle.depth + Ws*particle.dt > bath:
             particle.beached = 3 #Trap particle in sediment (sticky bottom)
-        elif particle.depth < 0.5: 
-            particle.depth = 0.5
+        elif particle.depth + Ws*particle.dt < 0.5: 
+            particle.depth = 0.51
         else:
             particle.depth += Ws*particle.dt
 
@@ -162,9 +165,9 @@ def Unbeaching(particle, fieldset, time):
 
 def DeleteParticle(particle, fieldset, time):
     """Delete particle from OceanParcels simulation to avoid run failure"""
-    particle.beached = 4
+    #particle.beached = 4
     print(f'Particle {particle.id} lost !! [{particle.time}, {particle.depth}, {particle.lat}, {particle.lon}]')
-    #particle.delete()
+    particle.delete()
 
 
 # def Stokes_driftRK3(particle, fieldset, time):

@@ -254,7 +254,7 @@ def get_Fraser_path(date):
 
 
 def kernel_asem(pset,config):
-    KER = AdvectionRK4_3D 
+    KER = Advection 
     if 'Buoyancy' in config['kernel']:
         KER += pset.Kernel(Buoyancy)
     if 'Stokes_drift' in config['kernel']:

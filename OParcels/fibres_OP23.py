@@ -59,7 +59,7 @@ def fibers_OP(config,restart=0):
 #Set start date time and the name of the output file
 
     daterange = [start+timedelta(days=i) for i in range(length)]
-    fn =  name + '_'.join(d.strftime('%Y%m%d')+'_1n' for d in [start, start+duration]) + '.zarr'
+    fn =  name + '_'.join(d.strftime('%Y%m%d')+'_1n' for d in [start, start+duration]) + '.nc'
     outfile = os.path.join(paths['out'], fn)
 ####BUILD FIELDS FOR SIMULATION######
     #Fill in the list of variables that you want to use as fields
@@ -131,8 +131,8 @@ def fibers_OP(config,restart=0):
             pset = ParticleSet.from_list(field_set, MPParticle, lon=lon, lat=lat, depth=z, repeatdt = timedelta(hours=dtp))
     
 
-    KERNELS =  Buoyancy + pset.Kernel(Advection) + pset.Kernel(Stokes_drift) + pset.Kernel(turb_mix) + pset.Kernel(Beaching) + pset.Kernel(Unbeaching)
-    
+    KERNELS =  Advection + pset.Kernel(Buoyancy) + pset.Kernel(Stokes_drift) + pset.Kernel(turb_mix) + pset.Kernel(Displacement) + pset.Kernel(Unbeaching)
+    #KERNELS = kernel_asem(pset,param)
     pset.execute(KERNELS,
                 runtime=duration, 
                 dt=dt,
