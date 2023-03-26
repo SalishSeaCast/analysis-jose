@@ -46,6 +46,7 @@ def fibers_OP(config,restart=0):
     elif distr == 'pd':
         clat, clon, N = pandas_deploy(N,MFc,int(dtp))
         n = 1
+        print(N)
 
 
     x_offset, y_offset, z = p_deploy(N,n,dmin,dd,rrr)

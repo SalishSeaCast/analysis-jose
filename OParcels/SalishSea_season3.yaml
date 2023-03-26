@@ -8,9 +8,9 @@ startdate:
   day: 1
 
 param:
-  MFc: 1.0e7
+  MFc: 2.5e7
   length: 120 # Set Time length [days] 
-  dt: 5 #toggle between - or + to pick backwards or forwards 
+  dt: 90 #toggle between - or + to pick backwards or forwards 
   N: '/home/jvalenti/MOAD/analysis-jose/OParcels/Deploy_locations.csv' # number of deploying locations except when using distr = hmg this variable represent how many
   #deploy locations per gridcell, or when using distr = pd, where this variable will be the pandas filename.
   n: 1 # 1000   # number of particles per location #! No need to change for pd

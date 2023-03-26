@@ -130,7 +130,7 @@ def Displacement(particle,fieldset,time):
         if dzs + particle.depth > bath: #randomly in the water column
             particle.depth = bath - Dlayer * ParcelsRandom.uniform(0, 1)
         elif particle.depth + dzs < 0.5:
-            particle.depth = 0.5 + Dlayer * ParcelsRandom.uniform(0, 1) #Well mixed boundary layer
+            particle.depth = 0.51 + Dlayer * ParcelsRandom.uniform(0, 1) #Well mixed boundary layer
         else:
             particle.depth += dzs #apply mixing
         #Apply horizontal mixing (beaching for particles pushed through coast) 
