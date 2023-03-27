@@ -7,7 +7,7 @@ import xarray as xr
 import yaml
 
 sys.path.append('/home/jvalenti/MOAD/analysis-jose/Source')
-from OP_functions import *
+from OP_functions23 import *
 
 # Define paths
 local = 0 #Set to 0 when working on server
