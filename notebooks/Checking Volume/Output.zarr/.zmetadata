@@ -28,7 +28,7 @@
             "order": "C",
             "shape": [
                 500,
-                37
+                49
             ],
             "zarr_format": 2
         },
@@ -59,7 +59,7 @@
             "order": "C",
             "shape": [
                 500,
-                38
+                49
             ],
             "zarr_format": 2
         },
@@ -91,7 +91,7 @@
             "order": "C",
             "shape": [
                 500,
-                38
+                49
             ],
             "zarr_format": 2
         },
@@ -121,7 +121,7 @@
             "filters": null,
             "order": "C",
             "shape": [
-                38
+                49
             ],
             "zarr_format": 2
         },
@@ -148,7 +148,7 @@
             "order": "C",
             "shape": [
                 500,
-                38
+                49
             ],
             "zarr_format": 2
         },
@@ -205,7 +205,7 @@
             "order": "C",
             "shape": [
                 500,
-                38
+                49
             ],
             "zarr_format": 2
         },
