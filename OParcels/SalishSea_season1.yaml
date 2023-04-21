@@ -33,10 +33,10 @@ particle:
   beached: 0
   tau: 0
   ro: 1350
-  diameter: 2.16e-5
+  diameter: 2.16e-5 
   length: 4.5e-4
-  SDD: 3.34e-6
-  SDL: 24.4e-5
+  SDD: 3.34e-6 
+  SDL: 24.4e-5 
   fratio: 0.3
   Nbac: 0
   Nflag: 0
