@@ -70,7 +70,7 @@ def fibers_OP(config,restart=0):
     field_set=FieldSet.from_nemo(filenames, variables, dimensions, allow_time_extrapolation=True)
 
     #Find file names and variable names
-    varlist=['US','VS','WL','Diat','Flag','R','T','S','FS','ssh','Bathy','Kz','totdepth']
+    varlist=['US','VS','WL','Diat','Flag','R','T','S','FS','ssh','Bathy','Kz','totdepth','Vol']
     filenames,variables=filename_set(start,length,varlist,local)
 
     #Add Stokes Drift fields
@@ -108,10 +108,16 @@ def fibers_OP(config,restart=0):
     field_set.add_field(Bth)
     field_set.add_field(TD)
 
+    #Add Volume 3D field
+    dimensions = {'lon': 'glamt', 'lat': 'gphit', 'depth': 'depthw'}
+    Vol = Field.from_netcdf(filenames['Vol'], variables['Vol'], dimensions,allow_time_extrapolation=True)
+    field_set.add_field(Vol)
+
+
     #Add SSH and Rivers 2D fields
     dimensions = {'lon': 'glamt', 'lat': 'gphit','time': 'time_counter'}
-    cms = Field.from_netcdf(filenames['ssh'], variables['ssh'], dimensions,allow_time_extrapolation=True)
-    field_set.add_field(cms)
+    SSH = Field.from_netcdf(filenames['ssh'], variables['ssh'], dimensions,allow_time_extrapolation=True)
+    field_set.add_field(SSH)
     Fraser = Field.from_netcdf(filenames['FS'], variables['FS'], dimensions,allow_time_extrapolation=True,timestamps=get_timestamps(start,length))
     field_set.add_field(Fraser)
     

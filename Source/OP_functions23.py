@@ -12,7 +12,7 @@ from datetime import datetime, timedelta
 from parcels import FieldSet, Field, VectorField, ParticleSet, JITParticle, ErrorCode, ParcelsRandom, Variable
 
 sys.path.append('/home/jvalenti/MOAD/analysis-jose/Source') #Add directory where OP_Kernels is located.
-from OP_Kernels23 import *
+from OP_Kernels_May import *
  
 def path(local = 1):
     '''Change with your paths'''
@@ -27,7 +27,7 @@ def path(local = 1):
         path = {'NEMO': '/results2/SalishSea/nowcast-green.202111/',
         'coords': '/ocean/jvalenti/MOAD/grid/coordinates_seagrid_SalishSea201702.nc',
         'coordsWW3': '/ocean/jvalenti/MOAD/grid2/WW3_grid.nc',
-        'mask': '/ocean/jvalenti/MOAD/grid2/mesh_mask202108_TD.nc',
+        'mask': '/ocean/jvalenti/MOAD/grid2/mesh_mask202108_TDV.nc',
         'bat': '/ocean/jvalenti/MOAD/grid/bathymetry_202108.nc',
         'out': '/home/jvalenti/MOAD/results',
         'home': '/home/jvalenti/MOAD/analysis-jose/notebooks/parcels',
@@ -95,7 +95,6 @@ def filename_set(start,length,varlist=['U','V','W'],local=0):
         'R': {'lon': paths['coords'], 'lat': paths['coords'], 'depth': Tlist[0], 'data': Tlist},
         'Bathy' : {'lon': paths['coords'], 'lat': paths['coords'], 'data': paths['bat']},
         'gdepth' : {'lon': paths['coords'], 'lat': paths['coords'],'depth': Wlist[0], 'data': paths['mask']},
-        'mbathy' : {'lon': paths['coords'], 'lat': paths['coords'],'depth': Wlist[0], 'data': paths['mask']},
         'totdepth' : {'lon': paths['coords'], 'lat': paths['coords'], 'data': paths['mask']},
         'US' : {'lon': paths['coordsWW3'], 'lat': paths['coordsWW3'], 'data': Waveslist},
         'VS' : {'lon': paths['coordsWW3'], 'lat': paths['coordsWW3'], 'data': Waveslist},
@@ -103,10 +102,11 @@ def filename_set(start,length,varlist=['U','V','W'],local=0):
         'FS' :  {'lon': paths['coords'], 'lat': paths['coords'],'data': Flist},
         'Diat' : {'lon': paths['coords'], 'lat': paths['coords'], 'depth': Tlist[0], 'data': Biolist},
         'Flag' : {'lon': paths['coords'], 'lat': paths['coords'], 'depth': Tlist[0], 'data': Biolist},
+        'Vol' : {'lon': paths['coords'], 'lat': paths['coords'], 'depth': Wlist[0],'data': paths['mask']}
     }
     variables = {'U': 'vozocrtx', 'V': 'vomecrty','W': 'vovecrtz','T':'votemper','S':'vosaline','R':'sigma_theta',
         'US':'uuss','VS':'vuss','WL':'lm','Bathy':'Bathymetry','FS':'rorunoff','Kz':'vert_eddy_diff',
-        'MZ':'microzooplankton','Diat':'PPDIATNO3','Flag':'PPPHYNO3','ssh':'sossheig','totdepth':'totaldepth' }
+        'MZ':'microzooplankton','Diat':'PPDIATNO3','Flag':'PPPHYNO3','ssh':'sossheig','totdepth':'totaldepth','Vol':'volume'}
     # for fvar in varlist:
     #     if fvar == 'U' or fvar == 'Kz':
     #         dimensions = {'lon': 'glamf', 'lat': 'gphif', 'depth': 'depthw','time': 'time_counter'}
@@ -295,7 +295,9 @@ def particle_maker(config):
         if 'beached' in config['particle']:  
             beached = Variable('beached', initial = 0)
         if 'surf' in config['particle']:  
-            surf = Variable('surf', initial =  0)     
+            surf = Variable('surf', initial =  0)   
+        if 'fact' in config['particle']:  
+            fact = Variable('fact', initial =  1)    
         if 'ws' in config['particle']:  
             ws = Variable('ws', initial =  0) 
         if 'tau' in config['particle']:  
@@ -312,6 +314,8 @@ def particle_maker(config):
             Kh = Variable('Kh', initial =  config['particle']['Kh']) # Kh horizontal diff
         if 'MFcount' in config['param']:  
             MFcount = Variable('MFcount', initial =  config['param']['MFc']) # MF per parcel
+        if 'cellvol' in config['particle']:  
+            cellvol = Variable('cellvol', initial =  config['particle']['cellvol']) # MF per parcel
         if 'dtmax' in config['particle']:  
             dtmax = Variable('dtmax', initial =  86400*config['particle']['dtmax']) # max time run
         else:

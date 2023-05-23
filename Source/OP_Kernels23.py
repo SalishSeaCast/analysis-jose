@@ -1,9 +1,8 @@
 def Advection(particle, fieldset, time):
     if particle.beached == 0: #Check particle is in the water column
         if particle.tau==0: #Check age particle is 0    
-            if ParcelsRandom.uniform(1e-5,1) < particle.fratio: 
-            #    pass#
-                particle.surf = 1  
+            #if ParcelsRandom.uniform(1e-5,1) < particle.fratio: 
+            #    particle.surf = 1  
             '''Assign length and diameter to particles following input distribution''' 
             particle.diameter = ParcelsRandom.normalvariate(particle.diameter, particle.SDD) #Randomly assign a value of diameter inside the Bamfield mesocosm size dist
             particle.length = ParcelsRandom.normalvariate(particle.length, particle.SDL) #Same for length    
@@ -153,8 +152,10 @@ def Displacement(particle,fieldset,time):
             #if ParcelsRandom.uniform(1e-5,1) < particle.fratio:
             #    particle.surf = 1
             #    print('surfaced')
-            #else:
-            particle.depth = Dlayer * ParcelsRandom.uniform(0, 1) #Well mixed boundary layer
+            if particle.depth + dzs < Dlayer:
+                particle.surf = 1
+            else:
+                particle.depth = Dlayer * ParcelsRandom.uniform(0, 1) #Well mixed boundary layer
         else:
             particle.depth += dzs #apply mixing
         #Apply horizontal mixing (beaching for particles pushed through coast) 
