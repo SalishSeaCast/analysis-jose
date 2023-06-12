@@ -1,0 +1,58 @@
+
+  # yaml file tu run op
+file: 
+  name: 'SalishTest_newkernsl' #name output file
+startdate:
+  year: 2018 
+  month: 1
+  day: 1
+
+param:
+  MFc: 1.0e6
+  length: 3 # Set Time length [days] 
+  dt: 90 #toggle between - or + to pick backwards or forwards 
+  N: 1 #'/home/jvalenti/MOAD/analysis-jose/OParcels/Deploy_locations.csv' # number of deploying locations except when using distr = hmg this variable represent how many
+  #deploy locations per gridcell, or when using distr = pd, where this variable will be the pandas filename.
+  n: 100 # 1000   # number of particles per location #! No need to change for pd
+  dmin: 2 #minimum depth
+  dd: 2 #max depth difference from dmin
+  dtp: 10 #how often particle released in hours
+  odt: 168 #hours between output
+  r: 1 #radious dispersion particles
+  # Use list of coordinates for standard, initial and final coordinates for transects or empty list
+  # for homogeneous or pandas.
+  lats: [49.195024] #Northern strait 49.316369,49.543061 , 
+  lons: [-123.342207] # -124.244478,-123.986083
+  distr: 'std'   #{std: for selected coordinates, hmg: for homogeneous distribution, trst: for transect from coord 1 to coord2, pd: using
+  #pandas file with deploy and ammount} 
+
+particle:
+  Lb: 0.23
+  Db: 33
+  Ub: 200
+  beached: 0
+  tau: 0
+  ro: 1350
+  diameter: 2.16e-5
+  length: 4.5e-4
+  SDD: 3.34e-6
+  SDL: 24.4e-5
+  fratio: 0.3
+  Nbac: 0
+  Nflag: 0
+  dz: 0
+  Kh: 1.5 #value used in SSSC   #Number of MF per particle
+  surf: 0
+  ws: 0
+  wa: 0
+  fact: 1
+  cellvol: 250000 #m3
+  #dtmax: 3 # days after particle release the particles are deleted 
+
+kernel:
+  Buoyancy: 1
+  Turb_mix: 1
+  Beaching: 1
+  Stokes_drift: 1
+  #Biofilm: 1
+
