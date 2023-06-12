@@ -1,0 +1,13 @@
+name: Parcels_v3
+channels:
+  - conda-forge
+dependencies:
+  - jupyter
+  - numpy
+  - pandas
+  - parcels
+  - python
+  - scipy
+  - xarray
+  - yaml
+  - zarr
