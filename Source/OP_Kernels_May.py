@@ -3,9 +3,14 @@ def Advection(particle, fieldset, time):
         if particle.tau==0: #Check age particle is 0    
             '''Assign length and diameter to particles following input distribution''' 
             particle.diameter = ParcelsRandom.normalvariate(particle.diameter, particle.SDD) #Randomly assign a value of diameter inside the Bamfield mesocosm size dist
-            particle.length = ParcelsRandom.normalvariate(particle.length, particle.SDL) #Same for length    
+            particle.length = ParcelsRandom.normalvariate(particle.length, particle.SDL) #Same for length
+            if particle.length < 0:
+                particle.length = 4.5e-4
+            if particle.diameter < 0:
+                particle.length = 2.16e-5
         particle.tau += particle.dt
-        if particle.tau > particle.dtmax:
+        if particle.tau > particle.dtmax: #If not specified default value set to 14 years in OP_functions
+            '''If we set a maximum age for a particle it will be deleted here'''
             particle.delete()
         if particle.surf == 1: #If particle is floating safe w sampling
             particle.depth = 0
@@ -27,7 +32,7 @@ def Advection(particle, fieldset, time):
             td = fieldset.totaldepth[time, particle.depth, particle.lat, particle.lon]
             factor = (1+ssh/td)
             particle.fact = factor
-            particle.cellvol = fieldset.volume[time, particle.depth/factor, particle.lat, particle.lon]
+            particle.cellvol = fieldset.volume[time, 0, particle.lat, particle.lon]
             (u1, v1, w1) = fieldset.UVW[time, particle.depth/factor, particle.lat, particle.lon]
             lon1 = particle.lon + u1*.5*particle.dt
             lat1 = particle.lat + v1*.5*particle.dt
@@ -50,12 +55,12 @@ def Advection(particle, fieldset, time):
             particle.depth += wa * particle.dt/factor - wssh
 
 def Stokes_drift(particle, fieldset, time):
-    """Stokes drift"""
+    """Apply Stokes drift calculated by WW3"""
     if particle.beached == 0:
         lat = particle.lat
         if lat > 48 and lat < 51: #Check that particle is inside WW3 data field
             deg2met = 111319.5
-            latT = 0.6495 #cos(particle.lat*(math.pi/180))
+            latT = 0.6495 #Average value for SoG #cos(particle.lat*(math.pi/180))
             (us0, vs0, wl) = fieldset.stokes[time, 0, particle.lat, particle.lon]
             k = (2*math.pi)/wl
             us = (us0*exp(-math.fabs(2*k*particle.depth)))/(deg2met*latT)
@@ -64,7 +69,7 @@ def Stokes_drift(particle, fieldset, time):
             particle.lat += vs * particle.dt
 
 def Buoyancy(particle, fieldset, time):
-    """Stokes law calculating settling velocity"""
+    """Calculating settling velocity using Komar cylinder Vs"""
     if particle.beached == 0: #Check particle is in the water column   
         deps = max(particle.depth,0.51)
         bath = fieldset.Bathymetry[time, 0, particle.lat, particle.lon]  
@@ -119,7 +124,7 @@ def Displacement(particle,fieldset,time):
             else:
                 particle.depth = Dlayer * ParcelsRandom.uniform(0, 1) #Well mixed boundary layer
         else:
-            particle.depth += dzs #apply mixing
+            particle.depth += dzs #apply mixing  
         #Apply horizontal mixing (beaching for particles pushed through coast) 
         if particle.lat < 49.237 and particle.lon > -123.196 and particle.lat > 49.074:
             pass #Dont let particles beach inside the Fraser river
@@ -132,9 +137,10 @@ def Displacement(particle,fieldset,time):
         if particle.depth/factor + Ws*particle.dt > bath:
             particle.beached = 3 #Trap particle in sediment (sticky bottom)
         elif particle.depth/factor + Ws*particle.dt < 0: 
-            particle.depth = 0
+            particle.depth = 1e-3
         else:
             particle.depth += Ws*particle.dt
+        
 
 
 def Unbeaching(particle, fieldset, time):
