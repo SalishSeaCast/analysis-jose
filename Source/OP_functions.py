@@ -125,7 +125,7 @@ def p_deploy(N,n,dmin,dd,r = 1000):
             zvals.append(dept + np.random.random_sample([n]).T*(dd))
         for i in range(len(zvals)):   
             zvals1=np.concatenate((zvals1[:],zvals[i]))
-    return x_offset, y_offset, zvals1   
+    return x_offset, y_offset, zvals1
 
 
 def get_WW3_path(date):
