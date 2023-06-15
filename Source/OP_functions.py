@@ -15,8 +15,8 @@ def path(local = 1):
     '''Change with your paths'''
     if local == 1:
         path = {'NEMO': '/Users/jvalenti/MOAD/data/',
-        'coords': '/Users/jvalenti/MOAD/SSC_masks/coordinates_seagrid_SalishSea201702.nc',
-        'mask': '/Users/jvalenti/MOAD/SSC_masks/mesh_mask201703.nc',
+        'coords': '/Users/jvalenti/MOAD/grid/coordinates_seagrid_SalishSea201702.nc',
+        'mask': '/Users/jvalenti/MOAD/grid/mesh_mask201703.nc',
         'out': '/Users/jvalenti/MOAD/results/',
         'home': '/Users/jvalenti/MOAD/analysis-jose/notebooks/parcels',
         'anim': '/Users/jvalenti/MOAD/animations'}
