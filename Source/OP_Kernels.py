@@ -87,17 +87,15 @@ def turb_mix(particle,fieldset,time):
     """Vertical mixing"""
     if particle.beached==0:
         #Vertical mixing
-        if particle.depth/factor + 0.5 > bath+ssh: #Only calculate gradient of diffusion for particles deeper than 0.6 otherwise OP will check for particles outside the domain and remove it.
+        if particle.depth + 0.5/factor > bath: #Only calculate gradient of diffusion for particles deeper than 0.6 otherwise OP will check for particles outside the domain and remove it.
             Kzdz = 2*(fieldset.vert_eddy_diff[time, particle.depth, particle.lat, particle.lon]-fieldset.vert_eddy_diff[time, particle.depth-0.5/factor, particle.lat, particle.lon]) #backwards difference 
         else: 
             Kzdz = 2*(fieldset.vert_eddy_diff[time, particle.depth+0.5/factor, particle.lat, particle.lon]-fieldset.vert_eddy_diff[time, particle.depth, particle.lat, particle.lon]) #forward difference 
         dgrad = Kzdz*particle.dt
-        if particle.depth/factor+0.5*dgrad > 0:
+        if particle.depth+0.5*dgrad > 0 and particle.depth+0.5*dgrad < bath:
             Kz = fieldset.vert_eddy_diff[time, particle.depth+ 0.5*dgrad/factor, particle.lat, particle.lon] #Vertical diffusivity SSC  
         else:
             Kz = fieldset.vert_eddy_diff[time, particle.depth, particle.lat, particle.lon] 
-        if particle.depth/factor+0.5*dgrad > bath+ssh:  
-            Kz = fieldset.vert_eddy_diff[time, particle.depth, particle.lat, particle.lon]
 
         Rr = ParcelsRandom.uniform(-1, 1)
         d_random = sqrt(3*2*Kz*particle.dt) * Rr
@@ -117,13 +115,10 @@ def Displacement(particle,fieldset,time):
     ''''Apply movement calculated by other kernels'''
     if particle.beached==0 and particle.surf == 0:
         #Apply turbulent mixing.
-        if dzs + particle.depth/factor > bath + ssh: #randomly in the water column
+        if dzs/factor + particle.depth > bath: #randomly in the water column
             particle.depth = bath - (Dlayer/factor) * ParcelsRandom.uniform(0, 1) #Well mixed boundary layer
-        elif particle.depth/factor + dzs < 0:
-            if particle.depth/factor + dzs < Dlayer:
-                particle.surf = 1
-            else:
-                particle.depth = (Dlayer/factor) * ParcelsRandom.uniform(0, 1) #Well mixed boundary layer
+        elif dzs/factor + particle.depth < 0:
+            particle.depth = (Dlayer/factor) * ParcelsRandom.uniform(0, 1) #Well mixed boundary layer
         else:
             particle.depth += dzs/factor #apply mixing  
         #Apply horizontal mixing (beaching for particles pushed through coast) 
@@ -135,12 +130,12 @@ def Displacement(particle,fieldset,time):
             particle.lat = d_randomy
             particle.lon = d_randomx
         #Apply buoyancy
-        if particle.depth/factor + Ws*particle.dt > bath:
+        if particle.depth + Ws*particle.dt/factor > bath:
             particle.beached = 3 #Trap particle in sediment (sticky bottom)
-        elif particle.depth/factor + Ws*particle.dt < 0: 
-            particle.depth = 1e-3
+        elif particle.depth + Ws*particle.dt/factor < 0: 
+            particle.depth = 0 #! check if loosing too many particles through surface
         else:
-            particle.depth += Ws*particle.dt
+            particle.depth += Ws*particle.dt/factor
         
 
 
