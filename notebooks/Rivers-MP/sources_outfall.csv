@@ -1,0 +1,99 @@
+Name,Population,Latitude,Longitude,Watershed,Latitude outfall,Longitude outfall,Outfall,Source,Depth
+Abbotsford,153524,49.06303787,-122.2513504,fraser,,,Fraser,https://www.abbotsford.ca/waste-water,River
+Burnaby,249125,49.24377441,-122.9816971,howe,49.195045,-123.301956,Iona,https://news.gov.bc.ca/releases/2023MUNI0015-000259,70
+Campbell River,35519,50.0231781,-125.2495346,evi_n,50.059636,-125.260148,Campbell,https://www.campbellriver.ca/city-services/sewer/overview,35
+Colwood,18961,48.42810059,-123.4927445,evi_s,"48.403635108536236,",-123.4196531,Macaulay Point,https://colwood.civicweb.net/document/82764/,60
+Coquitlam,148625,49.28505325,-122.7945938,fraser,49.123121,-123.252763,Annacis,https://pievc.ca/wp-content/uploads/2021/01/Metro-Vancouver-Fraser-Sewerage-Area-Infrastructure-Final-Report.pdf,River
+Courtenay,28420,49.682827,-124.9925308,evi_s,49.73333563,-124.8459148,Courtnay,https://eocp.ca/wp-content/uploads/2012/10/plants-Comox.pdf,80
+Delta,108455,49.09020996,-123.0652695,fraser,49.123121,-123.252763,Annacis,https://pievc.ca/wp-content/uploads/2021/01/Metro-Vancouver-Fraser-Sewerage-Area-Infrastructure-Final-Report.pdf,River
+Langford,46584,48.45505905,-123.4964523,evi_s,"48.403635108536236,",-123.4196531,Macaulay Point,https://colwood.civicweb.net/document/82764/,60
+Langley,28963,49.10356522,-122.6565628,fraser,,,Fraser,https://www.maple.ca/projects/north-west-langley-wwtp/,River
+Maple Ridge,90990,49.21902847,-122.6045227,fraser,49.123121,-123.252763,Annacis,https://nacsworld.com/content/golden-ears-pump-station-sanitary-sewer-overflow-tank,River
+Mission,41519,49.13438034,-122.2960587,fraser,,,Fraser,"https://www.mission.ca/city-hall/departments/engineering/sewer/#:~:text=Mission%20Sanitary%20Sewer%20System&text=All%20sewer%20mains%20flow%20to,the%20Mission%20and%20Abbotsford%20communities.",River
+Nanaimo,99863,49.16437912,-123.9366608,evi_s,49.23156203,-123.9142998,Five_finger,https://www.rdn.bc.ca/greater-nanaimo-pollution-control-centre-outfall-replacement-project,70
+New Westminster,78916,49.21960831,-122.9084625,fraser,49.123121,-123.252763,Annacis,https://pievc.ca/wp-content/uploads/2021/01/Metro-Vancouver-Fraser-Sewerage-Area-Infrastructure-Final-Report.pdf,River
+North Vancouver,58120,49.31999207,-123.0723801,howe,49.32154,-123.16549,Burrard_inlet,https://metrovancouver.org/services/liquid-waste/north-shore-wastewater-treatment-plant-project,15
+Parksville,13642,49.31938934,-124.3136444,evi_s,49.331415,-124.295029,Englishman River ,http://www.parksville.ca/cms/wpattachments/wpID437atID10377.pdf,River
+Pitt Meadows,19146,49.22242355,-122.6908035,fraser,49.123121,-123.252763,Annacis,https://nacsworld.com/content/golden-ears-pump-station-sanitary-sewer-overflow-tank,River
+Port Coquitlam,61498,49.27012253,-122.758934,fraser,49.123121,-123.252763,Annacis,https://pievc.ca/wp-content/uploads/2021/01/Metro-Vancouver-Fraser-Sewerage-Area-Infrastructure-Final-Report.pdf,River
+Port Moody,33535,49.27666473,-122.8642349,fraser,49.123121,-123.252763,Annacis,https://pievc.ca/wp-content/uploads/2021/01/Metro-Vancouver-Fraser-Sewerage-Area-Infrastructure-Final-Report.pdf,River
+Powell River,13943,49.86698914,-124.5483856,jervis,49.8573138,-124.5721359,Powell,https://participatepr.ca/wastewater-treatment-plant/widgets/62891/photos/17248,30
+Richmond,209937,49.16278076,-123.1366501,fraser,49.123121,-123.252763,Lulu,https://watershedwatch.ca/wp-content/uploads/2011/08/Exh-1061-NonRT.pdf,River
+Surrey,568322,49.10460281,-122.8235092,fraser,49.123121,-123.252763,Annacis,https://pievc.ca/wp-content/uploads/2021/01/Metro-Vancouver-Fraser-Sewerage-Area-Infrastructure-Final-Report.pdf,River
+Vancouver,662248,49.26356506,-123.1385727,howe,49.195045,-123.301956,Iona,https://news.gov.bc.ca/releases/2023MUNI0015-000259,70
+Victoria,91867,48.42750168,-123.3672562,jdf,48.40098834,-123.3976111,McLoughlin Point,https://www.crd.bc.ca/project/wastewater-treatment-project,60
+White Rock,21939,49.02571869,-122.8011475,fraser,49.123121,-123.252763,Annacis,https://pievc.ca/wp-content/uploads/2021/01/Metro-Vancouver-Fraser-Sewerage-Area-Infrastructure-Final-Report.pdf,River
+Central Saanich,17385,48.5807457,-123.4154358,evi_s,48.64987519,-123.3662862,Saanich peninsula,https://eocp.ca/wp-content/uploads/2012/10/plants-Saanich.pdf,25
+Esquimalt,17533,48.43032455,-123.4191589,jdf,48.40098834,-123.3976111,McLoughlin Point,https://www.crd.bc.ca/project/wastewater-treatment-project,60
+Langley,132603,49.10356522,-122.6565628,fraser,49.123121,-123.252763,Annacis,https://pievc.ca/wp-content/uploads/2021/01/Metro-Vancouver-Fraser-Sewerage-Area-Infrastructure-Final-Report.pdf,River
+North Cowichan,31990,48.82346344,-123.7181549,evi_s,48.74349153,-123.5879172,Cowichan,https://www.northcowichan.ca/EN/main/departments/engineering/jub-outfall-project.html#Outfall,River
+North Saanich,12235,48.62998962,-123.4164352,evi_s,48.64987519,-123.3662862,Saanich peninsula,https://eocp.ca/wp-content/uploads/2012/10/plants-Saanich.pdf,25
+North Vancouver district,88168,49.31999207,-123.0723801,howe,49.32154,-123.16549,Burrard_inlet,https://metrovancouver.org/services/liquid-waste/north-shore-wastewater-treatment-plant-project,15
+Oak Bay,17990,48.43427658,-123.3163528,jdf,48.40098834,-123.3976111,McLoughlin Point,https://www.crd.bc.ca/project/wastewater-treatment-project,60
+Saanich,117735,48.45838928,-123.3754959,jdf,48.40098834,-123.3976111,McLoughlin Point,https://www.crd.bc.ca/project/wastewater-treatment-project,60
+Sechelt,10847,49.47238922,-123.7591095,jervis,49.45559319,-123.7625293,Sechelt,https://www.sechelt.ca/en/living-here/sechelt-water-resource-centre.aspx,River
+Sooke,15086,48.37731552,-123.7238312,jdf,48.35249517,-123.7788884,Sooke,https://sooke.ca/district-services/departments/engineering/sewer-system/,30
+Squamish,23819,49.69834137,-123.1535797,howe,49.67603481,-123.1822491,Squamish,https://squamish.ca/our-services/water-and-waste-water/wastewater-system/,River
+West Vancouver,44122,49.33813095,-123.1706696,howe,49.32154,-123.16549,Burrard_inlet,https://metrovancouver.org/services/liquid-waste/north-shore-wastewater-treatment-plant-project,15
+Comox,14806,49.67666626,-124.9320984,evi_s,49.73333563,-124.8459148,Courtnay,https://eocp.ca/wp-content/uploads/2012/10/plants-Comox.pdf,80
+Sidney,12318,48.64894104,-123.4003067,evi_s,48.64987519,-123.3662862,Saanich peninsula,https://eocp.ca/wp-content/uploads/2012/10/plants-Saanich.pdf,25
+View Royal,11575,48.45600891,-123.4410477,jdf,48.40098834,-123.3976111,McLoughlin Point,https://www.crd.bc.ca/project/wastewater-treatment-project,60
+Anacortes,17880,48.50544739,-122.6315002,skagit,48.52307544,-122.6093498,Anacortes,https://anacorteswa.gov/1406/Wastewater-Outfall-Relocation-Project,5
+Arlington,21260,48.19131088,-122.1264877,skagit,48.19165781,-122.3957494,Stillaguamish River,https://www.arlingtonwa.gov/401/Wastewater,River
+Auburn,88750,47.30752182,-122.2257538,puget,,,Puyallup,https://www.auburnwa.gov/city_hall/public_works/sewer,River
+Bainbridge Island,25060,47.64309311,-122.5273972,puget,47.62278,-122.489167,Bainbridge Island,https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwjxsLeYkbCCAxWQHjQIHbHlAJ4QFnoECBwQAQ&url=https%3A%2F%2Fapps.ecology.wa.gov%2Fparis%2FDownloadDocument.aspx%3Fid%3D211829&usg=AOvVaw3rzxVmIoLoqMRY3FjBq2Cp&opi=89978449,13
+Bellevue,153900,47.61370087,-122.1909332,puget,47.60058503,-122.4278881,South King,https://kingcounty.gov/en/legacy/depts/dnrp/wtd/system.aspx,190
+Bellingham,93910,48.75489807,-122.4781189,fraser,48.72386975,-122.5195463,Bellingham,https://cob.org/services/utilities/waste-water-treatment,18
+Bonney Lake,22990,47.19194794,-122.180687,puget,47.27656111,-122.4388928,White River,https://sumnerwa.gov/sewer/,River
+Bothell,48940,47.76008987,-122.2054367,puget,47.66173185,-122.4498202,West King,https://kingcounty.gov/en/legacy/depts/dnrp/wtd/system.aspx,73
+Bremerton,45220,47.56737137,-122.6329269,puget,47.54546742,-122.6681611,Bremerton,https://apps.ecology.wa.gov/publications/documents/88e33.pdf,1
+Burien,52490,47.46674728,-122.3472214,puget,47.48721015,-122.366628,Salmon Creek,https://www.swssd.com/uploads/1/1/2/5/11251631/sewer-map-20080718a.pdf,River
+Covington,21200,47.35812378,-122.1073761,puget,47.60058503,-122.4278881,South King,https://kingcounty.gov/en/legacy/depts/dnrp/wtd/system.aspx,190
+Des Moines,33160,47.39163589,-122.3115616,puget,47.39605724,-122.3374214,Midway,https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwjuvKXjwsmCAxWBMX0KHc2IBXAQFnoECBMQAQ&url=https%3A%2F%2Fapps.ecology.wa.gov%2Fparis%2FDownloadDocument.aspx%3Fid%3D139500&usg=AOvVaw1326uyuATtSLcPBNDa5hgp&opi=89978449,11.5
+DuPont,10180,47.09742355,-122.6305313,puget,47.19383625,-122.5866103,Chambers,https://www.piercecountywa.gov/7182/Chambers-Creek-Regional-WWTP-Facilities-,36
+Edgewood,13520,47.25004578,-122.2876282,puget,47.19383625,-122.5866103,Chambers,https://www.piercecountywa.gov/7182/Chambers-Creek-Regional-WWTP-Facilities-,36
+Edmonds,42980,47.8116188,-122.3766403,puget,47.81414502,-122.3899467,Edmonds,https://www.edmondswa.gov/government/departments/public_works_and_utilities/wastewater_treatment_plant,21
+Everett,113300,47.97912979,-122.1958923,skagit,,,Snohomish river,https://www.everettwa.gov/DocumentCenter/View/815/How-is-Wastewater-Treated-PDF,River
+Federal Way,101800,47.31517792,-122.3346558,puget,47.33357774,-122.3827516,Lakota WWTP,https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwico9nnx8mCAxX8IjQIHUWWBnEQFnoECBMQAQ&url=https%3A%2F%2Fapps.ecology.wa.gov%2Fparis%2FDownloadDocument.aspx%3Fid%3D199872&usg=AOvVaw1fJXjr412RofiseeQroJKw&opi=89978449,56
+Ferndale,15970,48.84666824,-122.5911942,fraser,48.74633288,-122.5725675,Nooksack river,https://apps.ecology.wa.gov/publications/documents/0103067.pdf,River
+Fife,11130,47.23903656,-122.3816147,puget,47.19383625,-122.5866103,Chambers,https://www.piercecountywa.gov/7182/Chambers-Creek-Regional-WWTP-Facilities-,36
+Gig Harbor,12540,47.32775879,-122.5875397,puget,47.32280721,-122.5700975,Gig Harbor,https://www.gigharborwa.gov/DocumentCenter/View/572/Chapter-5---Wastewater-Treatment-Plant-PDF,River
+Issaquah,40950,47.53007126,-122.0329056,puget,47.60058503,-122.4278881,South King,https://kingcounty.gov/en/legacy/depts/dnrp/wtd/system.aspx,190
+Kenmore,24090,47.7661972,-122.2570648,puget,47.66173185,-122.4498202,West King,https://kingcounty.gov/en/legacy/depts/dnrp/wtd/system.aspx,73
+Kent,137900,47.38085175,-122.2374191,puget,47.60058503,-122.4278881,South King,https://kingcounty.gov/en/legacy/depts/dnrp/wtd/system.aspx,190
+Kirkland,93570,47.67550659,-122.2033615,puget,47.60058503,-122.4278881,South King,https://kingcounty.gov/en/legacy/depts/dnrp/wtd/system.aspx,190
+Lacey,58180,47.04330063,-122.8231506,puget,47.06187182,-122.9054364,LOTT,https://www.lottcleanwater.org/wp-content/uploads/2022/12/budd-inlet-treatment-plant-guide.pdf,8
+Lake Forest Park,13620,47.76288986,-122.2918625,puget,47.66173185,-122.4498202,West King,https://kingcounty.gov/en/legacy/depts/dnrp/wtd/system.aspx,73
+Lake Stevens,40700,48.01499557,-122.0640106,skagit,,,Snohomish river,https://www.youtube.com/watch?v=whjEikBiOFo,River
+Lakewood,63800,47.16174698,-122.5205994,puget,47.19383625,-122.5866103,Chambers,https://www.piercecountywa.gov/7182/Chambers-Creek-Regional-WWTP-Facilities-,36
+Lynden,16150,48.9461441,-122.4487381,fraser,48.74633288,-122.5725675,Nooksack river,https://www.watershedco.com/city-of-lynden-wastewater-treatment-plant-outfall-replacement-project,River
+Lynnwood,38740,47.82395172,-122.2924271,puget,47.84800037,-122.3432868,Lynnwood,https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwijhdGe2MmCAxVCGDQIHSN2A2kQFnoECAkQAQ&url=https%3A%2F%2Fapps.ecology.wa.gov%2Fparis%2FDownloadDocument.aspx%3Fid%3D95444&usg=AOvVaw2wKWtESarKMxmBR9oSRaYk&opi=89978449,30
+Maple Valley,28920,47.39030457,-122.0454102,puget,47.60058503,-122.4278881,South King,https://kingcounty.gov/en/legacy/depts/dnrp/wtd/system.aspx,190
+Marysville,72380,48.05179977,-122.1731033,skagit,,,Snohomish river,https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwiXxLmf2cmCAxWWIDQIHRjZBUwQFnoECBcQAQ&url=https%3A%2F%2Fapps.ecology.wa.gov%2Fparis%2FDownloadDocument.aspx%3Fid%3D216603&usg=AOvVaw2lIlNkrISKddf5b0HtvTro&opi=89978449,River
+Mercer Island,25780,47.57458496,-122.2220688,puget,47.60058503,-122.4278881,South King,https://kingcounty.gov/en/legacy/depts/dnrp/wtd/system.aspx,190
+Mill Creek,21510,47.85502243,-122.2173996,skagit,47.7776872,-122.4400642,Brightwater,https://kingcounty.gov/en/legacy/depts/dnrp/wtd/system.aspx,182
+Mount Vernon,35500,48.41749954,-122.3361588,skagit,,,Skagit,https://apps.ecology.wa.gov/publications/documents/92e32.pdf,River
+Mountlake Terrace,22070,47.784832,-122.3110962,puget,47.66173185,-122.4498202,West King,https://kingcounty.gov/en/legacy/depts/dnrp/wtd/system.aspx,73
+Mukilteo,21590,47.9050827,-122.2930603,skagit,47.91218827,-122.3240847,Big Gulch Creek,https://mukilteowa.gov/wp-content/uploads/Hearing-Examiner-Packet-1.pdf,River
+Newcastle,13560,47.52386093,-122.1730576,puget,47.60058503,-122.4278881,South King,https://kingcounty.gov/en/legacy/depts/dnrp/wtd/system.aspx,190
+Oak Harbor,24760,48.29324341,-122.6432953,skagit,48.27060999,-122.6477623,OakHarbor,https://www.google.com/search?q=oak+harbor+wastewater+treatment+plant+outfall&client=safari&sca_esv=583177807&rls=en&ei=1atWZdT8It3k0PEP9Ii5uA4&ved=0ahUKEwiUu-7728mCAxVdMjQIHXREDucQ4dUDCA8&uact=5&oq=oak+harbor+wastewater+treatment+plant+outfall&gs_lp=Egxnd3Mtd2l6LXNlcnAiLW9hayBoYXJib3Igd2FzdGV3YXRlciB0cmVhdG1lbnQgcGxhbnQgb3V0ZmFsbDIFECEYoAEyBRAhGKABSMAWUL4JWOUUcAF4AJABAZgB_AGgAYoJqgEFMy4zLjK4AQPIAQD4AQHCAgcQABgeGLADwgIJEAAYCBgeGLADwgIGEAAYFhgewgIEECEYFeIDBBgBIEGIBgGQBgI&sclient=gws-wiz-serp#ip=1,10
+Olympia,56370,47.03553391,-122.9008255,puget,47.06187182,-122.9054364,LOTT,https://www.lottcleanwater.org/wp-content/uploads/2022/12/budd-inlet-treatment-plant-guide.pdf,8
+Port Angeles,20200,48.12846375,-123.4740677,jdf,48.12826,-123.37935,Port Angeles,https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwiih6Ds3MmCAxX9HzQIHT_SAP4QFnoECBYQAQ&url=https%3A%2F%2Fapps.ecology.wa.gov%2Fparis%2FDownloadDocument.aspx%3Fid%3D157316&usg=AOvVaw3w30oXCRwaqKl7FZLQ6Nak&opi=89978449,16
+Port Orchard,16400,47.5379982,-122.6363144,puget,47.55026443,-122.6132104,WestSound,https://www.wsud.us/skwrf,River
+Port Townsend,10290,48.11527634,-122.7544479,puget,48.14509172,-122.7829548,Port Townsend,https://ptpubliclibrary.org/engagept/page/general-sewer-plan,5
+Poulsbo,12180,47.73334503,-122.6441574,puget,47.67718936,-122.602822,Kitsap,https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwjL8P7q5MmCAxWbKDQIHT-EAXUQFnoECBMQAQ&url=https%3A%2F%2Fapps.ecology.wa.gov%2Fparis%2FDownloadDocument.aspx%3Fid%3D211832&usg=AOvVaw36f4ciuoaEtYvaAet0FWAx&opi=89978449,12.5
+Puyallup,43260,47.17743683,-122.2923203,puget,47.19383625,-122.5866103,Chambers,https://www.piercecountywa.gov/7182/Chambers-Creek-Regional-WWTP-Facilities-,36
+Redmond,75270,47.6749115,-122.1239929,puget,47.7776872,-122.4400642,Brightwater,https://kingcounty.gov/en/legacy/depts/dnrp/wtd/system.aspx,182
+Renton,107500,47.47465897,-122.2067871,puget,47.60058503,-122.4278881,South King,https://kingcounty.gov/en/legacy/depts/dnrp/wtd/system.aspx,190
+Sammamish,68150,47.60548401,-122.035553,puget,47.60058503,-122.4278881,South King,https://kingcounty.gov/en/legacy/depts/dnrp/wtd/system.aspx,190
+SeaTac,31910,47.44525909,-122.2945328,puget,47.66173185,-122.4498202,West King,https://kingcounty.gov/en/legacy/depts/dnrp/wtd/system.aspx,73
+Seattle,762500,47.60322952,-122.3302765,puget,47.66173185,-122.4498202,West King,https://kingcounty.gov/en/legacy/depts/dnrp/wtd/system.aspx,73
+Sedro-Woolley,12590,48.5033226,-122.2354507,skagit,,,Skagit,https://www.sedro-woolley.gov/departments/wastewater/index.php,River
+Shelton,10430,47.21332932,-123.1060867,puget,47.20803405,-123.0715047,Shelton,https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwiMyPfo58mCAxWCCjQIHRzyB0sQFnoECBAQAQ&url=https%3A%2F%2Fapps.ecology.wa.gov%2Fparis%2FDownloadDocument.aspx%3Fid%3D16801&usg=AOvVaw1q3Qn8aj7KLSxVubfPNyqd&opi=89978449,12
+Shoreline,60320,47.75598526,-122.3389282,puget,47.66173185,-122.4498202,West King,https://kingcounty.gov/en/legacy/depts/dnrp/wtd/system.aspx,73
+Snohomish,10200,47.91284943,-122.0930481,skagit,,,Snohomish river,https://www.snohomishwa.gov/693/Wastewater-Treatment-Plant,River
+Sumner,10800,47.20331192,-122.2406158,puget,47.27656111,-122.4388928,White River,https://sumnerwa.gov/sewer/,River
+Tacoma ,220800,47.25307846,-122.4415283,puget,47.27303493,-122.4299315,Tacoma,https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwivxc736cmCAxW5CjQIHdKtB9kQFnoECAwQAQ&url=https%3A%2F%2Fapps.ecology.wa.gov%2Fparis%2FDownloadDocument.aspx%3Fid%3D15950&usg=AOvVaw1h5l5bRwnq34kPgUq3Mwbl&opi=89978449,38
+Tukwila,22620,47.47637939,-122.2591171,puget,47.60058503,-122.4278881,South King,https://kingcounty.gov/en/legacy/depts/dnrp/wtd/system.aspx,190
+University Place,35420,47.21075439,-122.5425415,puget,47.19383625,-122.5866103,Chambers,https://www.piercecountywa.gov/7182/Chambers-Creek-Regional-WWTP-Facilities-,36
+Woodinville,13450,47.75446701,-122.1632385,puget,47.7776872,-122.4400642,Brightwater,https://kingcounty.gov/en/legacy/depts/dnrp/wtd/system.aspx,182
