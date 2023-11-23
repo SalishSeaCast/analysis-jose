@@ -2,11 +2,11 @@ Name,Population,Latitude,Longitude,Watershed,Latitude outfall,Longitude outfall,
 Abbotsford,153524,49.06303787,-122.2513504,fraser,,,Fraser,https://www.abbotsford.ca/waste-water,River
 Burnaby,249125,49.24377441,-122.9816971,howe,49.195045,-123.301956,Iona,https://news.gov.bc.ca/releases/2023MUNI0015-000259,70
 Campbell River,35519,50.0231781,-125.2495346,evi_n,50.059636,-125.260148,Campbell,https://www.campbellriver.ca/city-services/sewer/overview,35
-Colwood,18961,48.42810059,-123.4927445,evi_s,"48.403635108536236,",-123.4196531,Macaulay Point,https://colwood.civicweb.net/document/82764/,60
+Colwood,18961,48.42810059,-123.4927445,evi_s,48.403635108536236,-123.4196531,Macaulay Point,https://colwood.civicweb.net/document/82764/,60
 Coquitlam,148625,49.28505325,-122.7945938,fraser,49.123121,-123.252763,Annacis,https://pievc.ca/wp-content/uploads/2021/01/Metro-Vancouver-Fraser-Sewerage-Area-Infrastructure-Final-Report.pdf,River
 Courtenay,28420,49.682827,-124.9925308,evi_s,49.73333563,-124.8459148,Courtnay,https://eocp.ca/wp-content/uploads/2012/10/plants-Comox.pdf,80
 Delta,108455,49.09020996,-123.0652695,fraser,49.123121,-123.252763,Annacis,https://pievc.ca/wp-content/uploads/2021/01/Metro-Vancouver-Fraser-Sewerage-Area-Infrastructure-Final-Report.pdf,River
-Langford,46584,48.45505905,-123.4964523,evi_s,"48.403635108536236,",-123.4196531,Macaulay Point,https://colwood.civicweb.net/document/82764/,60
+Langford,46584,48.45505905,-123.4964523,evi_s,48.403635108536236,-123.4196531,Macaulay Point,https://colwood.civicweb.net/document/82764/,60
 Langley,28963,49.10356522,-122.6565628,fraser,,,Fraser,https://www.maple.ca/projects/north-west-langley-wwtp/,River
 Maple Ridge,90990,49.21902847,-122.6045227,fraser,49.123121,-123.252763,Annacis,https://nacsworld.com/content/golden-ears-pump-station-sanitary-sewer-overflow-tank,River
 Mission,41519,49.13438034,-122.2960587,fraser,,,Fraser,"https://www.mission.ca/city-hall/departments/engineering/sewer/#:~:text=Mission%20Sanitary%20Sewer%20System&text=All%20sewer%20mains%20flow%20to,the%20Mission%20and%20Abbotsford%20communities.",River
