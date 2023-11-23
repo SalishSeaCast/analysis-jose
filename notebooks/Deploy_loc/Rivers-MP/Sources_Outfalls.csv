@@ -2,11 +2,11 @@ Name,Population,Latitude,Longitude,Watershed,Latitude outfall,Longitude outfall,
 Abbotsford,153524,49.06303787,-122.2513504,fraser,,,Fraser,https://www.abbotsford.ca/waste-water,River
 Burnaby,249125,49.24377441,-122.9816971,howe,49.195045,-123.301956,Iona,https://news.gov.bc.ca/releases/2023MUNI0015-000259,70
 Campbell River,35519,50.0231781,-125.2495346,evi_n,50.059636,-125.260148,Campbell,https://www.campbellriver.ca/city-services/sewer/overview,35
-Colwood,18961,48.42810059,-123.4927445,evi_s,48.403635108536236,-123.4196531,Macaulay Point,https://colwood.civicweb.net/document/82764/,60
+Colwood,18961,48.42810059,-123.4927445,evi_s,48.40363511,-123.4196531,Macaulay Point,https://colwood.civicweb.net/document/82764/,60
 Coquitlam,148625,49.28505325,-122.7945938,fraser,49.123121,-123.252763,Annacis,https://pievc.ca/wp-content/uploads/2021/01/Metro-Vancouver-Fraser-Sewerage-Area-Infrastructure-Final-Report.pdf,River
 Courtenay,28420,49.682827,-124.9925308,evi_s,49.73333563,-124.8459148,Courtnay,https://eocp.ca/wp-content/uploads/2012/10/plants-Comox.pdf,80
 Delta,108455,49.09020996,-123.0652695,fraser,49.123121,-123.252763,Annacis,https://pievc.ca/wp-content/uploads/2021/01/Metro-Vancouver-Fraser-Sewerage-Area-Infrastructure-Final-Report.pdf,River
-Langford,46584,48.45505905,-123.4964523,evi_s,48.403635108536236,-123.4196531,Macaulay Point,https://colwood.civicweb.net/document/82764/,60
+Langford,46584,48.45505905,-123.4964523,evi_s,48.40363511,-123.4196531,Macaulay Point,https://colwood.civicweb.net/document/82764/,60
 Langley,28963,49.10356522,-122.6565628,fraser,,,Fraser,https://www.maple.ca/projects/north-west-langley-wwtp/,River
 Maple Ridge,90990,49.21902847,-122.6045227,fraser,49.123121,-123.252763,Annacis,https://nacsworld.com/content/golden-ears-pump-station-sanitary-sewer-overflow-tank,River
 Mission,41519,49.13438034,-122.2960587,fraser,,,Fraser,"https://www.mission.ca/city-hall/departments/engineering/sewer/#:~:text=Mission%20Sanitary%20Sewer%20System&text=All%20sewer%20mains%20flow%20to,the%20Mission%20and%20Abbotsford%20communities.",River
@@ -39,7 +39,7 @@ Comox,14806,49.67666626,-124.9320984,evi_s,49.73333563,-124.8459148,Courtnay,htt
 Sidney,12318,48.64894104,-123.4003067,evi_s,48.64987519,-123.3662862,Saanich peninsula,https://eocp.ca/wp-content/uploads/2012/10/plants-Saanich.pdf,25
 View Royal,11575,48.45600891,-123.4410477,jdf,48.40098834,-123.3976111,McLoughlin Point,https://www.crd.bc.ca/project/wastewater-treatment-project,60
 Anacortes,17880,48.50544739,-122.6315002,skagit,48.52307544,-122.6093498,Anacortes,https://anacorteswa.gov/1406/Wastewater-Outfall-Relocation-Project,5
-Arlington,21260,48.19131088,-122.1264877,skagit,48.19165781,-122.3957494,Stillaguamish River,https://www.arlingtonwa.gov/401/Wastewater,River
+Arlington,21260,48.19131088,-122.1264877,skagit,,,Stillaguamish River,https://www.arlingtonwa.gov/401/Wastewater,River
 Auburn,88750,47.30752182,-122.2257538,puget,,,Puyallup,https://www.auburnwa.gov/city_hall/public_works/sewer,River
 Bainbridge Island,25060,47.64309311,-122.5273972,puget,47.62278,-122.489167,Bainbridge Island,https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwjxsLeYkbCCAxWQHjQIHbHlAJ4QFnoECBwQAQ&url=https%3A%2F%2Fapps.ecology.wa.gov%2Fparis%2FDownloadDocument.aspx%3Fid%3D211829&usg=AOvVaw3rzxVmIoLoqMRY3FjBq2Cp&opi=89978449,13
 Bellevue,153900,47.61370087,-122.1909332,puget,47.60058503,-122.4278881,South King,https://kingcounty.gov/en/legacy/depts/dnrp/wtd/system.aspx,190
@@ -89,7 +89,7 @@ Sammamish,68150,47.60548401,-122.035553,puget,47.60058503,-122.4278881,South Kin
 SeaTac,31910,47.44525909,-122.2945328,puget,47.66173185,-122.4498202,West King,https://kingcounty.gov/en/legacy/depts/dnrp/wtd/system.aspx,73
 Seattle,762500,47.60322952,-122.3302765,puget,47.66173185,-122.4498202,West King,https://kingcounty.gov/en/legacy/depts/dnrp/wtd/system.aspx,73
 Sedro-Woolley,12590,48.5033226,-122.2354507,skagit,,,Skagit,https://www.sedro-woolley.gov/departments/wastewater/index.php,River
-Shelton,10430,47.21332932,-123.1060867,puget,47.20803405,-123.0715047,Shelton,https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwiMyPfo58mCAxWCCjQIHRzyB0sQFnoECBAQAQ&url=https%3A%2F%2Fapps.ecology.wa.gov%2Fparis%2FDownloadDocument.aspx%3Fid%3D16801&usg=AOvVaw1q3Qn8aj7KLSxVubfPNyqd&opi=89978449,12
+Shelton,10430,47.21332932,-123.1060867,puget,47.198359,-122.928725,Shelton,https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwiMyPfo58mCAxWCCjQIHRzyB0sQFnoECBAQAQ&url=https%3A%2F%2Fapps.ecology.wa.gov%2Fparis%2FDownloadDocument.aspx%3Fid%3D16801&usg=AOvVaw1q3Qn8aj7KLSxVubfPNyqd&opi=89978449,12
 Shoreline,60320,47.75598526,-122.3389282,puget,47.66173185,-122.4498202,West King,https://kingcounty.gov/en/legacy/depts/dnrp/wtd/system.aspx,73
 Snohomish,10200,47.91284943,-122.0930481,skagit,,,Snohomish river,https://www.snohomishwa.gov/693/Wastewater-Treatment-Plant,River
 Sumner,10800,47.20331192,-122.2406158,puget,47.27656111,-122.4388928,White River,https://sumnerwa.gov/sewer/,River
