@@ -39,8 +39,8 @@ Comox,14806,49.67666626,-124.9320984,evi_s,49.73333563,-124.8459148,Courtnay,htt
 Sidney,12318,48.64894104,-123.4003067,evi_s,48.64987519,-123.3662862,Saanich peninsula,https://eocp.ca/wp-content/uploads/2012/10/plants-Saanich.pdf,25
 View Royal,11575,48.45600891,-123.4410477,jdf,48.40098834,-123.3976111,McLoughlin Point,https://www.crd.bc.ca/project/wastewater-treatment-project,60
 Anacortes,17880,48.50544739,-122.6315002,skagit,48.52307544,-122.6093498,Anacortes,https://anacorteswa.gov/1406/Wastewater-Outfall-Relocation-Project,5
-Arlington,21260,48.19131088,-122.1264877,skagit,,,Stillaguamish River,https://www.arlingtonwa.gov/401/Wastewater,River
-Auburn,88750,47.30752182,-122.2257538,puget,,,Puyallup,https://www.auburnwa.gov/city_hall/public_works/sewer,River
+Arlington,21260,48.19131088,-122.1264877,skagit,48.167606,-122.40271,Stillaguamish River,https://www.arlingtonwa.gov/401/Wastewater,River
+Auburn,88750,47.30752182,-122.2257538,puget,47.266994,-122.43389,Puyallup,https://www.auburnwa.gov/city_hall/public_works/sewer,River
 Bainbridge Island,25060,47.64309311,-122.5273972,puget,47.62278,-122.489167,Bainbridge Island,https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwjxsLeYkbCCAxWQHjQIHbHlAJ4QFnoECBwQAQ&url=https%3A%2F%2Fapps.ecology.wa.gov%2Fparis%2FDownloadDocument.aspx%3Fid%3D211829&usg=AOvVaw3rzxVmIoLoqMRY3FjBq2Cp&opi=89978449,13
 Bellevue,153900,47.61370087,-122.1909332,puget,47.60058503,-122.4278881,South King,https://kingcounty.gov/en/legacy/depts/dnrp/wtd/system.aspx,190
 Bellingham,93910,48.75489807,-122.4781189,fraser,48.72386975,-122.5195463,Bellingham,https://cob.org/services/utilities/waste-water-treatment,18
@@ -53,7 +53,7 @@ Des Moines,33160,47.39163589,-122.3115616,puget,47.39605724,-122.3374214,Midway,
 DuPont,10180,47.09742355,-122.6305313,puget,47.19383625,-122.5866103,Chambers,https://www.piercecountywa.gov/7182/Chambers-Creek-Regional-WWTP-Facilities-,36
 Edgewood,13520,47.25004578,-122.2876282,puget,47.19383625,-122.5866103,Chambers,https://www.piercecountywa.gov/7182/Chambers-Creek-Regional-WWTP-Facilities-,36
 Edmonds,42980,47.8116188,-122.3766403,puget,47.81414502,-122.3899467,Edmonds,https://www.edmondswa.gov/government/departments/public_works_and_utilities/wastewater_treatment_plant,21
-Everett,113300,47.97912979,-122.1958923,skagit,,,Snohomish river,https://www.everettwa.gov/DocumentCenter/View/815/How-is-Wastewater-Treated-PDF,River
+Everett,113300,47.97912979,-122.1958923,skagit,47.994007,-122.236465,Snohomish river,https://www.everettwa.gov/DocumentCenter/View/815/How-is-Wastewater-Treated-PDF,River
 Federal Way,101800,47.31517792,-122.3346558,puget,47.33357774,-122.3827516,Lakota WWTP,https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwico9nnx8mCAxX8IjQIHUWWBnEQFnoECBMQAQ&url=https%3A%2F%2Fapps.ecology.wa.gov%2Fparis%2FDownloadDocument.aspx%3Fid%3D199872&usg=AOvVaw1fJXjr412RofiseeQroJKw&opi=89978449,56
 Ferndale,15970,48.84666824,-122.5911942,fraser,48.74633288,-122.5725675,Nooksack river,https://apps.ecology.wa.gov/publications/documents/0103067.pdf,River
 Fife,11130,47.23903656,-122.3816147,puget,47.19383625,-122.5866103,Chambers,https://www.piercecountywa.gov/7182/Chambers-Creek-Regional-WWTP-Facilities-,36
@@ -64,12 +64,12 @@ Kent,137900,47.38085175,-122.2374191,puget,47.60058503,-122.4278881,South King,h
 Kirkland,93570,47.67550659,-122.2033615,puget,47.60058503,-122.4278881,South King,https://kingcounty.gov/en/legacy/depts/dnrp/wtd/system.aspx,190
 Lacey,58180,47.04330063,-122.8231506,puget,47.06187182,-122.9054364,LOTT,https://www.lottcleanwater.org/wp-content/uploads/2022/12/budd-inlet-treatment-plant-guide.pdf,8
 Lake Forest Park,13620,47.76288986,-122.2918625,puget,47.66173185,-122.4498202,West King,https://kingcounty.gov/en/legacy/depts/dnrp/wtd/system.aspx,73
-Lake Stevens,40700,48.01499557,-122.0640106,skagit,,,Snohomish river,https://www.youtube.com/watch?v=whjEikBiOFo,River
+Lake Stevens,40700,48.01499557,-122.0640106,skagit,47.994007,-122.236465,Snohomish river,https://www.youtube.com/watch?v=whjEikBiOFo,River
 Lakewood,63800,47.16174698,-122.5205994,puget,47.19383625,-122.5866103,Chambers,https://www.piercecountywa.gov/7182/Chambers-Creek-Regional-WWTP-Facilities-,36
 Lynden,16150,48.9461441,-122.4487381,fraser,48.74633288,-122.5725675,Nooksack river,https://www.watershedco.com/city-of-lynden-wastewater-treatment-plant-outfall-replacement-project,River
 Lynnwood,38740,47.82395172,-122.2924271,puget,47.84800037,-122.3432868,Lynnwood,https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwijhdGe2MmCAxVCGDQIHSN2A2kQFnoECAkQAQ&url=https%3A%2F%2Fapps.ecology.wa.gov%2Fparis%2FDownloadDocument.aspx%3Fid%3D95444&usg=AOvVaw2wKWtESarKMxmBR9oSRaYk&opi=89978449,30
 Maple Valley,28920,47.39030457,-122.0454102,puget,47.60058503,-122.4278881,South King,https://kingcounty.gov/en/legacy/depts/dnrp/wtd/system.aspx,190
-Marysville,72380,48.05179977,-122.1731033,skagit,,,Snohomish river,https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwiXxLmf2cmCAxWWIDQIHRjZBUwQFnoECBcQAQ&url=https%3A%2F%2Fapps.ecology.wa.gov%2Fparis%2FDownloadDocument.aspx%3Fid%3D216603&usg=AOvVaw2lIlNkrISKddf5b0HtvTro&opi=89978449,River
+Marysville,72380,48.05179977,-122.1731033,skagit,47.994007,-122.236465,Snohomish river,https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwiXxLmf2cmCAxWWIDQIHRjZBUwQFnoECBcQAQ&url=https%3A%2F%2Fapps.ecology.wa.gov%2Fparis%2FDownloadDocument.aspx%3Fid%3D216603&usg=AOvVaw2lIlNkrISKddf5b0HtvTro&opi=89978449,River
 Mercer Island,25780,47.57458496,-122.2220688,puget,47.60058503,-122.4278881,South King,https://kingcounty.gov/en/legacy/depts/dnrp/wtd/system.aspx,190
 Mill Creek,21510,47.85502243,-122.2173996,skagit,47.7776872,-122.4400642,Brightwater,https://kingcounty.gov/en/legacy/depts/dnrp/wtd/system.aspx,182
 Mount Vernon,35500,48.41749954,-122.3361588,skagit,,,Skagit,https://apps.ecology.wa.gov/publications/documents/92e32.pdf,River
@@ -91,7 +91,7 @@ Seattle,762500,47.60322952,-122.3302765,puget,47.66173185,-122.4498202,West King
 Sedro-Woolley,12590,48.5033226,-122.2354507,skagit,,,Skagit,https://www.sedro-woolley.gov/departments/wastewater/index.php,River
 Shelton,10430,47.21332932,-123.1060867,puget,47.198359,-122.928725,Shelton,https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwiMyPfo58mCAxWCCjQIHRzyB0sQFnoECBAQAQ&url=https%3A%2F%2Fapps.ecology.wa.gov%2Fparis%2FDownloadDocument.aspx%3Fid%3D16801&usg=AOvVaw1q3Qn8aj7KLSxVubfPNyqd&opi=89978449,12
 Shoreline,60320,47.75598526,-122.3389282,puget,47.66173185,-122.4498202,West King,https://kingcounty.gov/en/legacy/depts/dnrp/wtd/system.aspx,73
-Snohomish,10200,47.91284943,-122.0930481,skagit,,,Snohomish river,https://www.snohomishwa.gov/693/Wastewater-Treatment-Plant,River
+Snohomish,10200,47.91284943,-122.0930481,skagit,47.994007,-122.236465,Snohomish river,https://www.snohomishwa.gov/693/Wastewater-Treatment-Plant,River
 Sumner,10800,47.20331192,-122.2406158,puget,47.27656111,-122.4388928,White River,https://sumnerwa.gov/sewer/,River
 Tacoma ,220800,47.25307846,-122.4415283,puget,47.27303493,-122.4299315,Tacoma,https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwivxc736cmCAxW5CjQIHdKtB9kQFnoECAwQAQ&url=https%3A%2F%2Fapps.ecology.wa.gov%2Fparis%2FDownloadDocument.aspx%3Fid%3D15950&usg=AOvVaw1h5l5bRwnq34kPgUq3Mwbl&opi=89978449,38
 Tukwila,22620,47.47637939,-122.2591171,puget,47.60058503,-122.4278881,South King,https://kingcounty.gov/en/legacy/depts/dnrp/wtd/system.aspx,190
