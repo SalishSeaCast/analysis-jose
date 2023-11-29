@@ -149,10 +149,12 @@ def Unbeaching(particle, fieldset, time):
         Pr = 1 - exp(-particle.dt/Ub)
         if ParcelsRandom.uniform(0,1)<Pr:
             particle.beached = 0
-    elif particle.beached == 3:
+    elif particle.beached == 0:
+        pass
+    else:
         particle.tau += particle.dt
 
 def DeleteParticle(particle, fieldset, time):
     """Delete particle from OceanParcels simulation to avoid run failure"""
     print(f'Particle {particle.id} lost !! [{particle.time}, {particle.depth}, {particle.lat}, {particle.lon}]')
-    particle.delete()
+    particle.beached = 6
