@@ -13,7 +13,7 @@ develop-eggs/
 dist/
 downloads/
 eggs/
-.DS_Store
+*.DS_Store
 .eggs/
 lib/
 lib64/
