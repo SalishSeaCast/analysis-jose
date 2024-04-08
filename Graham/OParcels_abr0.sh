@@ -1,16 +1,16 @@
 #!/bin/bash
 
-#SBATCH --job-name=Saving_tonet1
+#SBATCH --job-name=Parcel_Abril
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=32
 #SBATCH --mem=0
-#SBATCH --time=05:59:00
+#SBATCH --time=23:59:00
 #SBATCH --mail-user=jvalenti@eoas.ubc.ca
 #SBATCH --mail-type=ALL
 #SBATCH --account=rrg-allen
 # stdout and stderr file paths/names
-#SBATCH --output=/home/jvalenti/MOAD/analysis-jose/Graham/results/stdsaveout
-#SBATCH --error=/home/jvalenti/MOAD/analysis-jose/Graham/results/stdsaveerr
+#SBATCH --output=/scratch/jvalenti/OParcels_runs/Parcels_alpha/results/stdamarout
+#SBATCH --error=/scratch/jvalenti/OParcels_runs/Parcels_alpha/results/stdamarerr
 
 
 WORK_DIR="/home/jvalenti/MOAD/analysis-jose/Graham"
@@ -21,6 +21,6 @@ echo "working dir: $(pwd)"
 source /home/jvalenti/miniforge3/etc/profile.d/conda.sh
 conda activate /home/jvalenti/miniforge3/envs/Parcels_24
 
-echo "Starting save at $(date)"
-python3 -m zarr_tonetcdf alpha0_run_restart20190201_1n_20190422_1n.zarr
-echo "Ended save at $(date)"
+echo "Starting run at $(date)"
+mpirun -np 32 python3 -m Plastics_MCOP Parcels_alpha/Abr0.yml
+echo "Ended run at $(date)"
