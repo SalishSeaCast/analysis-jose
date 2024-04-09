@@ -9,11 +9,11 @@
 #SBATCH --mail-type=ALL
 #SBATCH --account=rrg-allen
 # stdout and stderr file paths/names
-#SBATCH --output=/scratch/OParcels_runs/MOAD/analysis-jose/Graham/results/stdR1out
-#SBATCH --error=/scratch/OParcels_runs/MOAD/analysis-jose/Graham/results/stdR1err
+#SBATCH --output=/home/jvalenti/MOAD/analysis-jose/Graham/results/stdR1out
+#SBATCH --error=/home/jvalenti/MOAD/analysis-jose/Graham/results/stdR1err
 
 
-WORK_DIR="/scratch/OParcels_runs/MOAD/analysis-jose/Graham" 
+WORK_DIR="/home/jvalenti/MOAD/analysis-jose/Graham" 
 
 cd ${WORK_DIR}
 echo "working dir: $(pwd)"

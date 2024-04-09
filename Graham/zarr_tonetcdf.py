@@ -6,7 +6,7 @@ import zarr
 
 def zarr_tonet(config):
     config =  str(config[0])
-    name =  config.split('_')[1]
+    name =  config.split('1n')[0]
     fname = '/scratch/jvalenti/OParcels_runs/Parcels_alpha/results/'+config
     print(fname)
     files = glob(path.join(fname, "proc*"))

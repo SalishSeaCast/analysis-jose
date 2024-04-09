@@ -9,8 +9,8 @@
 #SBATCH --mail-type=ALL
 #SBATCH --account=rrg-allen
 # stdout and stderr file paths/names
-#SBATCH --output=/scratch/jvalenti/OParcels_runs/Parcels_alpha/results/stdamarout
-#SBATCH --error=/scratch/jvalenti/OParcels_runs/Parcels_alpha/results/stdamarerr
+#SBATCH --output=/scratch/jvalenti/OParcels_runs/Parcels_alpha/results/stdabrout
+#SBATCH --error=/scratch/jvalenti/OParcels_runs/Parcels_alpha/results/stdabrerr
 
 
 WORK_DIR="/home/jvalenti/MOAD/analysis-jose/Graham"
@@ -22,5 +22,5 @@ source /home/jvalenti/miniforge3/etc/profile.d/conda.sh
 conda activate /home/jvalenti/miniforge3/envs/Parcels_24
 
 echo "Starting run at $(date)"
-mpirun -np 32 python3 -m Plastics_MCOP Parcels_alpha/Abr0.yml
+mpirun -np 32 python3 -m Plastics_MCOP yaml/Abr0.yml
 echo "Ended run at $(date)"
