@@ -11,7 +11,7 @@ from datetime import datetime, timedelta
 from parcels import FieldSet, Field, VectorField, ParticleSet, JITParticle, ParcelsRandom, Variable
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
-sys.path.append('/scratch/jvalenti/OParcels_runs/Source')
+sys.path.append('/home/jvalenti/MOAD/analysis-jose/Graham/Source')
 from OP_functions import *
 
 def simple_partition_function(coords, mpi_size=1):

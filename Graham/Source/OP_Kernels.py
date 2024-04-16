@@ -44,7 +44,7 @@ def Advection(particle, fieldset, time):
         particle_dlat = (v1 + 2*v2 + 2*v3 + v4) / 6. * particle.dt
         particle_ddepth = particle.wa + VVL
         if particle_ddepth + particle.depth < 0:
-            particle_ddepth = - particle_ddepth
+            particle_ddepth = -(2*particle.depth + particle_ddepth)
 
 def Stokes_drift(particle, fieldset, time):
     """Apply Stokes drift calculated by WW3"""
@@ -143,8 +143,8 @@ def Displacement(particle,fieldset,time):
         #Apply turbulent mixing.
         if dzs + particle_ddepth + particle.depth > td: #crossed bottom in dt (Reflect)
             particle_ddepth = 2*td - (dzs + particle_ddepth + 2*particle.depth) #bounce on boundary/ no energy loss
-        elif dzs + particle.depth < 0:
-            particle_ddepth = -(dzs + 2*particle.depth) #Well mixed boundary layer
+        elif dzs + particle.depth + particle_ddepth < 0:
+            particle_ddepth = -(dzs + 2*particle.depth+ particle_ddepth) #Well mixed boundary layer
         else:
             particle_ddepth += dzs #apply mixing  
         #Apply horizontal mixing (beaching for particles pushed through coast) 
@@ -191,5 +191,5 @@ def CheckOutOfBounds(particle, fieldset, time):
         
 def KeepInOcean(particle, fieldset, time):
     if particle.state == StatusCode.ErrorThroughSurface:
-        particle_ddepth = 0.0
+        particle.depth = 0.0
         particle.state = StatusCode.Success
