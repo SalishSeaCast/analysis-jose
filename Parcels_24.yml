@@ -14,5 +14,7 @@ dependencies:
   - xarray
   - yaml
   - zarr
+  - mpich
+  - mpi4py
 
 prefix: /home/jvalenti/conda_envs/Parcels_24
