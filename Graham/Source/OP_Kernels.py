@@ -82,7 +82,7 @@ def Buoyancy(particle, fieldset, time):
         particle.ws = dws
 
 def export(particle,fieldset,time):
-    if particle.lat<48.796731 and particle.lon < -124.657586:
+    if particle.lat<48.7 and particle.lon < -124.66:
         particle.status = 5
 
 def turb_mix(particle,fieldset,time):
