@@ -16,6 +16,20 @@ from glob import glob
 sys.path.append('/home/jvalenti/MOAD/analysis-jose/Graham/Source')
 from OP_functions import *
 
+def zarr_tonet(fileoutname):
+    from os import path
+    name =  fileoutname.split('_')[1]
+    fname = '/scratch/jvalenti/OParcels_runs/Parcels_alpha/results/'+fileoutname
+    print(fname)
+    files = glob(path.join(fname, "proc*"))
+    ds = xr.concat(
+        [xr.open_zarr(f) for f in files],
+        dim="trajectory",
+        compat="no_conflicts",
+        coords="minimal",
+    )
+    return ds
+
 def simple_partition_function(coords, mpi_size=1):
     """A very simple partition function
     that assigns particles to processors
@@ -144,19 +158,6 @@ def Plastics_OP(config,restart=0):
     ds = zarr_tonet(outfile)
     ds.to_netcdf('/home/jvalenti/projects/rrg-allen/jvalenti/'+name+'.nc')
 
-def zarr_tonet(fileoutname):
-    from os import path
-    name =  fileoutname.split('_')[1]
-    fname = '/scratch/jvalenti/OParcels_runs/Parcels_alpha/results/'+fileoutname
-    print(fname)
-    files = glob(path.join(fname, "proc*"))
-    ds = xr.concat(
-        [xr.open_zarr(f) for f in files],
-        dim="trajectory",
-        compat="no_conflicts",
-        coords="minimal",
-    )
-    return ds
 
 def get_timestamps(start,length):
     timestamps=[]

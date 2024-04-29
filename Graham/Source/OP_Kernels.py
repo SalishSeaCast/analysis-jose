@@ -15,7 +15,7 @@ def Advection(particle, fieldset, time):
         #SOME CONSTANTS NEEDED LATER 
         deg2met = 111319.5
         latT = 0.6495 #Average value for SoG #cos(particle.lat*(math.pi/180))
-        particle.tau += particle.dt #track age particle
+        #particle.tau += particle.dt #track age particle
         # particle_dlon = 0 #initialize displacement lon
         # particle_dlat = 0 #initialize displacement lat
         # particle_ddepth = 0 #initialize displacement depth
@@ -24,7 +24,7 @@ def Advection(particle, fieldset, time):
         td = fieldset.totaldepth[time, particle.depth, particle.lat, particle.lon]#Total_depth
         particle.fact = (1+ssh/td)
         VVL = (sshn-ssh)*particle.depth/td
-        particle.cellvol = fieldset.volume[time, 0, particle.lat, particle.lon]
+        #particle.cellvol = fieldset.volume[time, 0, particle.lat, particle.lon]
         (u1, v1, w1) = fieldset.UVW[time, particle.depth, particle.lat, particle.lon]
         lon1 = particle.lon + u1*.5*particle.dt
         lat1 = particle.lat + v1*.5*particle.dt
@@ -49,9 +49,9 @@ def Advection(particle, fieldset, time):
 def Stokes_drift(particle, fieldset, time):
     """Apply Stokes drift calculated by WW3"""
     if particle.status == 1:
-        lat = particle.lat
+        #lat = particle.lat
         if particle.depth < 5:
-            if lat > 48 and lat < 51: #Check that particle is inside WW3 data field
+            if particle.lat > 48 and particle.lat < 51: #Check that particle is inside WW3 data field
                 (us0, vs0, wl) = fieldset.stokes[time, 0, particle.lat, particle.lon]
                 k = (2*math.pi)/wl
                 us = (us0*exp(-math.fabs(2*k*particle.depth)))/(deg2met*latT)
@@ -73,7 +73,7 @@ def Buoyancy(particle, fieldset, time):
         d = particle.diameter # particle diameter
         l = particle.length # particle length
         g = 9.81 #Gravity
-        pro = 1350
+        pro = 1350 #average value density PET
         t = fieldset.votemper[time, deps, particle.lat, particle.lon] #Loading temperature from SSC
         ro = fieldset.sigma_theta[time, deps, particle.lat, particle.lon] #Loading density sw from SSC
         visc = 4.2844e-5 + 1/(0.157*((t + 64.993)**2)-91.296) #kinematic viscosity for Temp of SSC
@@ -115,12 +115,12 @@ def turb_mix(particle,fieldset,time):
         Sbh = 1
         Swh = 1
         if particle.depth < 5:
-            Sbh = fieldset.vosaline[time, 0.51, d_randomy, d_randomx] #Check if particles reach coast at surface (Salinity = 0)
+            Sbh = fieldset.sigma_theta[time, 0.51, d_randomy, d_randomx] #Check if particles reach coast at surface (SW Density = 0)
             if Sbh==0:
                 print('particle beached')
                 particle.status = 2 
         else:
-            Swh = fieldset.vosaline[time, particle.depth, d_randomy, d_randomx]
+            Swh = fieldset.sigma_theta[time, particle.depth, d_randomy, d_randomx]
             if Swh == 0:
                 print('particle hit wall') #Do not cross wall Keep partilce in place
                 particle.status = -1
@@ -136,7 +136,7 @@ def Displacement(particle,fieldset,time):
             if ParcelsRandom.uniform(0,1) > particle.alpha:
                 particle.status = 1
         elif particle.depth + dws + particle_ddepth < 0: #particle reaches the surface 
-            particle_ddepth = - particle.depth #! check if loosing too many particles through surface
+            particle_ddepth = - particle.depth #! check if loosing too many particles through surface leaving them at 0
         else:
             particle_ddepth += dws
 
@@ -158,15 +158,15 @@ def Displacement(particle,fieldset,time):
 def Unbeaching(particle, fieldset, time):
     '''Resuspension prob'''  
     if particle.status == 2: 
-        particle.tau += particle.dt
+        #particle.tau += particle.dt
         # if particle.tau > particle.dtmax:
         #     particle.delete()       
         Ub = particle.Ub * 86400  #timescale unbeaching in seconds
         Pr = 1 - exp(-particle.dt/Ub)
         if ParcelsRandom.uniform(0,1)<Pr:
             particle.status = 1
-    elif particle.status > 2:
-        particle.tau += particle.dt
+    #elif particle.status > 2:
+        #particle.tau += particle.dt
         # if particle.status == 3: 
         #     if ParcelsRandom.uniform(0,1) < particle.alpha:
         #         particle.status = 1
@@ -183,7 +183,7 @@ def CheckOutOfBounds(particle, fieldset, time):
         elif Swh ==0:
             print('particle hit wall') #Do not cross wall Keep partilce in place
             particle.state = StatusCode.Success
-            particle.status = -1 #crossed the wall
+            #particle.status = -1 #crossed the wall
         else:
             print('lost Particle')
             particle.status = 10 #lost
