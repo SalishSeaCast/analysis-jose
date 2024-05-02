@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --job-name=Saving_tonet2
+#SBATCH --job-name=Saving_tonet3
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=32
 #SBATCH --mem=0
@@ -22,5 +22,5 @@ source /home/jvalenti/miniforge3/etc/profile.d/conda.sh
 conda activate /home/jvalenti/miniforge3/envs/Parcels_24
 
 echo "Starting save at $(date)"
-python3 -m zarr_tonetcdf Run_Junio20190601_1n_20190629_1n.zarr
+python3 -m zarr_tonetcdf Run_Julio20190701_1n_20190729_1n.zarr
 echo "Ended save at $(date)"
