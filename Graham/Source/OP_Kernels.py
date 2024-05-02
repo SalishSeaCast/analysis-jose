@@ -82,8 +82,18 @@ def Buoyancy(particle, fieldset, time):
         particle.ws = dws
 
 def export(particle,fieldset,time):
-    if particle.lat<48.7 and particle.lon < -124.66:
-        particle.status = 5
+    if particle.status==1:
+        test =  -particle.lat*0.84120957 -83.98027258 #Checking if particle gets too close to boundary JdF
+        test2 = particle.lon*0.35157547 +90.26497859 #checking southern boundary model
+        if particle.lon<test:
+            particle.status = 5
+        if particle.lat<test2:
+            if particle.depth < 5:
+                particle.status =2 #beached
+                #print('particle beached')
+            else:
+                particle_dlat += 0.1*particle.dt/deg2met #Northward velocity to avoid particles from getting stuck on the wall
+        
 
 def turb_mix(particle,fieldset,time):
     """Vertical mixing"""
@@ -117,12 +127,12 @@ def turb_mix(particle,fieldset,time):
         if particle.depth < 5:
             Sbh = fieldset.sigma_theta[time, 0.51, d_randomy, d_randomx] #Check if particles reach coast at surface (SW Density = 0)
             if Sbh==0:
-                print('particle beached')
+                #print('particle beached')
                 particle.status = 2 
         else:
             Swh = fieldset.sigma_theta[time, particle.depth, d_randomy, d_randomx]
             if Swh == 0:
-                print('particle hit wall') #Do not cross wall Keep partilce in place
+                #print('particle hit wall') #Do not cross wall Keep partilce in place
                 particle.status = -1
 
     
