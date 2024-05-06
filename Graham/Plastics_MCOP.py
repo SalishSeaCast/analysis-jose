@@ -28,7 +28,7 @@ def zarr_tonet(fileoutname):
         compat="no_conflicts",
         coords="minimal",
     )
-    return ds
+    return ds,name
 
 def simple_partition_function(coords, mpi_size=1):
     """A very simple partition function
@@ -155,7 +155,7 @@ def Plastics_OP(config,restart=0):
         output_file=pset.ParticleFile(name=outfile, outputdt=timedelta(hours=odt),chunks=(int(1e4), 1)))
 
 
-    ds = zarr_tonet(outfile)
+    ds,name = zarr_tonet(outfile)
     ds.to_netcdf('/home/jvalenti/projects/rrg-allen/jvalenti/'+name+'.nc')
 
 

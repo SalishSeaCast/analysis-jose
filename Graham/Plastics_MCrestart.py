@@ -129,10 +129,10 @@ def Restart_OP(config):
         runtime=duration, 
         dt=dt,
         output_file=pset.ParticleFile(name=outfile, outputdt=timedelta(hours=odt),chunks=(int(1e4), 1)))
-
+    
     from glob import glob
     from os import path
-
+    names =  outfile.split('_')[1]
     files = glob(path.join(outfile, "proc*"))
     ds = xr.concat(
         [xr.open_zarr(f) for f in files],
@@ -140,7 +140,7 @@ def Restart_OP(config):
         compat="no_conflicts",
         coords="minimal",
     )
-    ds.to_netcdf('/home/jvalenti/projects/rrg-allen/jvalenti/restart'+name+'.nc')
+    ds.to_netcdf('/home/jvalenti/projects/rrg-allen/jvalenti/restart'+names+'.nc')
 
 
 def get_timestamps(start,length):
