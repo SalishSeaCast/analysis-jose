@@ -19,8 +19,8 @@ from OP_functions import *
 def zarr_tonet(fileoutname):
     from os import path
     name =  fileoutname.split('_')[1]
-    fname = '/scratch/jvalenti/OParcels_runs/Parcels_alpha/results/'+fileoutname
-    print(fname)
+    fname = fileoutname
+    print(fileoutname)
     files = glob(path.join(fname, "proc*"))
     ds = xr.concat(
         [xr.open_zarr(f) for f in files],
