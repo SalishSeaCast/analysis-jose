@@ -22,5 +22,5 @@ source /home/jvalenti/miniforge3/etc/profile.d/conda.sh
 conda activate /home/jvalenti/miniforge3/envs/Parcels_24
 
 echo "Starting save at $(date)"
-python3 -m zarr_tonetcdf Runs_alpha0220190101_1n_20190201_1n.zarr
+python3 -m zarr_tonetcdf alpha05_run_restart20190201_1n_20190422_1n.zarr/
 echo "Ended save at $(date)"

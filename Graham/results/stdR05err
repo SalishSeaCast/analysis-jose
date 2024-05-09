@@ -1,0 +1,1421 @@
+/local/var/spool/slurmd/job20309465/slurm_script: line 18: cd: /scratch/OParcels_runs/MOAD/analysis-jose/Graham: No such file or directory
+Traceback (most recent call last):
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 211, in _acquire_with_cache_info
+    file = self._cache[self._key]
+           ~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/lru_cache.py", line 56, in __getitem__
+    value = self._cache[key]
+            ~~~~~~~~~~~^^^^^
+KeyError: [<class 'netCDF4._netCDF4.Dataset'>, ('/home/jvalenti/projects/rrg-allen/jvalenti/restartruns/Parcels.nc',), 'a', (('clobber', True), ('diskless', False), ('format', 'NETCDF4'), ('persist', False)), 'e993db0c-2280-4f81-a9f8-11a6db6135ab']
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 158, in <module>
+    Restart_OP(config)
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 143, in Restart_OP
+    ds.to_netcdf('/home/jvalenti/projects/rrg-allen/jvalenti/restart'+names+'.nc')
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/core/dataset.py", line 2310, in to_netcdf
+    return to_netcdf(  # type: ignore  # mypy cannot resolve the overloads:(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/api.py", line 1298, in to_netcdf
+    store = store_open(target, mode, format, group, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 400, in open
+    return cls(manager, group=group, mode=mode, lock=lock, autoclose=autoclose)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 347, in __init__
+    self.format = self.ds.data_model
+                  ^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 409, in ds
+    return self._acquire()
+           ^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 403, in _acquire
+    with self._manager.acquire_context(needs_lock) as root:
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 199, in acquire_context
+    file, cached = self._acquire_with_cache_info(needs_lock)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 217, in _acquire_with_cache_info
+    file = self._opener(*self._args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "src/netCDF4/_netCDF4.pyx", line 2469, in netCDF4._netCDF4.Dataset.__init__
+  File "src/netCDF4/_netCDF4.pyx", line 2028, in netCDF4._netCDF4._ensure_nc_success
+PermissionError: [Errno 13] Permission denied: '/home/jvalenti/projects/rrg-allen/jvalenti/restartruns/Parcels.nc'
+Traceback (most recent call last):
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 211, in _acquire_with_cache_info
+    file = self._cache[self._key]
+           ~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/lru_cache.py", line 56, in __getitem__
+    value = self._cache[key]
+            ~~~~~~~~~~~^^^^^
+KeyError: [<class 'netCDF4._netCDF4.Dataset'>, ('/home/jvalenti/projects/rrg-allen/jvalenti/restartruns/Parcels.nc',), 'a', (('clobber', True), ('diskless', False), ('format', 'NETCDF4'), ('persist', False)), '85941c18-0bb4-4e61-af6a-b9c068cb6bcc']
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 158, in <module>
+    Restart_OP(config)
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 143, in Restart_OP
+    ds.to_netcdf('/home/jvalenti/projects/rrg-allen/jvalenti/restart'+names+'.nc')
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/core/dataset.py", line 2310, in to_netcdf
+    return to_netcdf(  # type: ignore  # mypy cannot resolve the overloads:(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/api.py", line 1298, in to_netcdf
+    store = store_open(target, mode, format, group, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 400, in open
+    return cls(manager, group=group, mode=mode, lock=lock, autoclose=autoclose)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 347, in __init__
+    self.format = self.ds.data_model
+                  ^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 409, in ds
+    return self._acquire()
+           ^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 403, in _acquire
+    with self._manager.acquire_context(needs_lock) as root:
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 199, in acquire_context
+    file, cached = self._acquire_with_cache_info(needs_lock)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 217, in _acquire_with_cache_info
+    file = self._opener(*self._args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "src/netCDF4/_netCDF4.pyx", line 2469, in netCDF4._netCDF4.Dataset.__init__
+  File "src/netCDF4/_netCDF4.pyx", line 2028, in netCDF4._netCDF4._ensure_nc_success
+PermissionError: [Errno 13] Permission denied: '/home/jvalenti/projects/rrg-allen/jvalenti/restartruns/Parcels.nc'
+Traceback (most recent call last):
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 211, in _acquire_with_cache_info
+    file = self._cache[self._key]
+           ~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/lru_cache.py", line 56, in __getitem__
+    value = self._cache[key]
+            ~~~~~~~~~~~^^^^^
+KeyError: [<class 'netCDF4._netCDF4.Dataset'>, ('/home/jvalenti/projects/rrg-allen/jvalenti/restartruns/Parcels.nc',), 'a', (('clobber', True), ('diskless', False), ('format', 'NETCDF4'), ('persist', False)), 'a50a8268-08ee-42fa-a440-1a62f1ab3b89']
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 158, in <module>
+    Restart_OP(config)
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 143, in Restart_OP
+    ds.to_netcdf('/home/jvalenti/projects/rrg-allen/jvalenti/restart'+names+'.nc')
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/core/dataset.py", line 2310, in to_netcdf
+    return to_netcdf(  # type: ignore  # mypy cannot resolve the overloads:(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/api.py", line 1298, in to_netcdf
+    store = store_open(target, mode, format, group, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 400, in open
+    return cls(manager, group=group, mode=mode, lock=lock, autoclose=autoclose)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 347, in __init__
+    self.format = self.ds.data_model
+                  ^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 409, in ds
+    return self._acquire()
+           ^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 403, in _acquire
+    with self._manager.acquire_context(needs_lock) as root:
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 199, in acquire_context
+    file, cached = self._acquire_with_cache_info(needs_lock)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 217, in _acquire_with_cache_info
+    file = self._opener(*self._args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "src/netCDF4/_netCDF4.pyx", line 2469, in netCDF4._netCDF4.Dataset.__init__
+  File "src/netCDF4/_netCDF4.pyx", line 2028, in netCDF4._netCDF4._ensure_nc_success
+PermissionError: [Errno 13] Permission denied: '/home/jvalenti/projects/rrg-allen/jvalenti/restartruns/Parcels.nc'
+Traceback (most recent call last):
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 211, in _acquire_with_cache_info
+    file = self._cache[self._key]
+           ~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/lru_cache.py", line 56, in __getitem__
+    value = self._cache[key]
+            ~~~~~~~~~~~^^^^^
+KeyError: [<class 'netCDF4._netCDF4.Dataset'>, ('/home/jvalenti/projects/rrg-allen/jvalenti/restartruns/Parcels.nc',), 'a', (('clobber', True), ('diskless', False), ('format', 'NETCDF4'), ('persist', False)), 'af2de2d1-9703-475f-9afc-a73e949e52ae']
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 158, in <module>
+    Restart_OP(config)
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 143, in Restart_OP
+    ds.to_netcdf('/home/jvalenti/projects/rrg-allen/jvalenti/restart'+names+'.nc')
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/core/dataset.py", line 2310, in to_netcdf
+    return to_netcdf(  # type: ignore  # mypy cannot resolve the overloads:(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/api.py", line 1298, in to_netcdf
+    store = store_open(target, mode, format, group, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 400, in open
+    return cls(manager, group=group, mode=mode, lock=lock, autoclose=autoclose)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 347, in __init__
+    self.format = self.ds.data_model
+                  ^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 409, in ds
+    return self._acquire()
+           ^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 403, in _acquire
+    with self._manager.acquire_context(needs_lock) as root:
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 199, in acquire_context
+    file, cached = self._acquire_with_cache_info(needs_lock)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 217, in _acquire_with_cache_info
+    file = self._opener(*self._args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "src/netCDF4/_netCDF4.pyx", line 2469, in netCDF4._netCDF4.Dataset.__init__
+  File "src/netCDF4/_netCDF4.pyx", line 2028, in netCDF4._netCDF4._ensure_nc_success
+PermissionError: [Errno 13] Permission denied: '/home/jvalenti/projects/rrg-allen/jvalenti/restartruns/Parcels.nc'
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 158, in <module>
+    Restart_OP(config)
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 138, in Restart_OP
+    [xr.open_zarr(f) for f in files],
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 138, in <listcomp>
+    [xr.open_zarr(f) for f in files],
+     ^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/zarr.py", line 944, in open_zarr
+    ds = open_dataset(
+         ^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/api.py", line 572, in open_dataset
+    backend_ds = backend.open_dataset(
+                 ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/zarr.py", line 1026, in open_dataset
+    ds = store_entrypoint.open_dataset(
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/store.py", line 58, in open_dataset
+    ds = Dataset(vars, attrs=attrs)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/core/dataset.py", line 701, in __init__
+    variables, coord_names, dims, indexes, _ = merge_data_and_coords(
+                                               ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/core/dataset.py", line 430, in merge_data_and_coords
+    return merge_core(
+           ^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/core/merge.py", line 724, in merge_core
+    dims = calculate_dimensions(variables)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/core/variable.py", line 3008, in calculate_dimensions
+    raise ValueError(
+ValueError: conflicting sizes for dimension 'obs': length 155 on 'lat' and length 154 on {'trajectory': 'Ub', 'obs': 'Ub'}
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 158, in <module>
+    Restart_OP(config)
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 138, in Restart_OP
+    [xr.open_zarr(f) for f in files],
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 138, in <listcomp>
+    [xr.open_zarr(f) for f in files],
+     ^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/zarr.py", line 944, in open_zarr
+    ds = open_dataset(
+         ^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/api.py", line 572, in open_dataset
+    backend_ds = backend.open_dataset(
+                 ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/zarr.py", line 1026, in open_dataset
+    ds = store_entrypoint.open_dataset(
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/store.py", line 58, in open_dataset
+    ds = Dataset(vars, attrs=attrs)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/core/dataset.py", line 701, in __init__
+    variables, coord_names, dims, indexes, _ = merge_data_and_coords(
+                                               ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/core/dataset.py", line 430, in merge_data_and_coords
+    return merge_core(
+           ^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/core/merge.py", line 724, in merge_core
+    dims = calculate_dimensions(variables)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/core/variable.py", line 3008, in calculate_dimensions
+    raise ValueError(
+ValueError: conflicting sizes for dimension 'obs': length 156 on 'lat' and length 155 on {'trajectory': 'Ub', 'obs': 'Ub'}
+Traceback (most recent call last):
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 211, in _acquire_with_cache_info
+    file = self._cache[self._key]
+           ~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/lru_cache.py", line 56, in __getitem__
+    value = self._cache[key]
+            ~~~~~~~~~~~^^^^^
+KeyError: [<class 'netCDF4._netCDF4.Dataset'>, ('/home/jvalenti/projects/rrg-allen/jvalenti/restartruns/Parcels.nc',), 'a', (('clobber', True), ('diskless', False), ('format', 'NETCDF4'), ('persist', False)), 'eaba11dc-43af-464f-ae3e-faec1de5287a']
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 158, in <module>
+    Restart_OP(config)
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 143, in Restart_OP
+    ds.to_netcdf('/home/jvalenti/projects/rrg-allen/jvalenti/restart'+names+'.nc')
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/core/dataset.py", line 2310, in to_netcdf
+    return to_netcdf(  # type: ignore  # mypy cannot resolve the overloads:(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/api.py", line 1298, in to_netcdf
+    store = store_open(target, mode, format, group, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 400, in open
+    return cls(manager, group=group, mode=mode, lock=lock, autoclose=autoclose)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 347, in __init__
+    self.format = self.ds.data_model
+                  ^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 409, in ds
+    return self._acquire()
+           ^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 403, in _acquire
+    with self._manager.acquire_context(needs_lock) as root:
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 199, in acquire_context
+    file, cached = self._acquire_with_cache_info(needs_lock)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 217, in _acquire_with_cache_info
+    file = self._opener(*self._args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "src/netCDF4/_netCDF4.pyx", line 2469, in netCDF4._netCDF4.Dataset.__init__
+  File "src/netCDF4/_netCDF4.pyx", line 2028, in netCDF4._netCDF4._ensure_nc_success
+PermissionError: [Errno 13] Permission denied: '/home/jvalenti/projects/rrg-allen/jvalenti/restartruns/Parcels.nc'
+Traceback (most recent call last):
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 211, in _acquire_with_cache_info
+    file = self._cache[self._key]
+           ~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/lru_cache.py", line 56, in __getitem__
+    value = self._cache[key]
+            ~~~~~~~~~~~^^^^^
+KeyError: [<class 'netCDF4._netCDF4.Dataset'>, ('/home/jvalenti/projects/rrg-allen/jvalenti/restartruns/Parcels.nc',), 'a', (('clobber', True), ('diskless', False), ('format', 'NETCDF4'), ('persist', False)), 'd0f514dc-c47d-42b6-8d37-b4c78db2a726']
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 158, in <module>
+    Restart_OP(config)
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 143, in Restart_OP
+    ds.to_netcdf('/home/jvalenti/projects/rrg-allen/jvalenti/restart'+names+'.nc')
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/core/dataset.py", line 2310, in to_netcdf
+    return to_netcdf(  # type: ignore  # mypy cannot resolve the overloads:(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/api.py", line 1298, in to_netcdf
+    store = store_open(target, mode, format, group, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 400, in open
+    return cls(manager, group=group, mode=mode, lock=lock, autoclose=autoclose)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 347, in __init__
+    self.format = self.ds.data_model
+                  ^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 409, in ds
+    return self._acquire()
+           ^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 403, in _acquire
+    with self._manager.acquire_context(needs_lock) as root:
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 199, in acquire_context
+    file, cached = self._acquire_with_cache_info(needs_lock)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 217, in _acquire_with_cache_info
+    file = self._opener(*self._args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "src/netCDF4/_netCDF4.pyx", line 2469, in netCDF4._netCDF4.Dataset.__init__
+  File "src/netCDF4/_netCDF4.pyx", line 2028, in netCDF4._netCDF4._ensure_nc_success
+PermissionError: [Errno 13] Permission denied: '/home/jvalenti/projects/rrg-allen/jvalenti/restartruns/Parcels.nc'
+Traceback (most recent call last):
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 211, in _acquire_with_cache_info
+    file = self._cache[self._key]
+           ~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/lru_cache.py", line 56, in __getitem__
+    value = self._cache[key]
+            ~~~~~~~~~~~^^^^^
+KeyError: [<class 'netCDF4._netCDF4.Dataset'>, ('/home/jvalenti/projects/rrg-allen/jvalenti/restartruns/Parcels.nc',), 'a', (('clobber', True), ('diskless', False), ('format', 'NETCDF4'), ('persist', False)), 'dbf5cc98-57d4-4b4b-8806-e2c82eecb636']
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 158, in <module>
+    Restart_OP(config)
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 143, in Restart_OP
+    ds.to_netcdf('/home/jvalenti/projects/rrg-allen/jvalenti/restart'+names+'.nc')
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/core/dataset.py", line 2310, in to_netcdf
+    return to_netcdf(  # type: ignore  # mypy cannot resolve the overloads:(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/api.py", line 1298, in to_netcdf
+    store = store_open(target, mode, format, group, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 400, in open
+    return cls(manager, group=group, mode=mode, lock=lock, autoclose=autoclose)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 347, in __init__
+    self.format = self.ds.data_model
+                  ^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 409, in ds
+    return self._acquire()
+           ^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 403, in _acquire
+    with self._manager.acquire_context(needs_lock) as root:
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 199, in acquire_context
+    file, cached = self._acquire_with_cache_info(needs_lock)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 217, in _acquire_with_cache_info
+    file = self._opener(*self._args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "src/netCDF4/_netCDF4.pyx", line 2469, in netCDF4._netCDF4.Dataset.__init__
+  File "src/netCDF4/_netCDF4.pyx", line 2028, in netCDF4._netCDF4._ensure_nc_success
+PermissionError: [Errno 13] Permission denied: '/home/jvalenti/projects/rrg-allen/jvalenti/restartruns/Parcels.nc'
+Traceback (most recent call last):
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 211, in _acquire_with_cache_info
+    file = self._cache[self._key]
+           ~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/lru_cache.py", line 56, in __getitem__
+    value = self._cache[key]
+            ~~~~~~~~~~~^^^^^
+KeyError: [<class 'netCDF4._netCDF4.Dataset'>, ('/home/jvalenti/projects/rrg-allen/jvalenti/restartruns/Parcels.nc',), 'a', (('clobber', True), ('diskless', False), ('format', 'NETCDF4'), ('persist', False)), 'e9342e8e-8b75-4b01-acaf-c4bfb99c1ae9']
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 158, in <module>
+    Restart_OP(config)
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 143, in Restart_OP
+    ds.to_netcdf('/home/jvalenti/projects/rrg-allen/jvalenti/restart'+names+'.nc')
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/core/dataset.py", line 2310, in to_netcdf
+    return to_netcdf(  # type: ignore  # mypy cannot resolve the overloads:(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/api.py", line 1298, in to_netcdf
+    store = store_open(target, mode, format, group, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 400, in open
+    return cls(manager, group=group, mode=mode, lock=lock, autoclose=autoclose)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 347, in __init__
+    self.format = self.ds.data_model
+                  ^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 409, in ds
+    return self._acquire()
+           ^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 403, in _acquire
+    with self._manager.acquire_context(needs_lock) as root:
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 199, in acquire_context
+    file, cached = self._acquire_with_cache_info(needs_lock)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 217, in _acquire_with_cache_info
+    file = self._opener(*self._args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "src/netCDF4/_netCDF4.pyx", line 2469, in netCDF4._netCDF4.Dataset.__init__
+  File "src/netCDF4/_netCDF4.pyx", line 2028, in netCDF4._netCDF4._ensure_nc_success
+PermissionError: [Errno 13] Permission denied: '/home/jvalenti/projects/rrg-allen/jvalenti/restartruns/Parcels.nc'
+Traceback (most recent call last):
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 211, in _acquire_with_cache_info
+    file = self._cache[self._key]
+           ~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/lru_cache.py", line 56, in __getitem__
+    value = self._cache[key]
+            ~~~~~~~~~~~^^^^^
+KeyError: [<class 'netCDF4._netCDF4.Dataset'>, ('/home/jvalenti/projects/rrg-allen/jvalenti/restartruns/Parcels.nc',), 'a', (('clobber', True), ('diskless', False), ('format', 'NETCDF4'), ('persist', False)), 'bc39bb61-f11c-4af5-9593-ccae2cec1753']
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 158, in <module>
+    Restart_OP(config)
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 143, in Restart_OP
+    ds.to_netcdf('/home/jvalenti/projects/rrg-allen/jvalenti/restart'+names+'.nc')
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/core/dataset.py", line 2310, in to_netcdf
+    return to_netcdf(  # type: ignore  # mypy cannot resolve the overloads:(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/api.py", line 1298, in to_netcdf
+    store = store_open(target, mode, format, group, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 400, in open
+    return cls(manager, group=group, mode=mode, lock=lock, autoclose=autoclose)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 347, in __init__
+    self.format = self.ds.data_model
+                  ^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 409, in ds
+    return self._acquire()
+           ^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 403, in _acquire
+    with self._manager.acquire_context(needs_lock) as root:
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 199, in acquire_context
+    file, cached = self._acquire_with_cache_info(needs_lock)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 217, in _acquire_with_cache_info
+    file = self._opener(*self._args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "src/netCDF4/_netCDF4.pyx", line 2469, in netCDF4._netCDF4.Dataset.__init__
+  File "src/netCDF4/_netCDF4.pyx", line 2028, in netCDF4._netCDF4._ensure_nc_success
+PermissionError: [Errno 13] Permission denied: '/home/jvalenti/projects/rrg-allen/jvalenti/restartruns/Parcels.nc'
+Traceback (most recent call last):
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 211, in _acquire_with_cache_info
+    file = self._cache[self._key]
+           ~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/lru_cache.py", line 56, in __getitem__
+    value = self._cache[key]
+            ~~~~~~~~~~~^^^^^
+KeyError: [<class 'netCDF4._netCDF4.Dataset'>, ('/home/jvalenti/projects/rrg-allen/jvalenti/restartruns/Parcels.nc',), 'a', (('clobber', True), ('diskless', False), ('format', 'NETCDF4'), ('persist', False)), '1617c2e4-1f85-4ac1-9bc0-b97727707350']
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 158, in <module>
+    Restart_OP(config)
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 143, in Restart_OP
+    ds.to_netcdf('/home/jvalenti/projects/rrg-allen/jvalenti/restart'+names+'.nc')
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/core/dataset.py", line 2310, in to_netcdf
+    return to_netcdf(  # type: ignore  # mypy cannot resolve the overloads:(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/api.py", line 1298, in to_netcdf
+    store = store_open(target, mode, format, group, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 400, in open
+    return cls(manager, group=group, mode=mode, lock=lock, autoclose=autoclose)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 347, in __init__
+    self.format = self.ds.data_model
+                  ^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 409, in ds
+    return self._acquire()
+           ^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 403, in _acquire
+    with self._manager.acquire_context(needs_lock) as root:
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 199, in acquire_context
+    file, cached = self._acquire_with_cache_info(needs_lock)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 217, in _acquire_with_cache_info
+    file = self._opener(*self._args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "src/netCDF4/_netCDF4.pyx", line 2469, in netCDF4._netCDF4.Dataset.__init__
+  File "src/netCDF4/_netCDF4.pyx", line 2028, in netCDF4._netCDF4._ensure_nc_success
+PermissionError: [Errno 13] Permission denied: '/home/jvalenti/projects/rrg-allen/jvalenti/restartruns/Parcels.nc'
+Traceback (most recent call last):
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 211, in _acquire_with_cache_info
+    file = self._cache[self._key]
+           ~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/lru_cache.py", line 56, in __getitem__
+    value = self._cache[key]
+            ~~~~~~~~~~~^^^^^
+KeyError: [<class 'netCDF4._netCDF4.Dataset'>, ('/home/jvalenti/projects/rrg-allen/jvalenti/restartruns/Parcels.nc',), 'a', (('clobber', True), ('diskless', False), ('format', 'NETCDF4'), ('persist', False)), 'a5ebcad0-048a-4529-9f56-5ef8b99ef884']
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 158, in <module>
+    Restart_OP(config)
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 143, in Restart_OP
+    ds.to_netcdf('/home/jvalenti/projects/rrg-allen/jvalenti/restart'+names+'.nc')
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/core/dataset.py", line 2310, in to_netcdf
+    return to_netcdf(  # type: ignore  # mypy cannot resolve the overloads:(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/api.py", line 1298, in to_netcdf
+    store = store_open(target, mode, format, group, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 400, in open
+    return cls(manager, group=group, mode=mode, lock=lock, autoclose=autoclose)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 347, in __init__
+    self.format = self.ds.data_model
+                  ^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 409, in ds
+    return self._acquire()
+           ^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 403, in _acquire
+    with self._manager.acquire_context(needs_lock) as root:
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 199, in acquire_context
+    file, cached = self._acquire_with_cache_info(needs_lock)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 217, in _acquire_with_cache_info
+    file = self._opener(*self._args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "src/netCDF4/_netCDF4.pyx", line 2469, in netCDF4._netCDF4.Dataset.__init__
+  File "src/netCDF4/_netCDF4.pyx", line 2028, in netCDF4._netCDF4._ensure_nc_success
+PermissionError: [Errno 13] Permission denied: '/home/jvalenti/projects/rrg-allen/jvalenti/restartruns/Parcels.nc'
+Traceback (most recent call last):
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 211, in _acquire_with_cache_info
+    file = self._cache[self._key]
+           ~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/lru_cache.py", line 56, in __getitem__
+    value = self._cache[key]
+            ~~~~~~~~~~~^^^^^
+KeyError: [<class 'netCDF4._netCDF4.Dataset'>, ('/home/jvalenti/projects/rrg-allen/jvalenti/restartruns/Parcels.nc',), 'a', (('clobber', True), ('diskless', False), ('format', 'NETCDF4'), ('persist', False)), 'a1acc560-8de2-4ff3-bb2c-2c8d9169e56b']
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 158, in <module>
+    Restart_OP(config)
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 143, in Restart_OP
+    ds.to_netcdf('/home/jvalenti/projects/rrg-allen/jvalenti/restart'+names+'.nc')
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/core/dataset.py", line 2310, in to_netcdf
+    return to_netcdf(  # type: ignore  # mypy cannot resolve the overloads:(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/api.py", line 1298, in to_netcdf
+    store = store_open(target, mode, format, group, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 400, in open
+    return cls(manager, group=group, mode=mode, lock=lock, autoclose=autoclose)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 347, in __init__
+    self.format = self.ds.data_model
+                  ^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 409, in ds
+    return self._acquire()
+           ^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 403, in _acquire
+    with self._manager.acquire_context(needs_lock) as root:
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 199, in acquire_context
+    file, cached = self._acquire_with_cache_info(needs_lock)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 217, in _acquire_with_cache_info
+    file = self._opener(*self._args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "src/netCDF4/_netCDF4.pyx", line 2469, in netCDF4._netCDF4.Dataset.__init__
+  File "src/netCDF4/_netCDF4.pyx", line 2028, in netCDF4._netCDF4._ensure_nc_success
+PermissionError: [Errno 13] Permission denied: '/home/jvalenti/projects/rrg-allen/jvalenti/restartruns/Parcels.nc'
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 158, in <module>
+    Restart_OP(config)
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 138, in Restart_OP
+    [xr.open_zarr(f) for f in files],
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 138, in <listcomp>
+    [xr.open_zarr(f) for f in files],
+     ^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/zarr.py", line 944, in open_zarr
+    ds = open_dataset(
+         ^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/api.py", line 572, in open_dataset
+    backend_ds = backend.open_dataset(
+                 ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/zarr.py", line 1026, in open_dataset
+    ds = store_entrypoint.open_dataset(
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/store.py", line 58, in open_dataset
+    ds = Dataset(vars, attrs=attrs)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/core/dataset.py", line 701, in __init__
+    variables, coord_names, dims, indexes, _ = merge_data_and_coords(
+                                               ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/core/dataset.py", line 430, in merge_data_and_coords
+    return merge_core(
+           ^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/core/merge.py", line 724, in merge_core
+    dims = calculate_dimensions(variables)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/core/variable.py", line 3008, in calculate_dimensions
+    raise ValueError(
+ValueError: conflicting sizes for dimension 'obs': length 160 on 'lat' and length 159 on {'trajectory': 'Ub', 'obs': 'Ub'}
+Traceback (most recent call last):
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 211, in _acquire_with_cache_info
+    file = self._cache[self._key]
+           ~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/lru_cache.py", line 56, in __getitem__
+    value = self._cache[key]
+            ~~~~~~~~~~~^^^^^
+KeyError: [<class 'netCDF4._netCDF4.Dataset'>, ('/home/jvalenti/projects/rrg-allen/jvalenti/restartruns/Parcels.nc',), 'a', (('clobber', True), ('diskless', False), ('format', 'NETCDF4'), ('persist', False)), '31a95cbb-7ff6-48ae-a626-0131a8ecf3b3']
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 158, in <module>
+    Restart_OP(config)
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 143, in Restart_OP
+    ds.to_netcdf('/home/jvalenti/projects/rrg-allen/jvalenti/restart'+names+'.nc')
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/core/dataset.py", line 2310, in to_netcdf
+    return to_netcdf(  # type: ignore  # mypy cannot resolve the overloads:(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/api.py", line 1298, in to_netcdf
+    store = store_open(target, mode, format, group, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 400, in open
+    return cls(manager, group=group, mode=mode, lock=lock, autoclose=autoclose)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 347, in __init__
+    self.format = self.ds.data_model
+                  ^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 409, in ds
+    return self._acquire()
+           ^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 403, in _acquire
+    with self._manager.acquire_context(needs_lock) as root:
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 199, in acquire_context
+    file, cached = self._acquire_with_cache_info(needs_lock)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 217, in _acquire_with_cache_info
+    file = self._opener(*self._args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "src/netCDF4/_netCDF4.pyx", line 2469, in netCDF4._netCDF4.Dataset.__init__
+  File "src/netCDF4/_netCDF4.pyx", line 2028, in netCDF4._netCDF4._ensure_nc_success
+PermissionError: [Errno 13] Permission denied: '/home/jvalenti/projects/rrg-allen/jvalenti/restartruns/Parcels.nc'
+Traceback (most recent call last):
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 211, in _acquire_with_cache_info
+    file = self._cache[self._key]
+           ~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/lru_cache.py", line 56, in __getitem__
+    value = self._cache[key]
+            ~~~~~~~~~~~^^^^^
+KeyError: [<class 'netCDF4._netCDF4.Dataset'>, ('/home/jvalenti/projects/rrg-allen/jvalenti/restartruns/Parcels.nc',), 'a', (('clobber', True), ('diskless', False), ('format', 'NETCDF4'), ('persist', False)), 'b8bee7fb-07fb-43ef-87be-b004fd7547dc']
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 158, in <module>
+    Restart_OP(config)
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 143, in Restart_OP
+    ds.to_netcdf('/home/jvalenti/projects/rrg-allen/jvalenti/restart'+names+'.nc')
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/core/dataset.py", line 2310, in to_netcdf
+    return to_netcdf(  # type: ignore  # mypy cannot resolve the overloads:(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/api.py", line 1298, in to_netcdf
+    store = store_open(target, mode, format, group, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 400, in open
+    return cls(manager, group=group, mode=mode, lock=lock, autoclose=autoclose)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 347, in __init__
+    self.format = self.ds.data_model
+                  ^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 409, in ds
+    return self._acquire()
+           ^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 403, in _acquire
+    with self._manager.acquire_context(needs_lock) as root:
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 199, in acquire_context
+    file, cached = self._acquire_with_cache_info(needs_lock)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 217, in _acquire_with_cache_info
+    file = self._opener(*self._args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "src/netCDF4/_netCDF4.pyx", line 2469, in netCDF4._netCDF4.Dataset.__init__
+  File "src/netCDF4/_netCDF4.pyx", line 2028, in netCDF4._netCDF4._ensure_nc_success
+PermissionError: [Errno 13] Permission denied: '/home/jvalenti/projects/rrg-allen/jvalenti/restartruns/Parcels.nc'
+Traceback (most recent call last):
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 211, in _acquire_with_cache_info
+    file = self._cache[self._key]
+           ~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/lru_cache.py", line 56, in __getitem__
+    value = self._cache[key]
+            ~~~~~~~~~~~^^^^^
+KeyError: [<class 'netCDF4._netCDF4.Dataset'>, ('/home/jvalenti/projects/rrg-allen/jvalenti/restartruns/Parcels.nc',), 'a', (('clobber', True), ('diskless', False), ('format', 'NETCDF4'), ('persist', False)), 'c69cf133-6a8a-45e6-ad6c-dc97a70cec04']
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 158, in <module>
+    Restart_OP(config)
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 143, in Restart_OP
+    ds.to_netcdf('/home/jvalenti/projects/rrg-allen/jvalenti/restart'+names+'.nc')
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/core/dataset.py", line 2310, in to_netcdf
+    return to_netcdf(  # type: ignore  # mypy cannot resolve the overloads:(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/api.py", line 1298, in to_netcdf
+    store = store_open(target, mode, format, group, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 400, in open
+    return cls(manager, group=group, mode=mode, lock=lock, autoclose=autoclose)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 347, in __init__
+    self.format = self.ds.data_model
+                  ^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 409, in ds
+    return self._acquire()
+           ^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 403, in _acquire
+    with self._manager.acquire_context(needs_lock) as root:
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 199, in acquire_context
+    file, cached = self._acquire_with_cache_info(needs_lock)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 217, in _acquire_with_cache_info
+    file = self._opener(*self._args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "src/netCDF4/_netCDF4.pyx", line 2469, in netCDF4._netCDF4.Dataset.__init__
+  File "src/netCDF4/_netCDF4.pyx", line 2028, in netCDF4._netCDF4._ensure_nc_success
+PermissionError: [Errno 13] Permission denied: '/home/jvalenti/projects/rrg-allen/jvalenti/restartruns/Parcels.nc'
+Traceback (most recent call last):
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 211, in _acquire_with_cache_info
+    file = self._cache[self._key]
+           ~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/lru_cache.py", line 56, in __getitem__
+    value = self._cache[key]
+            ~~~~~~~~~~~^^^^^
+KeyError: [<class 'netCDF4._netCDF4.Dataset'>, ('/home/jvalenti/projects/rrg-allen/jvalenti/restartruns/Parcels.nc',), 'a', (('clobber', True), ('diskless', False), ('format', 'NETCDF4'), ('persist', False)), '7e19872d-fd44-40a5-a4c2-7916845e8670']
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 158, in <module>
+    Restart_OP(config)
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 143, in Restart_OP
+    ds.to_netcdf('/home/jvalenti/projects/rrg-allen/jvalenti/restart'+names+'.nc')
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/core/dataset.py", line 2310, in to_netcdf
+    return to_netcdf(  # type: ignore  # mypy cannot resolve the overloads:(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/api.py", line 1298, in to_netcdf
+    store = store_open(target, mode, format, group, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 400, in open
+    return cls(manager, group=group, mode=mode, lock=lock, autoclose=autoclose)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 347, in __init__
+    self.format = self.ds.data_model
+                  ^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 409, in ds
+    return self._acquire()
+           ^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 403, in _acquire
+    with self._manager.acquire_context(needs_lock) as root:
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 199, in acquire_context
+    file, cached = self._acquire_with_cache_info(needs_lock)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 217, in _acquire_with_cache_info
+    file = self._opener(*self._args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "src/netCDF4/_netCDF4.pyx", line 2469, in netCDF4._netCDF4.Dataset.__init__
+  File "src/netCDF4/_netCDF4.pyx", line 2028, in netCDF4._netCDF4._ensure_nc_success
+PermissionError: [Errno 13] Permission denied: '/home/jvalenti/projects/rrg-allen/jvalenti/restartruns/Parcels.nc'
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 158, in <module>
+    Restart_OP(config)
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 138, in Restart_OP
+    [xr.open_zarr(f) for f in files],
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 138, in <listcomp>
+    [xr.open_zarr(f) for f in files],
+     ^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/zarr.py", line 944, in open_zarr
+    ds = open_dataset(
+         ^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/api.py", line 572, in open_dataset
+    backend_ds = backend.open_dataset(
+                 ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/zarr.py", line 1026, in open_dataset
+    ds = store_entrypoint.open_dataset(
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/store.py", line 58, in open_dataset
+    ds = Dataset(vars, attrs=attrs)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/core/dataset.py", line 701, in __init__
+    variables, coord_names, dims, indexes, _ = merge_data_and_coords(
+                                               ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/core/dataset.py", line 430, in merge_data_and_coords
+    return merge_core(
+           ^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/core/merge.py", line 724, in merge_core
+    dims = calculate_dimensions(variables)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/core/variable.py", line 3008, in calculate_dimensions
+    raise ValueError(
+ValueError: conflicting sizes for dimension 'obs': length 158 on 'diameter' and length 157 on {'trajectory': 'Ub', 'obs': 'Ub'}
+Traceback (most recent call last):
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 211, in _acquire_with_cache_info
+    file = self._cache[self._key]
+           ~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/lru_cache.py", line 56, in __getitem__
+    value = self._cache[key]
+            ~~~~~~~~~~~^^^^^
+KeyError: [<class 'netCDF4._netCDF4.Dataset'>, ('/home/jvalenti/projects/rrg-allen/jvalenti/restartruns/Parcels.nc',), 'a', (('clobber', True), ('diskless', False), ('format', 'NETCDF4'), ('persist', False)), '0cb07bc8-f309-4ec0-837e-7d66db8d07d1']
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 158, in <module>
+    Restart_OP(config)
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 143, in Restart_OP
+    ds.to_netcdf('/home/jvalenti/projects/rrg-allen/jvalenti/restart'+names+'.nc')
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/core/dataset.py", line 2310, in to_netcdf
+    return to_netcdf(  # type: ignore  # mypy cannot resolve the overloads:(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/api.py", line 1298, in to_netcdf
+    store = store_open(target, mode, format, group, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 400, in open
+    return cls(manager, group=group, mode=mode, lock=lock, autoclose=autoclose)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 347, in __init__
+    self.format = self.ds.data_model
+                  ^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 409, in ds
+    return self._acquire()
+           ^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 403, in _acquire
+    with self._manager.acquire_context(needs_lock) as root:
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 199, in acquire_context
+    file, cached = self._acquire_with_cache_info(needs_lock)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 217, in _acquire_with_cache_info
+    file = self._opener(*self._args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "src/netCDF4/_netCDF4.pyx", line 2469, in netCDF4._netCDF4.Dataset.__init__
+  File "src/netCDF4/_netCDF4.pyx", line 2028, in netCDF4._netCDF4._ensure_nc_success
+PermissionError: [Errno 13] Permission denied: '/home/jvalenti/projects/rrg-allen/jvalenti/restartruns/Parcels.nc'
+Traceback (most recent call last):
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 211, in _acquire_with_cache_info
+    file = self._cache[self._key]
+           ~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/lru_cache.py", line 56, in __getitem__
+    value = self._cache[key]
+            ~~~~~~~~~~~^^^^^
+KeyError: [<class 'netCDF4._netCDF4.Dataset'>, ('/home/jvalenti/projects/rrg-allen/jvalenti/restartruns/Parcels.nc',), 'a', (('clobber', True), ('diskless', False), ('format', 'NETCDF4'), ('persist', False)), 'c636f83e-c501-47c6-9a95-15065fdf9b7e']
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 158, in <module>
+    Restart_OP(config)
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 143, in Restart_OP
+    ds.to_netcdf('/home/jvalenti/projects/rrg-allen/jvalenti/restart'+names+'.nc')
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/core/dataset.py", line 2310, in to_netcdf
+    return to_netcdf(  # type: ignore  # mypy cannot resolve the overloads:(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/api.py", line 1298, in to_netcdf
+    store = store_open(target, mode, format, group, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 400, in open
+    return cls(manager, group=group, mode=mode, lock=lock, autoclose=autoclose)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 347, in __init__
+    self.format = self.ds.data_model
+                  ^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 409, in ds
+    return self._acquire()
+           ^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 403, in _acquire
+    with self._manager.acquire_context(needs_lock) as root:
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 199, in acquire_context
+    file, cached = self._acquire_with_cache_info(needs_lock)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 217, in _acquire_with_cache_info
+    file = self._opener(*self._args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "src/netCDF4/_netCDF4.pyx", line 2469, in netCDF4._netCDF4.Dataset.__init__
+  File "src/netCDF4/_netCDF4.pyx", line 2028, in netCDF4._netCDF4._ensure_nc_success
+PermissionError: [Errno 13] Permission denied: '/home/jvalenti/projects/rrg-allen/jvalenti/restartruns/Parcels.nc'
+Traceback (most recent call last):
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 211, in _acquire_with_cache_info
+    file = self._cache[self._key]
+           ~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/lru_cache.py", line 56, in __getitem__
+    value = self._cache[key]
+            ~~~~~~~~~~~^^^^^
+KeyError: [<class 'netCDF4._netCDF4.Dataset'>, ('/home/jvalenti/projects/rrg-allen/jvalenti/restartruns/Parcels.nc',), 'a', (('clobber', True), ('diskless', False), ('format', 'NETCDF4'), ('persist', False)), 'd5044414-e181-47de-af4d-d9da0f9b3785']
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 158, in <module>
+    Restart_OP(config)
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 143, in Restart_OP
+    ds.to_netcdf('/home/jvalenti/projects/rrg-allen/jvalenti/restart'+names+'.nc')
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/core/dataset.py", line 2310, in to_netcdf
+    return to_netcdf(  # type: ignore  # mypy cannot resolve the overloads:(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/api.py", line 1298, in to_netcdf
+    store = store_open(target, mode, format, group, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 400, in open
+    return cls(manager, group=group, mode=mode, lock=lock, autoclose=autoclose)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 347, in __init__
+    self.format = self.ds.data_model
+                  ^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 409, in ds
+    return self._acquire()
+           ^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 403, in _acquire
+    with self._manager.acquire_context(needs_lock) as root:
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 199, in acquire_context
+    file, cached = self._acquire_with_cache_info(needs_lock)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 217, in _acquire_with_cache_info
+    file = self._opener(*self._args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "src/netCDF4/_netCDF4.pyx", line 2469, in netCDF4._netCDF4.Dataset.__init__
+  File "src/netCDF4/_netCDF4.pyx", line 2028, in netCDF4._netCDF4._ensure_nc_success
+PermissionError: [Errno 13] Permission denied: '/home/jvalenti/projects/rrg-allen/jvalenti/restartruns/Parcels.nc'
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 158, in <module>
+    Restart_OP(config)
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 138, in Restart_OP
+    [xr.open_zarr(f) for f in files],
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 138, in <listcomp>
+    [xr.open_zarr(f) for f in files],
+     ^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/zarr.py", line 944, in open_zarr
+    ds = open_dataset(
+         ^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/api.py", line 572, in open_dataset
+    backend_ds = backend.open_dataset(
+                 ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/zarr.py", line 1026, in open_dataset
+    ds = store_entrypoint.open_dataset(
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/store.py", line 58, in open_dataset
+    ds = Dataset(vars, attrs=attrs)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/core/dataset.py", line 701, in __init__
+    variables, coord_names, dims, indexes, _ = merge_data_and_coords(
+                                               ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/core/dataset.py", line 430, in merge_data_and_coords
+    return merge_core(
+           ^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/core/merge.py", line 724, in merge_core
+    dims = calculate_dimensions(variables)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/core/variable.py", line 3008, in calculate_dimensions
+    raise ValueError(
+ValueError: conflicting sizes for dimension 'obs': length 156 on 'alpha' and length 157 on {'trajectory': 'Ub', 'obs': 'Ub'}
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 158, in <module>
+    Restart_OP(config)
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 138, in Restart_OP
+    [xr.open_zarr(f) for f in files],
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 138, in <listcomp>
+    [xr.open_zarr(f) for f in files],
+     ^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/zarr.py", line 944, in open_zarr
+    ds = open_dataset(
+         ^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/api.py", line 572, in open_dataset
+    backend_ds = backend.open_dataset(
+                 ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/zarr.py", line 1026, in open_dataset
+    ds = store_entrypoint.open_dataset(
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/store.py", line 58, in open_dataset
+    ds = Dataset(vars, attrs=attrs)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/core/dataset.py", line 701, in __init__
+    variables, coord_names, dims, indexes, _ = merge_data_and_coords(
+                                               ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/core/dataset.py", line 430, in merge_data_and_coords
+    return merge_core(
+           ^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/core/merge.py", line 724, in merge_core
+    dims = calculate_dimensions(variables)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/core/variable.py", line 3008, in calculate_dimensions
+    raise ValueError(
+ValueError: conflicting sizes for dimension 'obs': length 159 on 'alpha' and length 160 on {'trajectory': 'Ub', 'obs': 'Ub'}
+Traceback (most recent call last):
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 211, in _acquire_with_cache_info
+    file = self._cache[self._key]
+           ~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/lru_cache.py", line 56, in __getitem__
+    value = self._cache[key]
+            ~~~~~~~~~~~^^^^^
+KeyError: [<class 'netCDF4._netCDF4.Dataset'>, ('/home/jvalenti/projects/rrg-allen/jvalenti/restartruns/Parcels.nc',), 'a', (('clobber', True), ('diskless', False), ('format', 'NETCDF4'), ('persist', False)), 'fe707d71-1e48-461a-a9ab-0a4eabd24860']
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 158, in <module>
+    Restart_OP(config)
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 143, in Restart_OP
+    ds.to_netcdf('/home/jvalenti/projects/rrg-allen/jvalenti/restart'+names+'.nc')
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/core/dataset.py", line 2310, in to_netcdf
+    return to_netcdf(  # type: ignore  # mypy cannot resolve the overloads:(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/api.py", line 1298, in to_netcdf
+    store = store_open(target, mode, format, group, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 400, in open
+    return cls(manager, group=group, mode=mode, lock=lock, autoclose=autoclose)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 347, in __init__
+    self.format = self.ds.data_model
+                  ^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 409, in ds
+    return self._acquire()
+           ^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 403, in _acquire
+    with self._manager.acquire_context(needs_lock) as root:
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 199, in acquire_context
+    file, cached = self._acquire_with_cache_info(needs_lock)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 217, in _acquire_with_cache_info
+    file = self._opener(*self._args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "src/netCDF4/_netCDF4.pyx", line 2469, in netCDF4._netCDF4.Dataset.__init__
+  File "src/netCDF4/_netCDF4.pyx", line 2028, in netCDF4._netCDF4._ensure_nc_success
+PermissionError: [Errno 13] Permission denied: '/home/jvalenti/projects/rrg-allen/jvalenti/restartruns/Parcels.nc'
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 158, in <module>
+    Restart_OP(config)
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 138, in Restart_OP
+    [xr.open_zarr(f) for f in files],
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 138, in <listcomp>
+    [xr.open_zarr(f) for f in files],
+     ^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/zarr.py", line 944, in open_zarr
+    ds = open_dataset(
+         ^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/api.py", line 572, in open_dataset
+    backend_ds = backend.open_dataset(
+                 ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/zarr.py", line 1026, in open_dataset
+    ds = store_entrypoint.open_dataset(
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/store.py", line 58, in open_dataset
+    ds = Dataset(vars, attrs=attrs)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/core/dataset.py", line 701, in __init__
+    variables, coord_names, dims, indexes, _ = merge_data_and_coords(
+                                               ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/core/dataset.py", line 430, in merge_data_and_coords
+    return merge_core(
+           ^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/core/merge.py", line 724, in merge_core
+    dims = calculate_dimensions(variables)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/core/variable.py", line 3008, in calculate_dimensions
+    raise ValueError(
+ValueError: conflicting sizes for dimension 'obs': length 157 on 'alpha' and length 158 on {'trajectory': 'Ub', 'obs': 'Ub'}
+Traceback (most recent call last):
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 211, in _acquire_with_cache_info
+    file = self._cache[self._key]
+           ~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/lru_cache.py", line 56, in __getitem__
+    value = self._cache[key]
+            ~~~~~~~~~~~^^^^^
+KeyError: [<class 'netCDF4._netCDF4.Dataset'>, ('/home/jvalenti/projects/rrg-allen/jvalenti/restartruns/Parcels.nc',), 'a', (('clobber', True), ('diskless', False), ('format', 'NETCDF4'), ('persist', False)), 'c4489108-0be4-4769-9784-3b18bf921353']
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 158, in <module>
+    Restart_OP(config)
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 143, in Restart_OP
+    ds.to_netcdf('/home/jvalenti/projects/rrg-allen/jvalenti/restart'+names+'.nc')
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/core/dataset.py", line 2310, in to_netcdf
+    return to_netcdf(  # type: ignore  # mypy cannot resolve the overloads:(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/api.py", line 1298, in to_netcdf
+    store = store_open(target, mode, format, group, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 400, in open
+    return cls(manager, group=group, mode=mode, lock=lock, autoclose=autoclose)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 347, in __init__
+    self.format = self.ds.data_model
+                  ^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 409, in ds
+    return self._acquire()
+           ^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 403, in _acquire
+    with self._manager.acquire_context(needs_lock) as root:
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 199, in acquire_context
+    file, cached = self._acquire_with_cache_info(needs_lock)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 217, in _acquire_with_cache_info
+    file = self._opener(*self._args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "src/netCDF4/_netCDF4.pyx", line 2469, in netCDF4._netCDF4.Dataset.__init__
+  File "src/netCDF4/_netCDF4.pyx", line 2028, in netCDF4._netCDF4._ensure_nc_success
+PermissionError: [Errno 13] Permission denied: '/home/jvalenti/projects/rrg-allen/jvalenti/restartruns/Parcels.nc'
+Traceback (most recent call last):
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 211, in _acquire_with_cache_info
+    file = self._cache[self._key]
+           ~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/lru_cache.py", line 56, in __getitem__
+    value = self._cache[key]
+            ~~~~~~~~~~~^^^^^
+KeyError: [<class 'netCDF4._netCDF4.Dataset'>, ('/home/jvalenti/projects/rrg-allen/jvalenti/restartruns/Parcels.nc',), 'a', (('clobber', True), ('diskless', False), ('format', 'NETCDF4'), ('persist', False)), '7e5fbdea-6d86-4323-909e-c322827410e3']
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 158, in <module>
+    Restart_OP(config)
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 143, in Restart_OP
+    ds.to_netcdf('/home/jvalenti/projects/rrg-allen/jvalenti/restart'+names+'.nc')
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/core/dataset.py", line 2310, in to_netcdf
+    return to_netcdf(  # type: ignore  # mypy cannot resolve the overloads:(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/api.py", line 1298, in to_netcdf
+    store = store_open(target, mode, format, group, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 400, in open
+    return cls(manager, group=group, mode=mode, lock=lock, autoclose=autoclose)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 347, in __init__
+    self.format = self.ds.data_model
+                  ^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 409, in ds
+    return self._acquire()
+           ^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 403, in _acquire
+    with self._manager.acquire_context(needs_lock) as root:
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 199, in acquire_context
+    file, cached = self._acquire_with_cache_info(needs_lock)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 217, in _acquire_with_cache_info
+    file = self._opener(*self._args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "src/netCDF4/_netCDF4.pyx", line 2469, in netCDF4._netCDF4.Dataset.__init__
+  File "src/netCDF4/_netCDF4.pyx", line 2028, in netCDF4._netCDF4._ensure_nc_success
+PermissionError: [Errno 13] Permission denied: '/home/jvalenti/projects/rrg-allen/jvalenti/restartruns/Parcels.nc'
+Traceback (most recent call last):
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 211, in _acquire_with_cache_info
+    file = self._cache[self._key]
+           ~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/lru_cache.py", line 56, in __getitem__
+    value = self._cache[key]
+            ~~~~~~~~~~~^^^^^
+KeyError: [<class 'netCDF4._netCDF4.Dataset'>, ('/home/jvalenti/projects/rrg-allen/jvalenti/restartruns/Parcels.nc',), 'a', (('clobber', True), ('diskless', False), ('format', 'NETCDF4'), ('persist', False)), '6c4f6de9-1e70-40c3-83bc-12c56acba3b0']
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 158, in <module>
+    Restart_OP(config)
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 143, in Restart_OP
+    ds.to_netcdf('/home/jvalenti/projects/rrg-allen/jvalenti/restart'+names+'.nc')
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/core/dataset.py", line 2310, in to_netcdf
+    return to_netcdf(  # type: ignore  # mypy cannot resolve the overloads:(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/api.py", line 1298, in to_netcdf
+    store = store_open(target, mode, format, group, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 400, in open
+    return cls(manager, group=group, mode=mode, lock=lock, autoclose=autoclose)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 347, in __init__
+    self.format = self.ds.data_model
+                  ^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 409, in ds
+    return self._acquire()
+           ^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 403, in _acquire
+    with self._manager.acquire_context(needs_lock) as root:
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 199, in acquire_context
+    file, cached = self._acquire_with_cache_info(needs_lock)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 217, in _acquire_with_cache_info
+    file = self._opener(*self._args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "src/netCDF4/_netCDF4.pyx", line 2469, in netCDF4._netCDF4.Dataset.__init__
+  File "src/netCDF4/_netCDF4.pyx", line 2028, in netCDF4._netCDF4._ensure_nc_success
+PermissionError: [Errno 13] Permission denied: '/home/jvalenti/projects/rrg-allen/jvalenti/restartruns/Parcels.nc'
+Traceback (most recent call last):
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 211, in _acquire_with_cache_info
+    file = self._cache[self._key]
+           ~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/lru_cache.py", line 56, in __getitem__
+    value = self._cache[key]
+            ~~~~~~~~~~~^^^^^
+KeyError: [<class 'netCDF4._netCDF4.Dataset'>, ('/home/jvalenti/projects/rrg-allen/jvalenti/restartruns/Parcels.nc',), 'a', (('clobber', True), ('diskless', False), ('format', 'NETCDF4'), ('persist', False)), '7f58f242-dc87-4bf0-a361-8d629756289c']
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 158, in <module>
+    Restart_OP(config)
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 143, in Restart_OP
+    ds.to_netcdf('/home/jvalenti/projects/rrg-allen/jvalenti/restart'+names+'.nc')
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/core/dataset.py", line 2310, in to_netcdf
+    return to_netcdf(  # type: ignore  # mypy cannot resolve the overloads:(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/api.py", line 1298, in to_netcdf
+    store = store_open(target, mode, format, group, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 400, in open
+    return cls(manager, group=group, mode=mode, lock=lock, autoclose=autoclose)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 347, in __init__
+    self.format = self.ds.data_model
+                  ^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 409, in ds
+    return self._acquire()
+           ^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 403, in _acquire
+    with self._manager.acquire_context(needs_lock) as root:
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 199, in acquire_context
+    file, cached = self._acquire_with_cache_info(needs_lock)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 217, in _acquire_with_cache_info
+    file = self._opener(*self._args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "src/netCDF4/_netCDF4.pyx", line 2469, in netCDF4._netCDF4.Dataset.__init__
+  File "src/netCDF4/_netCDF4.pyx", line 2028, in netCDF4._netCDF4._ensure_nc_success
+PermissionError: [Errno 13] Permission denied: '/home/jvalenti/projects/rrg-allen/jvalenti/restartruns/Parcels.nc'
+Traceback (most recent call last):
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 211, in _acquire_with_cache_info
+    file = self._cache[self._key]
+           ~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/lru_cache.py", line 56, in __getitem__
+    value = self._cache[key]
+            ~~~~~~~~~~~^^^^^
+KeyError: [<class 'netCDF4._netCDF4.Dataset'>, ('/home/jvalenti/projects/rrg-allen/jvalenti/restartruns/Parcels.nc',), 'a', (('clobber', True), ('diskless', False), ('format', 'NETCDF4'), ('persist', False)), '4e38ec78-aceb-418b-b17b-498e747ea993']
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 158, in <module>
+    Restart_OP(config)
+  File "/home/jvalenti/MOAD/analysis-jose/Graham/Plastics_MCrestart.py", line 143, in Restart_OP
+    ds.to_netcdf('/home/jvalenti/projects/rrg-allen/jvalenti/restart'+names+'.nc')
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/core/dataset.py", line 2310, in to_netcdf
+    return to_netcdf(  # type: ignore  # mypy cannot resolve the overloads:(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/api.py", line 1298, in to_netcdf
+    store = store_open(target, mode, format, group, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 400, in open
+    return cls(manager, group=group, mode=mode, lock=lock, autoclose=autoclose)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 347, in __init__
+    self.format = self.ds.data_model
+                  ^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 409, in ds
+    return self._acquire()
+           ^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/netCDF4_.py", line 403, in _acquire
+    with self._manager.acquire_context(needs_lock) as root:
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 199, in acquire_context
+    file, cached = self._acquire_with_cache_info(needs_lock)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jvalenti/miniforge3/envs/Parcels_24/lib/python3.11/site-packages/xarray/backends/file_manager.py", line 217, in _acquire_with_cache_info
+    file = self._opener(*self._args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "src/netCDF4/_netCDF4.pyx", line 2469, in netCDF4._netCDF4.Dataset.__init__
+  File "src/netCDF4/_netCDF4.pyx", line 2028, in netCDF4._netCDF4._ensure_nc_success
+PermissionError: [Errno 13] Permission denied: '/home/jvalenti/projects/rrg-allen/jvalenti/restartruns/Parcels.nc'
