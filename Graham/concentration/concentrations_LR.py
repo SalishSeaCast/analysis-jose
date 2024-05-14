@@ -10,14 +10,16 @@ mask = xr.open_dataset('/home/jvalenti/MOAD/grid2/mesh_mask202108_TDV.nc')
 def latT(lat):
     return np.cos(lat*(math.pi/180))
 
-def count_inside_grid_cell(center_x, center_y, cell_width, cell_height, x,y):
+def count_inside_grid_cell(center_x, center_y, cell_width, cell_height, x,y,Ni):
     deg2met = 111319.5
     cell_width = cell_width/(deg2met*latT(center_y))
     cell_height = cell_height/deg2met
     min_x = np.array(center_x - cell_width / 2)
-    max_x = np.array(center_x + cell_width / 2)
     min_y = np.array(center_y - cell_height / 2)
-    max_y = np.array(center_y + cell_height / 2)
+    max_y = np.array(center_y + cell_height*(Ni-0.5))
+    max_x = np.array(center_x + cell_width*(Ni-0.5))
+    
+    
     inside_mask = np.logical_and.reduce([
         min_x[:, np.newaxis] <= x,
         x <= max_x[:, np.newaxis],
@@ -29,41 +31,45 @@ def count_inside_grid_cell(center_x, center_y, cell_width, cell_height, x,y):
 
 
 
-def conc_OP(filename,Zi):
+def conc_OP(filename,Ni=1):
     print(filename[0])
     ds = xr.open_dataset(filename[0],decode_times=False)
     MFc = 5e6
-    zlevels = [0,5,10,50,100,800]
+    #zlevels = [0,5,10,50,100,800]
+    zlevels = mask.gdepw_0[0,:,1,1].values
     DS=ds.to_dataframe()
     #DS = DS[DS.z < 800]
     DS = DS[DS.status==1]
-    lat = coords.nav_lat
-    lon = coords.nav_lon
+    lat = coords.nav_lat[::Ni,::Ni]
+    lon = coords.nav_lon[::Ni,::Ni]
     td = mask.totaldepth
-    cell_width = coords.e1t[0,:,:]
-    cell_height = coords.e2t[0,:,:]
+    cell_width = coords.e1t[0,::Ni,::Ni]
+    cell_height = coords.e2t[0,::Ni,::Ni]
     x = np.array(DS.lon)
     y = np.array(DS.lat)
     z = np.array(DS.z)
 
     conc = np.zeros((len(zlevels),coords.nav_lon.shape[0],coords.nav_lon.shape[1]))
-    for k in range(len(zlevels)-2,-1,-1):
+    for k in range(len(zlevels)):
         print(f'{k} level starting.')  
         for j in range(coords.nav_lon.shape[0]):
-            zmin = int(zlevels[k-1])
-            zmax = int(zlevels[k])
-            X = x[np.logical_and(z >= zmin, z < zmax)]
-            Y = y[np.logical_and(z >= zmin, z < zmax)]
-            BOXvolume = (cell_width[j,:]* cell_height[j,:]*(td[j,:]-zmin))
-            conc[k,j,:]+= count_inside_grid_cell(lon[j,:], lat[j,:], cell_width[j,:], cell_height[j,:],X,Y)*MFc/BOXvolume
-    np.save('concentration_31days.npy',conc)
+            zmin = int(zlevels[k])
+            X = x[np.logical_and(z >= zmin)]
+            Y = y[np.logical_and(z >= zmin)]
+            BOXarea = (cell_width[j,:]* cell_height[j,:])
+            #BOXvolume = (cell_width[j,:]* cell_height[j,:]*(td[j,:]-zmin))
+            conc[k,j,:]+= count_inside_grid_cell(lon[j,:], lat[j,:], cell_width[j,:], cell_height[j,:],X,Y,Ni)*MFc/BOXarea
+    for k in range(len(zlevels)-1):
+        conc[k,:,:] = (conc[k,:,:]-conc[k+1,:,:])/(zlevels[k]-zlevels[k+1])
+
+    np.save('concentration_test.npy',conc)
 
 if __name__=="__main__":
     try:
-        filename,restart = sys.argv[1:]
+        filename,Ni = sys.argv[1:]
         filename = [str(filename)]
     except ValueError:
-        print('Not restarting')
+        print('Not reducing')
         try:
             filename = sys.argv[1:]
             restart=0
