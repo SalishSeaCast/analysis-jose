@@ -29,17 +29,17 @@ def count_inside_grid_cell(center_x, center_y, cell_width, cell_height, x,y,Ni):
     c = np.sum(inside_mask,axis=1)
     return c
 
-
-
 def conc_OP(filename,Ni=1):
-    print(filename[0])
+    print(filename[0].split('.')[0]+'.npy')
+    Ni =  int(Ni)
     ds = xr.open_dataset(filename[0],decode_times=False)
-    MFc = 5e6
+    MFc = 1e7/40
     #zlevels = [0,5,10,50,100,800]
     zlevels = mask.gdepw_0[0,:,1,1].values
     DS=ds.to_dataframe()
     #DS = DS[DS.z < 800]
     DS = DS[DS.status==1]
+    DS = DS[DS.time>1728000]
     lat = coords.nav_lat[::Ni,::Ni]
     lon = coords.nav_lon[::Ni,::Ni]
     td = mask.totaldepth
@@ -49,20 +49,19 @@ def conc_OP(filename,Ni=1):
     y = np.array(DS.lat)
     z = np.array(DS.z)
 
-    conc = np.zeros((len(zlevels),coords.nav_lon.shape[0],coords.nav_lon.shape[1]))
+    conc = np.zeros([len(zlevels),len(coords.nav_lon[::Ni,0]),len(coords.nav_lon[0,::Ni])])
     for k in range(len(zlevels)):
         print(f'{k} level starting.')  
-        for j in range(coords.nav_lon.shape[0]):
+        for j in range(len(coords.nav_lon[0,::Ni])):
             zmin = int(zlevels[k])
-            X = x[np.logical_and(z >= zmin)]
-            Y = y[np.logical_and(z >= zmin)]
-            BOXarea = (cell_width[j,:]* cell_height[j,:])
+            X = x[z >= zmin]
+            Y = y[z >= zmin]
+            BOXarea = (cell_width[:,j]* cell_height[:,j])*Ni**2
             #BOXvolume = (cell_width[j,:]* cell_height[j,:]*(td[j,:]-zmin))
-            conc[k,j,:]+= count_inside_grid_cell(lon[j,:], lat[j,:], cell_width[j,:], cell_height[j,:],X,Y,Ni)*MFc/BOXarea
+            conc[k,:,j]+= count_inside_grid_cell(lon[:,j], lat[:,j], cell_width[:,j], cell_height[:,j],X,Y,Ni)*MFc/BOXarea
     for k in range(len(zlevels)-1):
-        conc[k,:,:] = (conc[k,:,:]-conc[k+1,:,:])/(zlevels[k]-zlevels[k+1])
-
-    np.save('concentration_test.npy',conc)
+        conc[k,:,:] = (conc[k,:,:]-conc[k+1,:,:])/(zlevels[k+1]-zlevels[k])
+    np.save(filename[0].split('.')[0]+'.npy',conc)
 
 if __name__=="__main__":
     try:
@@ -75,5 +74,5 @@ if __name__=="__main__":
             restart=0
         except :
             print('Something went wrong')
-    conc_OP(filename)
+    conc_OP(filename,Ni)
      
