@@ -33,7 +33,7 @@ def conc_OP(filename,Ni=1):
     print(filename[0].split('.')[0]+'.npy')
     Ni =  int(Ni)
     ds = xr.open_dataset(filename[0],decode_times=False)
-    MFc = 1e7/40
+    MFc = 5e6/40
     #zlevels = [0,5,10,50,100,800]
     zlevels = mask.gdepw_0[0,:,1,1].values
     DS=ds.to_dataframe()
