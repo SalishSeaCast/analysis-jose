@@ -282,8 +282,7 @@ def particle_maker(config):
         if 'dtmax' in config['particle']:  
             dtmax = Variable('dtmax', initial =  86400*config['particle']['dtmax']) # max time run
         else:
-            dtmax = Variable('dtmax', initial =  86400*5e3) #! max time run 14 years
-    
+            dtmax = Variable('dtmax', initial =  4e10 ) #! max time run 14 years
     return MPParticle
 
 def pandas_deploy(N,MFc,dtp):
