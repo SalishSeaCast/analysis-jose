@@ -299,3 +299,13 @@ def pandas_deploy(N,MFc,dtp):
             clat.append(Lat.iat[i])
             clon.append(Lon.iat[i])
     return clat, clon, len(clat)   
+
+def moving_average(a, n=3):
+    ret = np.cumsum(a, dtype=float)
+    ret[n:] = ret[n:] - ret[:-n]
+    return ret[n - 1:] / n
+
+def finder(jjii,lati,loni):
+    j = [jjii.jj.sel(lats=lati, lons=loni, method='nearest').item()][0]
+    i = [jjii.ii.sel(lats=lati, lons=loni, method='nearest').item()][0]
+    return j,i
