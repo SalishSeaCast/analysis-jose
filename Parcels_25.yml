@@ -1,4 +1,4 @@
-name: Parcels_24
+name: Parcels_25
 channels:
   - conda-forge
   - defaults
@@ -7,7 +7,7 @@ dependencies:
   - matplotlib-base
   - numpy
   - pandas
-  - parcels=3.0
+  - parcels=3
   - pip
   - python=3.11
   - scipy
@@ -16,5 +16,6 @@ dependencies:
   - zarr
   - mpich
   - mpi4py
+  - cmocean
 
 prefix: /home/jvalenti/conda_envs/Parcels_24
