@@ -22,22 +22,22 @@ restart:
   restart_trc.nc: $SCRATCH/SHEM_test/restart_files/SalishSea_17029440_restart_trc.nc
 
 forcing:
-  NEP:
-    link to: $FORCING/NEP36
+  LiveOcean:
+    link to: $PROJECT/SalishSea/forcing/LiveOcean
   NEMO-atmos:
-    link to: $FORCING/atmospheric/GEM2.5/gemlam
+    link to: $PROJECT/SalishSea/forcing/atmospheric/GEM2.5/operational
   bfr_coef.nc:
-    link to: $PROJECT/$USER/MEOPAR/grid/jetty_mask_bathy202108.nc
+    link to: $PROJECT/$USER/MEOPAR/grid/jetty_mask_bathy201702.nc
   grid:
     link to: $PROJECT/$USER/MEOPAR/grid
   rivers:
-    link to: $FORCING/rivers
+    link to: $PROJECT/SalishSea/forcing/rivers
   rivers-climatology:
     link to: $PROJECT/$USER/MEOPAR/rivers-climatology
   river_turb:
-    link to: $FORCING/rivers/river_turb
+    link to: $PROJECT/SalishSea/forcing/rivers/river_turb
   ssh:
-    link to: $FORCING/sshNeahBay/obs
+    link to: $PROJECT/SalishSea/forcing/sshNeahBay/obs
   tides:
     link to: $PROJECT/$USER/MEOPAR/tides
   tracers:
