@@ -4,8 +4,8 @@
 email: jvalenti@eoas.ubc.ca
 MPI decomposition: 18x30
 config_name: SHEM
-run_id: 01aug_23shem
-walltime: 6:00:00
+run_id: 01aug_23shem_3
+walltime: 3600 #1hour
 
 paths:
   NEMO code config: $PROJECT/$USER/MEOPAR/NEMO-3.6-code/NEMOGCM/CONFIG
