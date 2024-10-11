@@ -47,7 +47,7 @@ namelists:
   namelist_cfg:
   - ./namelist.time_01aug23_onemonth
   - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist.domain
-  - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist.atmos_rivers_early_gemlam
+  #- $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist.atmos_rivers_early_gemlam
   - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist.light
   - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist.lateral.NEP
   - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist.bottom
@@ -57,7 +57,7 @@ namelists:
   - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist.compute
   namelist_smelt_cfg:
   - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist_smelt_biology
-  - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111//namelist_smelt_rivers_earlyturb
+  - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111//namelist_smelt_rivers_opsturb
   - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist_smelt_skog
   namelist_top_cfg:
   - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist_top_restart
