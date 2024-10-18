@@ -4,7 +4,7 @@
 email: jvalenti@eoas.ubc.ca
 MPI decomposition: 18x30
 config_name: SHEM
-run_id: 01aug_23shem_3
+run_id: 01aug_23shem_4
 walltime: 3600 #1hour
 
 paths:
@@ -18,16 +18,16 @@ grid:
   land processor elimination: $PROJECT/$USER/MEOPAR/grid/bathymetry_202108.csv
 
 restart:
-  restart.nc: $SCRATCH/SHEM_test/restart_files/SalishSea_17029440_restart.nc
-  restart_trc.nc: $SCRATCH/SHEM_test/restart_files/SalishSea_17029440_restart_trc.nc
+  restart.nc: $SCRATCH/SHEM_test/restart_files/SalishSea_17031600_restart.nc
+  restart_trc.nc: $SCRATCH/SHEM_test/restart_files/SalishSea_17031600_restart_trc.nc
 
 forcing:
   LiveOcean:
     link to: $PROJECT/SalishSea/forcing/LiveOcean
   NEMO-atmos:
-    link to: $PROJECT/SalishSea/forcing/atmospheric/GEM2.5/operational
+    link to: $PROJECT/SalishSea/forcing/atmospheric/continental2.5/nemo_forcing
   bfr_coef.nc:
-    link to: $PROJECT/$USER/MEOPAR/grid/jetty_mask_bathy201702.nc
+    link to: $PROJECT/$USER/MEOPAR/grid/jetty_mask_bathy202108.nc
   grid:
     link to: $PROJECT/$USER/MEOPAR/grid
   rivers:
@@ -47,7 +47,7 @@ namelists:
   namelist_cfg:
   - ./namelist.time_01aug23_onemonth
   - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist.domain
-  #- $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist.atmos_rivers_early_gemlam
+  - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist.atmos_rivers
   - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist.light
   - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist.lateral.NEP
   - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist.bottom
@@ -55,9 +55,10 @@ namelists:
   - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist.dynamics
   - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist.vertical
   - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist.compute
+  
   namelist_smelt_cfg:
   - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist_smelt_biology
-  - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111//namelist_smelt_rivers_opsturb
+  - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist_smelt_rivers_opsturb
   - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist_smelt_skog
   namelist_top_cfg:
   - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist_top_restart
