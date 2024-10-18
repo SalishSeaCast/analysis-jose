@@ -4,7 +4,7 @@
 email: jvalenti@eoas.ubc.ca
 MPI decomposition: 18x30
 config_name: SHEM
-run_id: 01aug_23shem_4
+run_id: 01jan_22shem
 walltime: 3600 #1hour
 
 paths:
@@ -18,14 +18,14 @@ grid:
   land processor elimination: $PROJECT/$USER/MEOPAR/grid/bathymetry_202108.csv
 
 restart:
-  restart.nc: $SCRATCH/SHEM_test/restart_files/SalishSea_17031600_restart.nc
-  restart_trc.nc: $SCRATCH/SHEM_test/restart_files/SalishSea_17031600_restart_trc.nc
+  restart.nc: $SCRATCH/SHEM_test/restart_files/SalishSea_15003360_restart.nc
+  restart_trc.nc: $SCRATCH/SHEM_test/restart_files/SalishSea_15003360_restart_trc.nc
 
 forcing:
   LiveOcean:
     link to: $PROJECT/SalishSea/forcing/LiveOcean
   NEMO-atmos:
-    link to: $PROJECT/SalishSea/forcing/atmospheric/continental2.5/nemo_forcing
+    link to: $PROJECT/SalishSea/forcing/atmospheric/GEM2.5/operational
   bfr_coef.nc:
     link to: $PROJECT/$USER/MEOPAR/grid/jetty_mask_bathy202108.nc
   grid:
@@ -45,7 +45,7 @@ forcing:
 
 namelists:
   namelist_cfg:
-  - ./namelist.time_01aug23_onemonth
+  - ./namelist.time_01jan22_onemonth
   - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist.domain
   - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist.atmos_rivers
   - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist.light
