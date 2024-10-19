@@ -1,7 +1,7 @@
 
   # yaml file tu run op
 file: 
-  name: 'Uniform_SOG' #name output file
+  name: 'Uniform_SOG_winter' #name output file
 startdate:
   year: 2016 
   month: 12
