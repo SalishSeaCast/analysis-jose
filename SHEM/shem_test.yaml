@@ -4,8 +4,8 @@
 email: jvalenti@eoas.ubc.ca
 MPI decomposition: 18x30
 config_name: SHEM
-run_id: 01jan_22shem
-walltime: 3600 #1hour
+run_id: 01jan_22_hb
+walltime: 7100 #1hour
 
 paths:
   NEMO code config: $PROJECT/$USER/MEOPAR/NEMO-3.6-code/NEMOGCM/CONFIG
@@ -49,7 +49,7 @@ namelists:
   - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist.domain
   - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist.atmos_rivers
   - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist.light
-  - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist.lateral.NEP
+  - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist.lateral
   - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist.bottom
   - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist.tracer
   - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist.dynamics
@@ -57,12 +57,12 @@ namelists:
   - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist.compute
   
   namelist_smelt_cfg:
-  - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist_smelt_biology
+  - ./namelist_smelt_biology
   - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist_smelt_rivers_opsturb
   - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist_smelt_skog
   namelist_top_cfg:
   - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist_top_restart
-  - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist_top_TracerDefAndBdy_NEP
+  - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist_top_TracerDefAndBdy
   - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist_top_physics
   
 output:
