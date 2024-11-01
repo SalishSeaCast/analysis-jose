@@ -45,7 +45,7 @@
    sn_trcobc(3) = 'LiveOcean/LiveOcean_v201905',          24,        'Si',       .true.,  .false.,'daily',   '',        '',   ''
    sn_trcobc(4) = 'tracers/west/OBC_Plankton_fromClimate_2007_2019_v201905',  -1,        'diatoms',      .true., .true., 'yearly',   '',        '',   ''
    sn_trcobc(5) = 'tracers/west/OBC_Plankton_fromClimate_2007_2019_v201905',  -1,        'flagellates',      .true., .true., 'yearly',   '',        '',   ''
-   sn_trcobc(6) = 'tracers/west/bioOBC_West_const201812',  -12,        'MYRI',     .false., .true., 'yearly',   '',        '',   ''
+   sn_trcobc(6) = 'tracers/west/bioOBC_West_HBAC_const202410',  -12,        'HBAC',     .false., .true., 'yearly',   '',        '',   ''
    sn_trcobc(7) = 'tracers/west/OBC_Plankton_fromClimate_2007_2019_v201905',  -1,        'microzooplankton',     .true., .true., 'yearly',   '',        '',   ''
    sn_trcobc(8) = 'tracers/west/OBC_Plankton_fromClimate_2007_2019_v201905',  -1,        'dissolved_organic_nitrogen',      .true., .true., 'yearly',   '',        '',   ''
    sn_trcobc(9) = 'tracers/west/OBC_Plankton_fromClimate_2007_2019_v201905',  -1,        'particulate_organic_nitrogen',      .true., .true., 'yearly',   '',        '',   ''
@@ -61,7 +61,7 @@
    rn_trofac(3)   =  1.0  !  multiplicative factor
    rn_trofac(4)   =  1.0  !  -      -      -     -
    rn_trofac(5)   =  1.0  !  -      -      -     -
-   rn_trofac(6)   =  0.0  !  set ciliates to zero
+   rn_trofac(6)   =  1.0  !  set ciliates to zero
    rn_trofac(7)   =  1.0  !  -      -      -     -
    rn_trofac(8)   =  1.0  !  -      -      -     -
    rn_trofac(9)   =  1.0  !  -      -      -     -
@@ -81,7 +81,7 @@
    sn_trcobc(3)  = 'bioOBC_North_monthlySiNO3.nc',        -1,        'Si',       .true.,  .true.,  'yearly',   '',      '',   ''
    sn_trcobc(4)  = 'OBC_Plankton_fromClimate_2007_2019_v201905',  -1,        'diatoms',      .true., .true., 'yearly',   '',        '',   ''
    sn_trcobc(5)  = 'OBC_Plankton_fromClimate_2007_2019_v201905',  -1,        'flagellates',      .true., .true., 'yearly',   '',        '',   ''
-   sn_trcobc(6)  = 'bioOBC_North_const201812',          4380,        'MYRI',     .true.,  .true.,  'yearly',   '',      '',   ''
+   sn_trcobc(6)  = 'bioOBC_North_HBAC_const202410',          4380,        'HBAC',     .true.,  .true.,  'yearly',   '',      '',   ''
    sn_trcobc(7)  = 'OBC_Plankton_fromClimate_2007_2019_v201905',  -1,        'microzooplankton',     .true., .true., 'yearly',   '',        '',   ''
    sn_trcobc(8)  = 'OBC_Plankton_fromClimate_2007_2019_v201905',  -1,        'dissolved_organic_nitrogen',      .true., .true., 'yearly',   '',        '',   ''
    sn_trcobc(9)  = 'OBC_Plankton_fromClimate_2007_2019_v201905',  -1,        'particulate_organic_nitrogen',      .true., .true., 'yearly',   '',        '',   ''
@@ -97,7 +97,7 @@
    rn_trofac(3)   =  1.0  !  multiplicative factor
    rn_trofac(4)   =  1.0  !  -      -      -     -
    rn_trofac(5)   =  1.0  !  -      -      -     -
-   rn_trofac(6)   =  0.0  !  set ciliates to zero
+   rn_trofac(6)   =  1.0  !  set ciliates to zero
    rn_trofac(7)   =  1.0  !  -      -      -     -
    rn_trofac(8)   =  1.0  !  -      -      -     -
    rn_trofac(9)   =  1.0  !  -      -      -     -

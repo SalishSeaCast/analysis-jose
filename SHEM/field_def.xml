@@ -782,9 +782,9 @@
        <field id="DIAT"         long_name="Diatoms Concentration"               standard_name="mole_concentration_of_diatoms_expressed_as_nitrogen_in_sea_water"                    unit="mmol m-3" />
        <field id="DIAT_E3T"     long_name="DIAT * E3T"                                                                                                                              unit="mmol m-2"  > DIAT * e3t </field >
        <field id="DIAT_E3TSNAP" long_name="DIAT * E3T"                          operation="instant"                                                                                 unit="mmol m-2"  > DIAT * e3t </field >
-       <field id="HBAR"         long_name="Heterotrophic Bacteria Concentration"     standard_name="mole_concentration_of_heterotrophic_bacteria_expressed_as_nitrogen_in_sea_water"          unit="mmol m-3" />
-       <field id="HBAR_E3T"     long_name="HBAR * E3T"                                                                                                                              unit="mmol m-2"  > HBAR * e3t </field >
-       <field id="HBAR_E3TSNAP" long_name="HBAR * E3T"                          operation="instant"                                                                                 unit="mmol m-2"  > HBAR * e3t </field >
+       <field id="HBAC"         long_name="Heterotrophic Bacteria Concentration"     standard_name="mole_concentration_of_heterotrophic_bacteria_expressed_as_nitrogen_in_sea_water"          unit="mmol m-3" />
+       <field id="HBAC_E3T"     long_name="HBAC * E3T"                                                                                                                              unit="mmol m-2"  > HBAC * e3t </field >
+       <field id="HBAC_E3TSNAP" long_name="HBAC * E3T"                          operation="instant"                                                                                 unit="mmol m-2"  > HBAC * e3t </field >
        <field id="bSi"          long_name="Biogenic Silicon Concentration"      standard_name="mole_concentration_of_organic_detritus_expressed_as_silicon_in_sea_water"            unit="mmol m-3" />
        <field id="bSi_E3T"      long_name="bsi * E3T"                                                                                                                               unit="mmol m-2"  > bSi * e3t </field >
        <field id="bSi_E3TSNAP"  long_name="bSi * E3T"                           operation="instant"                                                                                 unit="mmol m-2"  > bSi * e3t </field >
@@ -800,7 +800,7 @@
        <field id="TA_E3T"       long_name="TA * E3T"                                                                                                                                unit="mmol m-2"  > TA * e3t </field >
        <field id="O2"           long_name="Dissolved Oxygen Concentration"      standard_name="mole_concentration_of_dissolved_molecular_oxygen_in_sea_water"                       unit="mmol m-3" />
        <field id="O2_E3T"       long_name="O2 * E3T"                                                                                                                                unit="mmol m-2"  > O2 * e3t </field >
-       <field id="LIV_E3TSNAP"  long_name="DIAT+HBAR+PHY+MICZ"                  operation="instant"                                                                                 unit="mmol m-2"  > DIAT_E3T+HBAR_E3T+PHY_E3T+MICZ_E3T </field >
+       <field id="LIV_E3TSNAP"  long_name="DIAT+HBAC+PHY+MICZ"                  operation="instant"                                                                                 unit="mmol m-2"  > DIAT_E3T+HBAC_E3T+PHY_E3T+MICZ_E3T </field >
 
        <!-- SKOG outputs -->
        <field id="f_ph"        long_name="f_ph"         standard_name="f_ph"  unit="fill" grid_ref="grid_T_2D" />
@@ -853,7 +853,7 @@
        <field id="MICZ_UT"  long_name="Microzooplankton Concentration - U Transport"      standard_name="MICZ_u_dy_dz"     unit="mmol s-1" />
        <field id="DON_UT"   long_name="Dissolved Organic N Concentration - U Transport"   standard_name="DON_u_dy_dz"      unit="mmol s-1" />
        <field id="DIAT_UT"  long_name="Diatoms Concentration - U Transport"               standard_name="DIAT_u_dy_dz"     unit="mmol s-1" />
-       <field id="HBAR_UT"  long_name="Heterotrophic Bacteria Concentration - U Transport"     standard_name="HBAR_u_dy_dz"     unit="mmol s-1" />
+       <field id="HBAC_UT"  long_name="Heterotrophic Bacteria Concentration - U Transport"     standard_name="HBAC_u_dy_dz"     unit="mmol s-1" />
        <field id="bSi_UT"   long_name="Biogenic Silicon Concentration - U Transport"      standard_name="bSi_u_dy_dz"      unit="mmol s-1" />
        <field id="NO3_UT"   long_name="Nitrate Concentration - U Transport"               standard_name="NO3_u_dy_dz"      unit="mmol s-1" />
        <field id="NH4_UT"   long_name="Ammonium Concentration - U Transport"              standard_name="NH4_u_dy_dz"      unit="mmol s-1" />
@@ -870,14 +870,14 @@
        <field id="ATX_bSi"      long_name="---"        unit="---"                    />
        <field id="ATX_PHY"      long_name="---"        unit="---"                    />
        <field id="ATX_DIAT"     long_name="---"        unit="---"                    />
-       <field id="ATX_HBAR"     long_name="---"        unit="---"                    />
+       <field id="ATX_HBAC"     long_name="---"        unit="---"                    />
        <field id="ATX_MICZ"     long_name="---"        unit="---"                    />
        <field id="ATX_TRA"      long_name="---"        unit="---"                    />
        <field id="ATX_DIC"      long_name="---"        unit="---"                    />
        <field id="ATX_TA"       long_name="---"        unit="---"                    />
        <field id="ATX_O2"       long_name="---"        unit="---"                    />
        <field id="ATX_PHY"      long_name="---"        unit="---"                    />
-       <field id="ATX_LIV"      long_name="DIAT+HBAR+PHY+MICZ"   unit="mmol/m2"  > ATX_DIAT+ATX_HBAR+ATX_PHY+ATX_MICZ </field >
+       <field id="ATX_LIV"      long_name="DIAT+HBAC+PHY+MICZ"   unit="mmol/m2"  > ATX_DIAT+ATX_HBAC+ATX_PHY+ATX_MICZ </field >
        <field id="DTX_NO3"      long_name="---"        unit="---"                    />
        <field id="DTX_NH4"      long_name="---"        unit="---"                    />
        <field id="DTX_PON"      long_name="---"        unit="---"                    />
@@ -886,14 +886,14 @@
        <field id="DTX_bSi"      long_name="---"        unit="---"                    />
        <field id="DTX_PHY"      long_name="---"        unit="---"                    />
        <field id="DTX_DIAT"     long_name="---"        unit="---"                    />
-       <field id="DTX_HBAR"     long_name="---"        unit="---"                    />
+       <field id="DTX_HBAC"     long_name="---"        unit="---"                    />
        <field id="DTX_MICZ"     long_name="---"        unit="---"                    />
        <field id="DTX_TRA"      long_name="---"        unit="---"                    />
        <field id="DTX_DIC"      long_name="---"        unit="---"                    />
        <field id="DTX_TA"       long_name="---"        unit="---"                    />
        <field id="DTX_O2"       long_name="---"        unit="---"                    />
        <field id="DTX_PHY"      long_name="---"        unit="---"                    />
-       <field id="DTX_LIV"      long_name="DIAT+HBAR+PHY+MICZ"   unit="mmol/m2"  > DTX_DIAT+DTX_HBAR+DTX_PHY+DTX_MICZ </field >
+       <field id="DTX_LIV"      long_name="DIAT+HBAC+PHY+MICZ"   unit="mmol/m2"  > DTX_DIAT+DTX_HBAC+DTX_PHY+DTX_MICZ </field >
      </field_group>
 
      <!-- SMELT Advective and Diffusive Transports of Tracers - V Grid  -->
@@ -905,7 +905,7 @@
        <field id="MICZ_VT"  long_name="Microzooplankton Concentration - V Transport"      standard_name="MICZ_v_dx_dz"     unit="mmol s-1" />
        <field id="DON_VT"   long_name="Dissolved Organic N Concentration - V Transport"   standard_name="DON_v_dx_dz"      unit="mmol s-1" />
        <field id="DIAT_VT"  long_name="Diatoms Concentration - V Transport"               standard_name="DIAT_v_dx_dz"     unit="mmol s-1" />
-       <field id="HBAR_VT"  long_name="Heterotrophic Bacteria Concentration - V Transport"     standard_name="HBAR_v_dx_dz"     unit="mmol s-1" />
+       <field id="HBAC_VT"  long_name="Heterotrophic Bacteria Concentration - V Transport"     standard_name="HBAC_v_dx_dz"     unit="mmol s-1" />
        <field id="bSi_VT"   long_name="Biogenic Silicon Concentration - V Transport"      standard_name="bSi_v_dx_dz"      unit="mmol s-1" />
        <field id="NO3_VT"   long_name="Nitrate Concentration - V Transport"               standard_name="NO3_v_dx_dz"      unit="mmol s-1" />
        <field id="NH4_VT"   long_name="Ammonium Concentration - V Transport"              standard_name="NH4_v_dx_dz"      unit="mmol s-1" />
@@ -922,14 +922,14 @@
        <field id="ATY_bSi"      long_name="---"        unit="---"                    />
        <field id="ATY_PHY"      long_name="---"        unit="---"                    />
        <field id="ATY_DIAT"     long_name="---"        unit="---"                    />
-       <field id="ATY_HBAR"     long_name="---"        unit="---"                    />
+       <field id="ATY_HBAC"     long_name="---"        unit="---"                    />
        <field id="ATY_MICZ"     long_name="---"        unit="---"                    />
        <field id="ATY_TRA"      long_name="---"        unit="---"                    />
        <field id="ATY_DIC"      long_name="---"        unit="---"                    />
        <field id="ATY_TA"       long_name="---"        unit="---"                    />
        <field id="ATY_O2"       long_name="---"        unit="---"                    />
        <field id="ATY_PHY"      long_name="---"        unit="---"                    />
-       <field id="ATY_LIV"      long_name="DIAT+HBAR+PHY+MICZ"   unit="mmol/m2"  > ATY_DIAT+ATY_HBAR+ATY_PHY+ATY_MICZ </field >
+       <field id="ATY_LIV"      long_name="DIAT+HBAC+PHY+MICZ"   unit="mmol/m2"  > ATY_DIAT+ATY_HBAC+ATY_PHY+ATY_MICZ </field >
        <field id="DTY_NO3"      long_name="---"        unit="---"                    />
        <field id="DTY_NH4"      long_name="---"        unit="---"                    />
        <field id="DTY_PON"      long_name="---"        unit="---"                    />
@@ -938,14 +938,14 @@
        <field id="DTY_bSi"      long_name="---"        unit="---"                    />
        <field id="DTY_PHY"      long_name="---"        unit="---"                    />
        <field id="DTY_DIAT"     long_name="---"        unit="---"                    />
-       <field id="DTY_HBAR"     long_name="---"        unit="---"                    />
+       <field id="DTY_HBAC"     long_name="---"        unit="---"                    />
        <field id="DTY_MICZ"     long_name="---"        unit="---"                    />
        <field id="DTY_TRA"      long_name="---"        unit="---"                    />
        <field id="DTY_DIC"      long_name="---"        unit="---"                    />
        <field id="DTY_TA"       long_name="---"        unit="---"                    />
        <field id="DTY_O2"       long_name="---"        unit="---"                    />
        <field id="DTY_PHY"      long_name="---"        unit="---"                    />
-       <field id="DTY_LIV"      long_name="DIAT+HBAR+PHY+MICZ"   unit="mmol/m2"  > DTY_DIAT+DTY_HBAR+DTY_PHY+DTY_MICZ </field >
+       <field id="DTY_LIV"      long_name="DIAT+HBAC+PHY+MICZ"   unit="mmol/m2"  > DTY_DIAT+DTY_HBAC+DTY_PHY+DTY_MICZ </field >
      </field_group>
 
      <!-- SMELT Advective and Diffusive Transports of Tracers and GLS output - W Grid  -->
@@ -957,7 +957,7 @@
        <field id="MICZ_WT"  long_name="Microzooplankton Concentration - W Transport"      standard_name="MICZ_w_dy_dx"     unit="mmol s-1" />
        <field id="DON_WT"   long_name="Dissolved Organic N Concentration - W Transport"   standard_name="DON_w_dy_dx"      unit="mmol s-1" />
        <field id="DIAT_WT"  long_name="Diatoms Concentration - W Transport"               standard_name="DIAT_w_dy_dx"     unit="mmol s-1" />
-       <field id="HBAR_WT"  long_name="Heterotrophic Bacteria Concentration - W Transport"     standard_name="HBAR_w_dy_dx"     unit="mmol s-1" />
+       <field id="HBAC_WT"  long_name="Heterotrophic Bacteria Concentration - W Transport"     standard_name="HBAC_w_dy_dx"     unit="mmol s-1" />
        <field id="bSi_WT"   long_name="Biogenic Silicon Concentration - W Transport"      standard_name="bSi_w_dy_dx"      unit="mmol s-1" />
        <field id="NO3_WT"   long_name="Nitrate Concentration - W Transport"               standard_name="NO3_w_dy_dx"      unit="mmol s-1" />
        <field id="NH4_WT"   long_name="Ammonium Concentration - W Transport"              standard_name="NH4_w_dy_dx"      unit="mmol s-1" />
@@ -993,14 +993,14 @@
        <field id="ATZ_bSi"      long_name="---"        unit="---"                    />
        <field id="ATZ_PHY"      long_name="---"        unit="---"                    />
        <field id="ATZ_DIAT"     long_name="---"        unit="---"                    />
-       <field id="ATZ_HBAR"     long_name="---"        unit="---"                    />
+       <field id="ATZ_HBAC"     long_name="---"        unit="---"                    />
        <field id="ATZ_MICZ"     long_name="---"        unit="---"                    />
        <field id="ATZ_TRA"      long_name="---"        unit="---"                    />
        <field id="ATZ_DIC"      long_name="---"        unit="---"                    />
        <field id="ATZ_TA"       long_name="---"        unit="---"                    />
        <field id="ATZ_O2"       long_name="---"        unit="---"                    />
        <field id="ATZ_PHY"      long_name="---"        unit="---"                    />
-       <field id="ATZ_LIV"      long_name="DIAT+HBAR+PHY+MICZ"                                   unit="mmol/m2"  > ATZ_DIAT+ATZ_HBAR+ATZ_PHY+ATZ_MICZ </field >
+       <field id="ATZ_LIV"      long_name="DIAT+HBAC+PHY+MICZ"                                   unit="mmol/m2"  > ATZ_DIAT+ATZ_HBAC+ATZ_PHY+ATZ_MICZ </field >
        <field id="VMIXNO3"      long_name="upward flux due to vert mixing with horiz comp"       unit="mmol N/m2/s"    />
        <field id="VMIXNH4"      long_name="upward flux due to vert mixing with horiz comp"       unit="mmol N/m2/s"    />
        <field id="VMIXPON"      long_name="upward flux due to vert mixing with horiz comp"       unit="mmol N/m2/s"    />
@@ -1009,14 +1009,14 @@
        <field id="VMIXbSi"      long_name="upward flux due to vert mixing with horiz comp"       unit="mmol N/m2/s"    />
        <field id="VMIXPHY"      long_name="upward flux due to vert mixing with horiz comp"       unit="mmol N/m2/s"    />
        <field id="VMIXDIAT"     long_name="upward flux due to vert mixing with horiz comp"       unit="mmol N/m2/s"    />
-       <field id="VMIXHBAR"     long_name="upward flux due to vert mixing with horiz comp"       unit="mmol N/m2/s"    />
+       <field id="VMIXHBAC"     long_name="upward flux due to vert mixing with horiz comp"       unit="mmol N/m2/s"    />
        <field id="VMIXMICZ"     long_name="upward flux due to vert mixing with horiz comp"       unit="mmol N/m2/s"    />
        <field id="VMIXTRA"      long_name="upward flux due to vert mixing with horiz comp"       unit="mmol N/m2/s"    />
        <field id="VMIXDIC"      long_name="upward flux due to vert mixing with horiz comp"       unit="mmol N/m2/s"    />
        <field id="VMIXTA"       long_name="upward flux due to vert mixing with horiz comp"       unit="mmol N/m2/s"    />
        <field id="VMIXO2"       long_name="upward flux due to vert mixing with horiz comp"       unit="mmol N/m2/s"    />
        <field id="VMIXPHY"      long_name="upward flux due to vert mixing with horiz comp"       unit="mmol N/m2/s"    />
-       <field id="VMIXLIV"      long_name="upward flux due to vert mixing with horiz comp"       unit="mmol/m2"  > VMIXDIAT+VMIXHBAR+VMIXPHY+VMIXMICZ </field >
+       <field id="VMIXLIV"      long_name="upward flux due to vert mixing with horiz comp"       unit="mmol/m2"  > VMIXDIAT+VMIXHBAC+VMIXPHY+VMIXMICZ </field >
 
        <field id="WLDFNO3"      long_name="vert component of sloping lateral mix"        unit="mmol N/m2/s"    />
        <field id="WLDFNH4"      long_name="vert component of sloping lateral mix"        unit="mmol N/m2/s"    />
@@ -1026,14 +1026,14 @@
        <field id="WLDFbSi"      long_name="vert component of sloping lateral mix"        unit="mmol N/m2/s"    />
        <field id="WLDFPHY"      long_name="vert component of sloping lateral mix"        unit="mmol N/m2/s"    />
        <field id="WLDFDIAT"     long_name="vert component of sloping lateral mix"        unit="mmol N/m2/s"    />
-       <field id="WLDFHBAR"     long_name="vert component of sloping lateral mix"        unit="mmol N/m2/s"    />
+       <field id="WLDFHBAC"     long_name="vert component of sloping lateral mix"        unit="mmol N/m2/s"    />
        <field id="WLDFMICZ"     long_name="vert component of sloping lateral mix"        unit="mmol N/m2/s"    />
        <field id="WLDFTRA"      long_name="vert component of sloping lateral mix"        unit="mmol N/m2/s"    />
        <field id="WLDFDIC"      long_name="vert component of sloping lateral mix"        unit="mmol N/m2/s"    />
        <field id="WLDFTA"       long_name="vert component of sloping lateral mix"        unit="mmol N/m2/s"    />
        <field id="WLDFO2"       long_name="vert component of sloping lateral mix"        unit="mmol N/m2/s"    />
        <field id="WLDFPHY"      long_name="vert component of sloping lateral mix"        unit="mmol N/m2/s"    />
-       <field id="WLDFLIV"      long_name="DIAT+HBAR+PHY+MICZ"                           unit="mmol/m2"  > WLDFDIAT+WLDFHBAR+WLDFPHY+WLDFMICZ </field >
+       <field id="WLDFLIV"      long_name="DIAT+HBAC+PHY+MICZ"                           unit="mmol/m2"  > WLDFDIAT+WLDFHBAC+WLDFPHY+WLDFMICZ </field >
      </field_group>
 
      <!-- PISCES additional diagnostics on T grid (prod and graz)  -->
@@ -1048,7 +1048,7 @@
        <field id="PPDIATNO3V"  long_name="New Primary Production of Diatoms"                                                                                                                                                                                  unit="mmol N/s"        grid_ref="grid_T_3D" />
        <field id="PPPHYNO3V"   long_name="New Primary Production of Flagellates"                                                                                                                                                                              unit="mmol N/s"        grid_ref="grid_T_3D" />
        <field id="PPHBACNO3V"  long_name="New Primary Production of H.bacteria"                                                                                                                                                                                unit="mmol N/s"        grid_ref="grid_T_3D" />
-       <field id="HetMRub"     long_name="Heterotrophic growth of H.bacteria"             standard_name="tendency_of_mole_concentration_of_heterotrophic_bacteria_expressed_as_nitrogen_in_sea_water_due_to_heterotrophic_growth"                                   unit="mmol N m-3 s-1"  grid_ref="grid_T_3D" />
+       <field id="HetHBAC"     long_name="Heterotrophic growth of H.bacteria"             standard_name="tendency_of_mole_concentration_of_heterotrophic_bacteria_expressed_as_nitrogen_in_sea_water_due_to_heterotrophic_growth"                                   unit="mmol N m-3 s-1"  grid_ref="grid_T_3D" />
        <field id="GRMESZDIAT"  long_name="Mesozooplankton Grazing on Diatoms"            standard_name="tendency_of_mole_concentration_of_diatoms_expressed_as_nitrogen_in_sea_water_due_to_mesozooplankton_grazing"                                          unit="mmol N m-3 s-1"  grid_ref="grid_T_3D" />
        <field id="GRMESZHBAC"  long_name="Mesozooplankton Grazing on H.bacteria"          standard_name="tendency_of_mole_concentration_of_heterotrophic_bacteria_expressed_as_nitrogen_in_sea_water_due_to_mesozooplankton_grazing"                                unit="mmol N m-3 s-1"  grid_ref="grid_T_3D" />
        <field id="GRMESZPHY"   long_name="Mesozooplankton Grazing on Flagellates"        standard_name="tendency_of_mole_concentration_of_flagellates_expressed_as_nitrogen_in_sea_water_due_to_mesozooplankton_grazing"                                      unit="mmol N m-3 s-1"  grid_ref="grid_T_3D" />
@@ -1179,18 +1179,18 @@
        <field id="RDB_DIAT"      long_name="---"        unit="---"                        />
        <field id="RDN_DIAT"      long_name="---"        unit="---"                        />
 
-       <field id="XAD_HBAR"      long_name="---"        unit="---"                        />
-       <field id="YAD_HBAR"      long_name="---"        unit="---"                        />
-       <field id="ZAD_HBAR"      long_name="---"        unit="---"                        />
-       <field id="LDF_HBAR"      long_name="---"        unit="---"                        />
-       <field id="BBL_HBAR"      long_name="---"        unit="---"                        />
-       <field id="FOR_HBAR"      long_name="---"        unit="---"                        />
-       <field id="ZDF_HBAR"      long_name="---"        unit="---"                        />
-       <field id="DMP_HBAR"      long_name="---"        unit="---"                        />
-       <field id="SMS_HBAR"      long_name="---"        unit="---"                        />
-       <field id="ATF_HBAR"      long_name="---"        unit="---"                        />
-       <field id="RDB_HBAR"      long_name="---"        unit="---"                        />
-       <field id="RDN_HBAR"      long_name="---"        unit="---"                        />
+       <field id="XAD_HBAC"      long_name="---"        unit="---"                        />
+       <field id="YAD_HBAC"      long_name="---"        unit="---"                        />
+       <field id="ZAD_HBAC"      long_name="---"        unit="---"                        />
+       <field id="LDF_HBAC"      long_name="---"        unit="---"                        />
+       <field id="BBL_HBAC"      long_name="---"        unit="---"                        />
+       <field id="FOR_HBAC"      long_name="---"        unit="---"                        />
+       <field id="ZDF_HBAC"      long_name="---"        unit="---"                        />
+       <field id="DMP_HBAC"      long_name="---"        unit="---"                        />
+       <field id="SMS_HBAC"      long_name="---"        unit="---"                        />
+       <field id="ATF_HBAC"      long_name="---"        unit="---"                        />
+       <field id="RDB_HBAC"      long_name="---"        unit="---"                        />
+       <field id="RDN_HBAC"      long_name="---"        unit="---"                        />
 
        <field id="XAD_MICZ"      long_name="---"        unit="---"                        />
        <field id="YAD_MICZ"      long_name="---"        unit="---"                        />
@@ -1218,14 +1218,14 @@
        <field id="RDB_TRA"      long_name="---"        unit="---"                        />
        <field id="RDN_TRA"      long_name="---"        unit="---"                        />
 
-       <field id="XAD_LIV"      long_name="DIAT+HBAR+PHY+MICZ"   unit="mmol/s"  > XAD_DIAT+XAD_HBAR+XAD_PHY+XAD_MICZ </field >
-       <field id="YAD_LIV"      long_name="DIAT+HBAR+PHY+MICZ"   unit="mmol/s"  > YAD_DIAT+YAD_HBAR+YAD_PHY+YAD_MICZ </field >
-       <field id="ZAD_LIV"      long_name="DIAT+HBAR+PHY+MICZ"   unit="mmol/s"  > ZAD_DIAT+ZAD_HBAR+ZAD_PHY+ZAD_MICZ </field >
-       <field id="LDF_LIV"      long_name="DIAT+HBAR+PHY+MICZ"   unit="mmol/s"  > LDF_DIAT+ZAD_HBAR+LDF_PHY+LDF_MICZ </field >
-       <field id="SMS_LIV"      long_name="DIAT+HBAR+PHY+MICZ"   unit="mmol/s"  > SMS_DIAT+SMS_HBAR+SMS_PHY+SMS_MICZ </field >
-       <field id="ATF_LIV"      long_name="DIAT+HBAR+PHY+MICZ"   unit="mmol/s"  > ATF_DIAT+ATF_HBAR+ATF_PHY+ATF_MICZ </field >
-       <field id="RDB_LIV"      long_name="DIAT+HBAR+PHY+MICZ"   unit="mmol/s"  > RDB_DIAT+RDB_HBAR+RDB_PHY+RDB_MICZ </field >
-       <field id="RDN_LIV"      long_name="DIAT+HBAR+PHY+MICZ"   unit="mmol/s"  > RDN_DIAT+RDN_HBAR+RDN_PHY+RDN_MICZ </field >
+       <field id="XAD_LIV"      long_name="DIAT+HBAC+PHY+MICZ"   unit="mmol/s"  > XAD_DIAT+XAD_HBAC+XAD_PHY+XAD_MICZ </field >
+       <field id="YAD_LIV"      long_name="DIAT+HBAC+PHY+MICZ"   unit="mmol/s"  > YAD_DIAT+YAD_HBAC+YAD_PHY+YAD_MICZ </field >
+       <field id="ZAD_LIV"      long_name="DIAT+HBAC+PHY+MICZ"   unit="mmol/s"  > ZAD_DIAT+ZAD_HBAC+ZAD_PHY+ZAD_MICZ </field >
+       <field id="LDF_LIV"      long_name="DIAT+HBAC+PHY+MICZ"   unit="mmol/s"  > LDF_DIAT+ZAD_HBAC+LDF_PHY+LDF_MICZ </field >
+       <field id="SMS_LIV"      long_name="DIAT+HBAC+PHY+MICZ"   unit="mmol/s"  > SMS_DIAT+SMS_HBAC+SMS_PHY+SMS_MICZ </field >
+       <field id="ATF_LIV"      long_name="DIAT+HBAC+PHY+MICZ"   unit="mmol/s"  > ATF_DIAT+ATF_HBAC+ATF_PHY+ATF_MICZ </field >
+       <field id="RDB_LIV"      long_name="DIAT+HBAC+PHY+MICZ"   unit="mmol/s"  > RDB_DIAT+RDB_HBAC+RDB_PHY+RDB_MICZ </field >
+       <field id="RDN_LIV"      long_name="DIAT+HBAC+PHY+MICZ"   unit="mmol/s"  > RDN_DIAT+RDN_HBAC+RDN_PHY+RDN_MICZ </field >
 
        <field id="XAD_DIC"      long_name="---"        unit="---"                        />
        <field id="YAD_DIC"      long_name="---"        unit="---"                        />
@@ -1274,7 +1274,7 @@
        <field id="TBS_bSi"      long_name="---"        unit="---"                    />
        <field id="TBS_PHY"      long_name="---"        unit="---"                    />
        <field id="TBS_DIAT"     long_name="---"        unit="---"                    />
-       <field id="TBS_HBAR"     long_name="---"        unit="---"                    />
+       <field id="TBS_HBAC"     long_name="---"        unit="---"                    />
        <field id="TBS_MICZ"     long_name="---"        unit="---"                    />
        <field id="TBS_TRA"      long_name="---"        unit="---"                    />
        <field id="TBS_DIC"      long_name="---"        unit="---"                    />
@@ -1290,7 +1290,7 @@
        <field id="REM_bSi"      long_name="---"        unit="---"                    />
        <field id="REM_PHY"      long_name="---"        unit="---"                    />
        <field id="REM_DIAT"     long_name="---"        unit="---"                    />
-       <field id="REM_HBAR"     long_name="---"        unit="---"                    />
+       <field id="REM_HBAC"     long_name="---"        unit="---"                    />
        <field id="REM_MICZ"     long_name="---"        unit="---"                    />
        <field id="REM_TRA"      long_name="---"        unit="---"                    />
        <field id="REM_DIC"      long_name="---"        unit="---"                    />
@@ -1306,14 +1306,14 @@
        <field id="RIV_bSi"      long_name="---"        unit="---"                    />
        <field id="RIV_PHY"      long_name="---"        unit="---"                    />
        <field id="RIV_DIAT"     long_name="---"        unit="---"                    />
-       <field id="RIV_HBAR"     long_name="---"        unit="---"                    />
+       <field id="RIV_HBAC"     long_name="---"        unit="---"                    />
        <field id="RIV_MICZ"     long_name="---"        unit="---"                    />
        <field id="RIV_TRA"      long_name="---"        unit="---"                    />
        <field id="RIV_DIC"      long_name="---"        unit="---"                    />
        <field id="RIV_TA"       long_name="---"        unit="---"                    />
        <field id="RIV_O2"       long_name="---"        unit="---"                    />
        <field id="RIV_PHY"      long_name="---"        unit="---"                    />
-       <field id="RIV_LIV"      long_name="DIAT+HBAR+PHY+MICZ"   unit="mmol/m2"  > RIV_DIAT+RIV_HBAR+RIV_PHY+RIV_MICZ </field >
+       <field id="RIV_LIV"      long_name="DIAT+HBAC+PHY+MICZ"   unit="mmol/m2"  > RIV_DIAT+RIV_HBAC+RIV_PHY+RIV_MICZ </field >
 
        <field id="PHS_NO3"      long_name="---"        unit="---"                    />
        <field id="PHS_NH4"      long_name="---"        unit="---"                    />
@@ -1323,14 +1323,14 @@
        <field id="PHS_bSi"      long_name="---"        unit="---"                    />
        <field id="PHS_PHY"      long_name="---"        unit="---"                    />
        <field id="PHS_DIAT"     long_name="---"        unit="---"                    />
-       <field id="PHS_HBAR"     long_name="---"        unit="---"                    />
+       <field id="PHS_HBAC"     long_name="---"        unit="---"                    />
        <field id="PHS_MICZ"     long_name="---"        unit="---"                    />
        <field id="PHS_TRA"      long_name="---"        unit="---"                    />
        <field id="PHS_DIC"      long_name="---"        unit="---"                    />
        <field id="PHS_TA"       long_name="---"        unit="---"                    />
        <field id="PHS_O2"       long_name="---"        unit="---"                    />
        <field id="PHS_PHY"      long_name="---"        unit="---"                    />
-       <field id="PHS_LIV"      long_name="DIAT+HBAR+PHY+MICZ"   unit="mmol/m2"  > PHS_DIAT+PHS_HBAR+PHS_PHY+PHS_MICZ </field >
+       <field id="PHS_LIV"      long_name="DIAT+HBAC+PHY+MICZ"   unit="mmol/m2"  > PHS_DIAT+PHS_HBAC+PHS_PHY+PHS_MICZ </field >
 
        <field id="WAS_NH4"      long_name="grazing, mort to NH4"   unit="mmol/m2"  > MRT_NH4+HBA_NH4+MIZ_NH4+MSZ_NH4 </field >
        <field id="WAS_PON"      long_name="grazing, mort to PON"   unit="mmol/m2"  > MRT_PON+HBA_PON+MIZ_PON+MSZ_PON </field >
@@ -1344,7 +1344,7 @@
        <field id="MRT_bSi"      long_name="---"        unit="---"                    />
        <field id="MRT_PHY"      long_name="---"        unit="---"                    />
        <field id="MRT_DIAT"     long_name="---"        unit="---"                    />
-       <field id="MRT_HBAR"     long_name="---"        unit="---"                    />
+       <field id="MRT_HBAC"     long_name="---"        unit="---"                    />
        <field id="MRT_MICZ"     long_name="---"        unit="---"                    />
        <field id="MRT_TRA"      long_name="---"        unit="---"                    />
        <field id="MRT_DIC"      long_name="---"        unit="---"                    />
@@ -1360,7 +1360,7 @@
        <field id="MIZ_bSi"      long_name="---"        unit="---"                    />
        <field id="MIZ_PHY"      long_name="---"        unit="---"                    />
        <field id="MIZ_DIAT"     long_name="---"        unit="---"                    />
-       <field id="MIZ_HBAR"     long_name="---"        unit="---"                    />
+       <field id="MIZ_HBAC"     long_name="---"        unit="---"                    />
        <field id="MIZ_MICZ"     long_name="---"        unit="---"                    />
        <field id="MIZ_TRA"      long_name="---"        unit="---"                    />
        <field id="MIZ_DIC"      long_name="---"        unit="---"                    />
@@ -1376,7 +1376,7 @@
        <field id="MSZ_bSi"      long_name="---"        unit="---"                    />
        <field id="MSZ_PHY"      long_name="---"        unit="---"                    />
        <field id="MSZ_DIAT"     long_name="---"        unit="---"                    />
-       <field id="MSZ_HBAR"     long_name="---"        unit="---"                    />
+       <field id="MSZ_HBAC"     long_name="---"        unit="---"                    />
        <field id="MSZ_MICZ"     long_name="---"        unit="---"                    />
        <field id="MSZ_TRA"      long_name="---"        unit="---"                    />
        <field id="MSZ_DIC"      long_name="---"        unit="---"                    />
@@ -1392,7 +1392,7 @@
        <field id="HBA_bSi"      long_name="---"        unit="---"                    />
        <field id="HBA_PHY"      long_name="---"        unit="---"                    />
        <field id="HBA_DIAT"     long_name="---"        unit="---"                    />
-       <field id="HBA_HBAR"     long_name="---"        unit="---"                    />
+       <field id="HBA_HBAC"     long_name="---"        unit="---"                    />
        <field id="HBA_MICZ"     long_name="---"        unit="---"                    />
        <field id="HBA_TRA"      long_name="---"        unit="---"                    />
        <field id="HBA_DIC"      long_name="---"        unit="---"                    />
@@ -1408,7 +1408,7 @@
        <field id="PRD_bSi"      long_name="---"        unit="---"                    />
        <field id="PRD_PHY"      long_name="---"        unit="---"                    />
        <field id="PRD_DIAT"     long_name="---"        unit="---"                    />
-       <field id="PRD_HBAR"     long_name="---"        unit="---"                    />
+       <field id="PRD_HBAC"     long_name="---"        unit="---"                    />
        <field id="PRD_MICZ"     long_name="---"        unit="---"                    />
        <field id="PRD_TRA"      long_name="---"        unit="---"                    />
        <field id="PRD_DIC"      long_name="---"        unit="---"                    />

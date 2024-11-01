@@ -46,7 +46,7 @@
    zz_frac_waste_FNM_DON   = 0.470     ! waste fraction from pico-phyto natural mortality to DON
    zz_frac_waste_FNM_PON   = 0.470     ! waste fraction from pico-phyto natural mortality to PON
    zz_frac_waste_FNM_Bsi   = 1.0       ! waste fraction from pico-phyto natural mortality to bSi
-   zz_rate_hbac_Rm         = 0.0778E-04  ! Het. Bacteria natural mortality
+   zz_rate_HBac_Rm         = 0.0778E-04  ! Het. Bacteria natural mortality
    zz_frac_waste_BNM_NH    = 0.05       ! waste fraction from Het. Bacteria natural mortality to NH
    zz_frac_waste_BNM_DON   = 0.470      ! waste fraction from Het. Bacteria natural mortality to DON
    zz_frac_waste_BNM_PON   = 0.470      ! waste fraction from Het. Bacteria natural mortality to PON
@@ -60,10 +60,10 @@
 !'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 &nampismes     !   parameters for Het. Bacteria
 !,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-   zz_rate_hetbact_R               = 0.0               !:
-   zz_rate_hetbact_flagPredSlope   = 0.3               !:
-   zz_rate_hetbact_flagHalfSat     = 1.0               !:
-   zz_rate_hetbact_eff             = 0.6               !:
+   zz_rate_HBac_R               = 0.0               !:
+   zz_rate_HBac_flagPredSlope    = 0.3               !:
+   zz_rate_HBac_flagHalfSat      = 1.0               !:
+   zz_rate_HBac_eff              = 0.6               !:
    zz_frac_waste_FEB_NH            = 0.05              !:waste fraction from hetbact grazing picophyto to NH
    zz_frac_waste_FEB_DON           = 0.470             ! waste fraction from hetbact grazing picophyto to DON
    zz_frac_waste_FEB_PON           = 0.470             ! waste fraction from hetbact grazing picophyto to PON
@@ -154,10 +154,10 @@
    zz_frac_waste_DEZ_DON        = 0.470      !waste fraction from microzoo grazing microphyto to DON
    zz_frac_waste_DEZ_PON        = 0.470      !waste fraction from microzoo grazing microphyto to PON
    zz_frac_waste_DEZ_Bsi        = 1.         !waste fraction from microzoo grazing microphyto to Bsi
-   zz_frac_waste_CEZ_NH         = 0.05       ! waste fraction from microzoo grazing Het. Bacteria to NH
-   zz_frac_waste_CEZ_DON        = 0.470      !waste fraction from microzoo grazing Het. Bacteria to DON
-   zz_frac_waste_CEZ_PON        = 0.470      !waste fraction from microzoo grazing Het. Bacteria to PON
-   zz_frac_waste_CEZ_BSi        = 1.         !waste fraction from microzoo grazing Het. Bacteria to Bsi
+   zz_frac_waste_BEZ_NH         = 0.05       ! waste fraction from microzoo grazing Het. Bacteria to NH
+   zz_frac_waste_BEZ_DON        = 0.470      !waste fraction from microzoo grazing Het. Bacteria to DON
+   zz_frac_waste_BEZ_PON        = 0.470      !waste fraction from microzoo grazing Het. Bacteria to PON
+   zz_frac_waste_BEZ_BSi        = 1.         !waste fraction from microzoo grazing Het. Bacteria to Bsi
    zz_frac_waste_FEZ_NH         = 0.05       ! waste fraction from microzoo grazing picophyto to NH
    zz_frac_waste_FEZ_DON        = 0.470      !waste fraction from microzoo grazing picophyto to DON
    zz_frac_waste_FEZ_PON        = 0.470      !waste fraction from microzoo grazing picophyto to PON
