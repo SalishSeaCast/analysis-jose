@@ -11,7 +11,7 @@
    sn_riversil  = 'rivers-climatology/bio/RPugetExp_bioClim',     24,               'sil',       .true.,       .true.,  'daily',    '',        '',        ''
    sn_riverdia  = 'rivers-climatology/bio/R202101_bioConst',     -12,               'dia',       .false.,      .true.,  'yearly',   '',        '',        ''
    sn_riverphy  = 'rivers-climatology/bio/R202101_bioConst',     -12,               'phy',       .false.,      .true.,  'yearly',   '',        '',        ''
-   sn_rivermyr  = 'rivers-climatology/bio/R202101_bioConst',     -12,               'mes',       .false.,      .true.,  'yearly',   '',        '',        ''
+   sn_riverhbc  = 'rivers-climatology/bio/R202101_bioConst',     -12,               'mes',       .false.,      .true.,  'yearly',   '',        '',        ''
    sn_riverzoo  = 'rivers-climatology/bio/R202101_bioConst',     -12,               'zoo',       .false.,      .true.,  'yearly',   '',        '',        ''
    sn_riverdoc  = 'rivers-climatology/bio/R202101_bioConst',     -12,               'don',       .false.,      .true.,  'yearly',   '',        '',        ''
    sn_riverpoc  = 'rivers-climatology/bio/R202101_bioConst',     -12,               'pon',       .false.,      .true.,  'yearly',   '',        '',        ''

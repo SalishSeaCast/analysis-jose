@@ -2,10 +2,11 @@
 # SalishSeaCast hindcast run on Sockeye
 
 email: jvalenti@eoas.ubc.ca
-MPI decomposition: 18x30
+MPI decomposition: 5x7
 config_name: SHEM
-run_id: 01jan_22shem
-walltime: 3600 #1hour
+run_id: 01jan_22_hb
+account: rrg-allen
+walltime: 21420 #11.9 hours
 
 paths:
   NEMO code config: $PROJECT/$USER/MEOPAR/NEMO-3.6-code/NEMOGCM/CONFIG
@@ -49,7 +50,7 @@ namelists:
   - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist.domain
   - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist.atmos_rivers
   - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist.light
-  - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist.lateral.NEP
+  - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist.lateral
   - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist.bottom
   - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist.tracer
   - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist.dynamics
@@ -57,19 +58,20 @@ namelists:
   - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist.compute
   
   namelist_smelt_cfg:
-  - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist_smelt_biology
-  - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist_smelt_rivers_opsturb
+  #- ./namelist_smelt_ref
+  - ./namelist_smelt_biology
+  - ./namelist_smelt_rivers_opsturb
   - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist_smelt_skog
   namelist_top_cfg:
   - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist_top_restart
-  - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist_top_TracerDefAndBdy_NEP
+  - ./namelist_top_TracerDefAndBdy
   - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist_top_physics
   
 output:
   XIOS servers: 1
   domaindefs: $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/domain_def.xml
-  fielddefs: $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/field_def.xml
-  filedefs: $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/file_def_dailysplit.xml
+  fielddefs: ./field_def.xml
+  filedefs: ./file_def_dailysplit.xml
   iodefs: $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/iodef.xml
   separate XIOS server: true
 
