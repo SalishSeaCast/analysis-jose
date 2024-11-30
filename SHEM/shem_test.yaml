@@ -2,9 +2,9 @@
 # SalishSeaCast hindcast run on Sockeye
 
 email: jvalenti@eoas.ubc.ca
-MPI decomposition: 5x7
+MPI decomposition: 5x15
 config_name: SHEM
-run_id: 01jan_22_hb
+run_id: 01jan_22_run_nomort
 account: rrg-allen
 walltime: 21420 #11.9 hours
 

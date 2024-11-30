@@ -1,7 +1,7 @@
 !!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 !! PISCES  (key_pisces) config namelist (see below for key_pisces_reduced)
 !!              4  - parameters for phytoplankton             (nampisprod,nampismort)
-!!              5  - parameters for zooplankton               (nampismes, nampismezo, nampiszoo)
+!!              5  - parameters for zooplankton               (nampishbac, nampismezo, nampiszoo)
 !!              6  - parameters for remineralization          (nampisrem)
 !!              7 - optical model                             (nampisopt)
 !!              11 - Sinking                                  (nampissink)
@@ -11,63 +11,56 @@
 &nampisprod     !   parameters for phytoplankton growth
 !,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
    zz_rate_R_diat            = 5.8e-05      !: 1/s
-   zz_rate_R_hbac            = 0.0          !: 1/s
    zz_rate_R_flag            = 1.8e-05      !: 1/s
    zz_rate_maxtemp_diat      = 26.0         !: deg C
-   zz_rate_maxtemp_hbac      = 31.0         !: deg C
    zz_rate_maxtemp_flag      = 31.0         !: deg C
    zz_rate_temprange_diat    = 14.0         !: deg C
-   zz_rate_temprange_hbac    = 13.0         !: deg C
    zz_rate_temprange_flag    = 13.0         !: deg C
    zz_PE_a_diat              = 0.045        !: (W/m^2)^-1
-   zz_PE_a_hbac              = 0.0          !: (W/m^2)^-1
    zz_PE_a_flag              = 0.38         !: (W/m^2)^-1
    zz_PE_Iopt_diat           = 75.0         !: W/m^2
-   zz_PE_Iopt_hbac           = 0.0          !: W/m^2
    zz_PE_Iopt_flag           = 20.0         !: W/m^2
    zz_rate_K_Si_diat         = 1.2          !:
-   zz_rate_K_Si_hbac         = 0.0          !:
    zz_rate_K_Si_flag         = 0.0          !:
    zz_rate_kapa_diat         = 1.0          !:
-   zz_rate_kapa_hbac         = 0.5          !:
    zz_rate_kapa_flag         = 0.300        !:
    zz_rate_k_diat            = 2.0          !:
-   zz_rate_k_hbac            = 0.5          !:
    zz_rate_k_flag            = 0.1          !:
    zz_rate_Si_ratio_diat     = 1.8          !:
-   zz_rate_Si_ratio_hbac     = 0.0          !:
    zz_rate_Si_ratio_flag     = 0.0          !:
 /
 !'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 &nampismort     !   parameters for phytoplankton mortality
 !,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
    zz_rate_flag_Rm         = 0.0489E-05 ! flagellate (pico-phyto) natural mortality
-   zz_frac_waste_FNM_NH    = 0.05      ! waste fraction from pico-phyto natural mortality to NH
-   zz_frac_waste_FNM_DON   = 0.470     ! waste fraction from pico-phyto natural mortality to DON
-   zz_frac_waste_FNM_PON   = 0.470     ! waste fraction from pico-phyto natural mortality to PON
-   zz_frac_waste_FNM_Bsi   = 1.0       ! waste fraction from pico-phyto natural mortality to bSi
-   zz_rate_HBac_Rm         = 3.5E-06   ! Het. Bacteria natural mortality
-   zz_frac_waste_BNM_NH    = 0.0        ! waste fraction from Het. Bacteria natural mortality to NH
-   zz_frac_waste_BNM_DON   = 0.88       ! waste fraction from Het. Bacteria natural mortality to DON
-   zz_frac_waste_BNM_PON   = 0.12       ! waste fraction from Het. Bacteria natural mortality to PON
-   zz_frac_waste_BNM_Bsi   = 1.0        ! waste fraction from Het. Bacteria natural mortality to bSi
-   zz_rate_diat_Rm        = 0.0667E-05 ! diatom (micro-phyto) natural mortality
-   zz_frac_waste_DNM_NH    = 0.05      ! waste fraction from micro-phyto natural mortality to NH
-   zz_frac_waste_DNM_DON   = 0.470     ! waste fraction from micro-phyto natural mortality to DON
-   zz_frac_waste_DNM_PON   = 0.470     ! waste fraction from micro-phyto natural mortality to PON
-   zz_frac_waste_DNM_Bsi   = 1.        ! waste fraction from micro-phyto natural mortality to bSi
+   zz_frac_waste_FNM_NH    = 0.05       ! waste fraction from pico-phyto natural mortality to NH
+   zz_frac_waste_FNM_DON   = 0.470      ! waste fraction from pico-phyto natural mortality to DON
+   zz_frac_waste_FNM_PON   = 0.470      ! waste fraction from pico-phyto natural mortality to PON
+   zz_frac_waste_FNM_Bsi   = 1.0        ! waste fraction from pico-phyto natural mortality to bSi
+   zz_rate_diat_Rm         = 0.0667E-05 ! diatom (micro-phyto) natural mortality
+   zz_frac_waste_DNM_NH    = 0.05       ! waste fraction from micro-phyto natural mortality to NH
+   zz_frac_waste_DNM_DON   = 0.470      ! waste fraction from micro-phyto natural mortality to DON
+   zz_frac_waste_DNM_PON   = 0.470      ! waste fraction from micro-phyto natural mortality to PON
+   zz_frac_waste_DNM_Bsi   = 1.0        ! waste fraction from micro-phyto natural mortality to bSi
 /
 !'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-&nampismes     !   parameters for Het. Bacteria
+&nampishbac     !   parameters for Het. Bacteria
 !,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
    zz_rate_HBac_R                  = 1.16e-05          !: 1/s
    zz_rate_HBac_flagPredSlope      = 0.3               !:
    zz_rate_HBac_flagHalfSat        = 1.0               !:
    zz_rate_HBac_eff                = 0.8               !:
-   zz_frac_waste_FEB_NH            = 0.05              !:waste fraction from hetbact grazing picophyto to NH
+   zz_frac_waste_FEB_NH            = 0.05              ! waste fraction from hetbact grazing picophyto to NH
    zz_frac_waste_FEB_DON           = 0.470             ! waste fraction from hetbact grazing picophyto to DON
    zz_frac_waste_FEB_PON           = 0.470             ! waste fraction from hetbact grazing picophyto to PON
    zz_frac_waste_FEB_BSi           = 1.0               ! waste fraction from hetbact grazing picophyto to Bsi
+   zz_rate_HBac_Rm                 = 3.5E-06           ! Het. Bacteria natural mortality
+   zz_frac_waste_BNM_NH            = 0.0               ! waste fraction from Het. Bacteria natural mortality to NH
+   zz_frac_waste_BNM_DON           = 0.88              ! waste fraction from Het. Bacteria natural mortality to DON (Middelboe, 2006)
+   zz_frac_waste_BNM_PON           = 0.12              ! waste fraction from Het. Bacteria natural mortality to PON
+   zz_frac_waste_BNM_Bsi           = 1.0               ! waste fraction from Het. Bacteria natural mortality to bSi
+   zz_rate_Si_ratio_hbac           = 0.0               ! fraction of Si in heterotrophic bacteria
+
 /
 !'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 &nampismezo     !   parameters for mesozooplankton
