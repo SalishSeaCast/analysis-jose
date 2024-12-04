@@ -69,12 +69,14 @@
           <field field_ref="PPPHY"/>
           <field field_ref="PPDIATNO3"/>
           <field field_ref="PPPHYNO3"/>
+          <field field_ref="HetHBAC"/>          
           <field field_ref="TQ10"/>
         </file>
 
         <file id="file12" name_suffix="_graz_T" description="grazing and mortality" >
           <field field_ref="MORTPHY"/>
           <field field_ref="MORTDIAT"/>
+          <field field_ref="MORTHBAC"/>
           <field field_ref="MORTMICZ"/>
           <field field_ref="GRMESZDIAT"/>
           <field field_ref="GRMESZPHY"/>
@@ -83,7 +85,8 @@
           <field field_ref="GRMICZDIAT"/>
           <field field_ref="GRMICZPHY"/>
           <field field_ref="GRMICZPON"/>
-          <field field_ref="GRMICZMICZ"/>
+          <field field_ref="GRMICZMICZ"/>          
+          <field field_ref="GRMICZHBAC"/>
         </file>
       </file_group>
 

@@ -2,11 +2,11 @@
 # SalishSeaCast hindcast run on Sockeye
 
 email: jvalenti@eoas.ubc.ca
-MPI decomposition: 5x15
+MPI decomposition: 18x30
 config_name: SHEM
-run_id: 01jan_22_run_nomort
+run_id: 01jan_22_growth_AllN
 account: rrg-allen
-walltime: 21420 #11.9 hours
+walltime: 42000 #11.9 hours
 
 paths:
   NEMO code config: $PROJECT/$USER/MEOPAR/NEMO-3.6-code/NEMOGCM/CONFIG

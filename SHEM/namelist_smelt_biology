@@ -33,33 +33,36 @@
 &nampismort     !   parameters for phytoplankton mortality
 !,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
    zz_rate_flag_Rm         = 0.0489E-05 ! flagellate (pico-phyto) natural mortality
-   zz_frac_waste_FNM_NH    = 0.05       ! waste fraction from pico-phyto natural mortality to NH
-   zz_frac_waste_FNM_DON   = 0.470      ! waste fraction from pico-phyto natural mortality to DON
+   zz_frac_waste_FNM_NH    = 0.0       ! waste fraction from pico-phyto natural mortality to NH
+   zz_frac_waste_FNM_DON   = 0.520      ! waste fraction from pico-phyto natural mortality to DON
    zz_frac_waste_FNM_PON   = 0.470      ! waste fraction from pico-phyto natural mortality to PON
    zz_frac_waste_FNM_Bsi   = 1.0        ! waste fraction from pico-phyto natural mortality to bSi
    zz_rate_diat_Rm         = 0.0667E-05 ! diatom (micro-phyto) natural mortality
-   zz_frac_waste_DNM_NH    = 0.05       ! waste fraction from micro-phyto natural mortality to NH
-   zz_frac_waste_DNM_DON   = 0.470      ! waste fraction from micro-phyto natural mortality to DON
+   zz_frac_waste_DNM_NH    = 0.0      ! waste fraction from micro-phyto natural mortality to NH
+   zz_frac_waste_DNM_DON   = 0.520      ! waste fraction from micro-phyto natural mortality to DON
    zz_frac_waste_DNM_PON   = 0.470      ! waste fraction from micro-phyto natural mortality to PON
    zz_frac_waste_DNM_Bsi   = 1.0        ! waste fraction from micro-phyto natural mortality to bSi
 /
 !'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 &nampishbac     !   parameters for Het. Bacteria
 !,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-   zz_rate_HBac_R                  = 1.16e-05          !: 1/s
-   zz_rate_HBac_flagPredSlope      = 0.3               !:
-   zz_rate_HBac_flagHalfSat        = 1.0               !:
-   zz_rate_HBac_eff                = 0.8               !:
-   zz_frac_waste_FEB_NH            = 0.05              ! waste fraction from hetbact grazing picophyto to NH
-   zz_frac_waste_FEB_DON           = 0.470             ! waste fraction from hetbact grazing picophyto to DON
-   zz_frac_waste_FEB_PON           = 0.470             ! waste fraction from hetbact grazing picophyto to PON
-   zz_frac_waste_FEB_BSi           = 1.0               ! waste fraction from hetbact grazing picophyto to Bsi
-   zz_rate_HBac_Rm                 = 3.5E-06           ! Het. Bacteria natural mortality
-   zz_frac_waste_BNM_NH            = 0.0               ! waste fraction from Het. Bacteria natural mortality to NH
-   zz_frac_waste_BNM_DON           = 0.88              ! waste fraction from Het. Bacteria natural mortality to DON (Middelboe, 2006)
+   zz_rate_HBac_R                  = 2.3e-05           ! 1/s Max Growth rate  Het. Bacteria + added respiration
+   zz_rate_HBac_PredSlope          = 0.0               ! uM N min to start eating Het. Bacteria
+   zz_rate_HBac_HalfSat            = 2.0               ! uM N half saturation Het. Bacteria
+   zz_rate_HBac_eff                = 0.8                ! Het. Bacteria natural mortality
+   zz_frac_waste_BNM_NH            = 0.0              ! Growth efficiency Het. Bacteria
+   zz_rate_HBac_Rm                 = 3.5E-06           ! waste fraction from Het. Bacteria natural mortality to NH
+   zz_frac_waste_BNM_DON           = 0.87              ! waste fraction from Het. Bacteria natural mortality to DON (Middelboe, 2006)
    zz_frac_waste_BNM_PON           = 0.12              ! waste fraction from Het. Bacteria natural mortality to PON
    zz_frac_waste_BNM_Bsi           = 1.0               ! waste fraction from Het. Bacteria natural mortality to bSi
    zz_rate_Si_ratio_hbac           = 0.0               ! fraction of Si in heterotrophic bacteria
+   zz_rate_HBac_excr               = 5.8E-06           ! 1/s hbacteria C excretion rate @ 20 deg C
+   zz_rate_hbac_NO3Pref            = 0.15               ! H.Bacteria preference for NO3
+   zz_rate_HBac_NO3HalfSat         = 1.0               ! uM N half saturation Het. Bacteria
+   zz_rate_hbac_NH4Pref            = 0.05               ! H.Bacteria preference for NH4
+   zz_rate_HBac_NH4HalfSat         = 0.2               ! uM N half saturation Het. Bacteria
+   zz_rate_hbac_DONPref            = 0.8               ! H.Bacteria preference for DON
+   zz_rate_HBac_DONHalfSat         = 2.0               ! uM N half saturation Het. Bacteria
 
 /
 !'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
@@ -91,8 +94,8 @@
    zz_rate_mesozoo_Z_Predslope      = 0.500       ! uM N mesozooplankton microzooplankton grazing limit
    zz_rate_mesozoo_Z_HalfSat        = 1.200       ! uM N mesozooplankton microzoo grazing half saturation const
    zz_rate_mesozoo_eff              = 0.00        ! mesozooplankton grazed mass assimilation efficiency
-   zz_frac_waste_MNM_NH             = 0.05        ! waste fraction from mesozoo natural mortality to NH
-   zz_frac_waste_MNM_DON            = 0.470       ! waste fraction from mesozoo natural mortality to DON
+   zz_frac_waste_MNM_NH             = 0.0         ! waste fraction from mesozoo natural mortality to NH
+   zz_frac_waste_MNM_DON            = 0.520       ! waste fraction from mesozoo natural mortality to DON
    zz_frac_waste_MNM_PON            = 0.470       ! waste fraction from mesozoo natural mortality to PON
    zz_frac_waste_MEX_NH             = 0.25        ! waste fraction from mesozoo excretion to NH
    zz_frac_waste_MEX_DON            = 0.25        ! waste fraction from mesozoo excretion to DON
@@ -100,19 +103,19 @@
    zz_frac_waste_PEM_NH             = 0.0         ! waste fraction from mesozoo grazing PON to NH
    zz_frac_waste_PEM_DON            = 0.0         ! waste fraction from mesozoo grazing PON to DON
    zz_frac_waste_PEM_PON            = 1.0         ! waste fraction from mesozoo grazing PON to PON
-   zz_frac_waste_DEM_NH             = 0.05        ! waste fraction from mesozoo grazing microphyto to NH #  Alain, excretion rate to growth rate
-   zz_frac_waste_DEM_DON            = 0.470       ! waste fraction from mesozoo grazing microphyto to DON# Denman and Pena about 1/2 to dissolved
+   zz_frac_waste_DEM_NH             = 0.0        ! waste fraction from mesozoo grazing microphyto to NH #  Alain, excretion rate to growth rate
+   zz_frac_waste_DEM_DON            = 0.520       ! waste fraction from mesozoo grazing microphyto to DON# Denman and Pena about 1/2 to dissolved
    zz_frac_waste_DEM_PON            = 0.470       ! waste fraction from mesozoo grazing microphyto to PON
    zz_frac_waste_DEM_BSi            = 1.0         ! waste fraction from mesozoo grazing microphyto to PON
-   zz_frac_waste_FEM_NH             = 0.05        ! waste fraction from mesozoo grazing picophyto to NH
-   zz_frac_waste_FEM_DON            = 0.470       ! waste fraction from mesozoo grazing picophyto to DON
+   zz_frac_waste_FEM_NH             = 0.0        ! waste fraction from mesozoo grazing picophyto to NH
+   zz_frac_waste_FEM_DON            = 0.520       ! waste fraction from mesozoo grazing picophyto to DON
    zz_frac_waste_FEM_PON            = 0.470       ! waste fraction from mesozoo grazing picophyto to PON
    zz_frac_waste_FEM_BSi            = 1.0         ! waste fraction from mesozoo grazing picophyto to Bsi
-   zz_frac_waste_ZEM_NH             = 0.05        ! waste fraction from mesozoo grazing microzoo to NH
-   zz_frac_waste_ZEM_DON            = 0.470       ! waste fraction from mesozoo grazing microzoo to DON
+   zz_frac_waste_ZEM_NH             = 0.0        ! waste fraction from mesozoo grazing microzoo to NH
+   zz_frac_waste_ZEM_DON            = 0.520       ! waste fraction from mesozoo grazing microzoo to DON
    zz_frac_waste_ZEM_PON            = 0.470       ! waste fraction from mesozoo grazing microzoo to PON
-   zz_frac_waste_BEM_NH             = 0.05        ! waste fraction from mesozoo grazing Het. Bacteria to NH
-   zz_frac_waste_BEM_DON            = 0.470       ! waste fraction from mesozoo grazing Het. Bacteria to DON
+   zz_frac_waste_BEM_NH             = 0.0        ! waste fraction from mesozoo grazing Het. Bacteria to NH
+   zz_frac_waste_BEM_DON            = 0.520       ! waste fraction from mesozoo grazing Het. Bacteria to DON
    zz_frac_waste_BEM_PON            = 0.470       ! waste fraction from mesozoo grazing Het. Bacteria to PON
    zz_frac_waste_BEM_BSi            = 1.0         ! waste fraction from mesozoo grazing Het. Bacteria to BSi
 /
@@ -143,25 +146,25 @@
    zz_frac_waste_PEZ_NH         = 0.0        ! waste fraction from microzoo grazing PON to NH
    zz_frac_waste_PEZ_DON        = 0.0        ! waste fraction from microzoo grazing PON to DON
    zz_frac_waste_PEZ_PON        = 1.0        ! waste fraction from microzoo grazing PON to PON
-   zz_frac_waste_DEZ_NH         = 0.05       ! waste fraction from microzoo grazing microphyto to NH
-   zz_frac_waste_DEZ_DON        = 0.470      ! waste fraction from microzoo grazing microphyto to DON
+   zz_frac_waste_DEZ_NH         = 0.0       ! waste fraction from microzoo grazing microphyto to NH
+   zz_frac_waste_DEZ_DON        = 0.520      ! waste fraction from microzoo grazing microphyto to DON
    zz_frac_waste_DEZ_PON        = 0.470      ! waste fraction from microzoo grazing microphyto to PON
    zz_frac_waste_DEZ_Bsi        = 1.         ! waste fraction from microzoo grazing microphyto to Bsi
-   zz_frac_waste_BEZ_NH         = 0.05       ! waste fraction from microzoo grazing Het. Bacteria to NH
-   zz_frac_waste_BEZ_DON        = 0.470      ! waste fraction from microzoo grazing Het. Bacteria to DON
+   zz_frac_waste_BEZ_NH         = 0.0        ! waste fraction from microzoo grazing Het. Bacteria to NH
+   zz_frac_waste_BEZ_DON        = 0.520      ! waste fraction from microzoo grazing Het. Bacteria to DON
    zz_frac_waste_BEZ_PON        = 0.470      ! waste fraction from microzoo grazing Het. Bacteria to PON
    zz_frac_waste_BEZ_BSi        = 1.         ! waste fraction from microzoo grazing Het. Bacteria to Bsi
-   zz_frac_waste_FEZ_NH         = 0.05       ! waste fraction from microzoo grazing picophyto to NH
-   zz_frac_waste_FEZ_DON        = 0.470      ! waste fraction from microzoo grazing picophyto to DON
+   zz_frac_waste_FEZ_NH         = 0.0       ! waste fraction from microzoo grazing picophyto to NH
+   zz_frac_waste_FEZ_DON        = 0.520      ! waste fraction from microzoo grazing picophyto to DON
    zz_frac_waste_FEZ_PON        = 0.470      ! waste fraction from microzoo grazing picophyto to PON
    zz_frac_waste_FEZ_BSi        = 1.         ! waste fraction from microzoo grazing picophyto to Bsi
-   zz_frac_waste_ZEZ_NH         = 0.05       ! waste fraction from microzoo grazing microzoo to NH
-   zz_frac_waste_ZEZ_DON        = 0.470      ! waste fraction from microzoo grazing microzoo to DON
+   zz_frac_waste_ZEZ_NH         = 0.0        ! waste fraction from microzoo grazing microzoo to NH
+   zz_frac_waste_ZEZ_DON        = 0.520      ! waste fraction from microzoo grazing microzoo to DON
    zz_frac_waste_ZEZ_PON        = 0.470      ! waste fraction from microzoo grazing microzoo to PON
-   zz_frac_waste_ZNM_NH         = 0.05       ! waste fraction from micro-zoo natural mortality to DON
-   zz_frac_waste_ZNM_DON        = 0.470      ! waste fraction from micro-zoo natural mortality to DON
+   zz_frac_waste_ZNM_NH         = 0.0        ! waste fraction from micro-zoo natural mortality to NH
+   zz_frac_waste_ZNM_DON        = 0.520      ! waste fraction from micro-zoo natural mortality to DON
    zz_frac_waste_ZNM_PON        = 0.470      ! waste fraction from micro-zoo natural mortality to PON
-   zz_frac_waste_ZEX_NH         = 0.25       ! waste fraction from micro-zoo excretion to DON
+   zz_frac_waste_ZEX_NH         = 0.25       ! waste fraction from micro-zoo excretion to NH
    zz_frac_waste_ZEX_DON        = 0.25       ! waste fraction from micro-zoo excretion to DON
    zz_frac_waste_ZEX_PON        = 0.5        ! waste fraction from micro-zoo excretion to PON
 /
