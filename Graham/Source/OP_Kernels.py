@@ -191,7 +191,7 @@ def CheckOutOfBounds(particle, fieldset, time):
             particle.state = StatusCode.Success
             particle.status = 2 #beached DO NOT MOVE outside domain
         elif Swh ==0:
-            print('particle hit wall') #Do not cross wall Keep partilce in place
+            print('particle hit wall') #Do not cross wall Keep particle in place
             particle.state = StatusCode.Success
             #particle.status = -1 #crossed the wall
         else:
