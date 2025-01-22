@@ -2,11 +2,9 @@
 # SalishSeaCast hindcast run on Salish
 
 email: jvalenti@eoas.ubc.ca
-MPI decomposition: 5x7
+MPI decomposition: 1x7
 config_name: SHEM
-run_id: 01jan_22_hb
-account: rrg-allen
-walltime: 21420 #11.9 hours
+run_id: 01jan_22_salish
 
 paths:
   NEMO code config: /data/$USER/MEOPAR/NEMO-3.6-code/NEMOGCM/CONFIG
@@ -16,11 +14,10 @@ paths:
 grid:
   bathymetry: /data/$USER/MEOPAR/grid/bathymetry_202108.nc
   coordinates: /data/$USER/MEOPAR/grid/coordinates_seagrid_SalishSea201702.nc
-  land processor elimination: /data/$USER/MEOPAR/grid/bathymetry_202108.csv
-
+  land processor elimination: false
 restart:
   restart.nc: /home/jvalenti/MOAD/restart_file/SalishSea_15791760_restart.nc
-  restart_trc.nc: /home/jvalenti/MOAD/restart_file/SalishSea_15791760_restart_trc.nc
+  restart_trc.nc: /home/jvalenti/MOAD/restart_file/SalishSea_15791760_restart_trc2.nc
 
 forcing:
   LiveOcean:
@@ -46,7 +43,7 @@ forcing:
 
 namelists:
   namelist_cfg:
-  - ./namelist.time_01jan22_onemonth
+  - ./namelist.time_01jan22_tendays
   - /data/$USER/MEOPAR/SS-run-sets/v202111/namelist.domain
   - /data/$USER/MEOPAR/SS-run-sets/v202111/namelist.atmos_rivers
   - /data/$USER/MEOPAR/SS-run-sets/v202111/namelist.light
