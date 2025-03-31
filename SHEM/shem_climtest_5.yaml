@@ -1,10 +1,9 @@
-# salishsea command processor run description file template for
-# SalishSeaCast hindcast run on Sockeye
+# SalishSeaCast SHEM run on Graham
 
 email: jvalenti@eoas.ubc.ca
-MPI decomposition: 7x17
+MPI decomposition: 10x27
 config_name: SHEM
-run_id: 01jan_22_growth_AllN
+run_id: 01jan_22_CLIM_5nodes
 account: rrg-allen
 walltime: 44000 #11.9 hours
 
@@ -20,7 +19,7 @@ grid:
 
 restart:
   restart.nc: $SCRATCH/SHEM_test/restart_files/SalishSea_15003360_restart.nc
-  restart_trc.nc: $SCRATCH/SHEM_test/restart_files/SalishSea_15003360_restart_trc.nc
+  restart_trc.nc: $SCRATCH/SHEM_test/restart_files/SalishSea_15003360_restart_trc2.nc
 
 forcing:
   LiveOcean:

@@ -46,23 +46,25 @@
 !'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 &nampishbac     !   parameters for Het. Bacteria
 !,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-   zz_rate_HBac_R                  = 2.3e-05           ! 1/s Max Growth rate  Het. Bacteria + added respiration
-   zz_rate_HBac_PredSlope          = 0.0               ! uM N min to start eating Het. Bacteria
+   zz_rate_HBac_R                  = 1.16E-05           ! 1/s Max Growth rate  Het. Bacteria
+   zz_rate_HBac_PredSlope          = 0.0               ! uM N min   start eating Het. Bacteria
    zz_rate_HBac_HalfSat            = 2.0               ! uM N half saturation Het. Bacteria
-   zz_rate_HBac_eff                = 0.8                ! Het. Bacteria natural mortality
-   zz_frac_waste_BNM_NH            = 0.0              ! Growth efficiency Het. Bacteria
-   zz_rate_HBac_Rm                 = 3.5E-06           ! waste fraction from Het. Bacteria natural mortality to NH
+   zz_rate_HBac_eff                = 0.8               ! Growth efficiency Het. Bacteria 
+   zz_rate_HBac_Rm                 = 3.5E-06           ! Het. Bacteria natural mortality
+   zz_frac_waste_BNM_NH            = 0.0               ! waste fraction from Het. Bacteria natural mortality to NH
    zz_frac_waste_BNM_DON           = 0.87              ! waste fraction from Het. Bacteria natural mortality to DON (Middelboe, 2006)
    zz_frac_waste_BNM_PON           = 0.12              ! waste fraction from Het. Bacteria natural mortality to PON
    zz_frac_waste_BNM_Bsi           = 1.0               ! waste fraction from Het. Bacteria natural mortality to bSi
    zz_rate_Si_ratio_hbac           = 0.0               ! fraction of Si in heterotrophic bacteria
    zz_rate_HBac_excr               = 5.8E-06           ! 1/s hbacteria C excretion rate @ 20 deg C
-   zz_rate_hbac_NO3Pref            = 0.15               ! H.Bacteria preference for NO3
+   zz_rate_hbac_NO3Pref            = 0.05               ! H.Bacteria preference for NO3
    zz_rate_HBac_NO3HalfSat         = 1.0               ! uM N half saturation Het. Bacteria
-   zz_rate_hbac_NH4Pref            = 0.05               ! H.Bacteria preference for NH4
-   zz_rate_HBac_NH4HalfSat         = 0.2               ! uM N half saturation Het. Bacteria
-   zz_rate_hbac_DONPref            = 0.8               ! H.Bacteria preference for DON
+   zz_rate_hbac_NH4Pref            = 0.45               ! H.Bacteria preference for NH4
+   zz_rate_HBac_NH4HalfSat         = 0.2               ! uM N half saturation Het. Bacteria 
+   zz_rate_hbac_DONPref            = 0.95               ! H.Bacteria preference for DON for C limitation
    zz_rate_HBac_DONHalfSat         = 2.0               ! uM N half saturation Het. Bacteria
+   zz_rate_hbac_PONPref            = 0.05               ! H.Bacteria preference for PON
+   zz_rate_HBac_PONHalfSat         = 2.0               ! uM N half saturation Het. Bacteria
 
 /
 !'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
@@ -130,8 +132,8 @@
    zz_rate_uzoo_diatPredslope  = 0.300       ! uM N microzooplankton micro-phyto grazing half saturation const
    zz_rate_uzoo_diatHalfSat    = 1.000       ! uM N microzooplankton micro-phyto grazing half saturation const
    zz_rate_uzoo_hbacPref        = 0.170      ! microzooplankton preference for Heterotrophic Bacteria
-   zz_rate_uzoo_hbacPredslope   = 0.500      ! uM N microzooplankton Het.Bacteria grazing limit
-   zz_rate_uzoo_hbacHalfSat     = 1.000      ! uM N microzooplankton Het.Bacteria grazing half saturation const
+   zz_rate_uzoo_hbacPredslope   = 0.100      ! uM N microzooplankton Het.Bacteria grazing limit
+   zz_rate_uzoo_hbacHalfSat     = 2.000      ! uM N microzooplankton Het.Bacteria grazing half saturation const
    zz_rate_uzoo_flagPref        = 0.300      ! microzooplankton preference for pico-phytoplankton
    zz_rate_uzoo_flagPredslope   = 0.100      ! uM N microzooplankton pico-phyto grazing limit
    zz_rate_uzoo_flagHalfSat     = 1.000      ! uM N microzooplankton pico-phyto grazing half saturation const
