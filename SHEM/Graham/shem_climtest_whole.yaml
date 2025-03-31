@@ -1,9 +1,9 @@
 # SalishSeaCast SHEM run on Graham
 
 email: jvalenti@eoas.ubc.ca
-MPI decomposition: 10x27
+MPI decomposition: 9x22
 config_name: SHEM
-run_id: 01jan_22_CLIM_5nodes
+run_id: 01jan_22_CLIM_whole
 account: rrg-allen
 walltime: 44000 #11.9 hours
 
