@@ -67,6 +67,7 @@
         <file id="file11" name_suffix="_prod_T" description="biology growth rates" >
           <field field_ref="PPDIAT"/>
           <field field_ref="PPPHY"/>
+          <field field_ref="HetHBAC"/>
           <field field_ref="PPDIATNO3"/>
           <field field_ref="PPPHYNO3"/>
           <field field_ref="TQ10"/>
@@ -76,6 +77,7 @@
           <field field_ref="MORTPHY"/>
           <field field_ref="MORTDIAT"/>
           <field field_ref="MORTMICZ"/>
+          <field field_ref="MORTHBAC"/>
           <field field_ref="GRMESZDIAT"/>
           <field field_ref="GRMESZPHY"/>
           <field field_ref="GRMESZPON"/>
@@ -84,6 +86,7 @@
           <field field_ref="GRMICZPHY"/>
           <field field_ref="GRMICZPON"/>
           <field field_ref="GRMICZMICZ"/>
+          <field field_ref="GRMICZHBAC"/>
         </file>
       </file_group>
 
