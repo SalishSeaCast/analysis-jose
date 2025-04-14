@@ -76,7 +76,7 @@ def Buoyancy(particle, fieldset, time):
         pro = 1350 #average value density PET
         t = fieldset.votemper[time, deps, particle.lat, particle.lon] #Loading temperature from SSC
         ro = fieldset.sigma_theta[time, deps, particle.lat, particle.lon] #Loading density sw from SSC
-        visc = 4.2844e-5 + 1/(0.157*((t + 64.993)**2)-91.296) #kinematic viscosity for Temp of SSC
+          #kinematic viscosity for Temp of SSC
         Ws= ((l/d)**-1.664)*0.079*((l**2)*g*(pro-1000-ro))/(visc)
         dws = Ws*particle.dt/particle.fact
         particle.ws = dws
