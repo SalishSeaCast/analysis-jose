@@ -2,16 +2,16 @@
 # SalishSeaCast hindcast run on Sockeye
 
 email: jvalenti@eoas.ubc.ca
-MPI decomposition: 7x17
+MPI decomposition: 4x9
 config_name: SHEM
-run_id: 01jan_22_growth_AllN
+run_id: oxy_weekrun
 account: rrg-allen
-walltime: 44000 #11.9 hours
+walltime: 42000 #11.9 hours
 
 paths:
   NEMO code config: $PROJECT/$USER/MEOPAR/NEMO-3.6-code/NEMOGCM/CONFIG
   XIOS: $PROJECT/$USER/MEOPAR/XIOS-2
-  runs directory: $SCRATCH/SHEM_test
+  runs directory: $SCRATCH/run_SHEM
 
 grid:
   bathymetry: $PROJECT/$USER/MEOPAR/grid/bathymetry_202108.nc
@@ -58,7 +58,6 @@ namelists:
   - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist.compute
   
   namelist_smelt_cfg:
-  #- ./namelist_smelt_ref
   - ./namelist_smelt_biology
   - ./namelist_smelt_rivers_opsturb
   - $PROJECT/$USER/MEOPAR/SS-run-sets/v202111/namelist_smelt_skog

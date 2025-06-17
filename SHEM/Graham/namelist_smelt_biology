@@ -48,9 +48,11 @@
 !,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
    zz_rate_HBac_R                  = 1.16E-05          ! 1/s Max Growth rate  Het. Bacteria
    zz_rate_HBac_PredSlope          = 0.0               ! uM N min   start eating Het. Bacteria
-   zz_rate_HBac_HalfSat            = 2.0               ! uM N half saturation Het. Bacteria
+   zz_rate_HBac_HalfSat            = 0.1               ! uM N half saturation Het. Bacteria
+   zz_rate_HBac_O2HalfSat          = 1.0               ! uM O2 half saturation Het. Bacteria
+   zz_rate_HBac_O2PredSlope        = 0.1               ! uM O2 min start eating Het. Bacteria
    zz_rate_HBac_eff                = 0.8               ! Growth efficiency Het. Bacteria 
-   zz_rate_HBac_Rm                 = 3.5E-06           ! Het. Bacteria natural mortality
+   zz_rate_HBac_Rm                 = 3.5E-07           ! Het. Bacteria natural mortality
    zz_frac_waste_BNM_NH            = 0.0               ! waste fraction from Het. Bacteria natural mortality to NH
    zz_frac_waste_BNM_DON           = 0.87              ! waste fraction from Het. Bacteria natural mortality to DON (Middelboe, 2006)
    zz_frac_waste_BNM_PON           = 0.12              ! waste fraction from Het. Bacteria natural mortality to PON
@@ -62,10 +64,9 @@
    zz_rate_hbac_NH4Pref            = 0.45              ! H.Bacteria preference for NH4 if N lim
    zz_rate_HBac_NH4HalfSat         = 0.2               ! uM N half saturation Het. Bacteria 
    zz_rate_hbac_DONPref            = 0.95              ! H.Bacteria preference for DON if C lim (N lim: 1-NO3pref-NH4pref)
-   zz_rate_HBac_DONHalfSat         = 2.0               ! uM N half saturation Het. Bacteria
+   zz_rate_HBac_DONHalfSat         = 0.1               ! uM N half saturation Het. Bacteria
    zz_rate_hbac_PONPref            = 0.05              ! H.Bacteria preference for PON if C lim
-   zz_rate_HBac_PONHalfSat         = 2.0               ! uM N half saturation Het. Bacteria
-
+   zz_rate_HBac_PONHalfSat         = 0.1               ! uM N half saturation Het. Bacteria
 /
 !'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 &nampismezo     !   parameters for mesozooplankton

@@ -1,9 +1,9 @@
 # SalishSeaCast SHEM run on Graham
 
 email: jvalenti@eoas.ubc.ca
-MPI decomposition: 10x27
+MPI decomposition: 1x7
 config_name: SHEM
-run_id: week5_22_whole
+run_id: oxy1_SHEM
 account: rrg-allen
 walltime: 3500 #11.9 hours
 
@@ -15,7 +15,7 @@ paths:
 grid:
   bathymetry: $PROJECT/$USER/MEOPAR/grid/bathymetry_202108.nc
   coordinates: $PROJECT/$USER/MEOPAR/grid/coordinates_seagrid_SalishSea201702.nc
-  land processor elimination: $PROJECT/$USER/MEOPAR/grid/bathymetry_202108.csv
+  #land processor elimination: $PROJECT/$USER/MEOPAR/grid/bathymetry_202108.csv
 
 restart:
   restart.nc: $SCRATCH/run_SHEM/restart_files/SalishSea_15003360_restart.nc
