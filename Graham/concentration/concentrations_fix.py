@@ -3,6 +3,8 @@ import xarray as xr
 import numpy as np
 import os 
 import math
+import warnings
+warnings.filterwarnings("ignore", category=DeprecationWarning) 
 
 coords = xr.open_dataset('/home/jvalenti/MOAD/grid/coordinates_seagrid_SalishSea201702.nc', decode_times=False)
 mask = xr.open_dataset('/home/jvalenti/MOAD/grid2/mesh_mask202108_TDV.nc')
@@ -37,7 +39,7 @@ def conc_OP(filename,Ni=1):
     DS=ds.to_dataframe()
     DS = DS[DS.status==1]
     DS = DS[DS.time>1728000] #last 10 days of run
-    tmax = int((np.max(DS.time)-1728000)/21600)
+    tmax = ((np.max(DS.time)-1728000)/21600)
     print(f'Calculating average over {tmax} timesteps')
     MFc = 5e6/tmax #Averaged over remaining days
     lat = coords.nav_lat[::Ni,::Ni]
