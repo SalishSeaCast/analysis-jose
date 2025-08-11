@@ -1,0 +1,28 @@
+file: 
+  name: 'Run_Agosto' #name output file
+startdate:
+  year: 2019 
+  month: 8
+  day: 1
+  
+param:
+  MFc: 5e6
+  length: 28 # Set Time length [days] 
+  dt: 5 #toggle between - or + to pick backwards or forwards 
+  N: '/scratch/jvalenti/OParcels_runs/Source/Outfall_deploy.csv' # number of deploying locations except when using distr = hmg this variable represent how many
+  dd: 0.5 #max depth difference from stablished
+  dtp: 10 #how often particle released in hours
+  odt: 6 #hours between output
+  r: 50 #radious dispersion particles in horizontal
+
+particle:
+  diameter: 2.16e-5 #average diameter
+  length: 4.5e-4 #average length
+  status: 0 # {0: not initialized, 1: water column, 2: beached, 3:sinked bottom, 4:stuck surface} 
+  Ub: 171 #unbeaching timescale
+  wb: 0 #buoyancy z displacement
+  wa: 0 #advection z displacement
+  wm: 0 #mixing z displacement
+  fact: 1 #conversion factor to NEMO vertical coordinates VVL
+  alpha: 0.001 #0.1% retention/ stickiness sediment
+
