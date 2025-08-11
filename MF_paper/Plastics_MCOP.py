@@ -12,114 +12,11 @@ from parcels import FieldSet, Field, VectorField, ParticleSet, JITParticle, Parc
 from glob import glob
 
 
-sys.path.append('/home/jvalenti/MOAD/analysis-jose/Graham/Source')
+sys.path.append('/Source')
+
 from OP_Kernels import *
+from OP_functions import *
 
-def load_config(config_yaml):
-   with open(config_yaml[0]) as f:
-       config = yaml.safe_load(f)
-   return config
-
-def zarr_tonet(fileoutname):
-    from os import path
-    name =  fileoutname.split('_')[1]
-    fname = fileoutname
-    print(fileoutname)
-    files = glob(path.join(fname, "proc*"))
-    ds = xr.concat(
-        [xr.open_zarr(f) for f in files],
-        dim="trajectory",
-        compat="no_conflicts",
-        coords="minimal",
-    )
-    return ds,name
-
-def simple_partition_function(coords, mpi_size=1):
-    """A very simple partition function
-    that assigns particles to processors
-    """
-    return np.linspace(0, mpi_size, coords.shape[0], endpoint=False, dtype=np.int32)
-
-def pandas_deploy(N,MFc,r,dd,dtp):
-    n =1
-    MFc = float(MFc)
-    Outfall_deploy = pd.read_csv(N, index_col = [0])
-    Pol = list(Outfall_deploy.Population)
-    Lat = Outfall_deploy.Lat
-    Lon = Outfall_deploy.Lon
-    Depth = Outfall_deploy.Depth
-    clat = []
-    clon = []
-    cz = []
-    for i,loc in enumerate(Pol):
-        for j in range(int(round((loc*250*dtp)/MFc,0))):
-            clat.append(Lat.iat[i])
-            clon.append(Lon.iat[i])
-            try:
-                cz.append(float(Depth.iat[i]))
-            except ValueError:
-                cz.append(2)
-    N = len(clat)
-    deg2m = 111000 * np.cos(49 * np.pi / 180)
-    var = (r / (deg2m * 3))**2
-    x_offset, y_offset = np.random.multivariate_normal([0, 0], [[var, 0], [0, var]], [n,N]).T
-    z_offset=np.random.random_sample([N]).T*(dd)
-    lon = np.zeros([N])
-    lat = np.zeros([N])
-    z = np.zeros([N])
-    for i in range(N):
-        lon[i]=(clon[i] + x_offset[i])
-        lat[i]=(clat[i] + y_offset[i])
-        z[i]=(cz[i] + z_offset[i])
-    return lon,lat,z
-
-def filename_set(start,length,varlist=['U','V','W']):
-    '''filename,variables,dimensions = filename_set(start,duration,varlist=['U','V','W'],local=1)
-    Modify function to include more default variables
-    define start as: e.g, datetime(2018, 1, 17)
-    length= number of days'''
-    
-    duration = timedelta(days=length)
-    #Build filenames
-    paths = path()
-    Tlist,Ulist, Vlist, Wlist = [], [], [], [], []
-    Waveslist = []
-   
-    for day in range(duration.days):
-        path_NEMO = make_prefix(start + timedelta(days=day), paths['NEMO'])
-        path_NEMO_d = make_prefix(start + timedelta(days=day), paths['NEMO'],res='d')
-        Ulist.append(path_NEMO + '_grid_U.nc')
-        Vlist.append(path_NEMO + '_grid_V.nc')
-        Wlist.append(path_NEMO + '_grid_W.nc')
-        Tlist.append(path_NEMO + '_grid_T.nc')
-        Waveslist.append(get_WW3_path(start + timedelta(days=day)))        
-
-    # Load NEMO forcing 
-    filenames = {
-        'U': {'lon': paths['coords'], 'lat': paths['coords'], 'depth': Wlist[0], 'data': Ulist},
-        'V': {'lon': paths['coords'], 'lat': paths['coords'], 'depth': Wlist[0], 'data': Vlist},
-        'W': {'lon': paths['coords'], 'lat': paths['coords'], 'depth': Wlist[0], 'data': Wlist},
-        'Kz': {'lon': paths['coords'], 'lat': paths['coords'], 'depth': Wlist[0], 'data': Wlist},
-        'T': {'lon': paths['coords'], 'lat': paths['coords'], 'depth': Tlist[0], 'data': Tlist},
-        'S': {'lon': paths['coords'], 'lat': paths['coords'], 'depth': Tlist[0], 'data': Tlist},
-        'ssh': {'lon': paths['coords'], 'lat': paths['coords'], 'data': Tlist},
-        'R': {'lon': paths['coords'], 'lat': paths['coords'], 'depth': Tlist[0], 'data': Tlist},
-        'Bathy' : {'lon': paths['coords'], 'lat': paths['coords'], 'data': paths['bat']},
-        'gdepth' : {'lon': paths['coords'], 'lat': paths['coords'],'depth': Wlist[0], 'data': paths['mask']},
-        'totdepth' : {'lon': paths['coords'], 'lat': paths['coords'], 'data': paths['mask']},
-        'US' : {'lon': paths['coordsWW3'], 'lat': paths['coordsWW3'], 'data': Waveslist},
-        'VS' : {'lon': paths['coordsWW3'], 'lat': paths['coordsWW3'], 'data': Waveslist},
-        'WL' : {'lon': paths['coordsWW3'], 'lat': paths['coordsWW3'], 'data': Waveslist}
-    }
-    
-    variables = {'U': 'vozocrtx', 'V': 'vomecrty','W': 'vovecrtz','T':'votemper','S':'vosaline','R':'sigma_theta',
-        'US':'uuss','VS':'vuss','WL':'lm','Bathy':'Bathymetry','Kz':'vert_eddy_diff','ssh':'sossheig','totdepth':'totaldepth'}
-        
-    file2,var2 = {},{}
-    for var in varlist:
-        file2[var]=filenames[var]
-        var2[var]=variables[var]
-    return file2,var2
 
 def Plastics_OP(config):
 
@@ -134,7 +31,7 @@ def Plastics_OP(config):
     dtp = param['param']['dtp'] #how often particle released in hours
     odt = param['param']['odt'] #how often data is recorded
     rrr = param['param']['r'] #radious of particle deployment
-    MFc = param['param']['MFc']
+    MFc = param['param']['MFc'] #how many particles per super-individual
 
     duration = timedelta(days=length)
     print(f"The model will run for {duration.days} days, starting at {start}")
@@ -200,6 +97,7 @@ def Plastics_OP(config):
     SSH = Field.from_netcdf(filenames['ssh'], variables['ssh'], dimensions,allow_time_extrapolation=True, chunksize='auto')
     field_set.add_field(SSH)
 
+    #Define our Ocean Parcels Particles
     class MPParticle(JITParticle):    
         diameter = Variable('diameter', initial = param['particle']['diameter'])
         length = Variable('length', initial = param['particle']['length'])
@@ -211,20 +109,18 @@ def Plastics_OP(config):
         wm = Variable('wm', initial =  0) 
         alpha = Variable('alpha',initial=param['particle']['alpha'])
 
-######RUN OCEAN PARCELS WITH DEFINED PARTICLE AND PRESET FIELDS
-
+    ######RUN OCEAN PARCELS WITH DEFINED PARTICLE AND PRESET FIELDS
     if dtp == 0:
         pset = ParticleSet.from_list(field_set, MPParticle, lon=lon, lat=lat, depth=z,time=start+timedelta(hours=odt),partition_function=simple_partition_function)
     else:
         pset = ParticleSet.from_list(field_set, MPParticle, lon=lon, lat=lat, depth=z, repeatdt = timedelta(hours=dtp),partition_function=simple_partition_function)
 
-    
     pset.execute([Advection,Buoyancy,Stokes_drift,turb_mix,Displacement,export,CheckOutOfBounds,KeepInOcean],
         runtime=duration, 
         dt=dt,
         output_file=pset.ParticleFile(name=outfile, outputdt=timedelta(hours=odt),chunks=(int(1e4), 1)))
 
-
+    #Convert and save output as netcdf 
     ds,name = zarr_tonet(outfile)
     ds.to_netcdf('/home/jvalenti/projects/rrg-allen/jvalenti/'+name+'.nc')
 
