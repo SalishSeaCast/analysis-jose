@@ -23,6 +23,16 @@ def simple_partition_function(coords, mpi_size=1):
     """
     return np.linspace(0, mpi_size, coords.shape[0], endpoint=False, dtype=np.int32)
 
+
+def make_prefix(date, path, res='h'):
+    """Construct path prefix for local SalishSeaCast results given date object and paths dict
+    e.g., /results2/SalishSea/nowcast-green.201905/daymonthyear/SalishSea_1h_yyyymmdd_yyyymmdd
+    """
+
+    datestr = '_'.join(np.repeat(date.strftime('%Y%m%d'), 2))
+    prefix = f'{path}/SalishSea_1{res}_{datestr}'
+    return prefix
+
 def pandas_deploy(N,MFc,r,dd,dtp):
     n =1
     MFc = float(MFc)
