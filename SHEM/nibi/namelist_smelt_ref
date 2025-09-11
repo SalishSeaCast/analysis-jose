@@ -97,6 +97,7 @@
    zz_frac_waste_FEB_DON           = 0.5               !waste fraction from hetbact grazing picophyto to DON
    zz_frac_waste_FEB_PON           = 0.5               !waste fraction from hetbact grazing picophyto to PON
    zz_frac_waste_FEB_BSi           = 1.0               !waste fraction from hetbact grazing picophyto to Bsi
+   zz_frac_resp_OC                 = 0.1 
       
 /
 !'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
