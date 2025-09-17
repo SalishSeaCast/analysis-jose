@@ -6,7 +6,7 @@
 &namrun        !   Parameters of the run
 !-----------------------------------------------------------------------
    cn_exp      = "SHEM"  ! experience name
-   nn_it000    = 15275521     ! first time step
+   nn_it000    = 15336001     ! first time step
    nn_itend    = 15396480     ! last time step (std 1 day = 2160 re: rn_rdt in &namdom)
    nn_date0    = 20210604     ! date at nit_0000 = 1 (format yyyymmdd)
                               ! used to adjust tides to run date (regardless of restart control)
