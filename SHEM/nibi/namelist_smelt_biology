@@ -85,9 +85,6 @@
    zz_rate_mesozoo_diatPref        = 0.3475       !      mesozooplankton preference for diatoms
    zz_rate_mesozoo_diatPredslope   = 0.000        ! uM N mesozooplankton diatom grazing limit
    zz_rate_mesozoo_diatHalfSat     = 0.200        ! uM N mesozooplankton diatom grazing half saturation constant
-   zz_rate_mesozoo_hbacPref         = 0.0         !  mesozooplankton preference for Het.Bacteria
-   zz_rate_mesozoo_hbacPredslope    = 0.2         ! uM N mesozooplankton Het.Bacteria grazing limit
-   zz_rate_mesozoo_hbacHalfSat      = 1.000       ! uM N mesozooplankton Het.Bacteria grazing half saturation const
    zz_rate_mesozoo_flagPref         = 0.122       !      mesozooplankton preference for pico-phytoplankton
    zz_rate_mesozoo_flagPredslope    = 0.05        ! uM N mesozooplankton pico-phyto grazing limit
    zz_rate_mesozoo_flagHalfSat      = 0.4         ! uM N mesozooplankton pico-phyto grazing half saturation const
