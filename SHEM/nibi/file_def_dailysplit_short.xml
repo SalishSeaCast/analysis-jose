@@ -41,6 +41,7 @@
           <field field_ref="GRMICZPON"/>
           <field field_ref="GRMICZMICZ"/>
           <field field_ref="GRMICZHBAC"/>
+          <field field_ref="O2REQHBAC"/>
         </file>
 
         <file id="file13" name_suffix="_biolO2_T" description="biology and oxygen" >
