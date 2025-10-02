@@ -115,10 +115,6 @@
    zz_frac_waste_ZEM_NH             = 0.0        ! waste fraction from mesozoo grazing microzoo to NH
    zz_frac_waste_ZEM_DON            = 0.520       ! waste fraction from mesozoo grazing microzoo to DON
    zz_frac_waste_ZEM_PON            = 0.470       ! waste fraction from mesozoo grazing microzoo to PON
-   zz_frac_waste_BEM_NH             = 0.0        ! waste fraction from mesozoo grazing Het. Bacteria to NH
-   zz_frac_waste_BEM_DON            = 0.520       ! waste fraction from mesozoo grazing Het. Bacteria to DON
-   zz_frac_waste_BEM_PON            = 0.470       ! waste fraction from mesozoo grazing Het. Bacteria to PON
-   zz_frac_waste_BEM_BSi            = 1.0         ! waste fraction from mesozoo grazing Het. Bacteria to BSi
 /
 !'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 &nampiszoo     !   parameters for microzooplankton
