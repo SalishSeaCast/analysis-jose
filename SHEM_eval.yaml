@@ -138,7 +138,7 @@ dependencies:
   - pexpect=4.9.0=pyhd8ed1ab_1
   - pickleshare=0.7.5=pyhd8ed1ab_1004
   - pillow=11.3.0=py311h3df08e7_1
-  - pip=25.2=pyh8b19718_0
+  - pip
   - platformdirs=4.4.0=pyhcf101f3_0
   - prometheus_client=0.22.1=pyhd8ed1ab_0
   - prompt-toolkit=3.0.52=pyha770c72_0
@@ -205,22 +205,4 @@ dependencies:
   - zipp=3.23.0=pyhd8ed1ab_0
   - zstandard=0.24.0=py311h4854a17_1
   - zstd=1.5.7=hb8e6e7a_2
-  - pip:
-      - angles==2.0
-      - bottleneck==1.5.0
-      - cftime==1.6.4.post1
-      - erddapy==2.2.4
-      - et-xmlfile==2.0.0
-      - f90nml==1.4.5
-      - gsw==3.6.20
-      - joblib==1.5.2
-      - netcdf4==1.7.2
-      - openpyxl==3.1.5
-      - retrying==1.4.2
-      - salishseatools==25.1.dev0
-      - scikit-learn==1.7.2
-      - skillmetrics==1.2.4
-      - threadpoolctl==3.6.0
-      - tqdm==4.67.1
-      - xlsxwriter==3.2.9
 prefix: /home/jvalenti/conda_envs/SHEM_eval
