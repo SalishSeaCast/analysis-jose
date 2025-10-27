@@ -60,13 +60,13 @@
    zz_frac_waste_BNM_Bsi           = 1.0               ! waste fraction from Het. Bacteria natural mortality to bSi
    zz_rate_Si_ratio_hbac           = 0.0               ! fraction of Si in heterotrophic bacteria
    zz_rate_HBac_excr               = 1.45E-06          ! 1/s Hbacteria N excretion rate @ 20 deg C
-   zz_rate_hbac_NO3Pref            = 0.05              ! H.Bacteria preference for NO3 if N lim
+   zz_rate_hbac_NO3Pref            = 0.0              ! H.Bacteria preference for NO3 if N lim
    zz_rate_HBac_NO3HalfSat         = 1.0               ! uM N half saturation Het. Bacteria
    zz_rate_hbac_NH4Pref            = 0.45              ! H.Bacteria preference for NH4 if N lim
    zz_rate_HBac_NH4HalfSat         = 0.2               ! uM N half saturation Het. Bacteria 
-   zz_rate_hbac_DONPref            = 0.95              ! H.Bacteria preference for DON if C lim (N lim: 1-NO3pref-NH4pref)
+   zz_rate_hbac_DONPref            = 0.85              ! H.Bacteria preference for DON if C lim (N lim: DONPref*[1-NO3pref-NH4pref])
    zz_rate_HBac_DONHalfSat         = 0.1               ! uM N half saturation Het. Bacteria
-   zz_rate_hbac_PONPref            = 0.05              ! H.Bacteria preference for PON if C lim
+   zz_rate_hbac_PONPref            = 0.15              ! H.Bacteria preference for PON if C lim (N lim: PONPref*[1-NO3pref-NH4pref])
    zz_rate_HBac_PONHalfSat         = 0.1               ! uM N half saturation Het. Bacteria
 /
 !'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
@@ -168,7 +168,7 @@
 !'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 &nampisrem     !   parameters for remineralization
 !,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-   zz_remin_NH     =  4.44e-7
+   zz_remin_NH     =  3.5e-6             !increased to maintain NO3 levels 4.44e-7
    zz_remin_D_DON  =  0.0                !Done by hbac 2.56e-6
    zz_remin_D_PON  =  0.0                !Done by hbac 2.56e-6
    zz_remin_D_bSi  =  1.221e-6
