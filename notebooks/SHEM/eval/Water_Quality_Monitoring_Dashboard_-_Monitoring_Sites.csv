@@ -1,0 +1,1035 @@
+Program,Locator,Site,Latitude,Longitude,Status,Area
+Streams and Rivers,0309,Duwamish at E Marginal Way,47.5006944444444,-122.288166666667,false,Duwamish
+Streams and Rivers,0311,Green River at Interurban,47.4654722222222,-122.247944444444,true,Green
+Streams and Rivers,0317,Springbrook Creek mouth at SW 16th St,47.4658611111111,-122.232638888889,true,Springbrook/Black River
+Streams and Rivers,0321,Crisp Creek mouth at SE Green Valley Rd,47.2883611111111,-122.067138888889,false,Crisp
+Streams and Rivers,0322,Newaukum Creek mouth at 212th Way SE,47.2740833333333,-122.056194444444,true,Newaukum
+Streams and Rivers,0326,Olson Creek upstream of Green River Rd.,47.3434666666667,-122.204969444444,true,Olson
+Streams and Rivers,0430,Lyon Creek mouth at Bothell Way NE,47.7529194444444,-122.277777777778,true,Lyon
+Streams and Rivers,0434,Thornton Creek mouth at Sand Point Way NE,47.6963055555556,-122.276638888889,true,Thornton
+Streams and Rivers,0438,Cedar River at Bronson Way N,47.48125,-122.202788888889,true,Cedar
+Streams and Rivers,0440,May Creek at Lake Washington Blvd N,47.5299722222222,-122.201305555556,true,May
+Streams and Rivers,0442,Coal Creek upstream of 119th Ave SE,47.5664166666667,-122.179083333333,true,Coal
+Streams and Rivers,0444,Mercer Slough at 121st Ave SE,47.6030833333333,-122.181222222222,true,Mercer Slough
+Streams and Rivers,0446,Juanita Creek mouth at NE Juanita Dr,47.7053611111111,-122.216777777778,true,Juanita
+Streams and Rivers,0450,Sammamish River mouth at 68th Ave NE,47.7544444444444,-122.249916666667,false,Sammamish
+Streams and Rivers,0450CC,Sammamish River at NE 145th St,47.7328333333333,-122.145555555556,true,Sammamish
+Streams and Rivers,0456,Forbes Creek backwater,47.6969166666667,-122.207944444444,false,Forbes
+Streams and Rivers,0456A,Forbes Creek mouth near 98th Ave NE,47.69645,-122.208119444444,false,Forbes
+Streams and Rivers,0462,Maplewood Creek at Maplewood Golf Course,47.4743222222222,-122.163586111111,true,Maplewood
+Streams and Rivers,0463,Molasses Creek at Preserve at Cedar River apartments,47.4661972222222,-122.159083333333,true,Molasses
+Streams and Rivers,0470,Swamp Creek mouth at Bothell Way NE,47.7555277777778,-122.233944444444,true,Swamp
+Streams and Rivers,0474,North Creek mouth at Sammamish River Trail,47.7563055555556,-122.188833333333,true,North
+Streams and Rivers,0478,Little Bear mouth near NE 178th St,47.7565833333333,-122.166388888889,true,Little Bear
+Streams and Rivers,0484,Bear Creek downstream of Redmond Way,47.6695555555556,-122.110083333333,false,Bear
+Streams and Rivers,0484A,Bear Creek upstream of mouth,47.6676944444445,-122.122277777778,true,Bear
+Streams and Rivers,0486,Sammamish River at NE Marymoor Way,47.6623611111111,-122.124444444444,true,Sammamish
+Streams and Rivers,0498,Fairweather Creek mouth downstream of 520 trail,47.6365,-122.230611111111,true,Fairweather
+Streams and Rivers,0631,Issaquah Creek at SE 56th St,47.5521666666667,-122.047944444444,true,Issaquah
+Streams and Rivers,0632,Issaquah North Fork at mouth,47.5503611111111,-122.045805555556,true,Issaquah
+Streams and Rivers,3106,Green River at Starfire Way,47.4678055555556,-122.248972222222,true,Green
+Streams and Rivers,A315,Mill Creek near 68th Ave S and S 262nd St,47.3673333333333,-122.248527777778,true,Mill
+Streams and Rivers,A318,Mill Creek at Earthworks Park,47.3827083333333,-122.223880555556,true,Mill
+Streams and Rivers,A319,Green River at SE Auburn-Black Diamond Rd,47.3021138888889,-122.175911111111,true,Green
+Streams and Rivers,A320,Soos Creek above Soos Creek Hatchery,47.3124166666667,-122.165416666667,true,Soos
+Streams and Rivers,A432,McAleer at Bothell Way NE,47.7519472222222,-122.281277777778,true,McAleer
+Streams and Rivers,A438,Cedar River at Belmondo Reach,47.4579444444444,-122.078305555556,true,Cedar
+Streams and Rivers,A441,Taylor Creek at 68th AVE S,47.5086138888889,-122.247975,true,Taylor
+Streams and Rivers,A456,Forbes Creek at 108th Ave NE,47.6959333333333,-122.197902777778,true,Forbes
+Streams and Rivers,A499,Cochran Springs near Lake Washington Blvd,47.6451583333333,-122.202263888889,true,Cochran Springs
+Streams and Rivers,A617,Lewis Creek mouth at 187th Ave SE,47.5706111111111,-122.092277777778,true,Lewis
+Streams and Rivers,A620,Idylwood Creek mouth at Idylwood Park,47.6429722222222,-122.102694444444,true,Idylwood
+Streams and Rivers,A631,Issaquah Creek upstream of hatchery,47.5271111111111,-122.038444444444,true,Issaquah
+Streams and Rivers,A632,Issaquah Creek North Fork mouth at 4th Ave NW,47.5461944444444,-122.041611111111,false,Issaquah
+Streams and Rivers,A670,Laughin Jacobs mouth at E Lake Sammamish Pkwy,47.5656555555556,-122.052619444444,false,Laughing Jacobs
+Streams and Rivers,A680,Pine Lake Creek mouth at E Lake Sammamish Pkwy,47.6010555555556,-122.080083333333,true,Pine Lake
+Streams and Rivers,A685,Ebright Creek mouth at E Lake Sammamish Pkwy,47.6083333333333,-122.0725,true,Ebright
+Streams and Rivers,A687,Zackuse Creek,47.6123027777778,-122.0685,true,Zackuse
+Streams and Rivers,A690,George Davis Creek mouth at E Lake Sammamish Pkwy,47.6154722222222,-122.068166666667,true,George Davis
+Streams and Rivers,AMES_1,Ames Creek mouth at NE 100th St,47.6866666666667,-121.983333333333,true,Ames Creek
+Streams and Rivers,B319,Green River at 212th Way SE,47.2823611111111,-122.055333333333,true,Green
+Streams and Rivers,B456,Forbes Creek upstream of of trail crossing off NE 106th ST,47.6964277777778,-122.189275,true,Forbes
+Streams and Rivers,B484,Evans Creek at NE Union Hill Rd,47.6751111111111,-122.081277777778,true,Evans
+Streams and Rivers,B499,Yarrow Creek near 101st Way NE,47.6438083333333,-122.205611111111,true,Yarrow
+Streams and Rivers,B670,Laughing Jacobs at Hans Jensen Youth Camp,47.5651111111111,-122.0505,true,Laughing Jacobs
+Streams and Rivers,BB470,Swamp Creek at Carter Rd,47.77975,-122.250972222222,true,Swamp
+Streams and Rivers,BSE_1MUDMTNRD,Boise Creek mouth at SE Mud Mountain Rd,47.1760833333333,-122.018433333333,true,Boise
+Streams and Rivers,C320,Covington Creek at SE Auburn-Black Diamond Rd,47.3121666666667,-122.096611111111,true,Covington
+Streams and Rivers,C370,Longfellow Creek at SW Yancy St,47.5675972222222,-122.366516666667,true,Longfellow
+Streams and Rivers,C446,Juanita Creek at NE 132nd St,47.7181666666667,-122.203944444444,false,Juanita
+Streams and Rivers,C484,Bear Creek at NE 95th St,47.6855555555556,-122.088916666667,true,Bear
+Streams and Rivers,CHERRY_1,Cherry Creek at NE Cherry Valley Rd,47.7430555555556,-121.941666666667,true,Cherry Creek
+Streams and Rivers,COAL_1,Coal Creek upstream of 378th AVE SE,47.5261111111111,-121.837105555556,true,Coal
+Streams and Rivers,D320,Jenkins Creek at Kent Black Diamond Rd SE,47.3404166666667,-122.129555555556,true,Jenkins
+Streams and Rivers,D444,Kelsey Creek at Kelsey Creek Park,47.6059722222222,-122.162222222222,false,Mercer Slough
+Streams and Rivers,D474,North Creek at 240th St SE,47.7799166666667,-122.188138888889,true,North
+Streams and Rivers,F321,Crisp Creek below hatchery intake,47.2897777777778,-122.058361111111,false,Crisp
+Streams and Rivers,FF321,Crisp Creek at SE 348th St above hatchery intake,47.2907472222222,-122.056822222222,true,Crisp
+Streams and Rivers,G320,Little Soos Creek at SE 272nd St,47.3579722222222,-122.125694444444,true,Little Soos
+Streams and Rivers,GRIFFIN,Griffin Creek at E Griffin Creek Rd,47.6060861111111,-121.886258333333,false,Griffin Creek
+Streams and Rivers,GRIFFIN_1,Griffin Creek off NE 8th ST,47.6164472222222,-121.901486111111,true,Griffin Creek
+Streams and Rivers,HARRIS_1,Harris Creek at Carnation Duvall Rd,47.6780555555556,-121.908333333333,true,Harris Creek
+Streams and Rivers,J370,Longfellow Creek at SW Brandon St,47.5538611111111,-122.366944444444,false,Longfellow
+Streams and Rivers,J484,Bear Creek at NE 133rd St,47.7177222222222,-122.077083333333,false,Bear
+Streams and Rivers,KSHZ06,Pipers Creek mouth,47.7118611111111,-122.379416666667,true,Pipers
+Streams and Rivers,KTHA01,Piper's Creek,47.7105555555556,-122.369277777778,false,Pipers
+Streams and Rivers,KTHA02,Pipers Creek upstream of S Ridge Trail,47.7107777777778,-122.371719444444,false,Pipers
+Streams and Rivers,KTHA03,Venema Creek at Pipers Creek Trail,47.7110555555556,-122.371777777778,true,Venema
+Streams and Rivers,LSIN1,Rock Creek mouth,47.3225,-122.028138888889,true,Rock
+Streams and Rivers,LSIN9,Ravensdale mouth,47.3262222222222,-122.028111111111,true,Ravensdale
+Streams and Rivers,MFK_SNQ,Middle Fork Snoqualmie at 428th Ave SE,47.5161111111111,-121.769444444444,true,Snoqualmie - Middle Fork
+Streams and Rivers,MILLER,Miller Creek at Normandy Park Community Club,47.4445611111111,-122.354511111111,true,Miller
+Streams and Rivers,N484,Cottage Lake Creek at Tolt Pipeline,47.7364444444444,-122.079361111111,true,Cottage Lake Creek
+Streams and Rivers,N484A,Cottage Lake Creek,47.7402777777778,-122.0825,false,Cottage Lake Creek
+Streams and Rivers,NFK_SNQ,North Fork Snoqualmie at 428th Ave SE,47.5219444444444,-121.769444444444,true,Snoqualmie - North Fork
+Streams and Rivers,PATTER_3,Patterson Creek mouth at W Snoqualmie River Rd SE,47.5916666666667,-121.927777777778,false,Patterson Creek
+Streams and Rivers,PATTER_4,Patterson Creek upstream of 308th Ave SE,47.5808,-121.93205,true,Patterson Creek
+Streams and Rivers,RAGING_MTH,Raging River mouth near Dike Rd,47.5669444444444,-121.883333333333,true,Raging River
+Streams and Rivers,S478,Little Bear Creek at Little Bear Creek Rd,47.8114444444444,-122.159,true,Little Bear
+Streams and Rivers,S484,Evans Creek at NE 50th St,47.6524444444444,-122.051444444444,false,Evans
+Streams and Rivers,SFK_SNQ,South Fork Snoqualmie at Snoqualmie Valley Trail,47.5019444444444,-121.786111111111,true,Snoqualmie - South Fork
+Streams and Rivers,SKYKOMISH,South Fork Skykomish at hwy 2 mile marker 47.5,47.7113888888889,-121.372222222222,true,Skykomish
+Streams and Rivers,SNQDUVALL,Snoqualmie River at Taylor Landing,47.7452777777778,-121.986111111111,true,Snoqualmie
+Streams and Rivers,TOLT_MTH,Tolt River mouth,47.6380472222222,-121.9184,true,Tolt River
+Streams and Rivers,VA12A,Shinglemill Creek at SW Cedarhurst Rd,47.4783,-122.481738888889,true,Shinglemill
+Streams and Rivers,VA23A,Christensen Creek mouth,47.4029527777778,-122.517611111111,true,Christensen
+Streams and Rivers,VA37A,Tahlequah Creek mouth at SW Pohl Rd,47.334575,-122.508602777778,true,Tahlequah
+Streams and Rivers,VA41A,Fisher Creek at Vashon Hwy SW,47.3839888888889,-122.481388888889,true,Fisher
+Streams and Rivers,VA42A,Judd Creek near end of SW 225th St,47.4032833333333,-122.468716666667,true,Judd
+Streams and Rivers,VA45A,Mileta Creek at Dockton Rd SW,47.3884444444444,-122.427869444444,false,Mileta
+Streams and Rivers,VA65A,Gorsuch Creek mouth near end of SW 167th St,47.4536333333333,-122.444638888889,true,Gorsuch
+Streams and Rivers,X438,Cedar River mouth,47.4953055555556,-122.213694444444,false,Cedar
+Streams and Rivers,X630,Tibbetts Creek mouth at footbridge,47.554,-122.069555555556,true,Tibbetts
+Major Lakes,0512,Ship Canal above locks,47.6647976,-122.3962016,true,Lake Union/Ship Canal
+Major Lakes,0518,Ship Canal near Fremont Bridge,47.6477662,-122.350003,false,Lake Union/Ship Canal
+Major Lakes,0536,Ship Canal under I-5 bridge,47.6533464,-122.322372,false,Lake Union/Ship Canal
+Major Lakes,0540,Ship Canal near Montlake Bridge,47.6472978,-122.3052493,true,Lake Union/Ship Canal
+Major Lakes,0611,Lake Sammamish mid-lake north,47.6227784,-122.0808333,true,Lake Sammamish
+Major Lakes,0612,Lake Sammamish mid-lake central,47.5912118,-122.0956762,true,Lake Sammamish
+Major Lakes,0614,Lake Sammamish near Issaquah Creek,47.5623224,-122.067066,false,Lake Sammamish
+Major Lakes,0617,Lake Sammamish near Lewis Creek,47.5717656,-122.094289,false,Lake Sammamish
+Major Lakes,0622,Lake Sammamish near George Davis Creek,47.6152718,-122.06947,false,Lake Sammamish
+Major Lakes,0625,Lake Sammamish near outlet,47.6524263,-122.10657,false,Lake Sammamish
+Major Lakes,0804,Lake Washington north end,47.7467636,-122.2712368,true,Lake Washington
+Major Lakes,0807,Lake Washington Juanita Bay,47.6989311,-122.218477,false,Lake Washington
+Major Lakes,0814,Lake Washington Yarrow Bay,47.653404,-122.211254,false,Lake Washington
+Major Lakes,0817,Lake Washington near Thornton Creek,47.6948323,-122.269625,false,Lake Washington
+Major Lakes,0826,Lake Washington off Sand Point,47.686762,-122.235333,true,Lake Washington
+Major Lakes,0829,Lake Washington south end,47.5036344,-122.215761,false,Lake Washington
+Major Lakes,0831,Lake Washington mid-lake south,47.5158504,-122.21908,true,Lake Washington
+Major Lakes,0832,Lake Washington near Coal Creek,47.5742283,-122.192558,false,Lake Washington
+Major Lakes,0834,Lake Washington Meydenbauer Bay,47.6102464,-122.211907,false,Lake Washington
+Major Lakes,0840,Lake Washington east of Mercer Island,47.5387112,-122.20633,false,Lake Washington
+Major Lakes,0852,Lake Washington Madison Park,47.6364954,-122.2686634,true,Lake Washington
+Major Lakes,0890,Lake Washington south of I-90,47.5754354,-122.267296,false,Lake Washington
+Major Lakes,4903,Lake Washington near Henderson St,47.5229414,-122.26199,false,Lake Washington
+Major Lakes,A522,Lake Union near west shore,47.632886,-122.3379674,true,Lake Union/Ship Canal
+Major Lakes,M621,Lake Sammamish near Pine Lake Creek,47.601195,-122.082035,false,Lake Sammamish
+Major Lakes,SAMMBUOY,Lake Sammamish YSI Profiler Buoy,47.580776,-122.09017,true,Lake Sammamish
+Major Lakes,WABUOY,Lake Washington YSI Profiler Buoy,47.612137,-122.25408,true,Lake Washington
+Small Lakes,Alice,Alice,47.5319,-121.8862,true,NA
+Small Lakes,Allen,Allen,47.615,-122.0094,true,NA
+Small Lakes,Ames,Ames,47.6414,-121.9581,true,NA
+Small Lakes,Angle,Angle,47.4273,-122.2882,true,NA
+Small Lakes,Beaver-1,Beaver-1,47.5947,-121.9908,true,NA
+Small Lakes,Beaver-2,Beaver-2,47.5916,-121.9967,true,NA
+Small Lakes,Beaver-3,Beaver-3,47.585103,-122.004009,false,NA
+Small Lakes,Bitter,Bitter,47.727,-122.3514,false,NA
+Small Lakes,Boren,Boren,47.5332,-122.1666,true,NA
+Small Lakes,Burien,Burien,47.46477,-122.35288,false,NA
+Small Lakes,Clark,Clark,47.38352,-122.17352,false,NA
+Small Lakes,Cottage,Cottage,47.7524,-122.0878,true,NA
+Small Lakes,Deep,Deep,47.2739,-121.94,false,NA
+Small Lakes,Desire,Desire,47.44258,-122.10636,true,NA
+Small Lakes,Dolloff,Dolloff,47.327,-122.286,true,NA
+Small Lakes,Echo-Shoreline,Echo-Shoreline,47.7709,-122.3435,true,NA
+Small Lakes,Echo-Snoqualmie,Echo-Snoqualmie,47.5094,-121.8683,false,NA
+Small Lakes,Fenwick,Fenwick,47.3663,-122.26969,true,NA
+Small Lakes,Fivemile,Fivemile,47.2712,-122.2864,true,NA
+Small Lakes,Forbes,Forbes,47.686,-122.177,true,NA
+Small Lakes,Francis,Francis,47.4317,-122.0314,false,NA
+Small Lakes,Geneva,Geneva,47.2912,-122.2813,true,NA
+Small Lakes,Grass,Grass,47.3356,-122.0851,false,NA
+Small Lakes,Green-1,Green-1,47.6793,-122.3326,true,NA
+Small Lakes,Green-2,Green-2,47.6758,-122.3436,false,NA
+Small Lakes,Haller,Haller,47.72,-122.3322,false,NA
+Small Lakes,Hicklin,Hicklin,47.504,-122.344,false,NA
+Small Lakes,Horseshoe,Horseshoe,47.3097,-122.0403,false,NA
+Small Lakes,Jones,Jones,47.302,-122.001,false,NA
+Small Lakes,Joy,Joy,47.6956,-121.8676,true,NA
+Small Lakes,Kathleen,Kathleen,47.4774,-122.0879,true,NA
+Small Lakes,Killarney,Killarney,47.2869,-122.2897,true,NA
+Small Lakes,Langlois,Langlois,47.6366,-121.8862,true,NA
+Small Lakes,Leota,Leota,47.76,-122.1197,true,NA
+Small Lakes,Lucerne,Lucerne,47.368,-122.0507,true,NA
+Small Lakes,Marcel,Marcel,47.6942,-121.9139,true,NA
+Small Lakes,Margaret,Margaret,47.7683,-121.898,true,NA
+Small Lakes,McDonald,McDonald,47.4704,-122.0755,true,NA
+Small Lakes,Meridian,Meridian,47.364,-122.152,true,NA
+Small Lakes,Mirror,Mirror,47.321,-122.341,false,NA
+Small Lakes,Morton,Morton,47.3248,-122.0849,true,NA
+Small Lakes,Neilson (Holm),Neilson (Holm),47.3028,-122.1244,true,NA
+Small Lakes,North,North,47.305,-122.289,false,NA
+Small Lakes,Panther-1,Panther-1,47.422,-122.186,false,NA
+Small Lakes,Panther-2,Panther-2,47.422,-122.186,false,NA
+Small Lakes,Paradise,Paradise,47.7735,-122.0674,true,NA
+Small Lakes,Peterson Pond,Peterson Pond,47.6649,-122.02,false,NA
+Small Lakes,Pine,Pine,47.589,-122.0419,true,NA
+Small Lakes,Pipe,Pipe,47.3654,-122.0613,true,NA
+Small Lakes,Ravensdale,Ravensdale,47.351,-121.991,false,NA
+Small Lakes,Retreat,Retreat,47.3525,-121.9423,true,NA
+Small Lakes,Sawyer,Sawyer,47.3336,-122.0369,true,NA
+Small Lakes,Shadow,Shadow,47.4063,-122.0856,true,NA
+Small Lakes,Shady,Shady,47.43,-122.105,true,NA
+Small Lakes,Spring,Spring,47.438,-122.0885,true,NA
+Small Lakes,Star,Star,47.3546,-122.2868,true,NA
+Small Lakes,Steel,Steel,47.328,-122.302,false,NA
+Small Lakes,Trout,Trout,47.2656,-122.2778,false,NA
+Small Lakes,Tuck,Tuck,47.76815,-122.02879,true,NA
+Small Lakes,Twelve,Twelve,47.326,-121.975,true,NA
+Small Lakes,Walker,Walker,47.2641,-121.9063,false,NA
+Small Lakes,Walsh,Walsh,47.4087,-121.9295,false,NA
+Small Lakes,Webster,Webster,47.442,-122.024,true,NA
+Small Lakes,Welcome,Welcome,47.7238,-122.0444,true,NA
+Small Lakes,Wilderness,Wilderness,47.3748,-122.0346,true,NA
+Small Lakes,Yellow,Yellow,47.571,-122.011,false,NA
+Marine Offshore,Adm Inlet-4-C14,Admiralty Inlet,47.9174083333333,-122.466186111111,false,NA
+Marine Offshore,CK200P,Carkeek Outfall,47.71265,-122.387944444444,true,Central Puget Sound
+Marine Offshore,Colvos Pass,Colvos Passage,47.5143444444444,-122.484636111111,false,NA
+Marine Offshore,Edmds-2,Rose Point to Brown's Bay,47.8436333333333,-122.385866666667,false,NA
+Marine Offshore,Edmds-4,Rose Point to Brown's Bay,47.8602833333333,-122.444516666667,false,NA
+Marine Offshore,HNFD01,Duwamish River - East Waterway,47.5770138888889,-122.344344444444,true,Central Puget Sound
+Marine Beaches,ITCARKEEKP,Carkeek Park,47.7126,-122.37905,true,Central Puget Sound
+Marine Beaches,ITEDWARDSPT,Edwards Point,47.8036333333333,-122.395052777778,false,Central Puget Sound
+Marine Offshore,JSTU01,Point Wells,47.78065,-122.403186111111,false,Central Puget Sound
+Marine Offshore,JSUR01,Point Wells,47.7773972222222,-122.417611111111,true,Central Puget Sound
+Marine Beaches,JSVW04,Point Wells,47.7738888888889,-122.391944444444,true,Central Puget Sound
+Marine Offshore,KSBP01,Jefferson Head,47.7439583333333,-122.428169444444,true,Central Puget Sound
+Marine Beaches,KSHZ03,Carkeek Park - Piper's Creek Outflow,47.7125388888889,-122.379577777778,true,Central Puget Sound
+Marine Offshore,KSIW02,Carkeek Outfall,47.7088888888889,-122.390277777778,false,Central Puget Sound
+Marine Beaches,KSLU03,Golden Gardens Park,47.6919444444444,-122.405277777778,true,Central Puget Sound
+Marine Offshore,KSQU01,Mouth of Lake Washington Ship Canal,47.6722222222222,-122.405,true,Central Puget Sound
+Marine Offshore,KSRU03,Outer Salmon Bay,47.6679555555556,-122.405641666667,false,Central Puget Sound
+Marine Offshore,KSRU03(sed),Outer Salmon Bay (sediment),47.6679555555556,-122.405641666667,true,NA
+Marine Offshore,KSSK02,West Point Outfall,47.6605555555556,-122.447222222222,true,Central Puget Sound
+Marine Beaches,KSSN04,West Point North Beach,47.6624111111111,-122.433908333333,true,Central Puget Sound
+Marine Beaches,KSSN05,West Point South Beach,47.6611555555556,-122.434077777778,true,Central Puget Sound
+Marine Beaches,KSYV02,Magnolia CSO,47.6322388888889,-122.398675,true,Central Puget Sound
+Marine Sediments,KSZY01,Piers 90/91,47.6254416666667,-122.381633333333,true,NA
+Marine Sediments,LSCW02,Outer Elliott Bay,47.6119444444444,-122.390833333333,true,NA
+Marine Offshore,LSEP01,South Plant Outfall,47.6011777777778,-122.426480555556,true,Central Puget Sound
+Marine Beaches,LSGY01,Seacrest Park,47.5890722222222,-122.379997222222,true,Central Puget Sound
+Marine Beaches,LSHV01,Alki Beach,47.5836861111111,-122.401088888889,true,Central Puget Sound
+Marine Sediments,LSHZ08,Cove 2,47.5892472222222,-122.378405555556,true,NA
+Marine Offshore,LSKQ06,Alki Outfall,47.5702722222222,-122.421747222222,true,Central Puget Sound
+Marine Beaches,LSKR01,Alki Outfall Beach,47.5747222222222,-122.4175,true,Central Puget Sound
+Marine Beaches,LSKS01,Constellation Park,47.5725,-122.413333333333,true,Central Puget Sound
+Marine Sediments,LSML01,Central Basin - West Seattle,47.5633333333333,-122.443333333333,true,NA
+Marine Offshore,LSNT01,Point Williams,47.5333333333333,-122.433333333333,true,Central Puget Sound
+Marine Offshore,LSVV01,Fauntleroy Cove,47.5247638888889,-122.397686111111,true,Central Puget Sound
+Marine Beaches,LSVW01,Fauntleroy Cove Beach,47.5237805555556,-122.393966666667,true,Central Puget Sound
+Marine Sediments,LTAA02,Grain Terminal,47.6230416666667,-122.370933333333,true,NA
+Marine Offshore,LTBC41,Denny Way Short Outfall,47.6221305555556,-122.369994444444,false,Central Puget Sound
+Marine Offshore,LTBC42,Denny Way Short Outfall,47.6178555555556,-122.361255555556,false,Central Puget Sound
+Marine Offshore,LTBC43,Elliott West Outfall,47.6174888888889,-122.361966666667,true,Central Puget Sound
+Marine Beaches,LTBD27,SAM Sculpture Park,47.6171666666667,-122.358444444444,true,Central Puget Sound
+Marine Sediments,LTCA02,North Central Elliott Bay,47.61,-122.371944444444,true,NA
+Marine Sediments,LTDF01,Elliott Bay Waterfront,47.6077777777778,-122.346111111111,true,NA
+Marine Offshore,LTED04,South Central Elliott Bay,47.6036416666667,-122.356513888889,true,Central Puget Sound
+Marine Offshore,LTEH02,Seattle Waterfront - Ferry Terminal,47.60175,-122.339083333333,true,Central Puget Sound
+Marine Sediments,LTGF01,North Harbor Island,47.5898361111111,-122.352391666667,true,NA
+Marine Offshore,LTKE03,Duwamish River - Harbor Island Marina,47.5694694444444,-122.350669444444,true,Central Puget Sound
+Marine Beaches,LTTL02,Duwamish Park,47.5314722222222,-122.319833333333,false,Central Puget Sound
+Marine Offshore,LTUM03,Duwamish River - South Park Bridge,47.5294,-122.314197222222,true,Central Puget Sound
+Marine Beaches,MRUW01,Lisabeula Park,47.40575,-122.522138888889,false,Central Puget Sound
+Marine Beaches,MSJL01,Vashon Outfall Beach,47.4536944444444,-122.444222222222,true,Central Puget Sound
+Marine Offshore,MSJN02,Vashon Outfall,47.4529222222222,-122.433333333333,true,Central Puget Sound
+Marine Beaches,MSSM05,Tramp Harbor,47.4133333333333,-122.436666666667,true,Central Puget Sound
+Marine Sediments,MSVK01,Quartermaster Harbor Sediment,47.3984416666667,-122.451666666667,true,NA
+Marine Offshore,MSWH01,Quartermaster Harbor Yacht Club,47.3939444444445,-122.4635,true,Central Puget Sound
+Marine Beaches,MSXK01,Burton Acres Park,47.3900833333333,-122.446805555556,true,Central Puget Sound
+Marine Beaches,MTEC01,Seahurst Park,47.4781388888889,-122.363527777778,false,Central Puget Sound
+Marine Beaches,MTLD03,Normandy Park,47.4424888888889,-122.357430555556,true,Central Puget Sound
+Marine Beaches,MTUJ01,Des Moines Creek Park,47.4044166666667,-122.331083333333,true,Central Puget Sound
+Marine Beaches,MTXA01,Point Roberts Park,47.3869166666667,-122.374972222222,false,Central Puget Sound
+Marine Offshore,NSAJ02,Dockton Park,47.3761111111111,-122.457222222222,true,Central Puget Sound
+Marine Offshore,NSEX01,East Passage,47.3586166666667,-122.387080555556,true,Central Puget Sound
+Marine Beaches,NSJY01,Dumas Bay,47.3261111111111,-122.384083333333,true,Central Puget Sound
+Marine Beaches,NTFK01,Redondo Beach,47.3495,-122.324,true,Central Puget Sound
+Marine Offshore,Orca Buoy,NORTH PUGET SOUND,47.7615,-122.396638888889,false,NA
+Marine Offshore,Poss Snd-3-C14,Possession Pt. to Picnic Pt.,47.8918166666667,-122.356786111111,false,NA
+Marine Offshore,Pt Wells-1-C14,Pt Wells C-14 station,47.7852361111111,-122.407044444444,false,NA
+Marine Offshore,VO50E,Vashon Outfall (Previous),47.4531916666667,-122.438736111111,false,Central Puget Sound
+Marine Moorings,Seattle Aquarium,Seattle Aquarium,47.607264,-122.34379,true,NA
+Marine Moorings,Dockton Park,Dockton Park,47.372829,-122.453378,true,NA
+Marine Moorings,Quartermaster Buoy,Quartermaster Buoy,47.337992,-122.479236,false,NA
+Marine Moorings,Yacht Club,Yacht Club,47.394222,-122.4635,false,NA
+Marine Moorings,Brightwater Buoy,Brightwater Buoy,47.778825,-122.399046,false,NA
+Marine Moorings,Alki Buoy,Alki Buoy,47.570086,-122.422033,false,NA
+Marine Moorings,Quartermaster Yacht Club,Quartermaster Yacht Club,47.394222,-122.4635,true,NA
+Marine Moorings,Point Williams,Point Williams,47.537164,-122.406117,true,NA
+Stream Flow Gage,04h,Boeing North Pond Inflow off NW 175th ST,47.75608,-122.36109,false,NA
+Stream Flow Gage,04i,Boeing North Pond Inflow off 6th AV NW,47.75714,-122.36396,false,NA
+Stream Flow Gage,04j,Boeing Creek off Beach DR,47.74937,-122.37305,false,NA
+Stream Flow Gage,09a,Covington Creek,47.31258,-122.10833,true,NA
+Stream Flow Gage,09d,Ravensdale Creek (Lake Sawyer Inflow #3),47.32636,-122.02816,true,NA
+Stream Flow Gage,09e,Lake Sawyer Outflow,47.33611,-122.04583,false,NA
+Stream Flow Gage,11b,Tyee Regional Pond -  Des Moines Creek,47.42707,-122.3059,true,NA
+Stream Flow Gage,11c,Des Moines Creek above Tyee Regional Pond,47.4298,-122.30458,true,NA
+Stream Flow Gage,11d,"Des Moines Creek below SR 509, Des Moines (near mouth)",47.40591,-122.32773,true,NA
+Stream Flow Gage,18f,Rutherford Creek at NE 76th - Bear Evans Watershed,47.67236,-122.03983,false,NA
+Stream Flow Gage,20a,Forbes Creek,47.69681,-122.20803,false,NA
+Stream Flow Gage,24c,Hylebos Creek at 373rd ST,47.26728,-122.32959,false,NA
+Stream Flow Gage,24d,West Fork Hylebos Creek at Federal Way,47.27273,-122.3293,false,NA
+Stream Flow Gage,24e,East Fork Hylebos Tributary 0016A,47.28067,-122.30903,false,NA
+Stream Flow Gage,25c,Fifteen Mile Creek near Mouth -  Issaquah Creek Watershed,47.48412,-122.02962,false,NA
+Stream Flow Gage,25d,McDonald Creek at 228th AV SE -  Issaquah Creek Watershed,47.47933,-122.03547,false,NA
+Stream Flow Gage,25e,Holder Creek near Issaquah,47.44392,-121.99127,false,NA
+Stream Flow Gage,25f,Carey Creek near Issaquah,47.44402,-121.99222,false,NA
+Stream Flow Gage,25h,McDonald Creek Tributary 0212H - Issaquah Creek tributary,47.47625,-122.05583,false,NA
+Stream Flow Gage,26a,Jenkins Creek near Mouth  -  Soos Creek Watershed,47.34039,-122.12948,true,NA
+Stream Flow Gage,26e,Jenkins Creek Tributary 0089 above Crestwood R/D -  Soos Creek Watershed,47.37581,-122.10196,false,NA
+Stream Flow Gage,27a,Juanita Creek at Mouth,47.70767,-122.2149,true,NA
+Stream Flow Gage,27b,Juanita Creek above 100th AV NE,47.71684,-122.20686,false,NA
+Stream Flow Gage,27c,Juanita Creek Tributary 0235 above 100th AV NE,47.71533,-122.20436,true,NA
+Stream Flow Gage,27d,Simmonds Creek R/D Pond Control,47.73028,-122.20806,false,NA
+Stream Flow Gage,27e,Juanita Tributary 0236 above Simonds R/D,47.73051,-122.2102,false,NA
+Stream Flow Gage,27f,Juanita Tributary 0241 above High Woodlands,47.73401,-122.18329,false,NA
+Stream Flow Gage,27g,High Woodlands R/D Pond Control,47.73329,-122.18772,false,NA
+Stream Flow Gage,02a,Bear Creek @ Union Hill RD,47.67505,-122.10738,true,NA
+Stream Flow Gage,02b,Wetland Big Bear Creek #45 Outlet,47.69918,-122.03029,false,NA
+Stream Flow Gage,02c,"Colin Creek trib at Lake of the Woods Development,  Bear - Evans Watershed",47.72273,-122.03648,false,NA
+Stream Flow Gage,02d,"Upper Colin Creek Tributary 0132,  Bear - Evans Watershed",47.71463,-122.04031,false,NA
+Stream Flow Gage,02e,"Bear Creek at 133rd ST NE, near Redmond",47.71768,-122.07703,true,NA
+Stream Flow Gage,02g,"Cottage Lake Creek at Avondale RD NE,  Bear-Evans Watershed",47.7167,-122.088,true,NA
+Stream Flow Gage,02h,"Cold Creek near Cottage Creek, Bear - Evans Watershed",47.75039,-122.09687,false,NA
+Stream Flow Gage,03a,Panther Creek at Talbot Road,47.44521,-122.21107,false,NA
+Stream Flow Gage,11f,Des Moines Tributary 0377 at Tyee Weir,47.42382,-122.3057,true,NA
+Stream Flow Gage,11e,Des Moines Tributary 0379,47.4255,-122.3081,true,NA
+Stream Flow Gage,11g,NW Ponds Outlet Des Moines CR 0379,47.427103,-122.311278,true,NA
+Stream Flow Gage,11h,Bow Lake,47.43714,-122.29488,true,NA
+Stream Flow Gage,13a,Duwamish River Tributary 0003,47.5021,-122.29932,false,NA
+Stream Flow Gage,14a,"Issaquah Creek, East Fork",47.53538,-122.03817,false,NA
+Stream Flow Gage,14q,Tributary 0184 in Grand Ridge Development,47.53811,-122.01147,false,NA
+Stream Flow Gage,14r,Tributary 0183C in Grand Ridge Development,47.53767,-122.00762,false,NA
+Stream Flow Gage,14s,Tributary 0183G in Grand Ridge Development,47.53425,-121.99886,false,NA
+Stream Flow Gage,14t,Tributary 0190 in Grand Ridge Development,47.53811,-121.97115,false,NA
+Stream Flow Gage,15b,Pine Lake Creek at E Lake Sammamish Pkwy,47.60099,-122.08058,false,NA
+Stream Flow Gage,03b,"Springbook Creek above SR 167, near Kent",47.43048,-122.21624,false,NA
+Stream Flow Gage,03c,Garrison Creek at S 218th ST,47.40691,-122.21624,false,NA
+Stream Flow Gage,03d,Springbrook Creek at SW 43rd ST,47.44129,-122.23911,false,NA
+Stream Flow Gage,03e,Rolling Hills Creek,47.46863,-122.21538,false,NA
+Stream Flow Gage,03p,Black River Pump Station,47.47532,-122.24523,false,NA
+Stream Flow Gage,04a,Boeing Creek Below NW 175th ST,47.75457,-122.36605,false,NA
+Stream Flow Gage,04b,Boeing Creek M1 Dam Stage Recorder,47.75219,-122.36007,false,NA
+Stream Flow Gage,04c,Boeing Creek below Boeing M1 Dam Outlet,47.75263,-122.36038,false,NA
+Stream Flow Gage,04d,Boeing Creek above Boeing M1 Dam,47.75075,-122.35717,false,NA
+Stream Flow Gage,04e,Boeing Creek Below Boeing Dam,47.75414,-122.36302,false,NA
+Stream Flow Gage,04f,Boeing Creek North Pond Control,47.75586,-122.36367,false,NA
+Stream Flow Gage,04g,Boeing North Pond Inflow off 3rd AV NW,47.75516,-122.36123,false,NA
+Stream Flow Gage,15c,Laughing Jacobs Creek at E Lake Sammamish Pkwy,47.56538,-122.05212,true,NA
+Stream Flow Gage,15d,E Lake Sammamish Tributary 0144 (Inglewood Creek),47.61578,-122.0681,false,NA
+Stream Flow Gage,16a,North Lake Washington Tributary 0056,47.75819,-122.2618,false,NA
+Stream Flow Gage,16b,O.O.Denny Creek,47.70916,-122.24968,false,NA
+Stream Flow Gage,18a,Evans Creek @ Union Hill Road,47.67507,-122.08116,true,NA
+Stream Flow Gage,18b,Northridge ECC South Weir,47.67507,-122.0257,false,NA
+Stream Flow Gage,18c,Northridge ECC Central Weir,47.68463,-122.0312,false,NA
+Stream Flow Gage,18d,Peterson Pond Outflow at Union Hill RD,47.66589,-122.02143,false,NA
+Stream Flow Gage,18e,Evans Creek Tributary 0011C at SR 202 (Rutherford Creek),47.65198,-122.04682,false,NA
+Stream Flow Gage,25g,McDonald Creek in Sunset Valley Farms,47.47915,-122.06369,false,NA
+Stream Flow Gage,30A,Little Bear Creek at SR 202,47.7566,-122.16487,false,NA
+Stream Flow Gage,31a,Lower Cedar River Tributary 0300A at Mouth,47.47577,-122.18719,false,NA
+Stream Flow Gage,31b,Maplewood Creek Bypass (former creek),47.47204,-122.16447,false,NA
+Stream Flow Gage,31c,Molasses Creek at Mouth,47.46665,-122.16026,false,NA
+Stream Flow Gage,31d,Madsen Creek above Sedimentation Pond,47.46248,-122.14251,true,NA
+Stream Flow Gage,31e,Lower Cedar Tributary 0307 above Jones RD,47.47106,-122.13413,false,NA
+Stream Flow Gage,31f,Lower Cedar River Tributary 0311,47.46219,-122.12574,false,NA
+Stream Flow Gage,31g,Peterson Creek (Layton Creek),47.41408,-122.04956,false,NA
+Stream Flow Gage,31h,Taylor Creek at Mouth,47.42072,-122.04119,false,NA
+Stream Flow Gage,31i,Taylor Creek above 236th AV SE,47.409,-122.02536,true,NA
+Stream Flow Gage,31j,Lower Cedar Tributary 0306A above Fairwood R/D,47.44569,-122.13887,false,NA
+Stream Flow Gage,31k,Fairwood Pond Outlet,47.4474,-122.13803,false,NA
+Stream Flow Gage,31L,Rock Creek @ 244th,47.37924,-122.01894,false,NA
+Stream Flow Gage,32a,Lower Green River Tributary 0036B near Kent,47.46524,-122.27112,false,NA
+Stream Flow Gage,32b,Lower Green River Tributary 0038 at S 200th ST,47.42291,-122.27374,false,NA
+Stream Flow Gage,32c,Olsen Creek Lower Green River Tributary 0069 at Green River RD,47.34351,-122.2048,false,NA
+Stream Flow Gage,33b,Lower Puget Sound Tributary 0386 (Lakota Creek),47.32879,-122.37264,false,NA
+Stream Flow Gage,33f,"Seola Creek off Seola Beech Drive, Seattle",47.49758,-122.37498,false,NA
+Stream Flow Gage,34a,Lyon Creek near Mouth in Lake Forest Park,47.75293,-122.27781,true,NA
+Stream Flow Gage,35a,Mc Aleer Creek at NE 196th ST Dam,47.77125,-122.31155,false,NA
+Stream Flow Gage,35b,McAleer Creek below 15th AV NE,47.7721,-122.31278,false,NA
+Stream Flow Gage,35c,McAleer @ Mouth,47.75178,-122.28125,true,NA
+Stream Flow Gage,35d,McAleer Bypass,47.75153,-122.28084,false,NA
+Stream Flow Gage,37a,May Creek @ Mouth,47.52993,-122.20133,true,NA
+Stream Flow Gage,37b,May Creek at Coal Creek PKWY,47.51811,-122.15938,false,NA
+Stream Flow Gage,37c,May Creek Tributary 0285 (Honey Creek),47.51332,-122.17908,false,NA
+Stream Flow Gage,37d,Long Marsh Creek at SE May Valley RD,47.51727,-122.14549,false,NA
+Stream Flow Gage,37n,May Creek Tributary 0280,47.49808,-122.09896,false,NA
+Stream Flow Gage,40a,Green River at 218th AV SE,47.28241,-122.05537,false,NA
+Stream Flow Gage,40b,Crisp Creek near Black Diamond,47.29087,-122.05679,false,NA
+Stream Flow Gage,40c,O'Grady Creek near Enumclaw,47.27555,-122.0884,false,NA
+Stream Flow Gage,40d,Crisp Creek at Green River RD,47.28903,-122.06671,true,NA
+Stream Flow Gage,41a,Mill Creek at SR 181,47.36763,-122.24916,true,NA
+Stream Flow Gage,41b,Mill Creek at 29th AV NW,47.33331,-122.24108,false,NA
+Stream Flow Gage,41c,Mill Creek at Peaseley Canyon RD,47.30357,-122.26472,false,NA
+Stream Flow Gage,41d,"Mullen Slough at SR 516 - Lower Green West trib, Stage Only",47.37635,-122.26578,false,NA
+Stream Flow Gage,41e,Lower Green West Tributary 0049 at S 272nd WY,47.35448,-122.26461,false,NA
+Stream Flow Gage,41f,Lower Green West Tributary 0049A at S 272nd WY - Stage only,47.35447,-122.26492,false,NA
+Stream Flow Gage,42a,Miller Creek near Mouth,47.44548,-122.35196,true,NA
+Stream Flow Gage,42b,Miller Creek Detention Facility,47.46751,-122.31803,true,NA
+Stream Flow Gage,42c,Miller Creek Tributary 0371A,47.44939,-122.32817,false,NA
+Stream Flow Gage,42d,Miller Creek at S 140th ST,47.47815,-122.32121,false,NA
+Stream Flow Gage,42e,"Walker Creek, 13th SW, in Normandy Park",47.44497,-122.3501,true,NA
+Stream Flow Gage,42f,Lake Reba Inflow #1,47.47063,-122.31564,false,NA
+Stream Flow Gage,42g,Lake Reba Inflow #2,47.46771,-122.30763,false,NA
+Stream Flow Gage,42h,"Ambaum Outflow on Miller Creek, 1st Ave S. in Seat",47.45698,-122.33369,false,NA
+Stream Flow Gage,42i,"Ambaum Inflow on Miller Creek, Ambaum Blvd, in Stc",47.45909,-122.3331,false,NA
+Stream Flow Gage,43a,"Shingle Mill Creek, Vashon Island",47.4783,-122.48173,true,NA
+Stream Flow Gage,46a,"Issaquah Creek, North Fork",47.54278,-122.03442,true,NA
+Stream Flow Gage,46b,Yellow Lake Inflow at Klahanie,47.57041,-122.01507,false,NA
+Stream Flow Gage,46q,Tributary 0181B in Grand Ridge,47.5583,-121.98858,false,NA
+Stream Flow Gage,46r,Tributary 0181C in Grand Ridge,47.55896,-121.99915,false,NA
+Stream Flow Gage,46t,N Fk Issaquah Creek in Grand Ridge,47.55049,-122.02167,false,NA
+Stream Flow Gage,48a,Patterson Creek at Aldera Farms,47.58571,-121.94978,false,NA
+Stream Flow Gage,48b,Canyon Creek at Aldera Farms,47.58421,-121.95276,false,NA
+Stream Flow Gage,48c,Upper Patterson @ Fall City-Redmond Road,47.63794,-122.00588,false,NA
+Stream Flow Gage,48t,Canyon Creek in Grand Ridge,47.56147,-121.97175,false,NA
+Stream Flow Gage,50a,Salmon Creek at Shorewood DR,47.49051,-122.36194,false,NA
+Stream Flow Gage,50b,Salmon Creek Bypass,47.49465,-122.35152,false,NA
+Stream Flow Gage,50c,Lakewood Pumps,47.50309,-122.3465,false,NA
+Stream Flow Gage,50n,Salmon Creek NPDES Gauge #1 at White Center,47.51216,-122.34465,false,NA
+Stream Flow Gage,50p,Salmon Creek NPDES Gauge #2 at White Center,47.51042,-122.34271,false,NA
+Stream Flow Gage,51a,"Sammamish River Tributary 0057C, Norway Creek, Waynita Creek",47.74582,-122.21207,true,NA
+Stream Flow Gage,51b,Sammamish River Tributary 0087 near Woodinville,47.751,-122.15957,false,NA
+Stream Flow Gage,51c,Sammamish River Tributary 0096D off NE 145th ST,47.72946,-122.15284,false,NA
+Stream Flow Gage,51d,Sammamish River Tributary 0090 at NE 145th ST,47.73331,-122.14077,false,NA
+Stream Flow Gage,51e,Sammamish River Tributary 0095B at NE 124th ST,47.71265,-122.13166,false,NA
+Stream Flow Gage,51m,Sammamish River @ Marymoor Weir--This gage subject to backwater effects from Bear Creek. Data flagged with a ‘p’ is provisional and has not been corrected.,47.65823,-122.11726,true,NA
+Stream Flow Gage,53a,Adair Creek,47.71437,-122.01418,false,NA
+Stream Flow Gage,53b,Snoqualmie River Tributary 0277,47.70198,-122.0159,false,NA
+Stream Flow Gage,53c,Snoqualmie River Tributary 0276,47.70222,-122.01255,false,NA
+Stream Flow Gage,54a,Soos Creek at Mouth,47.31251,-122.1653,true,NA
+Stream Flow Gage,54c,Springwood Regional Detention Pond Outflow,47.36199,-122.17029,false,NA
+Stream Flow Gage,54f,Springwood Inflow #1,47.36449,-122.17014,false,NA
+Stream Flow Gage,54g,Springwood Inflow #2,47.36147,-122.16793,false,NA
+Stream Flow Gage,54h,Soosette Creek Above SR 18,47.3329,-122.1562,true,NA
+Stream Flow Gage,54i,Little Soos  Creek at   SE 272nd,47.35824,-122.12526,true,NA
+Stream Flow Gage,56Olda,Swamp Creek,47.75612,-122.23403,false,NA
+Stream Flow Gage,58b,Thornton Creek Tributary 0030 near Mouth,47.73842,-122.32786,false,NA
+Stream Flow Gage,63a,Lewis Creek at West Lake Sammamish Parkway SE,47.56377,-122.09467,true,NA
+Stream Flow Gage,63b,Glacier Ridge Vault near Issaquah,47.55252,-122.09986,false,NA
+Stream Flow Gage,67a,Tibbetts Creek above Tributary 0170,47.553,-122.06788,false,NA
+Stream Flow Gage,70a,Big Bear Creek Tributary 0127 Above Cottage Lake,47.7568,-122.08548,false,NA
+Stream Flow Gage,70b,Daniels Creek above Cottage Lake,47.75949,-122.09724,false,NA
+Stream Flow Gage,70c,Cottage Lake Creek at Cottage Lake Outlet,47.74885,-122.09377,false,NA
+Stream Flow Gage,bl1,Beaver Lake 1,47.59737,-121.98886,true,NA
+Stream Flow Gage,bl2,Beaver Lake 2,47.59396,-121.99804,true,NA
+Stream Flow Gage,bl4,Beaver Lake Outlet at weir,47.58556,-122.00557,true,NA
+Stream Flow Gage,ha3,Hamm Cr mainstem,47.51871,-122.31357,false,NA
+Stream Flow Gage,ha2,NF Hamm Creek @ S 96th St,47.51731,-122.32292,false,NA
+Stream Flow Gage,ha4,Hamm Creek Middle Fork,47.51242,-122.32292,false,NA
+Stream Flow Gage,ha5,Hamm Creek South Fork,47.51489,-122.30944,false,NA
+Stream Flow Gage,ldi,Lake Desire Inflow,47.44709,-122.1069,false,NA
+Stream Flow Gage,ldo,Lake Desire Outflow,47.43706,-122.10028,false,NA
+Stream Flow Gage,lfa,Licorice Fern Pond A,47.5064,-122.11167,false,NA
+Stream Flow Gage,lfb,"Licorice Fern, Lower",47.50463,-122.11199,false,NA
+Stream Flow Gage,lfc,Licorice Fern Pond C,47.51325,-122.11952,false,NA
+Stream Flow Gage,lfd,"Licorice Fern, Upper Site",47.51292,-122.11978,false,NA
+Stream Flow Gage,mf1,Mill Creek near Peasley Canyon,47.30348,-122.25584,false,NA
+Stream Flow Gage,mf2,"Mill Creek, Wetland #5K - Stage only",47.31144,-122.2478,false,NA
+Stream Flow Gage,mf4,Mill Creek Project #4 - Stage only,47.32185,-122.24349,false,NA
+Stream Flow Gage,mf6,Mill Creek Project #6 - Stage only,47.35209,-122.24389,false,NA
+Stream Flow Gage,mf7,Mill Creek Project #7 - Stage only,47.35408,-122.24627,false,NA
+Stream Flow Gage,ml1,Mystic Lake Inflow #1 @ Christy McAuliffe ES,47.62827,-122.02174,false,NA
+Stream Flow Gage,ml2,Mystic Lake Inflow #2 South R/D,47.62581,-122.02478,false,NA
+Stream Flow Gage,ml3,Mystic Lake Inflow #3 North R/D,47.6279,-122.02493,false,NA
+Stream Flow Gage,ml4,Mystic Lake Stage Recorder,47.62421,-122.01747,false,NA
+Stream Flow Gage,wf1,Lakota Wetland,47.31991,-122.35699,false,NA
+Stream Flow Gage,wf2,"Wetland Fluctuation Study, RR50",47.28842,-122.06721,false,NA
+Stream Flow Gage,wf3,Wetland E Lake Sammamish #70 outlet,47.57798,-122.01998,false,NA
+Stream Flow Gage,wf4,Wetland Evans Creek #29,47.62631,-122.03936,false,NA
+Stream Flow Gage,wf6,"Wetland Fluctuation Study, BBC24",47.73253,-122.03964,false,NA
+Stream Flow Gage,11fw,Des Moines Creek weir,47.4233,-122.30564,false,NA
+Stream Flow Gage,11cup,Des Moines Creek above Tyee,47.42982,-122.30339,false,NA
+Stream Flow Gage,31p,Maplewood Creek,47.47304,-122.16851,false,NA
+Stream Flow Gage,31m,Madsen Creek main,47.46296,-122.14089,false,NA
+Stream Flow Gage,31o,Madsen Creek overflow,47.46287,-122.14204,false,NA
+Stream Flow Gage,28a,"Judd Creek, Vashon Island",47.4034,-122.46882,true,NA
+Stream Flow Gage,ha1,Lost Fork Hamm Cr,47.51727,-122.31256,false,NA
+Stream Flow Gage,BBC44,Osterhaug Bog,47.70761078,-122.0329209,false,NA
+Stream Flow Gage,BBC45,"UPD, Redmond Ridge wetland",47.69786809,-122.028949,false,NA
+Stream Flow Gage,BBC52,"UPD, Redmond Ridge wetland",47.69786809,-122.0268844,false,NA
+Stream Flow Gage,SR24B,"Wetland Staff plate, north of boardwalk;Trilogy UPD",47.70342419,-122.020016,false,NA
+Stream Flow Gage,37E,May Creek @ 164th Ave Bridge,47.5016625,-122.1220771,true,NA
+Stream Flow Gage,44F,Green WQA-Urban,47.21309797,-122.01030525,false,NA
+Stream Flow Gage,44G,Green WQA-Agricultural,47.25343824,-122.02700627,false,NA
+Stream Flow Gage,02K,Cold Creek Below Spring,47.7547,-122.1044,false,NA
+Stream Flow Gage,21A,Griffin Creek,47.6163166,-121.9069861,true,NA
+Stream Flow Gage,22A,Harris Creek,47.6939038,-121.9005036,true,NA
+Stream Flow Gage,05A,Cherry Creek,47.7425972,-121.9411638,true,NA
+Stream Flow Gage,EC3,RRUPD Wetland Gauge at Stake,47.681217171,-122.040457593,false,NA
+Stream Flow Gage,EC4,RRUPD,47.677026717,-122.026545416,false,NA
+Stream Flow Gage,EC61,RR UPD Wetland Gauge,47.685124634,-122.028017734,false,NA
+Stream Flow Gage,03F,Mill Creek (Kent) above Diversion,47.40619444,-122.2423056,false,NA
+Stream Flow Gage,03G,Springbrook Creek at Grady Way,47.46808333,-122.2343611,true,NA
+Stream Flow Gage,37G,May Creek @ 148th Ave SE Bridge,47.51528532,-122.1434231,true,NA
+Stream Flow Gage,06a,Coal Creek,47.57206644,-122.1877118,false,NA
+Stream Flow Gage,37f,Lake Boren Outlet,47.52844,-122.16409,false,NA
+Stream Flow Gage,Test,Test for temp data test,47.24001,-122.36108,true,NA
+Stream Flow Gage,31D2,NW trib Madsen Creek (above pond) DR0642,47.4581,-122.1484,false,NA
+Stream Flow Gage,53d,Adair Creek Bypass,47.7139,-122.0075,false,NA
+Stream Flow Gage,BBCUN1,Redmond Ridge Wetland BBC UN1 Outlet,47.69134,-122.04315,false,NA
+Stream Flow Gage,AN1,Green River above Auburn Narrows,47.3029,-122.1773,false,NA
+Stream Flow Gage,44H,Newaukum Creek at 305th AV SE,47.2340933,-121.9351901,false,NA
+Stream Flow Gage,51G,Sammamish River Trib 0141,47.65560804,-122.1182698,false,NA
+Stream Flow Gage,ANW1,Auburn Narrows Monitoring Piezo P26A,47.30259716,-122.1791404,false,NA
+Stream Flow Gage,ANW2,Auburn Narrows Monitoring Piezo P2A,47.30326475,-122.1798434,false,NA
+Stream Flow Gage,ANW3,Auburn Narrows Monitoring Piezo P6A,47.30332541,-122.1823433,false,NA
+Stream Flow Gage,ANW4,Auburn Narrows Monitoring Piezo P10A,47.303345,-122.1845901,false,NA
+Stream Flow Gage,ANW5,Auburn Narrows Monitoring Piezo P11A,47.30341783,-122.1854668,false,NA
+Stream Flow Gage,45Nc,"North Creek at County Line, Snohomish County gage",47.78036,-122.18864,false,NA
+Stream Flow Gage,64A,"Lake Washington trib 0468, Taylor Creek",47.5105,-122.2483,true,NA
+Stream Flow Gage,LB1,"Howell Creek West of SR9, Tributary to Little Bear Creek",47.7848,-122.1439,false,NA
+Stream Flow Gage,LB2,Culvert Tributary to Little Bear Creek by Fitz Auto Wrecking,47.7878,-122.1433,false,NA
+Stream Flow Gage,LB3,Culvert Tributary to Little Bear Creek by 228th ST SE,47.7909,-122.1436,false,NA
+Stream Flow Gage,LB4,"Culvert Tributary to Litle Bear Creek, Business Park Control Structure",47.7922,-122.1433,false,NA
+Stream Flow Gage,LB5,"R/D Pond Tributary to Litle Bear Creek, by Stockpot Foods",47.7938,-122.143,false,NA
+Stream Flow Gage,LB6,"Road Ditch Tributary to Litle Bear Creek, by Stockpot Foods pond gage LB5",47.794,-122.1434,false,NA
+Stream Flow Gage,LB7,Unnamed Tributary to Litle Bear Creek (WRIA 08 trib 0083,47.7959,-122.1434,false,NA
+Stream Flow Gage,30C,"Little Bear Creek above tributary 0083, Snohomish County",47.7961,-122.14431,true,NA
+Stream Flow Gage,30B,"Little Bear Creek at 233rd PL SE, Snohomish County",47.7856,-122.1452,false,NA
+Stream Flow Gage,test10a,Test Creek,47.111111,-122.1111111,false,NA
+Stream Flow Gage,65B,"Fisher Creek at mouth, Vashon Island",47.3841,-122.4815,true,NA
+Stream Flow Gage,65A,"Tahlequah Creek at mouth, Vashon Island",47.3345,-122.5089,true,NA
+Stream Flow Gage,17A,McCormick Creek,47.4822,-122.4778,false,NA
+Stream Flow Gage,VA23,"Christensen Creek, Vashon Island",47.4032,-122.5193,false,NA
+Stream Flow Gage,VA30,"Bates Creek, Vashon Island",47.375,-122.5146,false,NA
+Stream Flow Gage,VA43,"Tsugwalla Creek, Vashon Island",47.4048,-122.4517,false,NA
+Stream Flow Gage,36A,Mileta Creek,47.3883,-122.4274,true,NA
+Stream Flow Gage,VA62,"Ellis Creek, Vashon Island",47.4171,-122.4404,false,NA
+Stream Flow Gage,VA63,"Ellisport Creek, Vashon Island",47.4186,-122.4398,false,NA
+Stream Flow Gage,VA64,"Beall Creek, Vashon Island",47.4489,-122.4453,false,NA
+Stream Flow Gage,VA66,"Dilworth Creek, Vashon Island",47.4581,-122.4486,false,NA
+Stream Flow Gage,VA67,"Glen Acre Creek, Vashon Island",47.4775,-122.449,false,NA
+Stream Flow Gage,VA20,"Robinwood Creek-17B, Vashon Island",47.4322,-122.5095,false,NA
+Stream Flow Gage,14b,East Fork Issaquah Creek @ NE Birch,47.5323,-122.0299,true,NA
+Stream Flow Gage,ECW1B1,Evans Creek RD Pond Redmond Ridge to EC3,47.68232,-122.04078,false,NA
+Stream Flow Gage,65C,"Green Valley Creek, Vashon Island",47.41422,-122.51146,false,NA
+Stream Flow Gage,53F,Unnamed Creek Bypass,47.7027,-122.0129,false,NA
+Stream Flow Gage,51T,"Sammamish River at NE 116th ST, USGS gage 12125200 data before 2005",47.70302,-122.14366,true,NA
+Stream Flow Gage,02L,Cottage Creek at NE 159th ST,47.74293,-122.08399,false,NA
+Stream Flow Gage,70AN,Cottage Lake Inlet at Woodinville - Duvall RD,47.75657,-122.08418,false,NA
+Stream Flow Gage,70D,Daniels Creek above Woodinville - Duvall RD,47.7615,-122.10122,false,NA
+Stream Flow Gage,CL15,Cottage Lake Creek at NE 165,47.74717,-122.09398,false,NA
+Stream Flow Gage,50E,Mallard Lake Level,47.50979,-122.35028,false,NA
+Stream Flow Gage,50F,White Center Pond,47.51388,-122.35045,false,NA
+Stream Flow Gage,CL_MW1,Cold Creek Monitoring Well 1,47.75663,-122.09743,false,NA
+Stream Flow Gage,42j,Miller Creek abv Hwy 509,47.45417,-122.32531,true,NA
+Stream Flow Gage,42k,Walker Creek blw Hwy 509,47.44656,-122.3223,true,NA
+Stream Flow Gage,31d2_well,NW Madsen trib well B-3,47.45918,-122.14672,false,NA
+Stream Flow Gage,BC0131,Struve Creek North Fork -  Big Bear Creek trib 0131,47.73482,-122.04923,false,NA
+Stream Flow Gage,CHRLF_N4,Cedar Hills Site N4,47.47227595,-122.0533448,false,NA
+Stream Flow Gage,CHRLF_N1,Cedar Hills Site N1,47.47320884,-122.0567002,true,NA
+Stream Flow Gage,CHRLF_S1,Cedar Hills Site S1,47.4531731,-122.0513147,true,NA
+Stream Flow Gage,CHRLF_S2,Cedar Hills Site S2,47.45168226,-122.0488558,true,NA
+Stream Flow Gage,CH_SSWL,Cedar Hills South Storm Water Lagoon Main Inflow,47.45495153,-122.042079,false,NA
+Stream Flow Gage,CHRLF_SW1,Cedar Hills Site SW1 CSG,47.4516672,-122.0562167,false,NA
+Stream Flow Gage,44I,Big Spring Creek at 424th,47.22099468,-122.0232704,false,NA
+Stream Flow Gage,MW_B2,Big Spring Creek Monitoring Well B2,47.21719304,-122.0242329,false,NA
+Stream Flow Gage,CHRLF_E2,Cedar Hills Site E2,47.46504,-122.03707,false,NA
+Stream Flow Gage,CHRLF_E1,Cedar Hills Site E1,47.466833,-122.039783,false,NA
+Stream Flow Gage,LionsClub,Cedar River at Lions Club Park,47.43775,-122.05645,false,NA
+Stream Flow Gage,61A,Tuck Creek,47.7438,-122.0096,false,NA
+Stream Flow Gage,01a,Ames Lake Creek,47.66125,-121.96812,false,NA
+Stream Flow Gage,02f2,Bear Creek at NE 162,47.74493,-122.06255,true,NA
+Stream Flow Gage,05b,Cherry Creek trib EPA site,47.74102,-121.94093,false,NA
+Stream Flow Gage,02N,"Stensland Creek at NE 95th ST, Redmond WA",47.68577,-122.08153,false,NA
+Stream Flow Gage,02o,"East Fork Seidel Creek,  RPWS_SEIMN",47.71171,-122.05186,false,NA
+Stream Flow Gage,02p,"South Fork Seidel Creek at Headworks,  RPWS_SEIMS",47.70716,-122.05444,true,NA
+Stream Flow Gage,53e,Weiss Creek,47.69186,-121.94537,false,NA
+Stream Flow Gage,31q,Webster Creek,47.41643,-121.91949,false,NA
+Stream Flow Gage,27J,Juanita trib 0241 at 108th,47.72219,-122.19716,false,NA
+Stream Flow Gage,27i,Juanita trib 0233 at 98th AV NE,47.7117,-122.21092,false,NA
+Stream Flow Gage,27DN,Juanita trib 0236 at 136th PL NE,47.72313,-122.20086,false,NA
+Stream Flow Gage,27H,Juanita trib 0238 at 108th,47.72202,-122.19714,false,NA
+Stream Flow Gage,42R,Lake Reba culvert outlet,47.46855,-122.315,false,NA
+Stream Flow Gage,FC_Comm,Commercial NPDES monitoring site in Fall city,47.56742,-121.88832,false,NA
+Stream Flow Gage,FC_Res,Residential NPDES monitoring site in Fall City; inlet to residential stormwater facility D92861 Twin Cedars,47.56529,-121.89455,false,NA
+Stream Flow Gage,BC_LVIN,Boulder Cr Apts lower vault inlet cb,47.56485,-122.02549,false,NA
+Stream Flow Gage,BC_LV,Boulder Cr Apts lower vault,47.56477,-122.02533,false,NA
+Stream Flow Gage,BC_LSF,Boulder Cr Apts lower sand filter outlet,47.56502,-122.02527,false,NA
+Stream Flow Gage,BC_UIN,Boulder Cr Apts Upper Pond Inlet,47.56533,-122.00271,false,NA
+Stream Flow Gage,BC_UP,Boulder Cr Apts Upper Pond,47.56589,-122.02631,false,NA
+Stream Flow Gage,BC_USFOL,Boulder Cr Apts Upper sand filter outlet,47.56619,-122.02607,false,NA
+Stream Flow Gage,MAY1,May Cr Sediment Study Reach 1,47.51975,-122.16466,false,NA
+Stream Flow Gage,MAY2,May Cr Sediment Study Reach 2,47.51713,-122.15474,false,NA
+Stream Flow Gage,MAY3,May Cr Sediment Study Reach 3,47.51626,-122.15186,false,NA
+Stream Flow Gage,40E,Crisp Creek above Auburn - Black Diamond RD,47.29987,-122.05489,false,NA
+Stream Flow Gage,37H,May Creek at 143 Pl SE,47.51693,-122.1498,true,NA
+Stream Flow Gage,BL6,Beaver Lake 2 Level,47.59092,-122.00045,false,NA
+Stream Flow Gage,BL5,Beaver Lake Cell 1,47.59436,-121.98995,false,NA
+Stream Flow Gage,LGC,Lunds Gulch Creek,47.85952,-122.33125,false,NA
+Stream Flow Gage,69B,Boise at 268th AV SE,47.1903,-121.98415,true,NA
+Stream Flow Gage,41M1_GPM,Military Road Pond Inflow 1 Gallons per Minute,47.35745,-122.29258,false,NA
+Stream Flow Gage,41M2_GPM,Military Road Pond Inflow 2 Gallons per Minute,47.3577,-122.2926,false,NA
+Stream Flow Gage,41M0_GPM,Military Road Pond Outflow Gallons per Minute,47.3574,-122.29255,false,NA
+Stream Flow Gage,SED1_in,Trilogy Pond SED1 inlet cb,47.70298,-122.01167,false,NA
+Stream Flow Gage,1B1in,ECW1B1 inlet,47.68365,-122.04085,false,NA
+Stream Flow Gage,ECW3In,Redmond Ridge Pond ECW3 #1  Inlet,47.67642,-122.03447,false,NA
+Stream Flow Gage,ECW3Out,Redmond Ridge Pond ECW3 #1 Outlet,47.67654,-122.035,false,NA
+Stream Flow Gage,ECW2_1a,Pond ECW2 #1 North Inlet,47.67939,-122.03474,false,NA
+Stream Flow Gage,ECW2OL,ECW2 #1 Outlet,47.6783,-122.03532,false,NA
+Stream Flow Gage,CmP,Cemetary Pond,47.48717,-122.12195,false,NA
+Stream Flow Gage,33G,Seola Pond Level,47.50878,-122.37055,false,NA
+Stream Flow Gage,33H,Seola Pond Outlet - CG03,47.50864,-122.37077,false,NA
+Stream Flow Gage,MAY4,MAY4 - May Cr ab 148th AV SE,47.51172,-122.13637,false,NA
+Stream Flow Gage,41D2,Mullen Slough at 277th,47.35378,-122.25826,false,NA
+Stream Flow Gage,64B,Taylor Creek Wetland,47.50094,-122.25085,false,NA
+Stream Flow Gage,RB_MID,Rainbow Bend Middle,47.44151,-122.0698,false,NA
+Stream Flow Gage,50_Demo,White Center Heights Pond - Markus Demo,47.50957,-122.34465,false,NA
+Stream Flow Gage,33E,Massey Creek,47.39535,-122.32044,false,NA
+Stream Flow Gage,33D,McSorley Creek at Saltwater State Park,47.37305,-122.32312,true,NA
+Stream Flow Gage,33A,Joes Creek,47.32689,-122.37671,false,NA
+Stream Flow Gage,44N,Newaukum Creek at 416th,47.22836,-121.97303,false,NA
+Stream Flow Gage,54J,Soos Creek at Kent-Black Diamond RD,47.34353,-122.13443,true,NA
+Stream Flow Gage,NWD1-A,Trilogy Pond D92934 Outlet,47.71904,-122.03277,false,NA
+Stream Flow Gage,58A,"Thornton Creek near Mouth, STA046, USGS 1212800 data before 2013",47.69624,-122.27651,true,NA
+Stream Flow Gage,15h,Ebright Creek,47.60843,-122.07279,true,NA
+Stream Flow Gage,HSL_P,Woodlands Pond,47.3089,-122.04643,false,NA
+Stream Flow Gage,42AA,Miller Creek at treatment plant,47.44967,-122.34742,false,NA
+Stream Flow Gage,42L,Lake Burien trib to Miller Creek,47.46107,-122.33976,false,NA
+Stream Flow Gage,05B2e,East trib to Cherry trib,47.73845,-121.94035,false,NA
+Stream Flow Gage,05b2w,West trib to Cherry trib,47.7384,-121.94054,false,NA
+Stream Flow Gage,34B,Lyon Creek abv 244th,47.77808,-122.28972,false,NA
+Stream Flow Gage,DW_KC,"DEWATTO RIVER NEAR DEWATTO, WA",47.46891,-123.02659,false,NA
+Stream Flow Gage,MI1,Mercer Island WQ Study site 1,47.53806,-122.23854,false,NA
+Stream Flow Gage,MI2,Mercer Island WQ Study site 2,47.5384,-122.23733,false,NA
+Stream Flow Gage,MI3,Mercer Island WQ Study site 3,47.53836,-122.23134,false,NA
+Stream Flow Gage,MI4,Mercer Island WQ Study site 4,47.54054,-122.22699,false,NA
+Stream Flow Gage,Allen_2,Allen Lk Outlet at foot bridge,47.61791,-122.00739,false,NA
+Stream Flow Gage,Allen_3,Allen Lk Outlet at culvert,47.62009,-122.00634,false,NA
+Stream Flow Gage,Allen_4,Allen Lk Outlet at 244th swale,47.62939,-122.01348,false,NA
+Stream Flow Gage,18h,Allen Lake Creek at NE 25th,47.63246,-122.01862,false,NA
+Stream Flow Gage,66C,White River at Estates,47.2597,-122.23847,false,NA
+Stream Flow Gage,25i,Carey Creek at 287th,47.42289,-121.96134,true,NA
+Stream Flow Gage,Tolt9,Lower Tolt 9,47.64596,-121.88187,false,NA
+Stream Flow Gage,SnqRM17.2,Snoqualmie at RM17.2,47.68786,-121.9772,false,NA
+Stream Flow Gage,SnqOx,Snoqualmie Oxbow,47.6939,-121.9729,false,NA
+Stream Flow Gage,SnqRM18.4,Snoqualmie at RM18.4,47.69214,-121.9711,false,NA
+Stream Flow Gage,SnqRM19.2,Snoqualmie at RM 19.2,47.68886,-121.9606,false,NA
+Stream Flow Gage,EC0107,Evans Creek trib 0107 at 196th Ave NE,47.67868,-122.07885,false,NA
+Stream Flow Gage,BC0114,Stensland Creek at Evans Creek Trail - Big Bear Cr tributary 0114,47.68484,-122.08693,false,NA
+Stream Flow Gage,Samm_TZ_1,Sammamish River Transition Zone Below Weir,47.65832,-122.11768,true,NA
+Stream Flow Gage,Samm_TZ_2,Sammamish River Transition Zone Mid,47.65917,-122.12023,true,NA
+Stream Flow Gage,Samm_TZ_3,Sammamish River above Bear Creek,47.6674,-122.12643,true,NA
+Stream Flow Gage,Samm_TZ_4,Sammamish River Below Bear Creek,47.66825,-122.12663,false,NA
+Stream Flow Gage,WL1813,Evans Creek Wetland 13 - Johnson Pond Level,47.66294,-122.0501,false,NA
+Stream Flow Gage,SAMM_124,Sammamish River at 124th,47.71125,-122.14275,true,NA
+Stream Flow Gage,SAMM_90,Sammamish River above 90th,47.681,-122.13244,false,NA
+Stream Flow Gage,WL5507,S. Snoqualmie River wetland 7 - Brewster Lake level,47.4479,-121.77894,false,NA
+Stream Flow Gage,42M,Miller Creek blw Ambaum Blvd,47.45741,-122.33433,true,NA
+Stream Flow Gage,06B,Coal Creek blw Coal Creek Pkwy crossing,47.55426,-122.16694,false,NA
+Stream Flow Gage,51O,Peters Creek tributary to Sammamish River,47.68258,-122.1433,false,NA
+Stream Flow Gage,38C,Kelsey Creek at NE 8th,47.61703,-122.16401,false,NA
+Stream Flow Gage,GovCan_1,Ellingson Weir Upstream,47.27216,-122.24614,false,NA
+Stream Flow Gage,GovCan_2,Ellsington Weir Downstream,47.27212,-122.24613,false,NA
+Stream Flow Gage,WL5317,Snoqualmie Wetland 5317 - Deer Cr Main Beaver Pond,47.70415,-121.97121,true,NA
+Stream Flow Gage,42EWQ,Walker Creek Water Quality Site,47.44455,-122.35131,false,NA
+Stream Flow Gage,48AN,Patterson Creek Above 292nd Ave SE Bridge,47.5879,-121.9535,true,NA
+Stream Flow Gage,30AN,Little Bear @ NE 195th,47.7687,-122.1569,true,NA
+Stream Flow Gage,42N,Hwy 509 trib to Miller Creek,47.45709,-122.32848,false,NA
+Stream Flow Gage,Belm_NTU_Mid,Belmondo Middle Compliance Point,47.45049,-122.07263,false,NA
+Stream Flow Gage,RB_NTU_UPPER,Rainbow Bend Background Site,47.43982,-122.06388,false,NA
+Stream Flow Gage,RB_NTU_Lower,Rainbow Bend NTU Lower Compliance Point,47.44465,-122.0699,false,NA
+Stream Flow Gage,RB_NTU_Mid,Rainbow Bend Mid Compliance Point,47.44,-122.06812,false,NA
+Stream Flow Gage,RLS_NTU_BG,Reddington Levee Setback Background NTU,47.33018,-122.21206,false,NA
+Stream Flow Gage,RLS_NTU_MID,Reddington Levee Setback Mid Compliance Point,47.336,-122.20917,false,NA
+Stream Flow Gage,RLS_NTU_Lower,Reddington Levee Setback Lower Compliance Point,47.3421,-122.20579,false,NA
+Stream Flow Gage,BELM_NTU_DOWN,Belmondo NTU Downstream Compliance Point,47.45311,-122.07443,false,NA
+Stream Flow Gage,wnkUp,Snoq. River at RM 13.0 at Winkelman Revetment Reconstruction Project,47.71542,-121.99091,false,NA
+Stream Flow Gage,wnkDwn,Snoq. River at RM 12.9 below Winkelman Revetment Reconstruction Project,47.71374,-121.99406,false,NA
+Stream Flow Gage,55A,Clough Creek,47.47092,-121.7857,true,NA
+Stream Flow Gage,55B,Ribary Creek,47.48647,-121.79569,true,NA
+Stream Flow Gage,55C,Gardiner Creek,47.48856,-121.79948,true,NA
+Stream Flow Gage,37CN,Honey Creek,47.51274,-122.17854,false,NA
+Stream Flow Gage,02M,Struve Creek,47.73319,-122.06469,true,NA
+Stream Flow Gage,02Q,Mackey Creek,47.69412,-122.09081,false,NA
+Stream Flow Gage,02M2,Struve Creek North Fork 0131,47.73343,-122.05954,true,NA
+Stream Flow Gage,WL5317a,Snoqualmie Wetland 5317 - Deer Cr Beaver Pond - Upper site,47.70396,-121.97,false,NA
+Stream Flow Gage,HSL_P_2014,Yarrow Bay Gravel Pit,47.30472,-122.03283,false,NA
+Stream Flow Gage,17B,Gorsuch Creek,47.45368,-122.44465,true,NA
+Stream Flow Gage,WL5322_OL,Snoqualmie Wetland 22 Outlet - Winkleman,47.71523,-121.99025,false,NA
+Stream Flow Gage,BC0119,"Monticello Creek - Big Bear Creek trib 0119, RPWS_MONM",47.7035,-122.0927,false,NA
+Stream Flow Gage,UC_NTU_BG,Upper Carlson NTU Background,47.58161,-121.90566,false,NA
+Stream Flow Gage,UC_NTU_MP1,Upper Carlson NTU EAMP #1,47.58422,-121.91008,false,NA
+Stream Flow Gage,UC_NTU_MP2,Upper Carlson NTU EAMP #2,47.58639,-121.91879,false,NA
+Stream Flow Gage,UC_NTU_MP4,Upper Carlson NTU EAMP #4,47.59566,-121.92201,false,NA
+Stream Flow Gage,UC_NTU_MP5,Upper Carlson NTU EAMP #5,47.6159,-121.93283,false,NA
+Stream Flow Gage,02R,Bear Creek at RM2.1 in Friendly Village Mobile Home Park,47.68293,-122.09255,false,NA
+Stream Flow Gage,Elliott_END,Elliott End of Project Site,47.4699,-122.1432,false,NA
+Stream Flow Gage,SAFC_01,Snoqualmie River at Neal Rd,47.57578,-121.89611,false,NA
+Stream Flow Gage,SAFC_02,Snoqualmie River at Barfuse Levee,47.57136,-121.89433,true,NA
+Stream Flow Gage,WL5387_b,Snoqualmie Wetland 87 at Barfuse Levee Culvert,47.5718,-121.89451,false,NA
+Stream Flow Gage,31C2,Lower Cedar trib 0304 above Fairwood BLVD,47.4544,-122.16303,false,NA
+Stream Flow Gage,MI_10-A,"Mercer Island basin 10, above SE 22nd ST, near mouth",47.59102,-122.23567,false,NA
+Stream Flow Gage,MI_10-366,"Mercer Island basin 10, cb 366 SE corner",47.58666,-122.23486,false,NA
+Stream Flow Gage,MI_10-648,"Mercer Island basin 10, cb 648 SW corner",47.58667,-122.23519,false,NA
+Stream Flow Gage,MI_10-108,"Mercer Island basin 10, cb 108 NW corner",47.58678,-122.23523,false,NA
+Stream Flow Gage,MI_10-647,"Mercer Island basin 10, cb 647 NE corner",47.58678,-122.23485,false,NA
+Stream Flow Gage,09f,Lake Sawyer Level,47.32608,-122.02905,false,NA
+Stream Flow Gage,SQU_NTU_BG,Sinnema-Quaalle 2015 Turbidity Monitoring Background Site,47.68941,-121.964784,false,NA
+Stream Flow Gage,SQU_NTU_1,Sinnema-Quaalle 2015 Turbidity Monitoring 150 foot,47.69255,-121.96879,false,NA
+Stream Flow Gage,SQU_NTU_2,Sinnema-Quaalle 2015 Turbidity Monitoring 300 foot,47.6925,-121.96951,false,NA
+Stream Flow Gage,SQU_NTU_3,Sinnema-Quaalle 2015 Turbidity Monitoring 1000 foot,47.69151,-121.97248,false,NA
+Stream Flow Gage,SQU_NTU_4,Sinnema-Quaalle 2015 Turbidity Monitoring 3000 foot,47.68777,-121.97278,false,NA
+Stream Flow Gage,HW_92411,Hunters Wood Div. 1 Stormwater Facility D92411,47.6789,-122.05573,false,NA
+Stream Flow Gage,HW_92289,Hunters Wood Div 1 Sormwater Facility D92289,47.67621,-122.05568,false,NA
+Stream Flow Gage,Bellevue-CCF,Coal Creek at Newport Shores - City of Bellevue data,47.57085,-122.18699,true,NA
+Stream Flow Gage,RPWS_TOSMO,Tosh Creek near Mouth - Redmond Paired Watershed Study,47.6546,-122.11814,true,NA
+Stream Flow Gage,RPWS_COUMO,Country Creek near Mouth - Redmond Paired Watershed Study,47.65056,-122.11467,true,NA
+Stream Flow Gage,RPWS_TYLMO,Tyler's Creek near Mouth - Redmond Paired Watershed Study,47.69641,-122.09352,true,NA
+Stream Flow Gage,RPWS_EVALSS,Evans tributary 108 - Redmond Paired Watershed Study,47.675,-122.07267,false,NA
+Stream Flow Gage,RPWS_TOSMI,Tosh Creek Upper Site - Redmond Paired Watershed Study,47.65169,-122.12541,true,NA
+Stream Flow Gage,26P,Hawk Property Dewatering Outflow,47.37549,-122.07896,false,NA
+Stream Flow Gage,RPWS_EVAMS,Evans trib 108 Midstream Station - Redmond Paired Watershed Study,47.67329,-122.06312,false,NA
+Stream Flow Gage,RPWS_MONMN,Monticello North Midpoint Station,47.70605,-122.10229,true,NA
+Stream Flow Gage,RPWS_MONMS,Monticello Creek South Midpoint Station,47.70369,-122.10281,true,NA
+Stream Flow Gage,RPWS_COUMI,Country Creek Midpoint Station - Redmond Paired Watershed Study,47.64947,-122.11567,true,NA
+Stream Flow Gage,RPWS_TYLMI,Tyler's Creek Midpoint Station - Redmond Paired Watershed Study,47.698,-122.09737,true,NA
+Stream Flow Gage,RPWS_COLM,Colin Creek Midpoint Station - Redmond Paired Watershed Study,47.71464,-122.04031,true,NA
+Stream Flow Gage,Riv_Bend_7.3,Rivers Bend of the Cedar RM 7.3,47.46626,-122.10771,false,NA
+Stream Flow Gage,Riv_Bend_6.2,Rivers Bend of the Cedar RM 6.2,47.46541,-122.12623,false,NA
+Stream Flow Gage,WL3106,"Cedar River Wetland 06, Cavenaugh Pond, River Bend Project",47.46431,-122.11379,false,NA
+Stream Flow Gage,WL3106_OL,"Cedar River Cavanaugh Pond Outlet, River Bend Project",47.4637,-122.11917,false,NA
+Stream Flow Gage,FW_EB,Federal_Way_356th_east_bioretention_depth,47.28373,-122.31965,true,NA
+Stream Flow Gage,FW_WB,Federal_Way_356th_west_bioretention_depth,47.28302,-122.32126,true,NA
+Stream Flow Gage,FW_EBI,Federal_Way_356th_east_bioretention_inlet,47.28402,-122.31934,true,NA
+Stream Flow Gage,FW_WBI,Federal_Way_356th_west_bioretention_inlet,47.28402,-122.31934,true,NA
+Stream Flow Gage,FW_EBO,Federal_Way_356th_east_bioretention_outlet,47.28366,-122.3194,true,NA
+Stream Flow Gage,FW_WBO,Federal_Way_356th_west_bioretention_outlet,47.28272,-122.32123,true,NA
+Stream Flow Gage,FW_WPCI,Federal_Way_356th_wetland_complex_inlet,47.28529,-122.31957,true,NA
+Stream Flow Gage,FW_WPCEBO,Federal_Way_356th_wetland_complex_and_EBO_outlet,47.28361,-122.31944,true,NA
+Stream Flow Gage,FW_NFWHC,Federal_Way_North_Fork_West_Hylebos_Creek,47.28005,-122.32028,true,NA
+Stream Flow Gage,FW_DPC,Federal_Way_356th_discharge_point_to_creek,47.28355,-122.31894,true,NA
+Stream Flow Gage,CL17,"Daniels Creek at 185th AV NE, Cottage lake tributary",47.75775,-122.09215,false,NA
+Stream Flow Gage,COB_VasaWLS,City of Bellevue Vasa Creek at West Lk Sammamish,47.57836,-122.11361,false,NA
+Stream Flow Gage,COB_VCF,City of Bellevue Valley Creek Flow Site,47.62504,-122.15304,false,NA
+Stream Flow Gage,COB_CCF,City of Bellevue Coal Creek at Skagit Key flow station,47.56961,-122.18302,false,NA
+Stream Flow Gage,COB_RCF,City of Bellevue Richards Creek flow station,47.5981,-122.16736,false,NA
+Stream Flow Gage,COB_KCF,City of Bellevue Kelsey Creek at NE 8th flow station,47.61748,-122.16361,true,NA
+Stream Flow Gage,MINA_MW03,Middle Issaquah Natural Area Wet Swale just north of Creek,47.4613,-122.02085,false,NA
+Stream Flow Gage,MINA_MW02,Middle Issaquah Natural Area Wetland on west side of property,47.46138,-122.02262,false,NA
+Stream Flow Gage,CB_MW3,Upstream Levee,47.66899,-121.9224313,false,NA
+Stream Flow Gage,CB_MW4,Chinook Bend Downstream,47.67173,-121.9264544,false,NA
+Stream Flow Gage,CB_MW5,Chinook Bend Western Overflow,47.67094,-121.9283856,false,NA
+Stream Flow Gage,58C,Thornton Creek North Branch  (35TH Ave NE & NE 110TH Street) SPU STA033,47.70846,-122.28992,true,NA
+Stream Flow Gage,58E,Thornton Creek South Branch  STA039 (9TH Ave NE & NE 105TH Street) Seattle Public Utilities site STA039,47.70666,-122.31791,true,NA
+Stream Flow Gage,58D,Thornton Creek North Branch At Jackson Golf Course (STA066) (10TH Ave NE & NE 135TH Street) Seattle Public Utilities site,47.72476,-122.31475,true,NA
+Stream Flow Gage,SPU_STA098A,Longfellow Creek (26TH Ave SW & SW Oregon Street) Seattle Public Utilities site,47.56258,-122.36696,true,NA
+Stream Flow Gage,SPU_STA099,Longfellow Creek (24TH Ave SW & SW Willow Street) Seattle Public Utilities site,47.54144,-122.36285,true,NA
+Stream Flow Gage,SPU_STA401,Taylor Creek (68TH Ave S) Seattle Public Utilities site,47.5104,-122.2482,true,NA
+Stream Flow Gage,68A,Carkeek Park (Pipers Creek) Seattle Public Utilities site (STA508),47.71062,-122.37103,true,NA
+Stream Flow Gage,SPU_VENMA5720,Carkeek Park (Venema Creek) Seattle Public Utilities site,47.71226,-122.36965,false,NA
+Stream Flow Gage,SPU_MOLENMA4832,Carkeek Park (Molendorph Creek) Seattle Public Utilities site,47.71235,-122.3704,false,NA
+Stream Flow Gage,WL5317b,Deer Cr Beaver Pond below main dam,47.70414,-121.97136,true,NA
+Stream Flow Gage,RPWS_SEIMN,Seidel Creek North Site - Redmond Paired Watershed Study - formerly 02o,47.71171,-122.05186,true,NA
+Stream Flow Gage,RPWS_SEIMS,"South Fork Seidel Creek at Headworks,  RPWS_SEIMS (02P)",47.70716,-122.05444,true,NA
+Stream Flow Gage,RPWS_MONMO,"Monticello Creek near Mouth, also BC0119",47.7035,-122.0927,true,NA
+Stream Flow Gage,50M,NE Hicklin Inlet,47.50468,-122.34664,false,NA
+Stream Flow Gage,50Mb,NE Hicklin Inlet bioswale level,47.50408,-122.34632,false,NA
+Stream Flow Gage,50H,NW Mallard inlet,47.51021,-122.35148,false,NA
+Stream Flow Gage,50i,NE White Center drainage pipe at SW108th x 8th AV SW,47.50664,-122.34512,false,NA
+Stream Flow Gage,MINA_MW05,Middle Issaquah Natural Area Wetland in parcel 9122,47.46164,-122.02355,false,NA
+Stream Flow Gage,MINA_MW06,Middle Issaquah Natural Area Wetland in North side of parcel,47.46169,-122.02188,false,NA
+Stream Flow Gage,MINA_MW07,Middle Issaquah Natural Area Center of Parcel,47.46138,-122.02174,false,NA
+Stream Flow Gage,CNTY_LN_BG,County Line NTU Background,47.27471,-122.20834,false,NA
+Stream Flow Gage,CNTY_LN_1,County Line NTU Site 1,47.27445,-122.21379,false,NA
+Stream Flow Gage,CNTY_LN_2,County Line Turbidity Site 2,47.27098,-122.22139,false,NA
+Stream Flow Gage,CNTY_LN_3,County Line lowest site,47.26586,-122.22954,false,NA
+Stream Flow Gage,FREW_03,Tolt Corricor Study River Site 3,47.63959,-121.90831,false,NA
+Stream Flow Gage,Lones_03,Lones Levee Oxbow Site,47.27688,-122.11158,false,NA
+Stream Flow Gage,Lones_04,Lones Levee Tree Farm Pond,47.27643,-122.11385,false,NA
+Stream Flow Gage,Lones_05,Lones Levee River Site (Coates),47.27503,-122.11697,false,NA
+Stream Flow Gage,wnkUp2,Snoq. River at RM 13.1 above Winkelman Revetment Reconstruction Project,47.71448,-121.98966,false,NA
+Stream Flow Gage,MT01,Manzanita Ck on Bainbridge I - Macneale NTA,47.67382,-122.55351,false,NA
+Stream Flow Gage,SnqRM41.7,Snoq. River Reinig RD RM 41.7,47.5257,-121.78664,true,NA
+Stream Flow Gage,SAMM_2018_IN,"Samm River catch basin to 30"" RCP",47.67389,-122.13172,false,NA
+Stream Flow Gage,wnkDwn2,Winkleman down2,47.71432,-121.99422,false,NA
+Stream Flow Gage,Teufel_BG,Teufel NTU Background,47.38623,-122.26408,false,NA
+Stream Flow Gage,Teufel_300,Teufel NTU 300 feet below project,47.38815,-122.2688,false,NA
+Stream Flow Gage,SRBR_BG,Sammamish River Bank Repair NTU Background,47.75693,-122.17673,false,NA
+Stream Flow Gage,SRBR_200,Sammamish River Bank Repair NTU EA Primary 200 feet,47.75688,-122.18516,false,NA
+Stream Flow Gage,SRBR_200_5d,Sammamish River Bank Repair NTU EA Primary 200 feet 5' depth,47.75688,-122.18516,false,NA
+Stream Flow Gage,SRBR_5000,Sammamish River Bank Repair NTU 5000 feet,47.75885,-122.20362,false,NA
+Stream Flow Gage,SRBR_COMP,Sammamish River Bank Repair NTU Compliance 3 mile,47.75275,-122.23439,false,NA
+Stream Flow Gage,SRBR_CONT,Sammamish River Bank Repair NTU Contingency 4 mile,47.75421,-122.24958,false,NA
+Stream Flow Gage,VA42c,Judd abv Singer Rd,47.42477,-122.48274,false,NA
+Stream Flow Gage,VA42d,Judd blw 111th,47.41703,-122.4763,false,NA
+Stream Flow Gage,va42e,Judd blw 107th,47.41006,-122.47106,false,NA
+Stream Flow Gage,va12c,Shinglemill abv Needle,47.46779,-122.47442,false,NA
+Stream Flow Gage,va12d,Needle Creek,47.46785,-122.47424,false,NA
+Stream Flow Gage,58F,Thornton Creek South Branch - Maple Leaf Creek (STA049),47.70692,-122.293391,true,NA
+Stream Flow Gage,HzMan_GW1,Hertzman GW well 1,47.46435,-122.12124,false,NA
+Stream Flow Gage,COB_WT3,Bellevue West Trib at 3rd,47.61341,-122.16545,false,NA
+Stream Flow Gage,COB_GOFF132,Goff Creek at 132nd NE,47.6198,-122.16448,false,NA
+Stream Flow Gage,COB_GOFF130,Goff Creek at 130th NE,47.63146,-122.16617,false,NA
+Stream Flow Gage,COB_06C,Coal Creek below I-405,47.56774,-122.181222,true,NA
+Stream Flow Gage,15i,Zackuse Creek above E.Lk. Sammamish PKWY,47.61005,-122.066051,true,NA
+Stream Flow Gage,COS_Site02,Chestnut Pond Outflow - City of Sammamish Site 2,47.60132,-122.062421,true,NA
+Stream Flow Gage,COS_Site06,Crossings at Pine Lake East - City of Sammamish Site 06,47.59467,-122.0578051,true,NA
+Stream Flow Gage,31D3,North Fork Madsen Creek at 162 Ave SE Trib 0305,47.45392,-122.126085,true,NA
+Stream Flow Gage,COS_Site05,Crossings at Pine Lake West - City of Sammamish,47.59476,-122.059543,true,NA
+Stream Flow Gage,COB_MCF,"City of Bellevue Mercer Creek,  former USGS 12120000",47.60305,-122.181205,true,NA
+Stream Flow Gage,41R1,Auburn Drain at 86th,47.35771,-122.226707,false,NA
+Stream Flow Gage,MINA_MW13,Middle Issaquah Creek; Replaces MINA_MW8,47.46129,-122.0231539,false,NA
+Stream Flow Gage,RP,River Point D91818 Inlet,47.48401,-121.715087,false,NA
+Stream Flow Gage,MINA_MW14,Replaces MW9,47.46176,-122.0238937,false,NA
+Stream Flow Gage,MINA_MW12,Replaces WM_7,47.46135,-122.0218718,false,NA
+Stream Flow Gage,31d4,Madsen Creek west trib 0306A,47.44867,-122.13769,true,NA
+Stream Flow Gage,31d5,Madsen Creek east trib 0306,47.44876,-122.13495,false,NA
+Stream Flow Gage,53G,Mud Creek,47.56161,-121.85674,true,NA
+Stream Flow Gage,37i,May Creek trib at 116th St fishladder,47.49899,-122.1268,true,NA
+Stream Flow Gage,38D,Kelsey Creek West Fork @ Sound Transit Base,47.62859,-122.180324,true,NA
+Stream Flow Gage,32E,Green River @ Riverview Dr NE,47.321,-122.204957,true,NA
+Stream Flow Gage,25J,McDonald Creek at 219th,47.47772,-122.0489,true,NA
+Stream Flow Gage,25K,McDonald trib at 208th SE,47.4821,-122.0624,false,NA
+Stream Flow Gage,25J2,McDonald Creek at 208th,47.47963,-122.0648,false,NA
+Stream Flow Gage,SPU_TAYEF403,"Taylor Creek, East Fork",47.50311,-122.24648,true,NA
+Stream Flow Gage,SPU_TAYMA402,"Taylor Creek, Main",47.5032,-122.24651,true,NA
+Stream Flow Gage,SPU_TAYWF404,"Taylor Creek, West Fork",47.50315,-122.24662,true,NA
+Stream Flow Gage,L_1500,Lones NTU 1500 feet,47.27545,-122.119263,false,NA
+Stream Flow Gage,L_1mile,Lones Turbidity 1 mile,47.27558,-122.131834,false,NA
+Stream Flow Gage,03G2,Springbrook at Oaksdale Ave,47.46725,-122.23332,true,NA
+Stream Flow Gage,LRLS_BG,Lower Russel Levee Setback Background NTU,47.39603,-122.273255,false,NA
+Stream Flow Gage,LRLS_300,Lower Russel Levee Setback 300 foot NTU,47.40156,-122.274055,false,NA
+Stream Flow Gage,LRLS_CP2,Lower Russel Levee Setback Comp. PT 2,47.41284,-122.264501,false,NA
+Stream Flow Gage,45C,North Creek @ North Creek Parkway,47.77036,-122.185921,true,NA
+Stream Flow Gage,SR169,Cedar River Turibidity Above Jones Road,47.44298,-122.07207,false,NA
+Stream Flow Gage,69D,Boise Creek at 284th Ave SE,47.18542,-121.96323,true,NA
+Stream Flow Gage,69G,Beaver CR near Boise Confluence,47.18509,-121.96606,true,NA
+Stream Flow Gage,15h2,Ebright Creek temp site,47.60829,-122.069332,false,NA
+Stream Flow Gage,56E,Swamp Creek at KCH,47.75873,-122.23724,true,NA
+Stream Flow Gage,46C,Yellow lake Outlet,47.56849,-122.009393,true,NA
+Stream Flow Gage,27L,Juanita/Windsor Vista,47.73163,-122.190351,true,NA
+Stream Flow Gage,SAFC_BG_2023,Snoqualmie near Fall City Turbidity Monitoring Backgrond,47.57377,-121.893984,false,NA
+Stream Flow Gage,SAFC_CP1_2023,Snoqualmie Turbidity Monitoring Near Fall City Compliance Point 1,47.58294,-121.90669,false,NA
+Stream Flow Gage,SAFC_CP2_2023,Snoqualmie Turbidity Monitoring around Fall City Compliance Point 2,47.59674,-121.913753,false,NA
+Stream Flow Gage,SAFC_CP3_2023,Snoqualmie Turbidity Monitoring around Fall City 5 mile Compliance Point,47.61171,-121.933676,false,NA
+Stream Flow Gage,40G1,Charlie Creek East Fork Inflow,47.241839,-121.78137,false,NA
+Stream Flow Gage,40G3,Charlie Creek East Fork Outflow,47.243127,-121.781581,false,NA
+Stream Flow Gage,40H1,Charlie Creek West Fork Inflow,47.241881,-121.783576,false,NA
+Stream Flow Gage,40H3,Charlie Creek West Fork Outflow,47.242925,-121.782166,false,NA
+Stream Flow Gage,71A,Miller River upstr,47.7113,-121.3963,true,NA
+Stream Flow Gage,71B,Miller River mid,47.7115,-121.3959,true,NA
+Stream Flow Gage,71C,Miller River dwn,47.7118,-121.3955,true,NA
+Stream Flow Gage,20B,Forbes Creek 113th Ct NE and NE 106th,47.69652,-122.19041,true,NA
+Swimming Beaches,0207SB,Hidden Lake Beach,47.75218,-122.36998,false,Hidden Lake
+Swimming Beaches,0437,John's Creek,47.504831009,-122.201638062,true,NA
+Swimming Beaches,0446,Juanita Creek mouth at NE Juanita Dr,47.70768,-122.21231,true,Juanita
+Swimming Beaches,0602SB,Idylwood Park Swim Beach,47.64164,-122.09982,true,Lake Sammamish
+Swimming Beaches,0615SB,Lake Sammamish State Park,47.55684,-122.07032,true,Lake Sammamish
+Swimming Beaches,0801SB,Logboom Park,47.75777153,-122.2643429,false,Lake Washington
+Swimming Beaches,0805ASB,NE 130th  Pl,47.71576,-122.25715,false,NA
+Swimming Beaches,0805BSB,OO Denny Beach,47.70837931,-122.2497307,false,NA
+Swimming Beaches,0806SB,Juanita Beach,47.70421,-122.21463,true,Lake Washington
+Swimming Beaches,0813SB,Andrews Bay Seward Park,47.55154,-122.25652,true,Lake Washington
+Swimming Beaches,0818SB,Matthews Beach,47.69593,-122.27143,true,Lake Washington
+Swimming Beaches,0820SB,Mount Baker Park,47.58354,-122.28612,true,Lake Washington
+Swimming Beaches,0825SB,Yarrow Bay,47.65215,-122.21685,false,NA
+Swimming Beaches,0826OLA,Magnuson Park Off Leash Area,47.68576,-122.24718,false,Lake Washington
+Swimming Beaches,0826SB,Magnuson Park Swim Beach,47.68062,-122.2454,true,Lake Washington
+Swimming Beaches,0828SB,Gene Coulon Park Beach,47.50463,-122.20293,true,Lake Washington
+Swimming Beaches,0834SB,Meydenbauer Bay Park Beach,47.61123,-122.21176,true,Lake Washington
+Swimming Beaches,083930SB,Newcastle Beach,47.56561,-122.19148,true,Lake Washington
+Swimming Beaches,0852SB,Madison Park,47.6359,-122.27526,true,Lake Washington
+Swimming Beaches,0860SB,Medina Beach,47.6155678,-122.2383509,false,NA
+Swimming Beaches,4903SB,Pritchard Island Beach,47.52996,-122.26188,true,Lake Washington
+Swimming Beaches,A422SB,Houghton Beach,47.65962,-122.20627,true,Lake Washington
+Swimming Beaches,A620,Idylwood Creek mouth at Idylwood Park,47.64165,-122.10446,true,Idylwood
+Swimming Beaches,A709SB,Beaver Lake Swim Beach,47.58738,-122.00242,true,Beaver Lake
+Swimming Beaches,A732SB,Angle Lake Beach,47.4275,-122.2933,false,NA
+Swimming Beaches,A734_GM21,Duck Island Beach Green Lake,47.68084,-122.34241,false,Green Lake
+Swimming Beaches,A734SB,East Green Lake Swim Beach,47.68039,-122.32955,true,Green Lake
+Swimming Beaches,A734WSB,West Green Lake Swim Beach,47.68217,-122.33933,true,Green Lake
+Swimming Beaches,A735SB,Fivemile Lake,47.27141,-122.28513,true,NA
+Swimming Beaches,A740SB,Lake Boren,47.53124,-122.16499,false,NA
+Swimming Beaches,A764SB,Echo Lake Park Swim Beach on NE Shore,47.77299,-122.34007,true,Echo Lake
+Swimming Beaches,A999SB,Rattlesnake Lake,47.43391,-121.7662,true,NA
+Swimming Beaches,E708SB,Pine Lake Beach,47.58737,-122.03977,true,Pine Lake
+Swimming Beaches,ENATAISB,BELLEVUE  Enatai Park Beach,47.57883,-122.19703,true,Lake Washington
+Swimming Beaches,GROVELDSB,Groveland Park Beach,47.55132,-122.23442,false,Lake Washington
+Swimming Beaches,KNYDALESB,Kennydale Park Beach,47.5232,-122.2078,true,Lake Washington
+Swimming Beaches,MARINAPSB,Marina Park Beach,47.67523,-122.20835,false,NA
+Swimming Beaches,O717SB,Lake Wilderness Park Beach,47.37695,-122.03859,true,Lake Wilderness
+Swimming Beaches,SAMMLANDINGSB,Sammamish Landing,47.64865,-122.08846,true,Lake Sammamish
+Swimming Beaches,SB434,Thornton Creek,47.69601078,-122.276,true,NA
+Swimming Beaches,SD007SB,Madrona Park,47.60896,-122.28137,true,Lake Washington
+Swimming Beaches,SD017SB,Luther Burbank Park Beach,47.58804,-122.22302,true,Lake Washington
+Swimming Beaches,WAVRLYPSB,Waverly Park Beach,47.687066197,-122.217240007,true,Lake Washington
+Benthic Macroinvertebrates,09NEW2151,Newaukum Creek,47.224415,-121.931257,true,NA
+Benthic Macroinvertebrates,08ISS3958,Issaquah Creek tributary (0198),47.518325,-122.036396,true,NA
+Benthic Macroinvertebrates,09MID1537,Crisp Creek tributary,47.29189808,-122.059923,true,NA
+Benthic Macroinvertebrates,07HAR070087,Ames Creek,47.65292,-121.96087,true,NA
+Benthic Macroinvertebrates,08BEA3474,Bear Creek (Sammamish River),47.677422,-122.099074,true,NA
+Benthic Macroinvertebrates,09DUW0277,Riverton Creek (003D),47.489932,-122.289451,true,NA
+Benthic Macroinvertebrates,09LOW0325,Lower Green River tributary (0036B),47.464905,-122.281488,true,NA
+Benthic Macroinvertebrates,07CHR045515,Cherry Creek,47.74605,-121.89852,true,NA
+Benthic Macroinvertebrates,07CHR070059,Margaret Creek,47.75381,-121.8941,true,NA
+Benthic Macroinvertebrates,07CHR234411,Cherry Creek,47.7417,-121.93982,true,NA
+Benthic Macroinvertebrates,07GRN022903,Griffin Creek,47.610886,-121.864122,true,NA
+Benthic Macroinvertebrates,07GRN077319,Griffin Creek,47.615841,-121.900707,true,NA
+Benthic Macroinvertebrates,07HAR025863,Snoqualmie River tributary (Harris Creek subbasin),47.68279,-121.92049,true,NA
+Benthic Macroinvertebrates,07LMS026663,Snoqualmie River - Middle Fork tributary (Lower),47.544336,-121.543278,true,NA
+Benthic Macroinvertebrates,07LMS033235,Snoqualmie River - Middle Fork tributary (Lower),47.51684,-121.61166,true,NA
+Benthic Macroinvertebrates,07LMS055075,Snoqualmie River - Middle Fork tributary (Lower),47.4883182,-121.719565,true,NA
+Benthic Macroinvertebrates,07LMS093027,Snoqualmie River - Middle Fork tributary (Lower),47.48627,-121.757711,true,NA
+Benthic Macroinvertebrates,07LMS103591,Snoqualmie River - Middle Fork tributary (Lower),47.54324,-121.54146,true,NA
+Benthic Macroinvertebrates,07LMS213875,Snoqualmie River - Middle Fork tributary (Lower),47.4949503,-121.642564,true,NA
+Benthic Macroinvertebrates,07LNT062039,Tolt River,47.722639,-121.739274,true,NA
+Benthic Macroinvertebrates,07LNT075179,Tolt River,47.74339,-121.708721,true,NA
+Benthic Macroinvertebrates,07LNT130827,Tolt River,47.744648,-121.705084,true,NA
+Benthic Macroinvertebrates,07LNT163403,Tolt River Tributary,47.74429848,-121.820777,true,NA
+Benthic Macroinvertebrates,07PAT001415,Mud Creek,47.56475,-121.853444,true,NA
+Benthic Macroinvertebrates,07PAT166087,Canyon Creek (Snoqualmie River),47.58342608,-121.951276,true,NA
+Benthic Macroinvertebrates,07PAT187623,Patterson Creek,47.5813483,-121.930911,true,NA
+Benthic Macroinvertebrates,07PAT228627,Coal Creek (Snoqualmie River),47.52369704,-121.844634,true,NA
+Benthic Macroinvertebrates,07PAT231079,Snoqualmie River Tributary,47.54926,-121.88884,true,NA
+Benthic Macroinvertebrates,07RAG002867,Snoqualmie River tributary (Raging River subbasin),47.498716,-121.91917,true,NA
+Benthic Macroinvertebrates,07RAG004615,Raging River,47.547016,-121.90215,true,NA
+Benthic Macroinvertebrates,07RAG012515,Raging River,47.46564,-121.86456,true,NA
+Benthic Macroinvertebrates,07RAG018227,Raging River tributary,47.47915,-121.892999,true,NA
+Benthic Macroinvertebrates,07RAG022147,Snoqualmie River tributary (Raging River subbasin),47.457368,-121.836318,true,NA
+Benthic Macroinvertebrates,07RAG043443,Raging River,47.497844,-121.905615,true,NA
+Benthic Macroinvertebrates,07SFS009443,Snoqualmie River - S Fork tributary,47.468572,-121.752887,true,NA
+Benthic Macroinvertebrates,07SFS011059,Snoqualmie River - S Fork tributary,47.488057,-121.785286,true,NA
+Benthic Macroinvertebrates,07SFS011475,Snoqualmie River - S Fork tributary,47.440617,-121.66643,true,NA
+Benthic Macroinvertebrates,07SFS041891,Snoqualmie River - S Fork tributary,47.470956,-121.772703,true,NA
+Benthic Macroinvertebrates,07SFS066611,Snoqualmie River - S Fork tributary,47.440732,-121.649546,true,NA
+Benthic Macroinvertebrates,07STL080295,Tolt River,47.63797,-121.914658,true,NA
+Benthic Macroinvertebrates,07STL184007,Tolt River,47.66959,-121.86469,true,NA
+Benthic Macroinvertebrates,07TKL047047,Tokul Creek,47.5802,-121.78183,true,NA
+Benthic Macroinvertebrates,07TKL072439,Tokul Creek (ten creek),47.621687,-121.784871,true,NA
+Benthic Macroinvertebrates,08BEA3312,Monticello Creek,47.703496,-122.09254,true,NA
+Benthic Macroinvertebrates,08BEA3321,Cold Creek,47.754916,-122.104024,true,NA
+Benthic Macroinvertebrates,08BEA3571,Cottage Lake Creek,47.744769,-122.088883,true,NA
+Benthic Macroinvertebrates,08BEA3650,Bear Creek (Sammamish River),47.717871,-122.076997,true,NA
+Benthic Macroinvertebrates,08BEA3737,Seidel Creek,47.718328,-122.073941,true,NA
+Benthic Macroinvertebrates,08BEA3747,Bear Creek (Sammamish River),47.758758,-122.057993,true,NA
+Benthic Macroinvertebrates,08BEA3826,Struve Creek,47.733592,-122.058896,true,NA
+Benthic Macroinvertebrates,08BEA3914,Colin Creek,47.7326272,-122.05998,true,NA
+Benthic Macroinvertebrates,08CED2433,Maplewood Creek,47.474227,-122.163593,true,NA
+Benthic Macroinvertebrates,08CED2518,Molasses Creek,47.466198,-122.159083,true,NA
+Benthic Macroinvertebrates,08CED2711,Madsen Creek,47.453235,-122.137979,true,NA
+Benthic Macroinvertebrates,08CED2898,Cedar River - Lower tributary (0311),47.461466,-122.125545,true,NA
+Benthic Macroinvertebrates,08CED4192,Rock Creek (Lower Cedar),47.374751,-122.017672,true,NA
+Benthic Macroinvertebrates,08CED4975,Hotel Creek (0342),47.410569,-122.017672,true,NA
+Benthic Macroinvertebrates,08CED5032,Rock Creek (Upper Cedar),47.415086,-121.887131,true,NA
+Benthic Macroinvertebrates,08CED5046,Webster Creek - Upper (0341),47.4277,-121.91545,true,NA
+Benthic Macroinvertebrates,08EAS1536,Denny Creek,47.709929,-121.91545,true,NA
+Benthic Macroinvertebrates,08EAS1964,May Creek (Lake Washington),47.529663,-122.200605,true,NA
+Benthic Macroinvertebrates,08EAS2058,May Creek (Lake Washington),47.519171,-122.194691,true,NA
+Benthic Macroinvertebrates,08EAS2191,Forbes Creek (0242),47.695551,-122.197014,true,NA
+Benthic Macroinvertebrates,08EAS2272,Kelsey Creek,47.623286,-122.156843,true,NA
+Benthic Macroinvertebrates,08EAS2446,Coal Creek (Lake Wash.),47.55253,-122.16512,true,NA
+Benthic Macroinvertebrates,08EAS2540,Coal Creek (Lake Wash.) tributary (0273),47.550172,-122.156867,true,NA
+Benthic Macroinvertebrates,08EAS2546,East Creek,47.582723,-122.157426,true,NA
+Benthic Macroinvertebrates,08EAS2631,May Creek (Lake Washington),47.518948,-122.163144,true,NA
+Benthic Macroinvertebrates,08EVA3637,Evans Creek tributary (0111E),47.65296,-122.06841,true,NA
+Benthic Macroinvertebrates,08EVA3640,Evans Creek tributary (0108),47.674662,-122.072706,true,NA
+Benthic Macroinvertebrates,08EVA3642,Evans Creek tributary (0107),47.67972,-122.07785,true,NA
+Benthic Macroinvertebrates,08EVA3813,Evans Creek tributary (0108A),47.67341,-122.063447,true,NA
+Benthic Macroinvertebrates,08ISS3877,Issaquah Creek,47.551207,-122.046876,true,NA
+Benthic Macroinvertebrates,08ISS3962,Issaquah Creek,47.538939,-122.0426,true,NA
+Benthic Macroinvertebrates,08ISS4294,Fifteenmile Creek,47.4842291,-122.028632,true,NA
+Benthic Macroinvertebrates,08ISS4573,High Point Creek,47.531946,-121.976205,true,NA
+Benthic Macroinvertebrates,08ISS4724,Carey Creek,47.42771589,-121.978422,true,NA
+Benthic Macroinvertebrates,08ISS4730,Holder Creek,47.433941,-121.971913,true,NA
+Benthic Macroinvertebrates,08ISS4735,Holder Creek tributary,47.47075,-121.964356,true,NA
+Benthic Macroinvertebrates,08ISS4748,Issaquah Creek - E Fork,47.5320084,-121.980821,true,NA
+Benthic Macroinvertebrates,08ISS4884,Issaquah Creek - E Fork,47.525868,-121.940853,true,NA
+Benthic Macroinvertebrates,08LAK2827,Vasa Creek,47.5785215,-122.112933,true,NA
+Benthic Macroinvertebrates,08LAK3121,Idylwood Creek,47.641052,-122.106516,true,NA
+Benthic Macroinvertebrates,08LAK3540,Pine Lake Creek,47.600939,-122.080335,true,NA
+Benthic Macroinvertebrates,08LAK3627,Ebright Creek,47.608584,-122.071866,true,NA
+Benthic Macroinvertebrates,08LAK3628,Eden/George Davis Creek,47.615284,-122.066971,true,NA
+Benthic Macroinvertebrates,08LAK3699,Tibbetts Creek - Lower,47.541782,-122.064195,true,NA
+Benthic Macroinvertebrates,08LAK3879,Laughing Jacobs Creek,47.565113,-122.050183,true,NA
+Benthic Macroinvertebrates,08LAK3880,Many Springs Creek,47.569898,-122.053288,true,NA
+Benthic Macroinvertebrates,08LIT2585,Little Bear Creek,47.758429,-122.160347,true,NA
+Benthic Macroinvertebrates,08LIT2602,Little Bear Creek,47.83994,-122.16225,true,NA
+Benthic Macroinvertebrates,08LIT2603,Little Bear Creek,47.844461,-122.162851,true,NA
+Benthic Macroinvertebrates,08LIT2682,Little Bear Creek,47.7633584,-122.156929,true,NA
+Benthic Macroinvertebrates,08LIT2685,Little Bear Creek,47.778471,-122.154549,true,NA
+Benthic Macroinvertebrates,08LIT2692,Little Bear Creek,47.811464,-122.158997,true,NA
+Benthic Macroinvertebrates,08LIT2781,Little Bear Creek,47.790039,-122.144532,true,NA
+Benthic Macroinvertebrates,08NOR1362,Swamp Creek,47.779822,-122.250431,true,NA
+Benthic Macroinvertebrates,08NOR1370,Swamp Creek,47.770053,-122.244606,true,NA
+Benthic Macroinvertebrates,08NOR1750,North Creek,47.852841,-122.222496,true,NA
+Benthic Macroinvertebrates,08NOR2115,North Creek tributary,47.791242,-122.195243,true,NA
+Benthic Macroinvertebrates,08NOR2306,North Creek,47.778784,-122.187628,true,NA
+Benthic Macroinvertebrates,08SAM0000,Peters Creek,47.682628,-122.143714,true,NA
+Benthic Macroinvertebrates,08SAM1914,Sammamish River tributary (0068),47.745483,-122.211857,true,NA
+Benthic Macroinvertebrates,08SAM2674,Sammamish River tributary (0096D),47.729351,-122.152545,true,NA
+Benthic Macroinvertebrates,08SAM2855,Sammamish River tributary (0101),47.696997,-122.131529,true,NA
+Benthic Macroinvertebrates,08SAM2862,Sammamish River tributary (0090),47.733381,-122.13722,true,NA
+Benthic Macroinvertebrates,08SAM2865,Gold Creek,47.742702,-122.141764,true,NA
+Benthic Macroinvertebrates,08SAM3045,Sammamish River tributary (0095F),47.712241,-122.12057,true,NA
+Benthic Macroinvertebrates,08SAM3047,Sammamish River tributary (0095D),47.720449,-122.124316,true,NA
+Benthic Macroinvertebrates,08WES0622,Ravenna Creek,47.673452,-122.310727,true,NA
+Benthic Macroinvertebrates,08WES0629,Maple Leaf Creek,47.702708,-122.308342,true,NA
+Benthic Macroinvertebrates,08WES0903,McAleer Creek,47.752199,-122.281877,true,NA
+Benthic Macroinvertebrates,08WES0905,Lyon Creek,47.759565,-122.28683,true,NA
+Benthic Macroinvertebrates,08WES1037,Mapes Creek,47.518425,-122.268797,true,NA
+Benthic Macroinvertebrates,08WES1178,Lake Washington tributary (0056),47.766499,-122.263888,true,NA
+Benthic Macroinvertebrates,08WES1340,Taylor Creek (W Lake Washington),47.507869,-122.247582,true,NA
+Benthic Macroinvertebrates,08WES1490,Lake Washington tributary (0464B),47.503982,-122.227702,true,NA
+Benthic Macroinvertebrates,08WES1579,Lake Washington tributary,47.483496,-122.227268,true,NA
+Benthic Macroinvertebrates,09BLA0675,Mill Creek (Kent),47.381499,-122.221081,true,NA
+Benthic Macroinvertebrates,09BLA0716,Mill Creek (Kent),47.382722,-122.223995,true,NA
+Benthic Macroinvertebrates,09BLA0722,Garrison Creek - S Fork,47.407005,-122.216196,true,NA
+Benthic Macroinvertebrates,09BLA0756,Mill Creek (Kent),47.369338,-122.208823,true,NA
+Benthic Macroinvertebrates,09BLA0768,Springbrook Creek (Black River),47.4284983,-122.214069,true,NA
+Benthic Macroinvertebrates,09BLA0771,Panther Creek (Black River),47.442177,-122.207574,true,NA
+Benthic Macroinvertebrates,09BLA0772,Panther Creek (Black River),47.445022,-122.211052,true,NA
+Benthic Macroinvertebrates,09BLA0817,Springbrook Creek tributary (0006B),47.46604,-122.207183,true,NA
+Benthic Macroinvertebrates,09COV1165,Covington Creek,47.31919,-122.11905,true,NA
+Benthic Macroinvertebrates,09COV1418,Covington Creek,47.30933,-122.077692,true,NA
+Benthic Macroinvertebrates,09COV1756,Ravensdale Creek,47.32877,-122.022072,true,NA
+Benthic Macroinvertebrates,09COV1862,Rock Creek tributary (Covington),47.317211,-122.00522,true,NA
+Benthic Macroinvertebrates,09COV1864,Rock Creek tributary (Covington),47.326312,-122.000507,true,NA
+Benthic Macroinvertebrates,09DEE2163,Deep Creek (Green River),47.282302,-121.932687,true,NA
+Benthic Macroinvertebrates,09DEE2208,Coal Creek (Green River),47.266907,-121.916937,true,NA
+Benthic Macroinvertebrates,09DEE2211,Deep Creek (Green River),47.285142,-121.923905,true,NA
+Benthic Macroinvertebrates,09DEE2294,Coal Creek (Green River),47.275939,-121.894775,true,NA
+Benthic Macroinvertebrates,09DUW0091,Duwamish River tributary (0001E),47.510357,-122.322142,true,NA
+Benthic Macroinvertebrates,09DUW0225,Duwamish River tributary (0003),47.502212,-122.300156,true,NA
+Benthic Macroinvertebrates,09JEN1318,Jenkins Creek,47.362218,-122.099903,true,NA
+Benthic Macroinvertebrates,09JEN1357,Jenkins Creek,47.3689,-122.098899,true,NA
+Benthic Macroinvertebrates,09LOW0751,Olson Creek,47.343487,-122.20504,true,NA
+Benthic Macroinvertebrates,09LOW0753,Green River - Lower tributary (S 277th St.),47.353074,-122.20751,true,NA
+Benthic Macroinvertebrates,09MID1374,O'Grady Creek,47.275597,-122.088114,true,NA
+Benthic Macroinvertebrates,09MID1744,Cristy Creek,47.272614,-122.021072,true,NA
+Benthic Macroinvertebrates,09MID1817,Cristy Creek,47.26799,-122.009736,true,NA
+Benthic Macroinvertebrates,09MID1958,Icy Creek,47.278886,-121.978571,true,NA
+Benthic Macroinvertebrates,09MID2426,Green River - Middle tributary,47.315006,-121.867614,true,NA
+Benthic Macroinvertebrates,09MIL0340,Mill Creek (Auburn),47.303209,-122.272324,true,NA
+Benthic Macroinvertebrates,09MIL0390,Mill Creek (Auburn),47.303166,-122.260837,true,NA
+Benthic Macroinvertebrates,09NEW1657,Newaukum Creek,47.250042,-122.037744,true,NA
+Benthic Macroinvertebrates,09NEW2076,Newaukum Creek - N Fork,47.235936,-121.950976,true,NA
+Benthic Macroinvertebrates,09NEW2102,Newaukum Creek,47.231078,-121.94603,true,NA
+Benthic Macroinvertebrates,09NEW2128,Newaukum Creek - N Fork,47.234245,-121.93519,true,NA
+Benthic Macroinvertebrates,09SOO0943,Big Soos Creek,47.30855,-122.16904,true,NA
+Benthic Macroinvertebrates,09SOO1022,Soosette Creek,47.331725,-122.155276,true,NA
+Benthic Macroinvertebrates,09SOO1130,Soos Creek,47.31817,-122.135959,true,NA
+Benthic Macroinvertebrates,09SOO1134,Soos Creek,47.336409,-122.135101,true,NA
+Benthic Macroinvertebrates,09SOO1209,Little Soos Creek,47.358599,-122.125122,true,NA
+Benthic Macroinvertebrates,09SOO1283,Little Soos Creek,47.372825,-122.113902,true,NA
+Benthic Macroinvertebrates,28A,Judd Creek,47.403459,-122.468866,true,NA
+Benthic Macroinvertebrates,BSE_1_MudMtnRd,Boise Creek,47.175524,-122.018775,true,NA
+Benthic Macroinvertebrates,BSE_21_GolfCrs,Boise Creek,47.195154,-121.953301,true,NA
+Benthic Macroinvertebrates,BSE_8_268thAveSE,Boise Creek,47.190111,-121.981778,true,NA
+Benthic Macroinvertebrates,Miller_Cove,Miller Creek,47.44456,-122.35451,true,NA
+Benthic Macroinvertebrates,Miller_SWSSD,Miller Creek,47.447902,-122.348134,true,NA
+Benthic Macroinvertebrates,VashChris,Christenson Creek,47.40277,-122.51693,true,NA
+Benthic Macroinvertebrates,VashShing,Shinglemill Creek,47.47628,-122.4815,true,NA
+Benthic Macroinvertebrates,WalkerPreserve,Walker Creek,47.452032,-122.337736,true,NA
