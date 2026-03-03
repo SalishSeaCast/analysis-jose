@@ -1,6 +1,3 @@
-# salishsea command processor run description file template for
-# SalishSeaCast hindcast run on Sockeye
-
 email: jvalenti@eoas.ubc.ca
 MPI decomposition: 11x32
 config_name: SHEM
