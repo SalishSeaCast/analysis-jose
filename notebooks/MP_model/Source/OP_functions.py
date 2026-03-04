@@ -1,3 +1,41 @@
+import pandas as pd
+import numpy as np
+import yaml 
+from datetime import datetime, timedelta
+import xarray as xr
+import os
+import glob
+
+def path():
+    path = {'NEMO': '/results2/SalishSea/nowcast-green.202111',
+        'coords': '/ocean/jvalenti/MOAD/grid/coordinates_seagrid_SalishSea201702.nc',
+        'coordsWW3': '/ocean/jvalenti/MOAD/grid2/WW3_grid.nc',
+        'mask': '/ocean/jvalenti/MOAD/grid2/mesh_mask202108_TDV.nc',
+        'bat': '/ocean/jvalenti/MOAD/grid/bathymetry_202108.nc',
+        'out': '/home/jvalenti/MOAD/results',
+        'home': '/home/jvalenti/MOAD/analysis-jose/notebooks/parcels'}
+    return path
+
+def get_WW3_path(date):
+    """Construct WW3 results path given the date
+    e.g., /opp/wwatch3/nowcast/SoG_ww3_fields_YYYYMMDD_YYYYMMDD.nc
+    :arg date: date of WW3 record
+    :type date: :py:class:`datetime.datetime`
+    :returns: WW3 path
+    :rtype: str
+    """
+    # Make WW3 path
+    path = '/opp/wwatch3/hindcast'
+    path2 = '/opp/wwatch3/nowcast'
+    datestr = [date.strftime(fmt) for fmt in ('%d%b%y', '%Y%m%d_%Y%m%d')]
+    path = os.path.join(path, datestr[0].lower(), f'SoG_ww3_fields_{datestr[1]}.nc')
+    if not os.path.exists(path):
+        path = os.path.join(path2, datestr[0].lower(), f'SoG_ww3_fields_{datestr[1]}.nc')
+        if not os.path.exists(path):    
+            raise ValueError(f"No WW3 record found for the specified date {date.strftime('%Y-%b-%d')}")
+
+    return path  
+
 def load_config(config_yaml):
    with open(config_yaml[0]) as f:
        config = yaml.safe_load(f)
@@ -28,9 +66,9 @@ def make_prefix(date, path, res='h'):
     """Construct path prefix for local SalishSeaCast results given date object and paths dict
     e.g., /results2/SalishSea/nowcast-green.201905/daymonthyear/SalishSea_1h_yyyymmdd_yyyymmdd
     """
-
     datestr = '_'.join(np.repeat(date.strftime('%Y%m%d'), 2))
-    prefix = f'{path}/SalishSea_1{res}_{datestr}'
+    folder = date.strftime("%d%b%y").lower()
+    prefix = os.path.join(path, f'{folder}/SalishSea_1{res}_{datestr}')
     return prefix
 
 def pandas_deploy(N,MFc,r,dd,dtp):
@@ -66,6 +104,7 @@ def pandas_deploy(N,MFc,r,dd,dtp):
         z[i]=(cz[i] + z_offset[i])
     return lon,lat,z
 
+
 def filename_set(start,length,varlist=['U','V','W']):
     '''filename,variables,dimensions = filename_set(start,duration,varlist=['U','V','W'],local=1)
     Modify function to include more default variables
@@ -75,11 +114,12 @@ def filename_set(start,length,varlist=['U','V','W']):
     duration = timedelta(days=length)
     #Build filenames
     paths = path()
-    Tlist,Ulist, Vlist, Wlist = [], [], [], [], []
+    Tlist,Ulist, Vlist, Wlist = [], [], [], []
     Waveslist = []
    
     for day in range(duration.days):
         path_NEMO = make_prefix(start + timedelta(days=day), paths['NEMO'])
+        print(path_NEMO)
         path_NEMO_d = make_prefix(start + timedelta(days=day), paths['NEMO'],res='d')
         Ulist.append(path_NEMO + '_grid_U.nc')
         Vlist.append(path_NEMO + '_grid_V.nc')

@@ -10,7 +10,7 @@ param:
   SI: 5e6
   length: 2 # Set Time length [days] 
   dt: 5 #toggle between - or + to pick backwards or forwards 
-  N: '/scratch/jvalenti/OParcels_runs/Source/Outfall_deploy.csv' # number of deploying locations except when using distr = hmg this variable represent how many
+  N: 'Source/Outfall_deploy.csv' 
   dd: 0.5 #max depth difference from stablished
   dtp: 10 #how often particle released in hours
   odt: 6 #hours between output
