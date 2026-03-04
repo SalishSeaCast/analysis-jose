@@ -7,8 +7,8 @@ startdate:
   day: 1
   
 param:
-  MFc: 5e6
-  length: 30 # Set Time length [days] 
+  SI: 5e6
+  length: 2 # Set Time length [days] 
   dt: 5 #toggle between - or + to pick backwards or forwards 
   N: '/scratch/jvalenti/OParcels_runs/Source/Outfall_deploy.csv' # number of deploying locations except when using distr = hmg this variable represent how many
   dd: 0.5 #max depth difference from stablished
