@@ -2,13 +2,13 @@
 file: 
   name: 'test_reseed' #name output file
 startdate:
-  year: 2019 
+  year: 2007 
   month: 4
   day: 1
   
 param:
   SI: 5e6
-  length: 2 # Set Time length [days] 
+  length: 5 # Set Time length [days] 
   dt: 5 #toggle between - or + to pick backwards or forwards 
   N: 'Source/Outfall_deploy.csv' 
   dd: 0.5 #max depth difference from stablished

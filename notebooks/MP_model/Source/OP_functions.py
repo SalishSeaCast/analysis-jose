@@ -6,14 +6,23 @@ import xarray as xr
 import os
 import glob
 
-def path():
-    path = {'NEMO': '/results2/SalishSea/nowcast-green.202111',
-        'coords': '/ocean/jvalenti/MOAD/grid/coordinates_seagrid_SalishSea201702.nc',
-        'coordsWW3': '/ocean/jvalenti/MOAD/grid2/WW3_grid.nc',
-        'mask': '/ocean/jvalenti/MOAD/grid2/mesh_mask202108_TDV.nc',
-        'bat': '/ocean/jvalenti/MOAD/grid/bathymetry_202108.nc',
-        'out': '/home/jvalenti/MOAD/results',
-        'home': '/home/jvalenti/MOAD/analysis-jose/notebooks/parcels'}
+def path(machine='salish'):
+    if machine=='salish':
+        path = {'NEMO': '/results2/SalishSea/nowcast-green.202111',
+            'coords': '/ocean/jvalenti/MOAD/grid/coordinates_seagrid_SalishSea201702.nc',
+            'coordsWW3': '/ocean/jvalenti/MOAD/grid2/WW3_grid.nc',
+            'mask': '/ocean/jvalenti/MOAD/grid2/mesh_mask202108_TDV.nc',
+            'bat': '/ocean/jvalenti/MOAD/grid/bathymetry_202108.nc',
+            'out': '/home/jvalenti/MOAD/results',
+            'home': '/home/jvalenti/MOAD/analysis-jose/notebooks/parcels'}
+    elif machine=='nibi':
+        path = {'NEMO': '/project/def-allen/SalishSea/nowcast-green.202111/',
+            'coords': '/home/jvalenti/MOAD/grid/coordinates_seagrid_SalishSea201702.nc',
+            'coordsWW3': '/home/jvalenti/MOAD/grid2/WW3_grid.nc',
+            'mask': '/home/jvalenti/MOAD/grid2/mesh_mask202108_TDV.nc',
+            'bat': '/home/jvalenti/MOAD/grid/bathymetry_202108.nc',
+            'out': '/scratch/jvalenti/MP_runs',
+            'home': '/home/jvalenti/MOAD/analysis-jose/notebooks/MP_Model'}
     return path
 
 def get_WW3_path(date):
@@ -105,7 +114,7 @@ def pandas_deploy(N,MFc,r,dd,dtp):
     return lon,lat,z
 
 
-def filename_set(start,length,varlist=['U','V','W']):
+def filename_set(start,length,varlist=['U','V','W'],machine='nibi'):
     '''filename,variables,dimensions = filename_set(start,duration,varlist=['U','V','W'],local=1)
     Modify function to include more default variables
     define start as: e.g, datetime(2018, 1, 17)
@@ -113,7 +122,7 @@ def filename_set(start,length,varlist=['U','V','W']):
     
     duration = timedelta(days=length)
     #Build filenames
-    paths = path()
+    paths = path(machine)
     Tlist,Ulist, Vlist, Wlist = [], [], [], []
     Waveslist = []
    
@@ -125,7 +134,7 @@ def filename_set(start,length,varlist=['U','V','W']):
         Vlist.append(path_NEMO + '_grid_V.nc')
         Wlist.append(path_NEMO + '_grid_W.nc')
         Tlist.append(path_NEMO + '_grid_T.nc')
-        Waveslist.append(get_WW3_path(start + timedelta(days=day)))        
+        #Waveslist.append(get_WW3_path(start + timedelta(days=day)))        
 
     # Load NEMO forcing 
     filenames = {

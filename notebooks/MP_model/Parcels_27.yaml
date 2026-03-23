@@ -1,0 +1,23 @@
+name: Parcels_27
+channels:
+  - conda-forge
+  - nodefaults
+dependencies: 
+  - jupyter
+  - matplotlib-base
+  - numpy
+  - pandas=2.2
+  - parcels
+  - pip
+  - python
+  - scipy
+  - xarray
+  - yaml
+  - zarr
+  - mpich
+  - mpi4py
+  - cmocean
+  - dask
+  - netcdf4
+
+prefix: /home/jvalenti/conda_envs/Parcels_27
