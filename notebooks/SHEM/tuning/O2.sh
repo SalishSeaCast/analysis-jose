@@ -25,6 +25,6 @@ source /home/jvalenti/miniforge3/etc/profile.d/conda.sh
 conda activate SHEM
 
 echo "Starting run at $(date)"
-python O2_puget.py SSBase
+python O2_puget.py predmine
 echo "Ended run at $(date)"
 echo "Finished at $(date)"

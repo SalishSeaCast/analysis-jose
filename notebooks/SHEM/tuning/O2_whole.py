@@ -10,7 +10,7 @@ import sys
 
 def O2():
     df = pd.read_excel('nutrients_2018dfo.xlsx',parse_dates=['dtUTC'],index_col=0)
-    df = df[df['dtUTC']>=dt.datetime(2018,2,27)]
+    df = df[(df['dtUTC']>=dt.datetime(2018,2,27)) & (df['dtUTC']<=dt.datetime(2018,7,1))].reset_index(drop=True)
     jjii = xr.open_dataset('~/MOAD/grid/grid_from_lat_lon_mask999.nc')
     def finder(lati,loni):
         j = [jjii.jj.sel(lats=lati, lons=loni, method='nearest').item()][0]
@@ -65,8 +65,8 @@ def O2():
     def interp_depth(N_shallow, N_deep, z_shallow, z_deep, z_obs):
         return N_shallow + (N_deep - N_shallow) * (z_obs - z_shallow) / (z_deep - z_shallow)
 
-    runs = ['SSBase','SHEM18','tuning/diat_pref','tuning/exc_hbac','tuning/exc_hbac_2','tuning/growth_flag','tuning/growth_flag_2','tuning/mort_hbac','tuning/pred_flag','tuning/remin']
-    names = ['SSBase','SHEM18','diat_pref','exc_hbac','exc_hbac_2','growth_flag','growth_flag_2','mort_hbac','pred_flag','remin']
+    runs = ['SSBase','SHEM18','tuning/diat_pref','tuning/exc_hbac','tuning/exc_hbac_2','tuning/growth_flag','tuning/growth_flag_2','tuning/mort_hbac','tuning/pred_flag','tuning/remin','tuning/remin2','tuning/predmine','tuning/mort_hbac_2']
+    names = ['SSBase','SHEM18','diat_pref','exc_hbac','exc_hbac_2','growth_flag','growth_flag_2','mort_hbac','pred_flag','remin','remin2','predmine','mort_hbac_2']
     for i,name in enumerate(names):
         print(f'Starting: {runs[i]}')
         path = f'/home/jvalenti/scratch/run_SHEM/{runs[i]}/'
