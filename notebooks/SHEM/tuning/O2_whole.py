@@ -63,7 +63,10 @@ def O2():
     df['z_bellow'] = zb
 
     def interp_depth(N_shallow, N_deep, z_shallow, z_deep, z_obs):
-        return N_shallow + (N_deep - N_shallow) * (z_obs - z_shallow) / (z_deep - z_shallow)
+        if N_deep>0:
+            return N_shallow + (N_deep - N_shallow) * (z_obs - z_shallow) / (z_deep - z_shallow)
+        else:
+            return N_shallow
 
     runs = ['SSBase','SHEM18','tuning/diat_pref','tuning/exc_hbac','tuning/exc_hbac_2','tuning/growth_flag','tuning/growth_flag_2','tuning/mort_hbac','tuning/pred_flag','tuning/remin','tuning/remin2','tuning/predmine','tuning/mort_hbac_2']
     names = ['SSBase','SHEM18','diat_pref','exc_hbac','exc_hbac_2','growth_flag','growth_flag_2','mort_hbac','pred_flag','remin','remin2','predmine','mort_hbac_2']

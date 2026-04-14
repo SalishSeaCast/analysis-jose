@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --job-name=eval_O2
+#SBATCH --job-name=eval_O2_DFO
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=2
 #SBATCH --mem-per-cpu=8000
