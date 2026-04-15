@@ -11,6 +11,7 @@ import sys
 def NO3():
     df = pd.read_csv('PugetSound_2018.csv',parse_dates=['Sample_Date'])
     df = df[(df['Sample_Date']>=dt.datetime(2018,2,27)) & (df['Sample_Date']<=dt.datetime(2018,7,1))].reset_index(drop=True)
+
     jjii = xr.open_dataset('~/MOAD/grid/grid_from_lat_lon_mask999.nc')
     def finder(lati,loni):
         j = [jjii.jj.sel(lats=lati, lons=loni, method='nearest').item()][0]
@@ -62,9 +63,12 @@ def NO3():
     df['z_bellow'] = zb
 
     def interp_depth(N_shallow, N_deep, z_shallow, z_deep, z_obs):
-        return N_shallow + (N_deep - N_shallow) * (z_obs - z_shallow) / (z_deep - z_shallow)
+        if N_deep>0:
+            return N_shallow + (N_deep - N_shallow) * (z_obs - z_shallow) / (z_deep - z_shallow)
+        else:
+            return N_shallow
 
-    path = '/home/jvalenti/scratch/run_SHEM/tuning/'+config[0]+'/'
+    path = '/home/jvalenti/scratch/run_SHEM/'+config[0]+'/'
     N_model = np.full(len(df), np.nan)
 
     for folder_day, group in df.groupby('folder_day'):

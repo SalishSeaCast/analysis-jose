@@ -4,7 +4,7 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=2
 #SBATCH --mem-per-cpu=8000
-#SBATCH --time=4:00:00
+#SBATCH --time=00:40:00
 #SBATCH --mail-user=jvalenti@eoas.ubc.ca
 #SBATCH --mail-type=ALL
 #SBATCH --account=rrg-allen

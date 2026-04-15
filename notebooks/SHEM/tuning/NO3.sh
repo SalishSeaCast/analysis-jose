@@ -4,7 +4,7 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=2
 #SBATCH --mem-per-cpu=8000
-#SBATCH --time=4:00:00
+#SBATCH --time=3:00:00
 #SBATCH --mail-user=jvalenti@eoas.ubc.ca
 #SBATCH --mail-type=ALL
 #SBATCH --account=rrg-allen
@@ -25,6 +25,6 @@ source /home/jvalenti/miniforge3/etc/profile.d/conda.sh
 conda activate SHEM
 
 echo "Starting run at $(date)"
-python NO3_puget.py predmine
+python NO3_puget.py SSBase
 echo "Ended run at $(date)"
 echo "Finished at $(date)"

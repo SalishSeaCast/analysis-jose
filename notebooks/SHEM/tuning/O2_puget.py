@@ -64,14 +64,17 @@ def O2():
     df['z_bellow'] = zb
 
     def interp_depth(N_shallow, N_deep, z_shallow, z_deep, z_obs):
-        return N_shallow + (N_deep - N_shallow) * (z_obs - z_shallow) / (z_deep - z_shallow)
+        if N_deep>0:
+            return N_shallow + (N_deep - N_shallow) * (z_obs - z_shallow) / (z_deep - z_shallow)
+        else:
+            return N_shallow
 
-    path = '/home/jvalenti/scratch/run_SHEM/tuning/'+config[0]+'/'
+    path = '/home/jvalenti/scratch/run_SHEM/'+config[0]+'/'
     N_model = np.full(len(df), np.nan)
 
     for folder_day, group in df.groupby('folder_day'):
         try:
-            fn = make_filename(path, folder_day)
+            fn = make_filename(path, folder_day,'chem_T')
         except FileNotFoundError:
             continue
         with xr.open_dataset(fn, engine='h5netcdf') as ds:
