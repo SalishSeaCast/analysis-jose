@@ -69,12 +69,12 @@ def O2():
         else:
             return N_shallow
 
-    path = '/home/jvalenti/scratch/run_SHEM/'+config[0]+'/'
+    path = '/home/jvalenti/scratch/run_SHEM/tuning/'+config[0]+'/'
     N_model = np.full(len(df), np.nan)
 
     for folder_day, group in df.groupby('folder_day'):
         try:
-            fn = make_filename(path, folder_day,'chem_T')
+            fn = make_filename(path, folder_day)
         except FileNotFoundError:
             continue
         with xr.open_dataset(fn, engine='h5netcdf') as ds:
@@ -88,7 +88,7 @@ def O2():
     df['N_model'] = N_model
 
 
-    df.to_excel('DO_puget_'+config[0]+'.xlsx')
+    df.to_csv('DO_puget_'+config[0]+'.csv', index=False)
 
 if __name__=="__main__":
     try:

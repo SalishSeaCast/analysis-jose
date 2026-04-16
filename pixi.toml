@@ -1,0 +1,45 @@
+[workspace]
+authors = ["JoseEOAS <jvalenti@eoas.ubc.ca>"]
+channels = ["conda-forge", "main", "r", "msys2"]
+name = "analysis-jose"
+platforms = ["linux-64"]
+version = "0.1.0"
+
+[tasks]
+
+[dependencies]
+arrow = "*"
+bottleneck = "*"
+cliff = "*"
+cmocean = "*"
+coverage = "*"
+dask = "*"
+f90nml = "*"
+gsw = "*"
+ipdb = "*"
+ipython = "*"
+jupyterlab = "*"
+lxml = "*"
+matplotlib = "*"
+nbsphinx = "*"
+netcdf4 = "*"
+numpy = "*"
+pandas = "*"
+pip = "*"
+progressbar = "*"
+pytest = "*"
+python = "3.*"
+pytz = "*"
+python-dateutil = "*"
+pyyaml = "*"
+requests = "*"
+retrying = "*"
+scipy = "*"
+sphinx = "*"
+sphinx_rtd_theme = "*"
+xarray = "*"
+zeep = "*"
+
+[pypi-dependencies]
+angles = "*"
+salishseatools = { git = "https://github.com/SalishSeaCast/tools.git", subdirectory = "SalishSeaTools" }

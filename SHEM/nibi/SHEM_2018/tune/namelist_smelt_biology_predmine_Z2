@@ -94,7 +94,7 @@
    zz_rate_mesozoo_Z_Pref           = 0.385      !      mesozooplankton preference for microzooplankton
    zz_rate_mesozoo_Z_Predslope      = 0.500       ! uM N mesozooplankton microzooplankton grazing limit
    zz_rate_mesozoo_Z_HalfSat        = 1.200       ! uM N mesozooplankton microzoo grazing half saturation const
-   zz_rate_mesozoo_eff              = 0.00        ! mesozooplankton grazed mass assimilation efficiency
+   zz_rate_mesozoo_eff              = 0.60        ! mesozooplankton grazed mass assimilation efficiency
    zz_frac_waste_MNM_NH             = 0.05         ! waste fraction from mesozoo natural mortality to NH
    zz_frac_waste_MNM_DON            = 0.470       ! waste fraction from mesozoo natural mortality to DON
    zz_frac_waste_MNM_PON            = 0.470       ! waste fraction from mesozoo natural mortality to PON

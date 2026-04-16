@@ -68,8 +68,8 @@ def O2():
         else:
             return N_shallow
 
-    runs = ['SSBase','SHEM18','tuning/diat_pref','tuning/exc_hbac','tuning/exc_hbac_2','tuning/growth_flag','tuning/growth_flag_2','tuning/mort_hbac','tuning/pred_flag','tuning/remin','tuning/remin2','tuning/predmine','tuning/mort_hbac_2']
-    names = ['SSBase','SHEM18','diat_pref','exc_hbac','exc_hbac_2','growth_flag','growth_flag_2','mort_hbac','pred_flag','remin','remin2','predmine','mort_hbac_2']
+    runs = ['SSBase','SHEM18','tuning/diat_pref','tuning/exc_hbac','tuning/exc_hbac_2','tuning/growth_flag','tuning/growth_flag_2','tuning/mort_hbac','tuning/pred_flag','tuning/remin','tuning/remin2','tuning/predmine','tuning/mort_hbac_2','tuning/remin2_l']
+    names = ['SSBase','SHEM18','diat_pref','exc_hbac','exc_hbac_2','growth_flag','growth_flag_2','mort_hbac','pred_flag','remin','remin2','predmine','mort_hbac_2','remin2_l']
     for i,name in enumerate(names):
         print(f'Starting: {runs[i]}')
         path = f'/home/jvalenti/scratch/run_SHEM/{runs[i]}/'

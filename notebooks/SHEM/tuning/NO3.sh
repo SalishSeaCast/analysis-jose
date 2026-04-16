@@ -25,6 +25,6 @@ source /home/jvalenti/miniforge3/etc/profile.d/conda.sh
 conda activate SHEM
 
 echo "Starting run at $(date)"
-python NO3_puget.py SSBase
+python NO3_puget.py remin2_l
 echo "Ended run at $(date)"
 echo "Finished at $(date)"

@@ -68,7 +68,7 @@ def NO3():
         else:
             return N_shallow
 
-    path = '/home/jvalenti/scratch/run_SHEM/'+config[0]+'/'
+    path = '/home/jvalenti/scratch/run_SHEM/tuning/'+config[0]+'/'
     N_model = np.full(len(df), np.nan)
 
     for folder_day, group in df.groupby('folder_day'):
@@ -90,7 +90,7 @@ def NO3():
     df['N_model'] = N_model
 
 
-    df.to_excel('NO_puget_'+config[0]+'.xlsx')
+    df.to_csv('NO_puget_'+config[0]+'.csv', index=False)
 
 if __name__=="__main__":
     try:
