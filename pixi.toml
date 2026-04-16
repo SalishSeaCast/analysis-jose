@@ -1,6 +1,6 @@
 [workspace]
 authors = ["JoseEOAS <jvalenti@eoas.ubc.ca>"]
-channels = ["conda-forge", "main", "r", "msys2"]
+channels = ["conda-forge"]
 name = "analysis-jose"
 platforms = ["linux-64"]
 version = "0.1.0"
@@ -28,7 +28,7 @@ pandas = "*"
 pip = "*"
 progressbar = "*"
 pytest = "*"
-python = "3.*"
+python = "3.11.*"
 pytz = "*"
 python-dateutil = "*"
 pyyaml = "*"
@@ -39,7 +39,36 @@ sphinx = "*"
 sphinx_rtd_theme = "*"
 xarray = "*"
 zeep = "*"
+h5netcdf = ">=1.8.1,<2"
+jupyter = "*"
+yaml = "*"
 
 [pypi-dependencies]
 angles = "*"
 salishseatools = { git = "https://github.com/SalishSeaCast/tools.git", subdirectory = "SalishSeaTools" }
+
+[feature.Parcels.dependencies]
+numpy = "1.26.*"
+pandas = "2.2.*"
+parcels = "*"
+scipy = "1.11.*"
+xarray = "2024.6.0.*"
+zarr = "2.16.*"
+mpich = "*"
+mpi4py = "*"
+
+[feature.SHEM.dependencies]
+python = "3.11.*"
+pandas = "*"
+scipy = "*"
+xarray = "*"
+zarr = "*"
+cmocean = "*"
+yaml = "*"
+
+[feature.SHEM.pypi-dependencies]
+permetrics = "*"
+
+[environments]
+parcels = ["Parcels"]
+shem = ["SHEM"]
