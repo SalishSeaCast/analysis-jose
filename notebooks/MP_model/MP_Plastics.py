@@ -117,7 +117,7 @@ def MP_Plastics():
 
     x_edges = np.linspace(xmin, xmax, Px + 1)
     y_edges = np.linspace(ymin, ymax, Py + 1)
-    def simple_partition_function(coords, mpi_size=1):
+    def simple_partition_function(coords, mpi_size=3):
         """A very simple partition function
         that assigns particles to processors
         """
