@@ -43,10 +43,6 @@ h5netcdf = ">=1.8.1,<2"
 jupyter = "*"
 yaml = "*"
 
-[pypi-dependencies]
-angles = "*"
-salishseatools = { git = "https://github.com/SalishSeaCast/tools.git", subdirectory = "SalishSeaTools" }
-
 [feature.Parcels.dependencies]
 numpy = "1.26.*"
 pandas = "2.2.*"
