@@ -69,3 +69,6 @@ permetrics = "*"
 [environments]
 parcels = ["Parcels"]
 shem = ["SHEM"]
+
+[pypi-dependencies]
+salishseatools = { git = "https://github.com/SalishSeaCast/tools.git", subdirectory = "SalishSeaTools" }
