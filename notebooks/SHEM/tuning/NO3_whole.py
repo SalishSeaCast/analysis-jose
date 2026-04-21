@@ -32,7 +32,6 @@ def NO3():
     mask = xr.open_dataset('/home/jvalenti/MOAD/grid2/mesh_mask202108_TDV.nc') 
 
 
-    #Make it easy to check values in the model finding the box and folder
     df['folder_day'] = df['dtUTC'].dt.strftime('%d%b%y').str.lower()
     jj = []
     ii = []
@@ -43,55 +42,55 @@ def NO3():
         j,i = finder(row.Lat,row.Lon)
         jj.append(j)
         ii.append(i)
-        if row.Depth >= 0 and j>0 and row.Depth != 0.5:
+        if row.Depth >= 0 and j>0:
             diff = mask.gdept_0[0,:,j,i].values - row.Depth
-            dd.append(diff[diff<0].argmax())
+            dd.append(diff[diff<=0].argmax())
             za.append(mask.gdept_0[0,:,j,i].values[dd[-1]])
             zb.append(mask.gdept_0[0,:,j,i].values[dd[-1]+1])
-        elif row.Depth == 0.5 and j>0:
-            dd.append(0)
-            za.append(0)
-            zb.append(1)
+            tz = mask.tmask[0,dd[-1]:dd[-1]+2,j,i]
+            if tz[0] == 0:
+                za[-1] = np.nan
+            if tz[1] == 0:
+                zb[-1] = np.nan  
         else:
-            dd.append('NaN')
-            za.append('NaN')
-            zb.append('NaN')
+            dd.append(np.nan)
+            za.append(np.nan)
+            zb.append(np.nan) 
     df['j'] = jj
     df['i'] = ii
     df['k_above'] = dd
     df['z_above'] = za
     df['z_bellow'] = zb
 
+    df = df[~np.isnan(df['z_above'])].reset_index(drop=True)
+    df['k_above'] = df['k_above'].astype(int)
+
     def interp_depth(N_shallow, N_deep, z_shallow, z_deep, z_obs):
-        if N_deep>0:
+        if N_deep > 0:
             return N_shallow + (N_deep - N_shallow) * (z_obs - z_shallow) / (z_deep - z_shallow)
         else:
             return N_shallow
 
-    runs = ['SSBase','SHEM18','tuning/diat_pref','tuning/exc_hbac','tuning/exc_hbac_2','tuning/growth_flag','tuning/growth_flag_2','tuning/mort_hbac','tuning/pred_flag','tuning/remin','tuning/remin2','tuning/predmine','tuning/mort_hbac_2','tuning/remin2_l']
-    names = ['SSBase','SHEM18','diat_pref','exc_hbac','exc_hbac_2','growth_flag','growth_flag_2','mort_hbac','pred_flag','remin','remin2','predmine','mort_hbac_2','remin2_l']
+    runs = ['SSBase','SHEM18','tuning/diat_pref','tuning/exc_hbac','tuning/exc_hbac_2','tuning/growth_flag','tuning/growth_flag_2','tuning/mort_hbac','tuning/pred_flag','tuning/remin','tuning/remin2','tuning/predmine','tuning/mort_hbac_2','tuning/remin2_l','tuning/predmine_z2']
+    names = ['SSBase','SHEM18','diat_pref','exc_hbac','exc_hbac_2','growth_flag','growth_flag_2','mort_hbac','pred_flag','remin','remin2','predmine','mort_hbac_2','remin2_l','predmine_z2']
+
     for i,name in enumerate(names):
         print(f'Starting: {runs[i]}')
         path = f'/home/jvalenti/scratch/run_SHEM/{runs[i]}/'
         N_model = np.full(len(df), np.nan)
-
         for folder_day, group in df.groupby('folder_day'):
             try:
                 fn = make_filename(path, folder_day)
             except FileNotFoundError:
                 continue
-
             with xr.open_dataset(fn, engine='h5netcdf') as ds:
                 var = ds['nitrate'].isel(time_counter=0)
-
                 for idx, row in group.iterrows():
-                    if row.k_above == 'NaN':
-                        continue
                     ab = var.isel(deptht=slice(row.k_above, row.k_above + 2),y=row.j,x=row.i).values
                     N_model[idx] = interp_depth(ab[0], ab[1],row.z_above, row.z_bellow,row.Depth)
             print(folder_day)
         df[name] = N_model
-    df.to_excel('NO3_model_whole.xlsx')
+    df.to_excel('NO3_model_whole_v2.xlsx')
 
 if __name__=="__main__":
     try:

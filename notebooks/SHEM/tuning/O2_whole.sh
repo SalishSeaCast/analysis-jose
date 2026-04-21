@@ -20,11 +20,7 @@ WORK_DIR="/home/jvalenti/MOAD/analysis-jose/notebooks/SHEM/tuning"
 cd ${WORK_DIR}
 echo "working dir: $(pwd)"
 
-export PATH=/home/jvalenti/miniforge3/envs/SHEM/bin:$PATH
-source /home/jvalenti/miniforge3/etc/profile.d/conda.sh
-conda activate SHEM
-
 echo "Starting run at $(date)"
-python O2_whole.py
+pixi run -e shem python O2_whole.py
 echo "Ended run at $(date)"
 echo "Finished at $(date)"
