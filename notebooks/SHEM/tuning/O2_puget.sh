@@ -25,6 +25,6 @@ echo "working dir: $(pwd)"
 echo "Running config: ${CONFIG}"
 echo "Starting run at $(date)"
 
-pixi run -e shem python NO3_puget_v2.py ${CONFIG}
+pixi run -e shem python O2_puget_v2.py ${CONFIG}
 
 echo "Ended run at $(date)"
