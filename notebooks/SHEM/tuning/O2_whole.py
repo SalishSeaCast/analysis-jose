@@ -8,9 +8,11 @@ from datetime import datetime, timedelta
 import sys
 
 
-def O2():
+def O2_whole():
     df = pd.read_excel('nutrients_2018dfo.xlsx',parse_dates=['dtUTC'],index_col=0)
     df = df[(df['dtUTC']>=dt.datetime(2018,2,27)) & (df['dtUTC']<=dt.datetime(2018,7,1))].reset_index(drop=True)
+    df = df[df['Oxygen_Dissolved']>0]
+
     jjii = xr.open_dataset('~/MOAD/grid/grid_from_lat_lon_mask999.nc')
     def finder(lati,loni):
         j = [jjii.jj.sel(lats=lati, lons=loni, method='nearest').item()][0]
@@ -67,24 +69,24 @@ def O2():
     df['k_above'] = df['k_above'].astype(int)
 
     def interp_depth(N_shallow, N_deep, z_shallow, z_deep, z_obs):
-        if N_deep != 0:
+        if N_deep > 0:
             return N_shallow + (N_deep - N_shallow) * (z_obs - z_shallow) / (z_deep - z_shallow)
         else:
             return N_shallow
 
     runs = ['SSBase','SHEM18','tuning/diat_pref','tuning/exc_hbac','tuning/exc_hbac_2','tuning/growth_flag','tuning/growth_flag_2','tuning/mort_hbac','tuning/pred_flag','tuning/remin','tuning/remin2','tuning/predmine','tuning/mort_hbac_2','tuning/remin2_l','tuning/predmine_z2']
     names = ['SSBase','SHEM18','diat_pref','exc_hbac','exc_hbac_2','growth_flag','growth_flag_2','mort_hbac','pred_flag','remin','remin2','predmine','mort_hbac_2','remin2_l','predmine_z2']
+    
     for i,name in enumerate(names):
         print(f'Starting: {runs[i]}')
         path = f'/home/jvalenti/scratch/run_SHEM/{runs[i]}/'
         N_model = np.full(len(df), np.nan)
-
         for folder_day, group in df.groupby('folder_day'):
             try:
                 if name=='SSBase':
-                    fn = make_filename(path,row.folder_day,'chem_T')
+                    fn = make_filename(path,folder_day,'chem_T')
                 else:
-                    fn = make_filename(path,row.folder_day)
+                    fn = make_filename(path,folder_day)
             except FileNotFoundError:
                 continue
             with xr.open_dataset(fn, engine='h5netcdf') as ds:
@@ -94,7 +96,7 @@ def O2():
                     N_model[idx] = interp_depth(ab[0], ab[1],row.z_above, row.z_bellow,row.Depth)
             print(folder_day)
         df[name] = N_model
-    df.to_excel('DO_model_whole_v2.xlsx')
+    df.to_excel('DO_model_whole_v4.xlsx')
 
 if __name__=="__main__":
     try:
@@ -102,4 +104,4 @@ if __name__=="__main__":
     except :
         print(sys.argv)
         print('Something went wrong')
-    O2()
+    O2_whole()
