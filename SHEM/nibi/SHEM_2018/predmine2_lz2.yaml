@@ -1,7 +1,7 @@
 email: jvalenti@eoas.ubc.ca
 MPI decomposition: 11x32
 config_name: SHEM_r
-run_id: remin2_l
+run_id: predmine2_lz2
 account: rrg-allen
 walltime: 21:00:00 
 
@@ -55,7 +55,7 @@ namelists:
   - $HOME/MEOPAR/SS-run-sets/v202111/namelist.compute
   
   namelist_smelt_cfg:
-  - ./tune/namelist_smelt_biology_remin2
+  - ./tune/namelist_smelt_biology_predmine2l_Z2
   - ./namelist_smelt_rivers_opsturb
   - $HOME/MEOPAR/SS-run-sets/v202111/namelist_smelt_skog
   namelist_top_cfg:
