@@ -9,7 +9,7 @@ import sys
 
 
 def O2():
-    df = pd.read_csv('PugetSound_2018.csv',parse_dates=['Sample_Date'])
+    df = pd.read_csv('eval_files/PugetSound_2018.csv',parse_dates=['Sample_Date'])
     df = df[(df['Sample_Date']>=dt.datetime(2018,2,27)) & (df['Sample_Date']<=dt.datetime(2018,7,1))].reset_index(drop=True)
     df = df[df['DO']>0]
 

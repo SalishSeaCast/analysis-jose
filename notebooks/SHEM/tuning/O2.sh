@@ -13,18 +13,14 @@
 #SBATCH --error=/scratch/jvalenti/run_SHEM/eval/stderr
 
 
-RUN_ID="SHEM_eval_O2_mort_hbac"
+RUN_ID="SHEM_eval_O2_predmine2l_z2"
 WORK_DIR="/home/jvalenti/MOAD/analysis-jose/notebooks/SHEM/tuning"
 
 
 cd ${WORK_DIR}
 echo "working dir: $(pwd)"
 
-export PATH=/home/jvalenti/miniforge3/envs/SHEM/bin:$PATH
-source /home/jvalenti/miniforge3/etc/profile.d/conda.sh
-conda activate SHEM
-
 echo "Starting run at $(date)"
-python O2_puget.py remin2_l
+pixi run -e shem python O2_puget_v2.py predmine2l_z2
 echo "Ended run at $(date)"
 echo "Finished at $(date)"
