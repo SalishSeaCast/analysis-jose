@@ -1,7 +1,7 @@
 email: jvalenti@eoas.ubc.ca
 MPI decomposition: 11x32
 config_name: SHEM_r
-run_id: remin2l_reflex2
+run_id: remin2l_2
 account: def-allen
 walltime: 21:30:00 
 
@@ -16,8 +16,8 @@ grid:
   land processor elimination: $HOME/MEOPAR/grid/bathymetry_202108.csv
 
 restart:
-  restart.nc: $SCRATCH/run_SHEM/tuning/remin2_l/26feb18/SHEM_13029121_restart.nc
-  restart_trc.nc: $SCRATCH/run_SHEM/tuning/remin2_l/26feb18/SHEM_13029121_restart_trc.nc
+  restart.nc: $SCRATCH/run_SHEM/tuning/remin2l_z2/26feb18/SHEM_13029121_restart.nc
+  restart_trc.nc: $SCRATCH/run_SHEM/tuning/remin2l_z2/26feb18/SHEM_13029121_restart_trc.nc
 
 forcing:
   LiveOcean:
@@ -55,7 +55,7 @@ namelists:
   - $HOME/MEOPAR/SS-run-sets/v202111/namelist.compute
   
   namelist_smelt_cfg:
-  - ./tune/namelist_smelt_biology_remin2_z2_reflex
+  - ./tune/namelist_smelt_biology_remin2_z2
   - ./namelist_smelt_rivers_opsturb
   - $HOME/MEOPAR/SS-run-sets/v202111/namelist_smelt_skog
   namelist_top_cfg:
