@@ -1,6 +1,6 @@
 email: jvalenti@eoas.ubc.ca
 MPI decomposition: 11x32
-config_name: SHEM_r
+config_name: SHEM
 run_id: shem_final
 account: def-allen
 walltime: 21:30:00 
