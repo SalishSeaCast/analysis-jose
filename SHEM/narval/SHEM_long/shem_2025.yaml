@@ -1,7 +1,7 @@
 email: jvalenti@eoas.ubc.ca
 MPI decomposition: 11x32
 config_name: SHEM
-run_id: shem_2024_leap
+run_id: shem_2025
 account: def-allen
 walltime: 96:00:00 
 
@@ -16,8 +16,8 @@ grid:
   land processor elimination: $HOME/MEOPAR/grid/bathymetry_202108.csv
 
 restart:
-  restart.nc: $SCRATCH/run_SHEM/long_run/14dec23/SHEM_17368560_restart.nc
-  restart_trc.nc: $SCRATCH/run_SHEM/long_run/14dec23/SHEM_17368560_restart_trc.nc
+  restart.nc: $SCRATCH/run_SHEM/01jan24_leap/SHEM_18159120_restart.nc
+  restart_trc.nc: $SCRATCH/run_SHEM/01jan24_leap/SHEM_18159120_restart_trc.nc
 
 forcing:
   LiveOcean:
@@ -43,7 +43,7 @@ forcing:
 
 namelists:
   namelist_cfg:
-  - ./namelist.time_2024
+  - ./namelist.time_2025
   - $HOME/MEOPAR/SS-run-sets/v202111/namelist.domain
   - $HOME/MEOPAR/SS-run-sets/v202111/namelist.atmos_rivers.hrdps
   - $HOME/MEOPAR/SS-run-sets/v202111/namelist.light
