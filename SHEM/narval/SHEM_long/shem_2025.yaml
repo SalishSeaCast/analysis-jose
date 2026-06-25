@@ -1,7 +1,7 @@
 email: jvalenti@eoas.ubc.ca
 MPI decomposition: 11x32
 config_name: SHEM
-run_id: shem_2025
+run_id: shem_2025_newBC
 account: def-allen
 walltime: 96:00:00 
 
@@ -17,7 +17,7 @@ grid:
 
 restart:
   restart.nc: $SCRATCH/run_SHEM/01jan24_leap/SHEM_18159120_restart.nc
-  restart_trc.nc: $SCRATCH/run_SHEM/01jan24_leap/SHEM_18159120_restart_trc.nc
+  restart_trc.nc: $SCRATCH/run_SHEM/01jan24/SHEM_18159120_restart_trc.nc
 
 forcing:
   LiveOcean:
