@@ -17,7 +17,7 @@
           <field field_ref="NH4"            name="ammonium"/>
           <field field_ref="DIAT"           name="diatoms"/>
           <field field_ref="PHY"            name="flagellates"/>
-          <field field_ref="MICZ"           name="microzooplankto_Z1"/>
+          <field field_ref="MICZ"           name="microzooplankton_Z1"/>
           <field field_ref="DON"            name="dissolved_organic_nitrogen"/>
           <field field_ref="PON"            name="particulate_organic_nitrogen"/>
           <field field_ref="MESZ"           name="mesozooplankton_Z2"/>

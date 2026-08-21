@@ -6,11 +6,11 @@
 &namrun        !   Parameters of the run
 !-----------------------------------------------------------------------
    cn_exp      = "SHEM"  ! experience name
-   nn_it000    = 16694641     ! first time step
+   nn_it000    = 16580161     ! first time step
    nn_itend    = 17368560     ! last time step (std 1 day = 2160 re: rn_rdt in &namdom)
-   nn_date0    = 20230223     ! date at nit_0000 = 1 (format yyyymmdd)
+   nn_date0    = 20230101     ! date at nit_0000 = 1 (format yyyymmdd)
                               ! used to adjust tides to run date (regardless of restart control)
-   nn_leapy    =       0      ! Leap year calendar (1) or not (0)
+   nn_leapy    =       1      ! Leap year calendar (1) or not (0)
    ln_rstart   =       T      ! start from rest (F) or from a restart file (T)
    nn_rstctl   =       2      ! restart control => activated only if ln_rstart = T
                               !   = 0 nn_date0 read in namelist
