@@ -48,6 +48,7 @@ ffmpeg = ">=8.1.2,<9"
 seaborn = ">=0.13.2,<0.14"
 nbconvert = ">=7.17.1,<8"
 pandoc = ">=3.11,<4"
+cartopy = ">=0.26.0,<0.27"
 
 [feature.Parcels.dependencies]
 numpy = "1.26.*"
