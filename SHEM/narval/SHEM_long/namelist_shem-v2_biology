@@ -168,7 +168,7 @@
 !'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 &nampisrem     !   parameters for remineralization
 !,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-   zz_remin_NH     =  3.5e-6             !increased to maintain NO3 levels 4.44e-7
+   zz_remin_NH     =  7.0e-7             !increased to maintain NO3 levels 4.44e-7
    zz_remin_D_DON  =  0.0                !Done by hbac 2.56e-6
    zz_remin_D_PON  =  0.0                !Done by hbac 2.56e-6
    zz_remin_D_bSi  =  1.221e-6

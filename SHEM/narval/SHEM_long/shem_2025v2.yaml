@@ -16,8 +16,8 @@ grid:
   land processor elimination: $HOME/MEOPAR/grid/bathymetry_202108.csv
 
 restart:
-  restart.nc: $SCRATCH/run_SHEM/01jan24/SHEM_18159120_restart.nc
-  restart_trc.nc: $SCRATCH/run_SHEM/01jan24/SHEM_18159120_restart_trc.nc
+  restart.nc: $SCRATCH/run_SHEM/07oct24/SHEM_18159120_restart.nc
+  restart_trc.nc: $SCRATCH/run_SHEM/07oct24/SHEM_18159120_restart_trc.nc
 
 forcing:
   LiveOcean:
