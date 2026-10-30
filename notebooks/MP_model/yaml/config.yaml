@@ -1,10 +1,10 @@
 # yaml file tu run op
 file: 
-  name: 'test_reseed' #name output file
+  name: 'test_kernels' #name output file
 startdate:
-  year: 2007 
-  month: 4
-  day: 1
+  year: 2023 
+  month: 1
+  day: 2
   
 param:
   SI: 5e6
@@ -15,13 +15,13 @@ param:
   dtp: 10 #how often particle released in hours
   odt: 6 #hours between output
   r: 50 #radious dispersion particles in horizontal
+  Ub: 171 #unbeaching timescale
 
 particle:
   diameter: 2.16e-5 #average diameter
   length: 4.5e-4 #average length
   status: 0 # {0: not initialized, 1: water column, 2: beached, 3:sinked bottom, 4:stuck surface} 
   tau: 0 #age particle
-  Ub: 171 #unbeaching timescale
   fratio: 0 #percentage of fixed floating
   wb: 0 #buoyancy z displacement
   wa: 0 #advection z displacement
@@ -29,5 +29,3 @@ particle:
   fact: 1 #conversion factor to NEMO vertical coordinates VVL
   ddepth: 0 
   cellvol: 250000 #Useful to calculate concentrations
-  alpha: 0.001 #0.1% retention/ stickiness sediment
-

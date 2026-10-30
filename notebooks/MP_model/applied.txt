@@ -1,0 +1,8 @@
+365 biol files (APPLY)
+ERROR /data/jvalenti/results/01jan23/SHEM_1h_20230101-20230101_biol_T.nc OSError(-101, 'NetCDF: HDF error')
+
+0 files fixed
+
+Check: biol files whose time_counter still decodes as non-datetime64
+STILL CFTIME /data/jvalenti/results/01jan23/SHEM_1h_20230101-20230101_biol_T.nc
+1 problem files
