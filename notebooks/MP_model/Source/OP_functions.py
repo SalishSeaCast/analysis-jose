@@ -25,6 +25,27 @@ def path(machine='salish'):
             'home': '/home/jvalenti/MOAD/analysis-jose/notebooks/MP_Model'}
     return path
 
+def get_Biol_path(date):
+    # Make biol path
+    path = '/data/jvalenti/results/'
+    datestr = [date.strftime(fmt) for fmt in ('%d%b%y', '%Y%m%d-%Y%m%d')]
+    path = os.path.join(path, datestr[0].lower(), f'SHEM_1h_{datestr[1]}_biol_T.nc')
+    return path  
+
+def get_Winds_path(date):
+    """Construct Winds results path given the date
+    :rtype: str
+    """
+    datestr = date.strftime('y%Ym%md%d')
+    # Make winds path
+    if date > datetime(2023,2,22):
+        path = '/results/forcing/atmospheric/continental2.5/nemo_forcing'
+        path = os.path.join(path, f'hrdps_{datestr}.nc')
+    else:
+        path = '/results/forcing/atmospheric/GEM2.5/operational'
+        path = os.path.join(path, f'ops_{datestr}.nc')
+    return path  
+
 def get_WW3_path(date):
     """Construct WW3 results path given the date
     e.g., /opp/wwatch3/nowcast/SoG_ww3_fields_YYYYMMDD_YYYYMMDD.nc
