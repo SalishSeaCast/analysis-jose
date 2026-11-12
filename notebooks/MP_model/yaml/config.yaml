@@ -1,31 +1,55 @@
 # yaml file tu run op
 file: 
-  name: 'test_kernels' #name output file
+  name: 'test_function' #name output file
 startdate:
   year: 2023 
   month: 1
   day: 2
-  
+
 param:
-  SI: 5e6
-  length: 5 # Set Time length [days] 
+  length: 1 # Set Time length [days] 
   dt: 5 #toggle between - or + to pick backwards or forwards 
-  N: 'Source/Outfall_deploy.csv' 
-  dd: 0.5 #max depth difference from stablished
-  dtp: 10 #how often particle released in hours
+  dtp: 1 #how often particle released in hours
   odt: 6 #hours between output
-  r: 50 #radious dispersion particles in horizontal
-  Ub: 171 #unbeaching timescale
+  machine: 'salish'
 
 particle:
-  diameter: 2.16e-5 #average diameter
-  length: 4.5e-4 #average length
-  status: 0 # {0: not initialized, 1: water column, 2: beached, 3:sinked bottom, 4:stuck surface} 
-  tau: 0 #age particle
-  fratio: 0 #percentage of fixed floating
-  wb: 0 #buoyancy z displacement
-  wa: 0 #advection z displacement
-  wm: 0 #mixing z displacement
-  fact: 1 #conversion factor to NEMO vertical coordinates VVL
-  ddepth: 0 
-  cellvol: 250000 #Useful to calculate concentrations
+  filename: '/home/jvalenti/MOAD/analysis-jose/notebooks/MP_model/Source/Outfall_deploy.csv' #filename deployment csv
+  dim3: 2.2e-4 #average length/2
+  dim2: 1.0e-5 #average diameter/2
+  dim1: 1.0e-5 #average diameter/2
+  shape: 1 #epsilon
+  dim3sd: 12.0e-5
+  dim2sd: 2.0e-6
+  dim1sd: 2.0e-6
+  density : 1350
+  r: 100 #radious dispersion particles in horizontal[m]
+  dd: 0.5 #max depth increase difference from chosen
+
+constants:
+  SI: 5.0e+6 #Supper individual size
+  Ub: 171 #unbeaching timescale [days]
+  deg2met: 111319.5
+  deglatT: 72302 #deglatT == latT*deg2met
+  kh: 1.5
+  rho_hb: 1150  #density hetbac vibrio
+  rho_ph: 1100 #density diatoms
+  V_hb: 7.47e-19 #volume single cell hetbac vibrio
+  V_ph: 5.0e-15  #density diatoms Look for references
+  gravity: 9.81 #gravity accelation
+  biol_dt: 3600 #s dt for updating at larger dt
+  dyn_dt: 90 #s dt for updating at larger dt
+  kB: 1.380649e-23 # Boltzmann constant [J K-1]
+  N_hb_cell: 2.5e+12 # hbac per mmolN
+  N_ph_cell: 1.0e+9 # diat per mmolN
+  r_hbac: 5.0e-7 #equiv vibrio radio
+  r_phyt: 4.0e-6  #equiv diat radio
+  vs_hbac: 1.0e-8 #sinking velocity hbac
+  vs_diat: 3.5e-6 #sinking velocity diatoms
+  resusp_h: 1.0 #mean resuspension height [m]
+
+cs:
+  depth: 40
+  time: 1
+  lat: 100
+  lon: 100

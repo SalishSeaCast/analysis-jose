@@ -4,7 +4,9 @@ import yaml
 from datetime import datetime, timedelta
 import xarray as xr
 import os
-import glob
+from glob import glob
+import math
+from types import SimpleNamespace
 
 def path(machine='salish'):
     if machine=='salish':
@@ -25,11 +27,16 @@ def path(machine='salish'):
             'home': '/home/jvalenti/MOAD/analysis-jose/notebooks/MP_Model'}
     return path
 
-def get_Biol_path(date):
+def get_Biol_path(date,filen='biol'):
     # Make biol path
     path = '/data/jvalenti/results/'
     datestr = [date.strftime(fmt) for fmt in ('%d%b%y', '%Y%m%d-%Y%m%d')]
-    path = os.path.join(path, datestr[0].lower(), f'SHEM_1h_{datestr[1]}_biol_T.nc')
+    if filen =='biol':
+        path = os.path.join(path, datestr[0].lower(), f'SHEM_1h_{datestr[1]}_biol_T.nc')
+    elif filen =='prod':
+        path = os.path.join(path, datestr[0].lower(), f'SHEM_1d_{datestr[1]}_prod_T.nc')
+    elif filen =='graz':
+            path = os.path.join(path, datestr[0].lower(), f'SHEM_1d_{datestr[1]}_graz_T.nc')
     return path  
 
 def get_Winds_path(date):
@@ -67,23 +74,23 @@ def get_WW3_path(date):
     return path  
 
 def load_config(config_yaml):
-   with open(config_yaml[0]) as f:
+   with open(config_yaml) as f:
        config = yaml.safe_load(f)
    return config
 
 def zarr_tonet(fileoutname):
-    from os import path
-    name =  fileoutname.split('_')[1]
-    fname = fileoutname
-    print(fileoutname)
-    files = glob(path.join(fname, "proc*"))
-    ds = xr.concat(
-        [xr.open_zarr(f) for f in files],
-        dim="trajectory",
-        compat="no_conflicts",
-        coords="minimal",
-    )
-    return ds,name
+    name = os.path.splitext(os.path.basename(fileoutname))[0]
+    files = sorted(glob(os.path.join(fileoutname, "proc*")))
+    if files:   # MPI run: one store per rank
+        ds = xr.concat(
+            [xr.open_zarr(f) for f in files],
+            dim="trajectory",
+            compat="no_conflicts",
+            coords="minimal",
+        )
+    else:       # serial run: single store
+        ds = xr.open_zarr(fileoutname)
+    return ds, name
 
 def simple_partition_function(coords, mpi_size=1):
     """A very simple partition function
@@ -134,52 +141,93 @@ def pandas_deploy(N,MFc,r,dd,dtp):
         z[i]=(cz[i] + z_offset[i])
     return lon,lat,z
 
+def p_unidist(lat0,lon0,bat,dy,dx):
+    latbat = np.zeros(bat.shape)
+    lonbat = np.zeros(bat.shape)
 
-def filename_set(start,length,varlist=['U','V','W'],machine='nibi'):
-    '''filename,variables,dimensions = filename_set(start,duration,varlist=['U','V','W'],local=1)
-    Modify function to include more default variables
-    define start as: e.g, datetime(2018, 1, 17)
-    length= number of days'''
-    
-    duration = timedelta(days=length)
-    #Build filenames
-    paths = path(machine)
-    Tlist,Ulist, Vlist, Wlist = [], [], [], []
-    Waveslist = []
-   
-    for day in range(duration.days):
-        path_NEMO = make_prefix(start + timedelta(days=day), paths['NEMO'])
-        print(path_NEMO)
-        path_NEMO_d = make_prefix(start + timedelta(days=day), paths['NEMO'],res='d')
-        Ulist.append(path_NEMO + '_grid_U.nc')
-        Vlist.append(path_NEMO + '_grid_V.nc')
-        Wlist.append(path_NEMO + '_grid_W.nc')
-        Tlist.append(path_NEMO + '_grid_T.nc')
-        #Waveslist.append(get_WW3_path(start + timedelta(days=day)))        
+    for i in range(bat.shape[0]):
+        for j in range(bat.shape[1]):
+            if bat[i,j]>1e-5:
+                latbat[i,j] = lat0[i,j]
+                lonbat[i,j] = lon0[i,j]
 
-    # Load NEMO forcing 
-    filenames = {
-        'U': {'lon': paths['coords'], 'lat': paths['coords'], 'depth': Wlist[0], 'data': Ulist},
-        'V': {'lon': paths['coords'], 'lat': paths['coords'], 'depth': Wlist[0], 'data': Vlist},
-        'W': {'lon': paths['coords'], 'lat': paths['coords'], 'depth': Wlist[0], 'data': Wlist},
-        'Kz': {'lon': paths['coords'], 'lat': paths['coords'], 'depth': Wlist[0], 'data': Wlist},
-        'T': {'lon': paths['coords'], 'lat': paths['coords'], 'depth': Tlist[0], 'data': Tlist},
-        'S': {'lon': paths['coords'], 'lat': paths['coords'], 'depth': Tlist[0], 'data': Tlist},
-        'ssh': {'lon': paths['coords'], 'lat': paths['coords'], 'data': Tlist},
-        'R': {'lon': paths['coords'], 'lat': paths['coords'], 'depth': Tlist[0], 'data': Tlist},
-        'Bathy' : {'lon': paths['coords'], 'lat': paths['coords'], 'data': paths['bat']},
-        'gdepth' : {'lon': paths['coords'], 'lat': paths['coords'],'depth': Wlist[0], 'data': paths['mask']},
-        'totdepth' : {'lon': paths['coords'], 'lat': paths['coords'], 'data': paths['mask']},
-        'US' : {'lon': paths['coordsWW3'], 'lat': paths['coordsWW3'], 'data': Waveslist},
-        'VS' : {'lon': paths['coordsWW3'], 'lat': paths['coordsWW3'], 'data': Waveslist},
-        'WL' : {'lon': paths['coordsWW3'], 'lat': paths['coordsWW3'], 'data': Waveslist}
-    }
-    
-    variables = {'U': 'vozocrtx', 'V': 'vomecrty','W': 'vovecrtz','T':'votemper','S':'vosaline','R':'sigma_theta',
-        'US':'uuss','VS':'vuss','WL':'lm','Bathy':'Bathymetry','Kz':'vert_eddy_diff','ssh':'sossheig','totdepth':'totaldepth'}
-        
-    file_out,var_out = {},{}
-    for var in varlist:
-        file_out[var]=filenames[var]
-        var_out[var]=variables[var]
-    return file_out,var_out
+    yi = np.arange(0,latbat.shape[0],dy)
+    xi = np.arange(0,latbat.shape[1],dx)
+    plat0,plon0 = latbat[yi,:],lonbat[yi,:]
+    plat1,plon1 = plat0[:,xi],plon0[:,xi]
+
+    plon,plat = [],[]
+    for i in range(plat1.shape[0]):
+        for j in range(plat1.shape[1]):
+            if plat1[i,j]>1e-5:
+                plat.append(plat1[i,j])
+                plon.append(plon1[i,j])
+    return plat,plon
+
+
+def particle_source(param, seed=None):
+    """Build particle release arrays from the deployment file
+
+    Each row releases round(number / SI) super-individuals, where
+    SI = param['constants']['SI']. Rows that round to 0 are skipped.
+
+    Returns a namespace with float64 arrays (one entry per particle):
+        lat, lon, depth, a, b, c, Vol, rho_p
+    with a >= b >= c (a = large semiaxis, c = small), matching the
+    dim3/dim2/dim1 convention in MPParticle and the kernels.
+    """
+    rng = np.random.default_rng(seed)
+    P = param['particle']
+    C = param['constants']
+
+    # ---- read deployment file ----
+    df = pd.read_csv(P['filename'])
+    lat0 = df.iloc[:, 2].to_numpy(dtype=float)
+    lon0 = df.iloc[:, 3].to_numpy(dtype=float)
+    z0 = pd.to_numeric(df.iloc[:, 5], errors='coerce').fillna(2.0).to_numpy(dtype=float)
+    npart = df.iloc[:, 4].to_numpy(dtype=float)*250*param['param']['dtp'] #particles per hour per person
+
+    # super-individuals per location
+    # weight npart % SI if there is a remainder.
+    SI0 = int(C['SI'])
+    npart = npart.astype(np.int64)      
+    n_full, rem = np.divmod(npart, SI0)
+    counts = n_full + (rem > 0)   
+    idx = np.repeat(np.arange(len(npart)), counts)  
+    SI = np.full(len(idx), float(SI0))
+    last = np.cumsum(counts) - 1
+    SI[last[rem > 0]] = rem[rem > 0]  
+
+    clat, clon, cz = lat0[idx], lon0[idx], z0[idx]
+    N = len(clat)
+    if N == 0:
+        raise ValueError(f"No particles to release: check {P['filename']}")
+
+    # cloud of release points
+    sig_lat = (P['r'] / 3.0) / C['deg2met']    
+    sig_lon = (P['r'] / 3.0) / C['deglatT']      
+    lon = clon + rng.normal(0.0, sig_lon, N)
+    lat = clat + rng.normal(0.0, sig_lat, N)
+    z = cz + rng.uniform(0.0, P['dd'], N)  # extra depth in [0, dd]
+
+    # particle dimensions (semiaxes, m) floor at 10% of the mean,
+    def dimension_sd(mean, sd):
+        return np.clip(rng.normal(mean, sd, N), 0.1 * mean, None)
+
+    c = dimension_sd(P['dim1'], P.get('dim1sd', 0.0))
+    b = dimension_sd(P['dim2'], P.get('dim2sd', 0.0))
+    a = dimension_sd(P['dim3'], P.get('dim3sd', 0.0))
+
+    # superellipsoid volume
+    e = P['shape']
+    fe = e**2 * math.gamma(e/2)**3 / math.gamma(3*e/2) 
+    Vol = (2.0/3.0)*fe*a*b*c
+
+    rho_p = np.full(N, P['density'], dtype=float)
+
+    print(f"The model will release {N} particles per release "
+          f"({len(lat0)} locations, SI = {C['SI']:g})")
+
+    return SimpleNamespace(lat=lat, lon=lon, depth=z, a=a, b=b, c=c,
+                           Vol=Vol, rho_p=rho_p, SI=SI)
+

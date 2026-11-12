@@ -1,18 +1,3 @@
-def init_MP(particle, fieldset, time): 
-    if particle.status==0: #Check if particle is initialized    
-        '''Assign length and diameter to particles following input distribution''' 
-        particle.status = 1 #free particle
-        #Assign a value of diameter given size distribution
-        d = ParcelsRandom.normalvariate(fieldset.diameter, fieldset.SDD)
-        l = ParcelsRandom.normalvariate(fieldset.length, fieldset.SDL)
-        #Do not allow negative dimensions
-        while d <= fieldset.min_diameter:
-            d = ParcelsRandom.normalvariate(fieldset.diameter, fieldset.SDD)
-        while l <= fieldset.min_length:
-            l = ParcelsRandom.normalvariate(fieldset.length, fieldset.SDL)
-        particle.diameter = d
-        particle.length = l
-
 def Advection(particle, fieldset, time): 
     if particle.status == 1: #If particle is not active, do not move it
         ssh = fieldset.sossheig[time, particle.depth, particle.lat, particle.lon,particle] #SSH(t)
@@ -77,6 +62,7 @@ def horz_mix(particle,fieldset,time):
         d_y = (sqrt(3*2*fieldset.kh*particle.dt) * Rry)/fieldset.deg2met   
         d_randomx = particle.lon + d_x + particle_dlon
         d_randomy = particle.lat + d_y + particle_dlat
+        
         Sbh = 1
         Swh = 1
         if particle.depth < 5:
@@ -95,6 +81,16 @@ def horz_mix(particle,fieldset,time):
             particle_dlon += d_x
         elif particle.status == -1:
             particle.status = 1 #Do nothing, and resuspend. This particles crossed bathymetry at deep water
+
+def LandCheck(particle, fieldset, time):
+    """Cancel any horizontal move whose destination is a land cell (td == 0)."""
+    if particle.status == 1:
+        td2 = fieldset.totaldepth[time, particle.depth,particle.lat + particle_dlat, particle.lon + particle_dlon, particle]
+        if td2 == 0.0:
+            particle_dlon = 0.0          # stay in the last wet position
+            particle_dlat = 0.0
+            if particle.depth < 5:
+                particle.status = 2      # beached
 
 def Windage(particle, fieldset, time):
     if particle.status == 1 and particle.depth < 0.1:

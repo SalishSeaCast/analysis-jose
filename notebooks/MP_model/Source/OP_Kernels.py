@@ -57,28 +57,19 @@ def horz_mix(particle,fieldset,time):
     if particle.status==1 and time - particle.last_update_dyn >= fieldset.dyn_dt:
         Rrx = ParcelsRandom.uniform(-1, 1)
         Rry = ParcelsRandom.uniform(-1, 1)
-        d_x = (sqrt(3*2*fieldset.kh*fieldset.dyn_dt) * Rrx)/fieldset.deglatT
-        d_y = (sqrt(3*2*fieldset.kh*fieldset.dyn_dt) * Rry)/fieldset.deg2met   
-        d_randomx = particle.lon + d_x + particle_dlon
-        d_randomy = particle.lat + d_y + particle_dlat
-        Sbh = 1.0
-        Swh = 1.0
-        if particle.depth < 5:
-            Sbh = fieldset.sigma_theta[time, 0.51, d_randomy, d_randomx] #Check if particles reach coast at shallow water (SW Density = 0)
-            if Sbh==0.0:
-                particle.status = 2 #beached
-        else:
-            Swh = fieldset.sigma_theta[time, particle.depth, d_randomy, d_randomx]
-            if Swh == 0.0:
-                #Do not cross wall Keep particle in place
-                particle.status = -1
-                
-        #Apply horizontal mixing (beaching for particles pushed through coast) 
-        if particle.status == 1:
-            particle_dlat += d_y
-            particle_dlon += d_x
-        elif particle.status == -1:
-            particle.status = 1 #Do nothing, and resuspend. This particles crossed bathymetry at deep water
+        particle_dlon += (math.sqrt(3*2*fieldset.kh*fieldset.dyn_dt) * Rrx) / fieldset.deglatT
+        particle_dlat += (math.sqrt(3*2*fieldset.kh*fieldset.dyn_dt) * Rry) / fieldset.deg2met
+
+
+def LandCheck(particle, fieldset, time):
+    """Cancel any horizontal move whose destination is a land cell (td == 0)."""
+    if particle.status == 1 and time - particle.last_update_dyn >= fieldset.dyn_dt:
+        td2 = fieldset.totaldepth[time, particle.depth, particle.lat + particle_dlat, particle.lon + particle_dlon, particle]
+        if td2 == 0.0:
+            particle_dlon = 0.0          # stay in the last wet position
+            particle_dlat = 0.0
+            if particle.depth < 5:
+                particle.status = 2      # beached
         
 def Stokes_Windage(particle, fieldset, time):
     """Apply Stokes drift calculated by WW3 and HRDPS Wind drag"""
@@ -265,17 +256,9 @@ def resuspension(particle, fieldset, time):
 
 def CheckOutOfBounds(particle, fieldset, time):
     if particle.state == StatusCode.ErrorOutOfBounds:
-        if Sbh == 0.0: #Ready to beach particles
-            print('particle beached')
-            particle.state = StatusCode.Success
-            #particle.status = 2 #beached DO NOT MOVE outside domain
-        elif Swh ==0.0:
-            print('particle hit wall') #Do not cross wall Keep particle in place
-            particle.state = StatusCode.Success
-        else:
-            print('lost Particle')
-            particle.status = 10 #lost
-            particle.delete()
+        print('lost Particle')
+        particle.status = 10 #lost
+        particle.delete()
         
 def KeepInOcean(particle, fieldset, time):
     if particle.state == StatusCode.ErrorThroughSurface:
