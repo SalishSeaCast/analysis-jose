@@ -2,9 +2,9 @@
 file: 
   name: 'test_function' #name output file
 startdate:
-  year: 2023 
+  year: 2024 
   month: 1
-  day: 2
+  day: 1
 
 param:
   length: 1 # Set Time length [days] 
@@ -27,7 +27,7 @@ particle:
   dd: 0.5 #max depth increase difference from chosen
 
 constants:
-  SI: 5.0e+6 #Supper individual size
+  SI: 1.0e+5 #Supper individual size
   Ub: 171 #unbeaching timescale [days]
   deg2met: 111319.5
   deglatT: 72302 #deglatT == latT*deg2met
@@ -51,5 +51,5 @@ constants:
 cs:
   depth: 40
   time: 1
-  lat: 100
-  lon: 100
+  lat: 200
+  lon: 400

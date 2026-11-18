@@ -8,36 +8,54 @@ from glob import glob
 import math
 from types import SimpleNamespace
 
-def path(machine='salish'):
-    if machine=='salish':
-        path = {'NEMO': '/results2/SalishSea/nowcast-green.202111',
+def path():
+    machine = os.uname().nodename
+    F = os.environ.get('FORCING_DIR')   
+    if 'salish' in machine:
+        paths = {'NEMO': '/results2/SalishSea/nowcast-green.202111',
             'coords': '/ocean/jvalenti/MOAD/grid/coordinates_seagrid_SalishSea201702.nc',
             'coordsWW3': '/ocean/jvalenti/MOAD/grid2/WW3_grid.nc',
             'mask': '/ocean/jvalenti/MOAD/grid2/mesh_mask202108_TDV.nc',
             'bat': '/ocean/jvalenti/MOAD/grid/bathymetry_202108.nc',
             'out': '/home/jvalenti/MOAD/results',
-            'home': '/home/jvalenti/MOAD/analysis-jose/notebooks/parcels'}
-    elif machine=='nibi':
-        path = {'NEMO': '/project/def-allen/SalishSea/nowcast-green.202111/',
+            'WW3': '/opp/wwatch3/',
+            'SHEM': '/data/jvalenti/results',
+            'winds': '/results/forcing/atmospheric/continental2.5/nemo_forcing'}
+    elif 'nibi' in machine:
+        paths = {'NEMO': '/project/def-allen/SalishSea/nowcast-green.202111/',
             'coords': '/home/jvalenti/MOAD/grid/coordinates_seagrid_SalishSea201702.nc',
             'coordsWW3': '/home/jvalenti/MOAD/grid2/WW3_grid.nc',
             'mask': '/home/jvalenti/MOAD/grid2/mesh_mask202108_TDV.nc',
             'bat': '/home/jvalenti/MOAD/grid/bathymetry_202108.nc',
             'out': '/scratch/jvalenti/MP_runs',
-            'home': '/home/jvalenti/MOAD/analysis-jose/notebooks/MP_Model'}
-    return path
+            'home': '/home/jvalenti/MOAD/analysis-jose/'}
+    elif any(name in machine for name in ['narval', 'nc']):
+        paths = {'NEMO': '/home/jvalenti/scratch/Parcels/forcing/SalishSeaCast',
+            'coords': '/home/jvalenti/MOAD/grid/coordinates_seagrid_SalishSea201702.nc',
+            'coordsWW3': '/home/jvalenti/MOAD/grid2/WW3_grid.nc',
+            'mask': '/home/jvalenti/MOAD/grid2/mesh_mask202108_TDV.nc',
+            'bat': '/home/jvalenti/MOAD/grid/bathymetry_202108.nc',
+            'out': '/home/jvalenti/scratch/Parcels/results',
+            'WW3': '/home/jvalenti/scratch/Parcels/forcing/WW3',
+            'SHEM': '/home/jvalenti/scratch/Parcels/forcing/SHEM',
+            'winds': '/home/jvalenti/projects/def-allen/SalishSea/forcing/forcing/atmospheric/continental2.5/nemo_forcing'}
+    if F:
+            paths['NEMO'] = os.path.join(F, 'SalishSeaCast')
+            paths['SHEM'] = os.path.join(F, 'SHEM')
+            paths['WW3'] = os.path.join(F, 'WW3')
+    return paths
 
 def get_Biol_path(date,filen='biol'):
     # Make biol path
-    path = '/data/jvalenti/results/'
+    pathshem = path()['SHEM']
     datestr = [date.strftime(fmt) for fmt in ('%d%b%y', '%Y%m%d-%Y%m%d')]
     if filen =='biol':
-        path = os.path.join(path, datestr[0].lower(), f'SHEM_1h_{datestr[1]}_biol_T.nc')
+        pathshem = os.path.join(pathshem, datestr[0].lower(), f'SHEM_1h_{datestr[1]}_biol_T.nc')
     elif filen =='prod':
-        path = os.path.join(path, datestr[0].lower(), f'SHEM_1d_{datestr[1]}_prod_T.nc')
+        pathshem = os.path.join(pathshem, datestr[0].lower(), f'SHEM_1d_{datestr[1]}_prod_T.nc')
     elif filen =='graz':
-            path = os.path.join(path, datestr[0].lower(), f'SHEM_1d_{datestr[1]}_graz_T.nc')
-    return path  
+            pathshem = os.path.join(pathshem, datestr[0].lower(), f'SHEM_1d_{datestr[1]}_graz_T.nc')
+    return pathshem  
 
 def get_Winds_path(date):
     """Construct Winds results path given the date
@@ -46,12 +64,12 @@ def get_Winds_path(date):
     datestr = date.strftime('y%Ym%md%d')
     # Make winds path
     if date > datetime(2023,2,22):
-        path = '/results/forcing/atmospheric/continental2.5/nemo_forcing'
-        path = os.path.join(path, f'hrdps_{datestr}.nc')
+        pathwinds = path()['winds']
+        pathwinds = os.path.join(pathwinds, f'hrdps_{datestr}.nc')
     else:
-        path = '/results/forcing/atmospheric/GEM2.5/operational'
-        path = os.path.join(path, f'ops_{datestr}.nc')
-    return path  
+        pathwinds = '/results/forcing/atmospheric/GEM2.5/operational'
+        pathwinds = os.path.join(pathwinds, f'ops_{datestr}.nc')
+    return pathwinds  
 
 def get_WW3_path(date):
     """Construct WW3 results path given the date
@@ -62,16 +80,24 @@ def get_WW3_path(date):
     :rtype: str
     """
     # Make WW3 path
-    path = '/opp/wwatch3/hindcast'
-    path2 = '/opp/wwatch3/nowcast'
-    datestr = [date.strftime(fmt) for fmt in ('%d%b%y', '%Y%m%d_%Y%m%d')]
-    path = os.path.join(path, datestr[0].lower(), f'SoG_ww3_fields_{datestr[1]}.nc')
-    if not os.path.exists(path):
-        path = os.path.join(path2, datestr[0].lower(), f'SoG_ww3_fields_{datestr[1]}.nc')
-        if not os.path.exists(path):    
+    machine = os.uname().nodename
+    if 'salish' in machine:
+        path0 = path()['WW3']
+        path1 = path0+ 'hindcast'
+        path2 = path0+ 'nowcast'
+        datestr = [date.strftime(fmt) for fmt in ('%d%b%y', '%Y%m%d_%Y%m%d')]
+        path1 = os.path.join(path1, datestr[0].lower(), f'SoG_ww3_fields_{datestr[1]}.nc')
+        if not os.path.exists(path1):
+            path2 = os.path.join(path2, datestr[0].lower(), f'SoG_ww3_fields_{datestr[1]}.nc')
+            if not os.path.exists(path2):    
+                raise ValueError(f"No WW3 record found for the specified date {date.strftime('%Y-%b-%d')}")
+    elif any(name in machine for name in ['narval', 'nc']):
+        path0 = path()['WW3']
+        datestr = [date.strftime(fmt) for fmt in ('%d%b%y', '%Y%m%d_%Y%m%d')]
+        path0 = os.path.join(path0, datestr[0].lower(), f'SoG_ww3_fields_{datestr[1]}.nc')
+        if not os.path.exists(path0):    
             raise ValueError(f"No WW3 record found for the specified date {date.strftime('%Y-%b-%d')}")
-
-    return path  
+    return path0  
 
 def load_config(config_yaml):
    with open(config_yaml) as f:
@@ -165,7 +191,7 @@ def p_unidist(lat0,lon0,bat,dy,dx):
     return plat,plon
 
 
-def particle_source(param, seed=None):
+def particle_source(param, seed=None,runtime_hours=None):
     """Build particle release arrays from the deployment file
 
     Each row releases round(number / SI) super-individuals, where
@@ -179,13 +205,16 @@ def particle_source(param, seed=None):
     rng = np.random.default_rng(seed)
     P = param['particle']
     C = param['constants']
+    dtp = param['param']['dtp']                      # hours between releases; 0 = single pulse
+    if runtime_hours is None:
+        runtime_hours = param['param']['length'] * 24.0
 
     # ---- read deployment file ----
     df = pd.read_csv(P['filename'])
     lat0 = df.iloc[:, 2].to_numpy(dtype=float)
     lon0 = df.iloc[:, 3].to_numpy(dtype=float)
     z0 = pd.to_numeric(df.iloc[:, 5], errors='coerce').fillna(2.0).to_numpy(dtype=float)
-    npart = df.iloc[:, 4].to_numpy(dtype=float)*250*param['param']['dtp'] #particles per hour per person
+    npart = df.iloc[:, 4].to_numpy(dtype=float)*250*runtime_hours #particles in run
 
     # super-individuals per location
     # weight npart % SI if there is a remainder.
@@ -202,6 +231,17 @@ def particle_source(param, seed=None):
     N = len(clat)
     if N == 0:
         raise ValueError(f"No particles to release: check {P['filename']}")
+
+     # release time (s): stratified over the run within each location
+    j = np.arange(N) - (np.cumsum(counts) - counts)[idx]      # 0..counts-1 within row
+    u = rng.uniform(0.0, 1.0, N)
+    u[j == 0] = 0.0                                           # first SI of each row at t = 0
+    t_h = (j + u) / counts[idx] * runtime_hours
+    if dtp > 0:
+        t_h = np.floor(t_h / dtp) * dtp                       # snap to the release grid
+    else:
+        t_h = np.zeros(N)                                     # single pulse
+    time = t_h * 3600.0
 
     # cloud of release points
     sig_lat = (P['r'] / 3.0) / C['deg2met']    
@@ -225,9 +265,9 @@ def particle_source(param, seed=None):
 
     rho_p = np.full(N, P['density'], dtype=float)
 
-    print(f"The model will release {N} particles per release "
-          f"({len(lat0)} locations, SI = {C['SI']:g})")
+    print(f"{N} super-individuals over {runtime_hours:g} h "
+              f"({len(lat0)} locations, SI = {C['SI']:g}, sum SI = {SI.sum():.0f})")
 
     return SimpleNamespace(lat=lat, lon=lon, depth=z, a=a, b=b, c=c,
-                           Vol=Vol, rho_p=rho_p, SI=SI)
+                           Vol=Vol, rho_p=rho_p, SI=SI, time=time)
 

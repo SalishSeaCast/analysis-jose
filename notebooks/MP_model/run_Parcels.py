@@ -53,8 +53,8 @@ def add_constants(field_set,param):
 
     return field_set
 
-def build_fieldset(start,duration,cs,machine='salish'):
-    paths = path(machine)
+def build_fieldset(start,duration,cs):
+    paths = path()
     cgrid_dim = {'lon': 'glamf','lat': 'gphif','depth':'depthw', 'time':'time_counter'}
     Ulist, Vlist, Wlist, Tlist, Blist, Plist, Glist ,Waveslist, Windlist = [], [], [], [], [], [], [], [], []
 
@@ -182,9 +182,6 @@ def run_Parcels(config='config.yaml', runtime=None, outputdt=timedelta(minutes=3
     lat, lon, z = MP.lat, MP.lon, MP.depth
     a, b, c, Vol_0, density, SI = MP.a, MP.b, MP.c, MP.Vol, MP.rho_p, MP.SI
 
-   
-    machine = param['param']['machine']
-
     cs = {
         "time": ("time", param['cs']['time']),
         "depth": ("depth", param['cs']['depth']),   
@@ -203,7 +200,7 @@ def run_Parcels(config='config.yaml', runtime=None, outputdt=timedelta(minutes=3
     if outfile is None:
         outfile = os.path.join('/home/jvalenti/MOAD/results/', param['file']['name'] + '.zarr')
 
-    field_set = build_fieldset(start,duration,cs,machine=machine)
+    field_set = build_fieldset(start,duration,cs)
     field_set = add_constants(field_set,param)
     #Define our Parcels Particles
     class MPParticle(JITParticle):    
@@ -239,8 +236,7 @@ def run_Parcels(config='config.yaml', runtime=None, outputdt=timedelta(minutes=3
         [vert_mix,Advection,horz_mix,Stokes_Windage,LandCheck,Biofouling_ws,Buoyancy,export,KeepInOcean,CheckOutOfBounds,*extra_kernels],
         runtime=runtime if runtime is not None else duration,
         dt=timedelta(seconds=dt),
-        output_file=pset.ParticleFile(name=outfile, outputdt=timedelta(hours=odt)))
- # chunks=(int(1e4), 1))
+        output_file=pset.ParticleFile(name=outfile, outputdt=timedelta(hours=odt),chunks=(int(1e4), 1)))
     if convert:
         ds, name = zarr_tonet(outfile)
         ds.to_netcdf('/home/jvalenti/projects/rrg-allen/jvalenti/' + name + '.nc')
