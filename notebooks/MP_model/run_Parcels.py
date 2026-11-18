@@ -53,8 +53,8 @@ def add_constants(field_set,param):
 
     return field_set
 
-def build_fieldset(start,duration,cs):
-    paths = path()
+def build_fieldset(start,duration,cs,machine='salish'):
+    paths = path(machine)
     cgrid_dim = {'lon': 'glamf','lat': 'gphif','depth':'depthw', 'time':'time_counter'}
     Ulist, Vlist, Wlist, Tlist, Blist, Plist, Glist ,Waveslist, Windlist = [], [], [], [], [], [], [], [], []
 
@@ -102,8 +102,8 @@ def build_fieldset(start,duration,cs):
     filenames['tracer'] = {'lon': paths['coords'],'lat': paths['coords'],'depth': Tlist[0],'data': Tlist}
     dimensions['tracer'] = {'lon': 'glamt', 'lat': 'gphit', 'depth': 'deptht','time': 'time_counter'}
 
-    R = Field.from_netcdf(filenames['tracer'], 'sigma_theta', dimensions['tracer'],allow_time_extrapolation=True, chunksize=cs)
-    T = Field.from_netcdf(filenames['tracer'], 'votemper', dimensions['tracer'],allow_time_extrapolation=True, chunksize=cs)
+    R = Field.from_netcdf(filenames['tracer'], 'sigma_theta', dimensions['tracer'],allow_time_extrapolation=True, chunksize=cs,interp_method='cgrid_tracer')
+    T = Field.from_netcdf(filenames['tracer'], 'votemper', dimensions['tracer'],allow_time_extrapolation=True, chunksize=cs, interp_method='cgrid_tracer')
 
     field_set.add_field(R)
     field_set.add_field(T)
@@ -113,12 +113,12 @@ def build_fieldset(start,duration,cs):
     filenames['Prod'] = {'lon': paths['coords'],'lat': paths['coords'],'depth': Plist[0],'data': Plist}
     filenames['Mort'] = {'lon': paths['coords'],'lat': paths['coords'],'depth': Glist[0],'data': Glist}
 
-    PP = Field.from_netcdf(filenames['Prod'], 'PPDIAT', dimensions['tracer'],allow_time_extrapolation=True, chunksize=cs)
-    HBProd = Field.from_netcdf(filenames['Prod'], 'HetHBAC', dimensions['tracer'],allow_time_extrapolation=True, chunksize=cs)
-    Diat_mort = Field.from_netcdf(filenames['Mort'], 'MORTDIAT', dimensions['tracer'],allow_time_extrapolation=True, chunksize=cs)
-    Hbac_mort = Field.from_netcdf(filenames['Mort'], 'MORTHBAC', dimensions['tracer'],allow_time_extrapolation=True, chunksize=cs)
-    Hbac = Field.from_netcdf(filenames['Biology'], 'heterotrophic_bacteria', dimensions['tracer'],allow_time_extrapolation=True, chunksize=cs)
-    Diat = Field.from_netcdf(filenames['Biology'], 'diatoms', dimensions['tracer'],allow_time_extrapolation=True, chunksize=cs)
+    PP = Field.from_netcdf(filenames['Prod'], 'PPDIAT', dimensions['tracer'],allow_time_extrapolation=True, chunksize=cs,interp_method='cgrid_tracer')
+    HBProd = Field.from_netcdf(filenames['Prod'], 'HetHBAC', dimensions['tracer'],allow_time_extrapolation=True, chunksize=cs,interp_method='cgrid_tracer')
+    Diat_mort = Field.from_netcdf(filenames['Mort'], 'MORTDIAT', dimensions['tracer'],allow_time_extrapolation=True, chunksize=cs,interp_method='cgrid_tracer')
+    Hbac_mort = Field.from_netcdf(filenames['Mort'], 'MORTHBAC', dimensions['tracer'],allow_time_extrapolation=True, chunksize=cs,interp_method='cgrid_tracer')
+    Hbac = Field.from_netcdf(filenames['Biology'], 'heterotrophic_bacteria', dimensions['tracer'],allow_time_extrapolation=True, chunksize=cs,interp_method='cgrid_tracer')
+    Diat = Field.from_netcdf(filenames['Biology'], 'diatoms', dimensions['tracer'],allow_time_extrapolation=True, chunksize=cs,interp_method='cgrid_tracer')
 
     field_set.add_field(PP)
     field_set.add_field(HBProd)
@@ -135,7 +135,7 @@ def build_fieldset(start,duration,cs):
     vs = Field.from_netcdf(filenames['stokes'], 'vuss', dimensions['stokes'],allow_time_extrapolation=True)
     wl = Field.from_netcdf(filenames['stokes'], 'lm', dimensions['stokes'],allow_time_extrapolation=True)
     us.units = GeographicPolar()   # u: m/s -> deg lon/s 
-    vs.units = Geographic() 
+    vs.units = Geographic()
     field_set.add_field(us)
     field_set.add_field(vs)
     field_set.add_field(wl)
@@ -152,10 +152,10 @@ def build_fieldset(start,duration,cs):
 
     #Add SSH 
     dimensions['flat_t'] = {'lon': 'glamt', 'lat': 'gphit','time': 'time_counter'}
-    SSH = Field.from_netcdf(filenames['ssh'], 'sossheig', dimensions['flat_t'],allow_time_extrapolation=True)
+    SSH = Field.from_netcdf(filenames['ssh'], 'sossheig', dimensions['flat_t'],allow_time_extrapolation=True, interp_method='nearest')
     field_set.add_field(SSH)
 
-    b_stress = Field.from_netcdf(filenames['Biology'], 'bottom_stress', dimensions['flat_t'],allow_time_extrapolation=True)
+    b_stress = Field.from_netcdf(filenames['Biology'], 'bottom_stress', dimensions['flat_t'],allow_time_extrapolation=True, interp_method='nearest')
     field_set.add_field(b_stress)
 
     filenames['wind'] = {'lon': Windlist[0],'lat': Windlist[0],'data': Windlist}
@@ -182,6 +182,9 @@ def run_Parcels(config='config.yaml', runtime=None, outputdt=timedelta(minutes=3
     lat, lon, z = MP.lat, MP.lon, MP.depth
     a, b, c, Vol_0, density, SI = MP.a, MP.b, MP.c, MP.Vol, MP.rho_p, MP.SI
 
+   
+    machine = param['param']['machine']
+
     cs = {
         "time": ("time", param['cs']['time']),
         "depth": ("depth", param['cs']['depth']),   
@@ -200,7 +203,7 @@ def run_Parcels(config='config.yaml', runtime=None, outputdt=timedelta(minutes=3
     if outfile is None:
         outfile = os.path.join('/home/jvalenti/MOAD/results/', param['file']['name'] + '.zarr')
 
-    field_set = build_fieldset(start,duration,cs)
+    field_set = build_fieldset(start,duration,cs,machine=machine)
     field_set = add_constants(field_set,param)
     #Define our Parcels Particles
     class MPParticle(JITParticle):    
@@ -230,13 +233,15 @@ def run_Parcels(config='config.yaml', runtime=None, outputdt=timedelta(minutes=3
     if seed is not None:
         ParcelsRandom.seed(seed)
 
-    pset = ParticleSet.from_list(field_set, MPParticle, lon=lon, lat=lat, depth=z, dim3 = a, dim2 = b, dim1 = c, Vol = Vol_0, density= density,repeatdt = repeatdt)
+    outputdt = outputdt if outputdt is not None else timedelta(hours=odt)
+    pset = ParticleSet.from_list(field_set, MPParticle, lon=lon, lat=lat, depth=z, dim3 = a, dim2 = b, dim1 = c, Vol = Vol_0, density= density,repeatdt = repeatdt,lonlatdepth_dtype=np.float64)
 
     pset.execute(
         [vert_mix,Advection,horz_mix,Stokes_Windage,LandCheck,Biofouling_ws,Buoyancy,export,KeepInOcean,CheckOutOfBounds,*extra_kernels],
         runtime=runtime if runtime is not None else duration,
         dt=timedelta(seconds=dt),
-        output_file=pset.ParticleFile(name=outfile, outputdt=timedelta(hours=odt),chunks=(int(1e4), 1)))
+        output_file=pset.ParticleFile(name=outfile, outputdt=outputdt))
+ # chunks=(int(1e4), 1))
     if convert:
         ds, name = zarr_tonet(outfile)
         ds.to_netcdf('/home/jvalenti/projects/rrg-allen/jvalenti/' + name + '.nc')
@@ -245,7 +250,7 @@ def run_Parcels(config='config.yaml', runtime=None, outputdt=timedelta(minutes=3
 
 if __name__=="__main__":
     try:
-        config = sys.argv[1]
+        config = sys.argv[1] if len(sys.argv) > 1 else 'config.yaml'
     except :
         print('Something went wrong')
     run_Parcels(config)

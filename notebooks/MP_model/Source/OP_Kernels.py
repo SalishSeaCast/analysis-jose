@@ -7,13 +7,13 @@ def vert_mix(particle,fieldset,time):
 
         #Vertical mixing
         if particle.depth + 0.5/particle.fact > td: #Only calculate gradient of diffusion for particles deeper than 0.5 otherwise OP will look for particles outside the domain raising an error.
-            Kzdz = 2*(fieldset.vert_eddy_diff[time, particle.depth, particle.lat, particle.lon,particle]-fieldset.vert_eddy_diff[time, particle.depth-0.5/particle.fact, particle.lat, particle.lon]) 
+            Kzdz = 2*(fieldset.vert_eddy_diff[time, particle.depth, particle.lat, particle.lon,particle]-fieldset.vert_eddy_diff[time, particle.depth-0.5/particle.fact, particle.lat, particle.lon,particle]) 
             #backwards difference 
         else: 
-            Kzdz = 2*(fieldset.vert_eddy_diff[time, particle.depth+0.5/particle.fact, particle.lat, particle.lon]-fieldset.vert_eddy_diff[time, particle.depth, particle.lat, particle.lon,particle]) #forward difference 
+            Kzdz = 2*(fieldset.vert_eddy_diff[time, particle.depth+0.5/particle.fact, particle.lat, particle.lon,particle]-fieldset.vert_eddy_diff[time, particle.depth, particle.lat, particle.lon,particle]) #forward difference 
         dgrad = Kzdz*particle.dt/particle.fact
         if particle.depth+(0.5*dgrad) > 0 and particle.depth+(0.5*dgrad) < td:
-            Kz = fieldset.vert_eddy_diff[time, particle.depth+ 0.5*dgrad, particle.lat, particle.lon] 
+            Kz = fieldset.vert_eddy_diff[time, particle.depth+ 0.5*dgrad, particle.lat, particle.lon,particle] 
             #Vertical diffusivity SSC  
         else:
             Kz = 0.0 #Otherwise it would check outside the domain
@@ -62,14 +62,19 @@ def horz_mix(particle,fieldset,time):
 
 
 def LandCheck(particle, fieldset, time):
-    """Cancel any horizontal move whose destination is a land cell (td == 0)."""
+    """is a land cell"""
     if particle.status == 1 and time - particle.last_update_dyn >= fieldset.dyn_dt:
-        td2 = fieldset.totaldepth[time, particle.depth, particle.lat + particle_dlat, particle.lon + particle_dlon, particle]
-        if td2 == 0.0:
-            particle_dlon = 0.0          # stay in the last wet position
-            particle_dlat = 0.0
-            if particle.depth < 5:
-                particle.status = 2      # beached
+        if particle.depth < 5:
+            sbh = fieldset.sigma_theta[time, 0.51, particle.lat + particle_dlat, particle.lon + particle_dlon, particle]
+            if sbh == 0.0:
+                particle_dlon = 0.0
+                particle_dlat = 0.0
+                particle.status = 2          # beached, stay in place.
+        else:
+            sbh = fieldset.sigma_theta[time, particle.depth, particle.lat + particle_dlat, particle.lon + particle_dlon, particle]
+            if sbh == 0.0:
+                particle_dlon = 0.0          # wall: stay in place.
+                particle_dlat = 0.0
         
 def Stokes_Windage(particle, fieldset, time):
     """Apply Stokes drift calculated by WW3 and HRDPS Wind drag"""
@@ -121,7 +126,7 @@ def Biofouling_ws(particle, fieldset, time):
         b = particle.dim2 # particle medium semiaxis
         a = particle.dim3 # particle large semiaxis
         e = particle.shape
-        fe = e**2 * math.exp(3*math.lgamma(e/2) - math.lgamma(3*e/2)) #gamma == lgamma
+        fe = e**2. * math.exp(3.*math.lgamma(e/2.) - math.lgamma(3.*e/2.)) #gamma == lgamma
 
         r_eq = (((4.*(a+particle.bioth)*(b+particle.bioth)*(c+particle.bioth)*fe)/math.pi) ** (1./3.))/2.
         r_hb = fieldset.r_hbac #!find representative values
@@ -245,19 +250,20 @@ def Unbeaching(particle, fieldset, time):
             particle.status = 1
 
 def resuspension(particle, fieldset, time):
-    if particle.status == 3 and time - particle.last_update_res >= fieldset.dyn_dt:
+    if particle.status == 3 and time - particle.last_update_dyn >= fieldset.dyn_dt:
         vtau = fieldset.bottom_stress[time, particle.depth, particle.lat, particle.lon, particle]
         if vtau > particle.vtau_crit:  #todo erode_factor set to 1.0 consider increasing to reduce resuspension
             particle.status = 1
             lift = -fieldset.resusp_h * math.log(1. - ParcelsRandom.uniform(0., 1.))   #!sensitivity 0.1, 0.5 and 1 m
             lift = min(lift, 0.5 * particle.depth)
             particle_ddepth -= lift/particle.fact        
-        particle.last_update_res = time            
+        
 
 def CheckOutOfBounds(particle, fieldset, time):
     if particle.state == StatusCode.ErrorOutOfBounds:
         print('lost Particle')
         particle.status = 10 #lost
+        print("OOB depth=%g lat=%g lon=%g" % (particle.depth, particle.lat, particle.lon))
         particle.delete()
         
 def KeepInOcean(particle, fieldset, time):
