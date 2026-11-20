@@ -26,6 +26,6 @@ module list 2>&1 | grep -q 'gcc/12.3' || module load gcc/12.3   # the JIT needs 
 
 for v in $(env | grep -oE '^(PMIX|PMI|OMPI)_[A-Za-z0-9_]*'); do unset $v; done
 
-for n in 16 24; do
-    pixi run -e parcels mpirun -np $n python bench.py 200 40 | grep BENCH
+for n in 35 45 55; do
+    pixi run -e parcels mpirun -np $n python bench_stage.py 200 40 | grep BENCH
 done

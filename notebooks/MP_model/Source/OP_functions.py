@@ -29,7 +29,7 @@ def path():
             'bat': '/home/jvalenti/MOAD/grid/bathymetry_202108.nc',
             'out': '/scratch/jvalenti/MP_runs',
             'home': '/home/jvalenti/MOAD/analysis-jose/'}
-    elif any(name in machine for name in ['narval', 'nc']):
+    elif any(name in machine for name in ['narval', 'nc','nl']):
         paths = {'NEMO': '/home/jvalenti/scratch/Parcels/forcing/SalishSeaCast',
             'coords': '/home/jvalenti/MOAD/grid/coordinates_seagrid_SalishSea201702.nc',
             'coordsWW3': '/home/jvalenti/MOAD/grid2/WW3_grid.nc',
@@ -91,7 +91,7 @@ def get_WW3_path(date):
             path2 = os.path.join(path2, datestr[0].lower(), f'SoG_ww3_fields_{datestr[1]}.nc')
             if not os.path.exists(path2):    
                 raise ValueError(f"No WW3 record found for the specified date {date.strftime('%Y-%b-%d')}")
-    elif any(name in machine for name in ['narval', 'nc']):
+    elif any(name in machine for name in ['narval', 'nc','nl']):
         path0 = path()['WW3']
         datestr = [date.strftime(fmt) for fmt in ('%d%b%y', '%Y%m%d_%Y%m%d')]
         path0 = os.path.join(path0, datestr[0].lower(), f'SoG_ww3_fields_{datestr[1]}.nc')

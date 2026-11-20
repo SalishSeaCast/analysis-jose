@@ -9,7 +9,7 @@ startdate:
 param:
   length: 1 # Set Time length [days] 
   dt: 5 #toggle between - or + to pick backwards or forwards 
-  dtp: 1 #how often particle released in hours
+  dtp: 0 #how often particle released in hours
   odt: 6 #hours between output
   machine: 'salish'
 
